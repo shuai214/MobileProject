@@ -1,0 +1,17 @@
+platform:ios, '8.0'
+inhibit_all_warnings!
+target ‘MobileProject’ do
+ pod 'XAspect'
+ pod 'AFNetworking', '~>3.0'
+ pod 'ReactiveCocoa', '~> 2.5'
+ pod 'SDWebImage', '~> 3.7.5'
+ pod 'JSONModel', '~> 1.0.1'
+ pod 'Masonry','~>0.6.1'
+ pod 'IQKeyboardManager', '~> 3.3.7'  #兼容IOS7
+ pod 'TZImagePickerController'  #照片选择浏览器
+ pod 'UITableView+FDTemplateLayoutCell'
+ pod 'ActionSheetPicker-3.0'
+ pod 'CYLTabBarController'
+ pod 'MJRefresh' #刷新
+ pod 'MJExtension' #model解析
+end
