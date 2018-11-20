@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2BCAEEFC21A40A1E00F88808 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFB21A40A1E00F88808 /* ViewController.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
 		2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0021A40A1F00F88808 /* Assets.xcassets */; };
 		2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0221A40A1F00F88808 /* LaunchScreen.storyboard */; };
@@ -140,6 +139,8 @@
 		2BCAF0C221A40A6200F88808 /* XAspect-ConfigAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF04021A40A6100F88808 /* XAspect-ConfigAppDelegate.m */; };
 		2BCAF0C321A40A6200F88808 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF04221A40A6100F88808 /* AppDelegate.m */; };
 		2BCAF0C421A40A6200F88808 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF04521A40A6100F88808 /* BaseViewController.m */; };
+		2BCAF0C921A40F7B00F88808 /* CSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0C821A40F7B00F88808 /* CSNavigationController.m */; };
+		2BCAF0CD21A4113C00F88808 /* CSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0CC21A4113C00F88808 /* CSHomeViewController.m */; };
 		520E93400CC96B109CAD4CE9 /* libPods-MobileProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE80D0CD7C11D6E1C2D9C960 /* libPods-MobileProject.a */; };
 /* End PBXBuildFile section */
 
@@ -162,8 +163,6 @@
 
 /* Begin PBXFileReference section */
 		2BCAEEF421A40A1E00F88808 /* MobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BCAEEFA21A40A1E00F88808 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2BCAEEFB21A40A1E00F88808 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2BCAEEFE21A40A1E00F88808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BCAEF0021A40A1F00F88808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BCAEF0321A40A1F00F88808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -427,6 +426,10 @@
 		2BCAF04521A40A6100F88808 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		2BCAF04621A40A6100F88808 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		2BCAF0C521A40A7800F88808 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2BCAF0C721A40F7B00F88808 /* CSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSNavigationController.h; sourceTree = "<group>"; };
+		2BCAF0C821A40F7B00F88808 /* CSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSNavigationController.m; sourceTree = "<group>"; };
+		2BCAF0CB21A4113C00F88808 /* CSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSHomeViewController.h; sourceTree = "<group>"; };
+		2BCAF0CC21A4113C00F88808 /* CSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSHomeViewController.m; sourceTree = "<group>"; };
 		AE80D0CD7C11D6E1C2D9C960 /* libPods-MobileProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1FFCE25C95D840C0196E98A /* Pods-MobileProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileProject/Pods-MobileProject.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA46ACF0BEB3DB277951043 /* Pods-MobileProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileProject/Pods-MobileProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -503,8 +506,6 @@
 				2BCAF03F21A40A6100F88808 /* AppDelegate */,
 				2BCAF04321A40A6100F88808 /* Base(基类) */,
 				2BCAEF2921A40A6100F88808 /* Expand(扩展) */,
-				2BCAEEFA21A40A1E00F88808 /* ViewController.h */,
-				2BCAEEFB21A40A1E00F88808 /* ViewController.m */,
 				2BCAEEFD21A40A1E00F88808 /* Main.storyboard */,
 				2BCAEF0021A40A1F00F88808 /* Assets.xcassets */,
 				2BCAEF0221A40A1F00F88808 /* LaunchScreen.storyboard */,
@@ -965,16 +966,16 @@
 		2BCAF01B21A40A6100F88808 /* UINavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				2BCAF01C21A40A6100F88808 /* UINavigationController+StackManager.h */,
-				2BCAF01D21A40A6100F88808 /* UINavigationController+FDFullscreenPopGesture.h */,
-				2BCAF01E21A40A6100F88808 /* UINavigationController+KeyboardFix.m */,
-				2BCAF01F21A40A6100F88808 /* UINavigationController+JZExtension.m */,
 				2BCAF02021A40A6100F88808 /* UINavigationController+BATransitions.h */,
-				2BCAF02121A40A6100F88808 /* UINavigationController+StackManager.m */,
+				2BCAF02521A40A6100F88808 /* UINavigationController+BATransitions.m */,
+				2BCAF01D21A40A6100F88808 /* UINavigationController+FDFullscreenPopGesture.h */,
 				2BCAF02221A40A6100F88808 /* UINavigationController+FDFullscreenPopGesture.m */,
 				2BCAF02321A40A6100F88808 /* UINavigationController+JZExtension.h */,
+				2BCAF01F21A40A6100F88808 /* UINavigationController+JZExtension.m */,
 				2BCAF02421A40A6100F88808 /* UINavigationController+KeyboardFix.h */,
-				2BCAF02521A40A6100F88808 /* UINavigationController+BATransitions.m */,
+				2BCAF01E21A40A6100F88808 /* UINavigationController+KeyboardFix.m */,
+				2BCAF01C21A40A6100F88808 /* UINavigationController+StackManager.h */,
+				2BCAF02121A40A6100F88808 /* UINavigationController+StackManager.m */,
 			);
 			path = UINavigationController;
 			sourceTree = "<group>";
@@ -1047,6 +1048,8 @@
 		2BCAF04321A40A6100F88808 /* Base(基类) */ = {
 			isa = PBXGroup;
 			children = (
+				2BCAF0CA21A4112300F88808 /* Main */,
+				2BCAF0C621A40EB500F88808 /* BaseNavigationController */,
 				2BCAF04421A40A6100F88808 /* BaseController */,
 			);
 			path = "Base(基类)";
@@ -1059,6 +1062,24 @@
 				2BCAF04521A40A6100F88808 /* BaseViewController.m */,
 			);
 			path = BaseController;
+			sourceTree = "<group>";
+		};
+		2BCAF0C621A40EB500F88808 /* BaseNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF0C721A40F7B00F88808 /* CSNavigationController.h */,
+				2BCAF0C821A40F7B00F88808 /* CSNavigationController.m */,
+			);
+			path = BaseNavigationController;
+			sourceTree = "<group>";
+		};
+		2BCAF0CA21A4112300F88808 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF0CB21A4113C00F88808 /* CSHomeViewController.h */,
+				2BCAF0CC21A4113C00F88808 /* CSHomeViewController.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1261,9 +1282,9 @@
 				2BCAF06521A40A6200F88808 /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
 				2BCAF08221A40A6200F88808 /* UIView+Debug.m in Sources */,
 				2BCAF0B221A40A6200F88808 /* UIViewController+BackButtonItemTitle.m in Sources */,
+				2BCAF0CD21A4113C00F88808 /* CSHomeViewController.m in Sources */,
 				2BCAF08D21A40A6200F88808 /* UIView+Visuals.m in Sources */,
 				2BCAF0A521A40A6200F88808 /* UIImageView+GeometryConversion.m in Sources */,
-				2BCAEEFC21A40A1E00F88808 /* ViewController.m in Sources */,
 				2BCAF07521A40A6200F88808 /* UIColor+Web.m in Sources */,
 				2BCAF05621A40A6200F88808 /* UIImage+Resize.m in Sources */,
 				2BCAF04A21A40A6200F88808 /* UIImage+RemoteSize.m in Sources */,
@@ -1362,6 +1383,7 @@
 				2BCAF05C21A40A6200F88808 /* UIScrollView+EmptyDataSet.m in Sources */,
 				2BCAEF0721A40A1F00F88808 /* main.m in Sources */,
 				2BCAF0B421A40A6200F88808 /* UINavigationController+JZExtension.m in Sources */,
+				2BCAF0C921A40F7B00F88808 /* CSNavigationController.m in Sources */,
 				2BCAF0AB21A40A6200F88808 /* UIViewController+TopBarMessage.m in Sources */,
 				2BCAF0A721A40A6200F88808 /* UIImageView+Addition.m in Sources */,
 			);
