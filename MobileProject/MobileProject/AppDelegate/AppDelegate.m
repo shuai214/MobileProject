@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "CSMainViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,9 +17,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setupHomeViewController];
+    
+    [[UITabBar appearance] setTranslucent:NO];
+
     return YES;
 }
-
+//首页
+-(void)setupHomeViewController
+{
+    CSMainViewController *tabBarController = [[CSMainViewController alloc] init];
+    [self.window setRootViewController:tabBarController];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

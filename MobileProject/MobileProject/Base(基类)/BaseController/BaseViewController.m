@@ -77,6 +77,7 @@
             blackLineImageView.hidden = YES;
         }
     }
+    
 }
 
 
@@ -114,7 +115,7 @@
         UIButton *left_button = [self set_leftButton];
         [left_button addTarget:self action:@selector(left_click:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:left_button];
-        self.navigationController.navigationItem.leftBarButtonItem = item;
+        self.navigationItem.leftBarButtonItem = item;
     }
     return isLeft;
 }
@@ -124,7 +125,7 @@
         UIButton *left_button = [self set_rightButton];
         [left_button addTarget:self action:@selector(right_click:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:left_button];
-        self.navigationController.navigationItem.rightBarButtonItem = item;
+        self.navigationItem.rightBarButtonItem = item;
     }
     return isRight;
 }

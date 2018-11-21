@@ -11,6 +11,12 @@
 //引入Masonry两个宏 便于写布局代码
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS
+#import "Macros.h"
+
+
+
+
+
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>
 #import <JSONModel/JSONModel.h>

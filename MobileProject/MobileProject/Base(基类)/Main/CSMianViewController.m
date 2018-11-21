@@ -7,8 +7,8 @@
 //  Copyright © 2018年 capaipai. All rights reserved.
 //
 
-#import "CSMianViewController.h"
+#import "CSMainViewController.h"
 
-@implementation CSMianViewController
+@implementation CSMainViewController
 
 @end

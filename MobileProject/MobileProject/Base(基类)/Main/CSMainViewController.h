@@ -10,7 +10,7 @@
 #import "CYLTabBarController.H"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CSHomeViewController : CYLTabBarController<UITabBarControllerDelegate>
+@interface CSMainViewController : CYLTabBarController<UITabBarControllerDelegate>
 
 @end
 
