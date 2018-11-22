@@ -144,6 +144,14 @@
 		2BCAF0E821A5306D00F88808 /* CSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0E621A5306D00F88808 /* CSHomeViewController.m */; };
 		2BCAF0F221A53C4B00F88808 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0F121A53C4B00F88808 /* TableViewDataSource.m */; };
 		2BCAF0F521A5469A00F88808 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0F421A5469A00F88808 /* SecondViewController.m */; };
+		2BCAF0FE21A63EDB00F88808 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF0FD21A63EDB00F88808 /* MainView.m */; };
+		2BCAF10121A63EEA00F88808 /* HomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF10021A63EEA00F88808 /* HomeRequest.m */; };
+		2BCAF10421A63EF700F88808 /* MainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF10321A63EF700F88808 /* MainModel.m */; };
+		2BCAF10D21A697DE00F88808 /* Students.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF10C21A697DE00F88808 /* Students.m */; };
+		2BCAF11021A697ED00F88808 /* Teachers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF10F21A697ED00F88808 /* Teachers.m */; };
+		2BCAF11321A6980500F88808 /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF11221A6980500F88808 /* Users.m */; };
+		2BCAF11721A69B8100F88808 /* CSProtocolOptionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF11621A69B8100F88808 /* CSProtocolOptionalViewController.m */; };
+		2BCAF11B21A69BC000F88808 /* CSCADisplayLinkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF11A21A69BC000F88808 /* CSCADisplayLinkerViewController.m */; };
 		520E93400CC96B109CAD4CE9 /* libPods-MobileProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE80D0CD7C11D6E1C2D9C960 /* libPods-MobileProject.a */; };
 /* End PBXBuildFile section */
 
@@ -440,6 +448,23 @@
 		2BCAF0F121A53C4B00F88808 /* TableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
 		2BCAF0F321A5469A00F88808 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		2BCAF0F421A5469A00F88808 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		2BCAF0FC21A63EDB00F88808 /* MainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		2BCAF0FD21A63EDB00F88808 /* MainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		2BCAF0FF21A63EEA00F88808 /* HomeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRequest.h; sourceTree = "<group>"; };
+		2BCAF10021A63EEA00F88808 /* HomeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRequest.m; sourceTree = "<group>"; };
+		2BCAF10221A63EF700F88808 /* MainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainModel.h; sourceTree = "<group>"; };
+		2BCAF10321A63EF700F88808 /* MainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainModel.m; sourceTree = "<group>"; };
+		2BCAF10A21A691A200F88808 /* StudyProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyProtocol.h; sourceTree = "<group>"; };
+		2BCAF10B21A697DE00F88808 /* Students.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Students.h; sourceTree = "<group>"; };
+		2BCAF10C21A697DE00F88808 /* Students.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Students.m; sourceTree = "<group>"; };
+		2BCAF10E21A697ED00F88808 /* Teachers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Teachers.h; sourceTree = "<group>"; };
+		2BCAF10F21A697ED00F88808 /* Teachers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Teachers.m; sourceTree = "<group>"; };
+		2BCAF11121A6980500F88808 /* Users.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		2BCAF11221A6980500F88808 /* Users.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		2BCAF11521A69B8100F88808 /* CSProtocolOptionalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProtocolOptionalViewController.h; sourceTree = "<group>"; };
+		2BCAF11621A69B8100F88808 /* CSProtocolOptionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProtocolOptionalViewController.m; sourceTree = "<group>"; };
+		2BCAF11921A69BC000F88808 /* CSCADisplayLinkerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCADisplayLinkerViewController.h; sourceTree = "<group>"; };
+		2BCAF11A21A69BC000F88808 /* CSCADisplayLinkerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCADisplayLinkerViewController.m; sourceTree = "<group>"; };
 		AE80D0CD7C11D6E1C2D9C960 /* libPods-MobileProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1FFCE25C95D840C0196E98A /* Pods-MobileProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileProject/Pods-MobileProject.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA46ACF0BEB3DB277951043 /* Pods-MobileProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileProject/Pods-MobileProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -1114,45 +1139,25 @@
 		2BCAF0DE21A52F8000F88808 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2BCAF0FA21A63ECD00F88808 /* Model */,
+				2BCAF0F921A63ECD00F88808 /* Service */,
+				2BCAF0FB21A63ECD00F88808 /* View */,
 				2BCAF0ED21A53C2200F88808 /* Other */,
-				2BCAF0E921A5386300F88808 /* Service */,
-				2BCAF0E021A52F8000F88808 /* Model */,
-				2BCAF0E121A52F8000F88808 /* View */,
 				2BCAF0E221A52F8000F88808 /* ViewController */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		2BCAF0E021A52F8000F88808 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2BCAF0E121A52F8000F88808 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2BCAF0E221A52F8000F88808 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2BCAF10521A6915400F88808 /* Study */,
 				2BCAF0E721A5306D00F88808 /* CSHomeViewController.h */,
 				2BCAF0E621A5306D00F88808 /* CSHomeViewController.m */,
 				2BCAF0F321A5469A00F88808 /* SecondViewController.h */,
 				2BCAF0F421A5469A00F88808 /* SecondViewController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		2BCAF0E921A5386300F88808 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		2BCAF0EA21A53B0E00F88808 /* Macros(宏) */ = {
@@ -1173,6 +1178,7 @@
 		2BCAF0ED21A53C2200F88808 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2BCAF10921A6918900F88808 /* Protocol */,
 				2BCAF0EE21A53C2200F88808 /* DataSource */,
 			);
 			path = Other;
@@ -1185,6 +1191,74 @@
 				2BCAF0F121A53C4B00F88808 /* TableViewDataSource.m */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		2BCAF0F921A63ECD00F88808 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF0FF21A63EEA00F88808 /* HomeRequest.h */,
+				2BCAF10021A63EEA00F88808 /* HomeRequest.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2BCAF0FA21A63ECD00F88808 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF10221A63EF700F88808 /* MainModel.h */,
+				2BCAF10321A63EF700F88808 /* MainModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2BCAF0FB21A63ECD00F88808 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF0FC21A63EDB00F88808 /* MainView.h */,
+				2BCAF0FD21A63EDB00F88808 /* MainView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2BCAF10521A6915400F88808 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF11821A69BAD00F88808 /* CADisplayLink */,
+				2BCAF11421A69B8100F88808 /* protocol */,
+			);
+			path = Study;
+			sourceTree = "<group>";
+		};
+		2BCAF10921A6918900F88808 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF10A21A691A200F88808 /* StudyProtocol.h */,
+				2BCAF10B21A697DE00F88808 /* Students.h */,
+				2BCAF10C21A697DE00F88808 /* Students.m */,
+				2BCAF10E21A697ED00F88808 /* Teachers.h */,
+				2BCAF10F21A697ED00F88808 /* Teachers.m */,
+				2BCAF11121A6980500F88808 /* Users.h */,
+				2BCAF11221A6980500F88808 /* Users.m */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		2BCAF11421A69B8100F88808 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF11521A69B8100F88808 /* CSProtocolOptionalViewController.h */,
+				2BCAF11621A69B8100F88808 /* CSProtocolOptionalViewController.m */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		2BCAF11821A69BAD00F88808 /* CADisplayLink */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAF11921A69BC000F88808 /* CSCADisplayLinkerViewController.h */,
+				2BCAF11A21A69BC000F88808 /* CSCADisplayLinkerViewController.m */,
+			);
+			path = CADisplayLink;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1362,6 +1436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCAF11B21A69BC000F88808 /* CSCADisplayLinkerViewController.m in Sources */,
 				2BCAF04E21A40A6200F88808 /* UIImage+PDF.m in Sources */,
 				2BCAF0C021A40A6200F88808 /* UITextField+Select.m in Sources */,
 				2BCAF06A21A40A6200F88808 /* UIButton+BackgroundColor.m in Sources */,
@@ -1394,11 +1469,13 @@
 				2BCAF07521A40A6200F88808 /* UIColor+Web.m in Sources */,
 				2BCAF05621A40A6200F88808 /* UIImage+Resize.m in Sources */,
 				2BCAF04A21A40A6200F88808 /* UIImage+RemoteSize.m in Sources */,
+				2BCAF11021A697ED00F88808 /* Teachers.m in Sources */,
 				2BCAF0AA21A40A6200F88808 /* UIViewController+BlockSegue.m in Sources */,
 				2BCAF09721A40A6200F88808 /* UINavigationItem+Margin.m in Sources */,
 				2BCAF08F21A40A6200F88808 /* UIView+Constraints.m in Sources */,
 				2BCAF06C21A40A6200F88808 /* UIButton+Block.m in Sources */,
 				2BCAF08C21A40A6200F88808 /* UIView+draggable.m in Sources */,
+				2BCAF11721A69B8100F88808 /* CSProtocolOptionalViewController.m in Sources */,
 				2BCAF05421A40A6200F88808 /* UIImage+animatedGIF.m in Sources */,
 				2BCAF0AD21A40A6200F88808 /* UIViewController+StoreKit.m in Sources */,
 				2BCAF05E21A40A6200F88808 /* UIScrollView+Addition.m in Sources */,
@@ -1440,9 +1517,11 @@
 				2BCAF06221A40A6200F88808 /* UIApplication+NetworkActivityIndicator.m in Sources */,
 				2BCAF04821A40A6200F88808 /* UIImage+FileName.m in Sources */,
 				2BCAF09321A40A6200F88808 /* UIFont+WDCustomLoader.m in Sources */,
+				2BCAF10121A63EEA00F88808 /* HomeRequest.m in Sources */,
 				2BCAF09921A40A6200F88808 /* UITextView+PinchZoom.m in Sources */,
 				2BCAF0A421A40A6200F88808 /* UIImageView+Letters.m in Sources */,
 				2BCAF0A021A40A6200F88808 /* UIBezierPath+BasicShapes.m in Sources */,
+				2BCAF10D21A697DE00F88808 /* Students.m in Sources */,
 				2BCAF05921A40A6200F88808 /* UILabel+AutoSize.m in Sources */,
 				2BCAF09821A40A6200F88808 /* UITextView+PlaceHolder.m in Sources */,
 				2BCAF04921A40A6200F88808 /* UIImage+GIF.m in Sources */,
@@ -1468,6 +1547,7 @@
 				2BCAF08821A40A6200F88808 /* UIView+BlockGesture.m in Sources */,
 				2BCAF0B721A40A6200F88808 /* UINavigationController+BATransitions.m in Sources */,
 				2BCAF0A621A40A6200F88808 /* UIImageView+FaceAwareFill.m in Sources */,
+				2BCAF11321A6980500F88808 /* Users.m in Sources */,
 				2BCAF05721A40A6200F88808 /* UILabel+SuggestSize.m in Sources */,
 				2BCAF0BC21A40A6200F88808 /* UIPopoverController+iPhone.m in Sources */,
 				2BCAF0C421A40A6200F88808 /* BaseViewController.m in Sources */,
@@ -1476,12 +1556,14 @@
 				2BCAF05B21A40A6200F88808 /* UIScrollView+Pages.m in Sources */,
 				2BCAF0B621A40A6200F88808 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				2BCAF07721A40A6200F88808 /* UIWebVIew+SwipeGesture.m in Sources */,
+				2BCAF0FE21A63EDB00F88808 /* MainView.m in Sources */,
 				2BCAF08721A40A6200F88808 /* UIView+Frame.m in Sources */,
 				2BCAF08B21A40A6200F88808 /* UIView+Recursion.m in Sources */,
 				2BCAF06721A40A6200F88808 /* UIResponder+FirstResponder.m in Sources */,
 				2BCAF04D21A40A6200F88808 /* UIImage+Vector.m in Sources */,
 				2BCAF0A121A40A6200F88808 /* UIBezierPath+Symbol.m in Sources */,
 				2BCAF08921A40A6200F88808 /* UIView+Animation.m in Sources */,
+				2BCAF10421A63EF700F88808 /* MainModel.m in Sources */,
 				2BCAF06E21A40A6200F88808 /* UIButton+Submitting.m in Sources */,
 				2BCAF07D21A40A6200F88808 /* UIWebView+Canvas.m in Sources */,
 				2BCAF09A21A40A6200F88808 /* UITextView+Select.m in Sources */,

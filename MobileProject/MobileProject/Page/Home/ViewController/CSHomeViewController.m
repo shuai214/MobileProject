@@ -10,6 +10,8 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "TableViewDataSource.h"
 #import "SecondViewController.h"
+#import "CSProtocolOptionalViewController.h"
+#import "CSCADisplayLinkerViewController.h"
 @interface CSHomeViewController ()<UITableViewDelegate>
 @property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic,strong) TableViewDataSource *dataSource;
@@ -49,7 +51,7 @@
     TableViewCellConfigureBlock block = ^(UITableViewCell *cell,NSString *cellData){
         cell.textLabel.text = cellData;
     };
-    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"111",@"2222",@"3333",@"4444"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
+    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"protocol的学习",@"CADisplayLink学习",@"3333",@"4444"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
     self.myTableView.dataSource = self.dataSource;
     [self.myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 
@@ -59,7 +61,17 @@
     return 44;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    [self.navigationController pushViewController:[SecondViewController new] animated:YES];
+    switch (indexPath.row) {
+        case 0:
+        {
+            [self.navigationController pushViewController:[CSProtocolOptionalViewController new] animated:YES];
+            break;
+        }
+        case 1:
+        {
+            [self.navigationController pushViewController:[CSCADisplayLinkerViewController new] animated:YES];
+            break;
+        }
+    }
 }
 @end
