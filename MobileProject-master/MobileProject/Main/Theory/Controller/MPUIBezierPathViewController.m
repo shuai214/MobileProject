@@ -84,9 +84,9 @@
 {
     UIBezierPath *aPath=[UIBezierPath bezierPath];
     
-    [aPath moveToPoint:CGPointMake(50, 170)];
-    [aPath addLineToPoint:CGPointMake(80, 130)];
-    [aPath addLineToPoint:CGPointMake(80, 200)];
+    [aPath moveToPoint:CGPointMake(40, 40)];
+    [aPath addLineToPoint:CGPointMake(120, 40)];
+    [aPath addLineToPoint:CGPointMake(120, 120)];
     [aPath stroke];
     [aPath closePath];
     

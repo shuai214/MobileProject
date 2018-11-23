@@ -14,4 +14,5 @@ target ‘MobileProject’ do
  pod 'CYLTabBarController'
  pod 'MJRefresh' #刷新
  pod 'MJExtension' #model解析
+ pod 'YYText'
 end

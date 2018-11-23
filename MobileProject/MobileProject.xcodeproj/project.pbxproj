@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
 		2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0021A40A1F00F88808 /* Assets.xcassets */; };
 		2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0221A40A1F00F88808 /* LaunchScreen.storyboard */; };
@@ -173,6 +174,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B52875421A7ADF500EC87CB /* CSBesierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBesierPathViewController.h; sourceTree = "<group>"; };
+		2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBesierPathViewController.m; sourceTree = "<group>"; };
 		2BCAEEF421A40A1E00F88808 /* MobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BCAEEFE21A40A1E00F88808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BCAEF0021A40A1F00F88808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -513,6 +516,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2B52875321A7AD6600EC87CB /* UIBesierPath */ = {
+			isa = PBXGroup;
+			children = (
+				2B52875421A7ADF500EC87CB /* CSBesierPathViewController.h */,
+				2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */,
+			);
+			path = UIBesierPath;
+			sourceTree = "<group>";
+		};
 		2BCAEEEB21A40A1E00F88808 = {
 			isa = PBXGroup;
 			children = (
@@ -777,16 +789,16 @@
 		2BCAEF8B21A40A6100F88808 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				2BCAEF8C21A40A6100F88808 /* UIColor+Gradient.m */,
-				2BCAEF8D21A40A6100F88808 /* UIColor+HEX.m */,
-				2BCAEF8E21A40A6100F88808 /* UIColor+Random.m */,
-				2BCAEF8F21A40A6100F88808 /* UIColor+Web.m */,
-				2BCAEF9021A40A6100F88808 /* UIColor+Modify.h */,
-				2BCAEF9121A40A6100F88808 /* UIColor+HEX.h */,
 				2BCAEF9221A40A6100F88808 /* UIColor+Gradient.h */,
+				2BCAEF8C21A40A6100F88808 /* UIColor+Gradient.m */,
+				2BCAEF9121A40A6100F88808 /* UIColor+HEX.h */,
+				2BCAEF8D21A40A6100F88808 /* UIColor+HEX.m */,
+				2BCAEF9021A40A6100F88808 /* UIColor+Modify.h */,
 				2BCAEF9321A40A6100F88808 /* UIColor+Modify.m */,
-				2BCAEF9421A40A6100F88808 /* UIColor+Web.h */,
 				2BCAEF9521A40A6100F88808 /* UIColor+Random.h */,
+				2BCAEF8E21A40A6100F88808 /* UIColor+Random.m */,
+				2BCAEF9421A40A6100F88808 /* UIColor+Web.h */,
+				2BCAEF8F21A40A6100F88808 /* UIColor+Web.m */,
 			);
 			path = UIColor;
 			sourceTree = "<group>";
@@ -1223,6 +1235,7 @@
 		2BCAF10521A6915400F88808 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				2B52875321A7AD6600EC87CB /* UIBesierPath */,
 				2BCAF11821A69BAD00F88808 /* CADisplayLink */,
 				2BCAF11421A69B8100F88808 /* protocol */,
 			);
@@ -1542,6 +1555,7 @@
 				2BCAF05821A40A6200F88808 /* UILabel+ESAdjustableLabel.m in Sources */,
 				2BCAF0B021A40A6200F88808 /* UIViewController+DDPopUpViewController.m in Sources */,
 				2BCAF05121A40A6200F88808 /* UIImage+Capture.m in Sources */,
+				2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */,
 				2BCAF08E21A40A6200F88808 /* UIView+Find.m in Sources */,
 				2BCAF09121A40A6200F88808 /* UIView+Toast.m in Sources */,
 				2BCAF08821A40A6200F88808 /* UIView+BlockGesture.m in Sources */,

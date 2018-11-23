@@ -24,4 +24,5 @@
 #import <ReactiveCocoa/RACEXTScope.h>
 #import "MJRefresh.h"
 #import "KeyboardManager.h"
+#import <YYText/YYText.h>
 #endif /* PrefixHeader_pch */

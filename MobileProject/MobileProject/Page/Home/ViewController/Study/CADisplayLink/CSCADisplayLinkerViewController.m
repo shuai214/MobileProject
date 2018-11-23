@@ -82,9 +82,9 @@
 
 - (void)setUI{
     _shapeLayer = [CAShapeLayer layer];
-    _shapeLayer.bounds = CGRectMake(0, 0, 60, 60);
+    _shapeLayer.bounds = CGRectMake(0, 0, 5, 5);
     _shapeLayer.position = CGPointMake(Main_Screen_Width / 2, Main_Screen_Height / 2); //锚点
-    _shapeLayer.fillColor = [UIColor orangeColor].CGColor; //图形的填充颜色
+    _shapeLayer.fillColor = [UIColor clearColor].CGColor; //图形的填充颜色
     _shapeLayer.strokeColor = [UIColor redColor].CGColor; // 路径颜色
     _shapeLayer.lineWidth = 5; //线宽
     _shapeLayer.lineCap = kCALineCapRound;//线端口类型
@@ -110,7 +110,7 @@
         CGFloat progress1 = 1 - (1 - _progress)/0.25;
         _startAngle = -M_PI_2 + progress1 * M_PI * 2;
     }
-    CGFloat radius = _shapeLayer.bounds.size.width/2.0f - 5/2.0f;
+    CGFloat radius = _shapeLayer.bounds.size.width/2.0f + 25/2.0f;
     CGFloat centerX = _shapeLayer.bounds.size.width/2.0f;
     CGFloat centerY = _shapeLayer.bounds.size.height/2.0f;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(centerX, centerY) radius:radius startAngle:_startAngle endAngle:_endAngle clockwise:true];

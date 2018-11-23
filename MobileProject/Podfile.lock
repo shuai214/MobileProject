@@ -39,6 +39,7 @@ PODS:
   - XAspect/Core (1.0.5):
     - XAspect/Macros
   - XAspect/Macros (1.0.5)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - TZImagePickerController
   - "UITableView+FDTemplateLayoutCell"
   - XAspect
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -70,6 +72,7 @@ SPEC REPOS:
     - TZImagePickerController
     - "UITableView+FDTemplateLayoutCell"
     - XAspect
+    - YYText
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -85,7 +88,8 @@ SPEC CHECKSUMS:
   TZImagePickerController: bcec66c93c3e519dafab72e989c641b64bbd2df5
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   XAspect: db50bf487f92dbb8557a7a5365556966c8493af8
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 5cbd41c9721bd390c2312327e0bf194bcf0563dd
+PODFILE CHECKSUM: ed2ef81cdf5b4e567dc37088790c849148b964b0
 
 COCOAPODS: 1.5.3
