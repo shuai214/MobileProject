@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B35AB6421ABD7D7004FF899 /* XYRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB5C21ABD7D7004FF899 /* XYRenderView.m */; };
+		2B35AB6521ABD7D7004FF899 /* PieChart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35AB5E21ABD7D7004FF899 /* PieChart.xcassets */; };
+		2B35AB6621ABD7D7004FF899 /* XYPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6021ABD7D7004FF899 /* XYPieChartView.m */; };
+		2B35AB6721ABD7D7004FF899 /* XYRotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6221ABD7D7004FF899 /* XYRotatedView.m */; };
+		2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6321ABD7D7004FF899 /* XYCommon.m */; };
 		2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */; };
+		2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
 		2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0021A40A1F00F88808 /* Assets.xcassets */; };
 		2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0221A40A1F00F88808 /* LaunchScreen.storyboard */; };
@@ -174,8 +180,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B35AB5B21ABD7D7004FF899 /* XYPieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChartView.h; sourceTree = "<group>"; };
+		2B35AB5C21ABD7D7004FF899 /* XYRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYRenderView.m; sourceTree = "<group>"; };
+		2B35AB5D21ABD7D7004FF899 /* XYRotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYRotatedView.h; sourceTree = "<group>"; };
+		2B35AB5E21ABD7D7004FF899 /* PieChart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PieChart.xcassets; sourceTree = "<group>"; };
+		2B35AB5F21ABD7D7004FF899 /* XYCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommon.h; sourceTree = "<group>"; };
+		2B35AB6021ABD7D7004FF899 /* XYPieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChartView.m; sourceTree = "<group>"; };
+		2B35AB6121ABD7D7004FF899 /* XYRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYRenderView.h; sourceTree = "<group>"; };
+		2B35AB6221ABD7D7004FF899 /* XYRotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYRotatedView.m; sourceTree = "<group>"; };
+		2B35AB6321ABD7D7004FF899 /* XYCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYCommon.m; sourceTree = "<group>"; };
 		2B52875421A7ADF500EC87CB /* CSBesierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBesierPathViewController.h; sourceTree = "<group>"; };
 		2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBesierPathViewController.m; sourceTree = "<group>"; };
+		2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcPolarAxis.m; sourceTree = "<group>"; };
+		2BAF5FBC21A94A3300D78C5A /* AxcPolarAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcPolarAxis.h; sourceTree = "<group>"; };
 		2BCAEEF421A40A1E00F88808 /* MobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BCAEEFE21A40A1E00F88808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BCAEF0021A40A1F00F88808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -514,6 +531,22 @@
 				AE80D0CD7C11D6E1C2D9C960 /* libPods-MobileProject.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B35AB5A21ABD7D7004FF899 /* PieChartView(扇形统计) */ = {
+			isa = PBXGroup;
+			children = (
+				2B35AB5B21ABD7D7004FF899 /* XYPieChartView.h */,
+				2B35AB5C21ABD7D7004FF899 /* XYRenderView.m */,
+				2B35AB5D21ABD7D7004FF899 /* XYRotatedView.h */,
+				2B35AB5E21ABD7D7004FF899 /* PieChart.xcassets */,
+				2B35AB5F21ABD7D7004FF899 /* XYCommon.h */,
+				2B35AB6021ABD7D7004FF899 /* XYPieChartView.m */,
+				2B35AB6121ABD7D7004FF899 /* XYRenderView.h */,
+				2B35AB6221ABD7D7004FF899 /* XYRotatedView.m */,
+				2B35AB6321ABD7D7004FF899 /* XYCommon.m */,
+			);
+			path = "PieChartView(扇形统计)";
 			sourceTree = "<group>";
 		};
 		2B52875321A7AD6600EC87CB /* UIBesierPath */ = {
@@ -1136,6 +1169,9 @@
 		2BCAF0CF21A4F52900F88808 /* Tool(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				2B35AB5A21ABD7D7004FF899 /* PieChartView(扇形统计) */,
+				2BAF5FBC21A94A3300D78C5A /* AxcPolarAxis.h */,
+				2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */,
 			);
 			path = "Tool(工具类)";
 			sourceTree = "<group>";
@@ -1380,6 +1416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */,
+				2B35AB6521ABD7D7004FF899 /* PieChart.xcassets in Resources */,
 				2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */,
 				2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */,
 			);
@@ -1467,6 +1504,7 @@
 				2BCAF06F21A40A6200F88808 /* UIButton+TouchAreaInsets.m in Sources */,
 				2BCAF09521A40A6200F88808 /* UINavigationItem+Lock.m in Sources */,
 				2BCAF0BB21A40A6200F88808 /* UIControl+ActionBlocks.m in Sources */,
+				2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */,
 				2BCAF0B821A40A6200F88808 /* UITableView+iOS7Style.m in Sources */,
 				2BCAF09B21A40A6200F88808 /* UIDevice+JKHardware.m in Sources */,
 				2BCAF05521A40A6200F88808 /* UIImage+RoundedCorner.m in Sources */,
@@ -1479,6 +1517,7 @@
 				2BCAF0CD21A4113C00F88808 /* CSMainViewController.m in Sources */,
 				2BCAF08D21A40A6200F88808 /* UIView+Visuals.m in Sources */,
 				2BCAF0A521A40A6200F88808 /* UIImageView+GeometryConversion.m in Sources */,
+				2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */,
 				2BCAF07521A40A6200F88808 /* UIColor+Web.m in Sources */,
 				2BCAF05621A40A6200F88808 /* UIImage+Resize.m in Sources */,
 				2BCAF04A21A40A6200F88808 /* UIImage+RemoteSize.m in Sources */,
@@ -1535,6 +1574,7 @@
 				2BCAF0A421A40A6200F88808 /* UIImageView+Letters.m in Sources */,
 				2BCAF0A021A40A6200F88808 /* UIBezierPath+BasicShapes.m in Sources */,
 				2BCAF10D21A697DE00F88808 /* Students.m in Sources */,
+				2B35AB6621ABD7D7004FF899 /* XYPieChartView.m in Sources */,
 				2BCAF05921A40A6200F88808 /* UILabel+AutoSize.m in Sources */,
 				2BCAF09821A40A6200F88808 /* UITextView+PlaceHolder.m in Sources */,
 				2BCAF04921A40A6200F88808 /* UIImage+GIF.m in Sources */,
@@ -1572,6 +1612,7 @@
 				2BCAF07721A40A6200F88808 /* UIWebVIew+SwipeGesture.m in Sources */,
 				2BCAF0FE21A63EDB00F88808 /* MainView.m in Sources */,
 				2BCAF08721A40A6200F88808 /* UIView+Frame.m in Sources */,
+				2B35AB6721ABD7D7004FF899 /* XYRotatedView.m in Sources */,
 				2BCAF08B21A40A6200F88808 /* UIView+Recursion.m in Sources */,
 				2BCAF06721A40A6200F88808 /* UIResponder+FirstResponder.m in Sources */,
 				2BCAF04D21A40A6200F88808 /* UIImage+Vector.m in Sources */,
@@ -1582,6 +1623,7 @@
 				2BCAF07D21A40A6200F88808 /* UIWebView+Canvas.m in Sources */,
 				2BCAF09A21A40A6200F88808 /* UITextView+Select.m in Sources */,
 				2BCAF08021A40A6200F88808 /* UIAlertView+Block.m in Sources */,
+				2B35AB6421ABD7D7004FF899 /* XYRenderView.m in Sources */,
 				2BCAF09621A40A6200F88808 /* UINavigationItem+Loading.m in Sources */,
 				2BCAF0C321A40A6200F88808 /* AppDelegate.m in Sources */,
 				2BCAF05C21A40A6200F88808 /* UIScrollView+EmptyDataSet.m in Sources */,

@@ -10,8 +10,26 @@
 
 #import "CSBesierPathViewController.h"
 #import "UIColor+Random.h"
-@interface CSBesierPathViewController ()
+#import "AxcPolarAxis.h"
+#import "XYPieChartView.h"
+@interface CSBesierPathViewController ()<PieChartDelegate>
 @property(nonatomic,strong)UIImageView *bgView;
+@property (nonatomic, strong)XYPieChartView *pieChartView;
+
+/**
+ * 数据
+ */
+@property (nonatomic, strong)NSMutableArray *pieChartArray;
+
+/**
+ * 数据（百分比）
+ */
+@property (nonatomic, strong)NSMutableArray *pieChartPercentArray;
+/**
+ * 数据（颜色）
+ */
+@property (nonatomic,strong) NSMutableArray *colorArray;
+
 @end
 
 @implementation CSBesierPathViewController
@@ -110,7 +128,7 @@
 //    checkAnimation.delegate = self;
     [checkAnimation setValue:@"checkAnimation" forKey:@"animationName"];
     [shaperLayer addAnimation:checkAnimation forKey:nil];
-    [self animationTest];
+//    [self animationTest];
 }
 - (void)animationTest{
     self.bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -178,13 +196,211 @@
     shaperLayer.path=bpath.CGPath;
     shaperLayer.lineDashPattern=@[@9,@1]; //3=线的宽度 1=每条线的间距
     [self.view.layer addSublayer:shaperLayer];
+    [self test111];
+}
+
+- (void)test111{
+    // 创建绘制对象
+    UIBezierPath *circlePath = [UIBezierPath bezierPath];
+    CGFloat openingAngle = 0;
+    NSInteger blockCount = 6;
+    CGFloat angleSpacing = 10;
+    CGFloat startAngle = 0;
+    CGFloat blockRadius = 50;
+    CGPoint center = CGPointMake(80,180);
+    CGFloat arcRadius = 60;
+    CGFloat angle = (360.f - openingAngle) / blockCount - angleSpacing; // 度
+    
+    for(NSInteger i = 0 ;i < 6 ;i++){
+    CGFloat cycleStartAngle = AxcDraw_Angle(startAngle);
+    CGFloat arrowHeaderAngle = cycleStartAngle + AxcDraw_Angle(angle+angleSpacing);
+    CGFloat arrowHeaderAngle2 = cycleStartAngle + AxcDraw_Angle(angle-angleSpacing);
+    CGFloat arrowTailAngle = cycleStartAngle + AxcDraw_Angle(angleSpacing);
+    CGFloat arrowTailAngle2 = cycleStartAngle - AxcDraw_Angle(angleSpacing);
+    
+    [circlePath addArcWithCenter:center
+                          radius:arcRadius
+                      startAngle:cycleStartAngle
+                        endAngle:cycleStartAngle + AxcDraw_Angle(angle)
+                       clockwise:YES];
+    [circlePath addLineToPoint:[AxcPolarAxis AxcPolarAxisCenter:center
+                                                       distance: arcRadius-blockRadius + blockRadius/2
+                                                          angle:arrowHeaderAngle]];
+    [circlePath addArcWithCenter:center
+                          radius:arcRadius - blockRadius
+                      startAngle:cycleStartAngle + AxcDraw_Angle(angle)
+                        endAngle:cycleStartAngle
+                       clockwise:NO];
+    [circlePath addLineToPoint:[AxcPolarAxis AxcPolarAxisCenter:center
+                                                       distance:arcRadius-blockRadius + blockRadius/2
+                                                          angle: arrowHeaderAngle2]];
+    [circlePath addLineToPoint:[AxcPolarAxis AxcPolarAxisCenter:center
+                                                       distance:arcRadius
+                                                          angle:cycleStartAngle]];
+    [circlePath closePath]; // 闭合
+    startAngle += ((angle + angleSpacing));
+    [circlePath moveToPoint:[AxcPolarAxis AxcPolarAxisCenter:center
+                                                    distance:arcRadius
+                                                      radian:startAngle]];
+    }
+    
+    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
+//    shaperLayer.lineWidth=1;
+    shaperLayer.strokeColor=[UIColor RandomColor].CGColor;
+    shaperLayer.fillColor = [UIColor clearColor].CGColor;//填充颜色
+    shaperLayer.path=circlePath.CGPath;
+//    shaperLayer.lineDashPattern=@[@9,@1]; //3=线的宽度 1=每条线的间距
+        [self.view.layer addSublayer:shaperLayer];
+    CABasicAnimation *pathAniamtion = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAniamtion.repeatCount = 1; // 重复次数只需要1次
+
+    pathAniamtion.fromValue = @(0);
+    pathAniamtion.toValue =  @(1);
+    pathAniamtion.duration = 5;
+    pathAniamtion.autoreverses = YES;               // 动画结束时执行逆动画
+    pathAniamtion.repeatCount = HUGE_VALF;          // 重复次数
+    pathAniamtion.fillMode = kCAFillModeForwards;   // 保持动画执行的最后一步状态
+    pathAniamtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [shaperLayer addAnimation:pathAniamtion forKey:@"pathAniamtion"];
+    [self drawTest];
+
+}
+
+- (void)drawTest{
+    UIBezierPath *circlePath = [UIBezierPath bezierPath];
+
+    CGPoint arcCenter = CGPointMake(Main_Screen_Width / 2, Main_Screen_Height / 2);
+    CGFloat arcRadius = 60; //大圆半径
+    CGFloat startAngle = -90;
+    CGFloat sarcRadius = 40; //小圆半径
+    
+    CGFloat blockCount = 6;
+    CGFloat openingAngle = 0;
+    CGFloat angleSpacing = 10;
+    CGFloat angle = (360.f - openingAngle) / blockCount - angleSpacing; // 度
+
+    
+    for(NSInteger i = 0 ;i < blockCount ;i++){
+        CGFloat cycleStartAngle = AxcDraw_Angle(startAngle);
+        CGFloat arrowHeaderAngle = cycleStartAngle + AxcDraw_Angle(angle+angleSpacing);
+        CGFloat arrowHeaderAngle2 = cycleStartAngle + AxcDraw_Angle(angle-angleSpacing);
+        [circlePath addArcWithCenter:arcCenter
+                              radius:arcRadius
+                          startAngle:cycleStartAngle
+                            endAngle:cycleStartAngle + AxcDraw_Angle(angle)
+                           clockwise:YES];
+        
+        [circlePath addArcWithCenter:arcCenter
+                              radius:sarcRadius
+                          startAngle:cycleStartAngle + AxcDraw_Angle(angle)
+                            endAngle:cycleStartAngle
+                           clockwise:NO];
+        [circlePath closePath]; // 闭合
+        startAngle += ((angle + angleSpacing));
+        [circlePath moveToPoint:[AxcPolarAxis AxcPolarAxisCenter:arcCenter
+                                                        distance:arcRadius
+                                                          radian:startAngle]];
+    }
+    
+    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
+    //    shaperLayer.lineWidth=1;
+    shaperLayer.strokeColor=[UIColor RandomColor].CGColor;
+    shaperLayer.fillColor = [UIColor clearColor].CGColor;//填充颜色
+    shaperLayer.path=circlePath.CGPath;
+    //    shaperLayer.lineDashPattern=@[@9,@1]; //3=线的宽度 1=每条线的间距
+    [self.view.layer addSublayer:shaperLayer];
+    CABasicAnimation *pathAniamtion = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAniamtion.repeatCount = 1; // 重复次数只需要1次
+    
+    pathAniamtion.fromValue = @(0);
+    pathAniamtion.toValue =  @(1);
+    pathAniamtion.duration = 5;
+    pathAniamtion.autoreverses = YES;               // 动画结束时执行逆动画
+    pathAniamtion.repeatCount = HUGE_VALF;          // 重复次数
+    pathAniamtion.fillMode = kCAFillModeForwards;   // 保持动画执行的最后一步状态
+    pathAniamtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [shaperLayer addAnimation:pathAniamtion forKey:@"pathAniamtion"];
+//    [self testRound];
 }
 
 
 
+/**
+ 绘制扇形
+ */
+- (void)testRound{
+    CGRect pieChartFrame = CGRectMake((Main_Screen_Width - Main_Screen_Width * 0.6) / 2, Main_Screen_Height * 0.3, Main_Screen_Width * 0.6, Main_Screen_Width * 0.6);
+    
+    // 初始化饼图
+    self.pieChartView = [[XYPieChartView alloc] initWithFrame:pieChartFrame withPieChartTypeArray:self.pieChartArray withPercentArray:self.pieChartPercentArray withColorArray:self.colorArray];
+    
+    self.pieChartView.delegate = self;
+    
+    // 当有一项数据的百分比小于你所校验的数值时，会将该项数值百分比移出饼图展示（校验数值从0~100）
+    [self.pieChartView setCheckLessThanPercent:10];
+    
+    // 刷新加载
+    [self.pieChartView reloadChart];
+    
+    // 设置圆心标题 （NSString类型）
+    //    [self.pieChartView setAmountText:@"总资产"];
+    
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"总支出"];
+    
+    // 设置圆心标题（NSMutableAttributedString类型）
+    [self.pieChartView setTitleText:str];
+    
+    [self.view addSubview:self.pieChartView];
+}
 
+- (NSMutableArray *)pieChartArray {
+    
+    if (_pieChartArray == nil) {
+        
+        _pieChartArray = [NSMutableArray arrayWithObjects:@{@"title":@"餐饮", @"percent":@"33.2", @"amount":@"10234"}, @{@"title":@"购物", @"percent":@"6.8", @"amount":@"9820"} ,@{@"title":@"娱乐", @"percent":@"25.5", @"amount":@"1450"} ,@{@"title":@"零食", @"percent":@"15.5", @"amount":@"9700"},@{@"title":@"旅游", @"percent":@"15.5", @"amount":@"9700"},@{@"title":@"生活支付", @"percent":@"14.5", @"amount":@"9700"}, nil];
+    }
+    
+    return _pieChartArray;
+}
 
+- (NSMutableArray *)pieChartPercentArray {
+    
+    if (_pieChartPercentArray == nil) {
+        
+        _pieChartPercentArray = [NSMutableArray arrayWithObjects:@"33.2", @"6.8", @"25.5", @"15.5",@"15.5",@"14.5", nil];
+    }
+    return _pieChartPercentArray;
+}
 
+- (NSMutableArray *)colorArray {
+    
+    if (_colorArray == nil) {
+        
+        //        (餐饮、购物、娱乐、零食)
+        _colorArray = [NSMutableArray arrayWithObjects:
+                       [UIColor RandomColor],
+                       [UIColor RandomColor],
+                       [UIColor RandomColor],
+                       [UIColor RandomColor],
+                       [UIColor RandomColor],
+                       [UIColor RandomColor],
+                       nil];
+    }
+    
+    return _colorArray;
+}
+#pragma mark - <选中扇形回调>
+- (void)selectedFinish:(XYPieChartView *)pieChartView index:(NSInteger)index selectedType:(NSDictionary *)selectedType {
+    
+    
+    
+}
+
+#pragma mark - <点击扇形同心圆回调>
+- (void)onCenterClick:(XYPieChartView *)PieChartView {
+    
+    NSLog(@"点击了圆心");
+}
 
 #pragma mark 重写BaseViewController设置内容
 

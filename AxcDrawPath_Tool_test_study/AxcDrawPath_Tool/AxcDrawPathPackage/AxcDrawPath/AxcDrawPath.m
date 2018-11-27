@@ -360,6 +360,15 @@
                                    openingAngle:openingAngle
                                       clockwise:YES];
 }
+//[AxcDrawPath AxcDrawArrowBlockArcRingCenter:arcCenter    // 中心
+//                              outsideRadius:arcRadius                  // 外圆半径
+//                                blockRadius:20                   // 箭头半径
+//                                 blockCount:6                    // 块个数
+//                               angleSpacing:10                   // 角度间距
+//                                 arrowAngle:10                   // 箭头相对伸出角度
+//                                 startAngle:-90                  // 起始角度
+//                               openingAngle:0                    // 开合角度
+//                                  clockwise:NO]]]
 + (UIBezierPath *)AxcDrawArrowBlockArcRingCenter:(CGPoint )center
                                    outsideRadius:(CGFloat )outsideRadius
                                      blockRadius:(CGFloat )blockRadius

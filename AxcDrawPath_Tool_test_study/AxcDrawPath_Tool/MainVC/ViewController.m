@@ -343,7 +343,9 @@ UICollectionViewDelegateFlowLayout
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"axc" forIndexPath:indexPath];
-    cell.model = self.dataListArray[indexPath.row];
+    if (indexPath.row == self.dataListArray.count - 1) {
+        cell.model = self.dataListArray[indexPath.row];
+    }
     return cell;
 }
 
