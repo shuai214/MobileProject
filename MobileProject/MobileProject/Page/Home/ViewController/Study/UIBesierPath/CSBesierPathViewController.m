@@ -9,7 +9,6 @@
 //
 
 #import "CSBesierPathViewController.h"
-#import "UIColor+Random.h"
 #import "AxcPolarAxis.h"
 #import "XYPieChartView.h"
 @interface CSBesierPathViewController ()<PieChartDelegate>
@@ -267,7 +266,6 @@
 }
 
 - (void)drawTest{
-    UIBezierPath *circlePath = [UIBezierPath bezierPath];
 
     CGPoint arcCenter = CGPointMake(Main_Screen_Width / 2, Main_Screen_Height / 2);
     CGFloat arcRadius = 60; //大圆半径
@@ -281,9 +279,8 @@
 
     
     for(NSInteger i = 0 ;i < blockCount ;i++){
+        UIBezierPath *circlePath = [UIBezierPath bezierPath];
         CGFloat cycleStartAngle = AxcDraw_Angle(startAngle);
-        CGFloat arrowHeaderAngle = cycleStartAngle + AxcDraw_Angle(angle+angleSpacing);
-        CGFloat arrowHeaderAngle2 = cycleStartAngle + AxcDraw_Angle(angle-angleSpacing);
         [circlePath addArcWithCenter:arcCenter
                               radius:arcRadius
                           startAngle:cycleStartAngle
@@ -295,12 +292,18 @@
                           startAngle:cycleStartAngle + AxcDraw_Angle(angle)
                             endAngle:cycleStartAngle
                            clockwise:NO];
+        
+//        [circlePath addArcWithCenter:arcCenter
+//                              radius:30
+//                          startAngle:cycleStartAngle + AxcDraw_Angle(angle)
+//                            endAngle:cycleStartAngle
+//                           clockwise:NO];
         [circlePath closePath]; // 闭合
         startAngle += ((angle + angleSpacing));
-        [circlePath moveToPoint:[AxcPolarAxis AxcPolarAxisCenter:arcCenter
-                                                        distance:arcRadius
-                                                          radian:startAngle]];
-    }
+//        [circlePath moveToPoint:[AxcPolarAxis AxcPolarAxisCenter:arcCenter
+//                                                        distance:arcRadius
+//                                                          radian:startAngle]];
+   
     
     CAShapeLayer *shaperLayer = [CAShapeLayer layer];
     //    shaperLayer.lineWidth=1;
@@ -308,18 +311,31 @@
     shaperLayer.fillColor = [UIColor clearColor].CGColor;//填充颜色
     shaperLayer.path=circlePath.CGPath;
     //    shaperLayer.lineDashPattern=@[@9,@1]; //3=线的宽度 1=每条线的间距
-    [self.view.layer addSublayer:shaperLayer];
-    CABasicAnimation *pathAniamtion = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAniamtion.repeatCount = 1; // 重复次数只需要1次
-    
-    pathAniamtion.fromValue = @(0);
-    pathAniamtion.toValue =  @(1);
-    pathAniamtion.duration = 5;
-    pathAniamtion.autoreverses = YES;               // 动画结束时执行逆动画
-    pathAniamtion.repeatCount = HUGE_VALF;          // 重复次数
-    pathAniamtion.fillMode = kCAFillModeForwards;   // 保持动画执行的最后一步状态
-    pathAniamtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [shaperLayer addAnimation:pathAniamtion forKey:@"pathAniamtion"];
+        [self.view.layer addSublayer:shaperLayer];
+        CABasicAnimation *pathAniamtion = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+        pathAniamtion.repeatCount = 2; // 重复次数只需要1次
+        
+        pathAniamtion.fromValue = @(0);
+        pathAniamtion.toValue =  @(1);
+        pathAniamtion.duration = 5;
+        pathAniamtion.autoreverses = YES;               // 动画结束时执行逆动画
+        pathAniamtion.repeatCount = HUGE_VALF;          // 重复次数
+        pathAniamtion.fillMode = kCAFillModeForwards;   // 保持动画执行的最后一步状态
+        pathAniamtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        [shaperLayer addAnimation:pathAniamtion forKey:@"pathAniamtion"];
+
+    }
+//    CABasicAnimation *pathAniamtion = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+//    pathAniamtion.repeatCount = 2; // 重复次数只需要1次
+//
+//    pathAniamtion.fromValue = @(0);
+//    pathAniamtion.toValue =  @(1);
+//    pathAniamtion.duration = 5;
+//    pathAniamtion.autoreverses = YES;               // 动画结束时执行逆动画
+//    pathAniamtion.repeatCount = HUGE_VALF;          // 重复次数
+//    pathAniamtion.fillMode = kCAFillModeForwards;   // 保持动画执行的最后一步状态
+//    pathAniamtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    [shaperLayer addAnimation:pathAniamtion forKey:@"pathAniamtion"];
 //    [self testRound];
 }
 

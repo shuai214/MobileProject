@@ -13,6 +13,7 @@
 		2B35AB6721ABD7D7004FF899 /* XYRotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6221ABD7D7004FF899 /* XYRotatedView.m */; };
 		2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6321ABD7D7004FF899 /* XYCommon.m */; };
 		2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */; };
+		2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */; };
 		2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
 		2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0021A40A1F00F88808 /* Assets.xcassets */; };
@@ -191,6 +192,8 @@
 		2B35AB6321ABD7D7004FF899 /* XYCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYCommon.m; sourceTree = "<group>"; };
 		2B52875421A7ADF500EC87CB /* CSBesierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBesierPathViewController.h; sourceTree = "<group>"; };
 		2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBesierPathViewController.m; sourceTree = "<group>"; };
+		2B68EDBD21AFD5D9007677B0 /* CSTextTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSTextTestViewController.h; sourceTree = "<group>"; };
+		2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTextTestViewController.m; sourceTree = "<group>"; };
 		2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcPolarAxis.m; sourceTree = "<group>"; };
 		2BAF5FBC21A94A3300D78C5A /* AxcPolarAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcPolarAxis.h; sourceTree = "<group>"; };
 		2BCAEEF421A40A1E00F88808 /* MobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -556,6 +559,15 @@
 				2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */,
 			);
 			path = UIBesierPath;
+			sourceTree = "<group>";
+		};
+		2B68EDBC21AFD5CB007677B0 /* YYTextStudy */ = {
+			isa = PBXGroup;
+			children = (
+				2B68EDBD21AFD5D9007677B0 /* CSTextTestViewController.h */,
+				2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */,
+			);
+			path = YYTextStudy;
 			sourceTree = "<group>";
 		};
 		2BCAEEEB21A40A1E00F88808 = {
@@ -1271,6 +1283,7 @@
 		2BCAF10521A6915400F88808 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				2B68EDBC21AFD5CB007677B0 /* YYTextStudy */,
 				2B52875321A7AD6600EC87CB /* UIBesierPath */,
 				2BCAF11821A69BAD00F88808 /* CADisplayLink */,
 				2BCAF11421A69B8100F88808 /* protocol */,
@@ -1594,6 +1607,7 @@
 				2BCAF0BF21A40A6200F88808 /* UITextField+JKInputLimit.m in Sources */,
 				2BCAF05821A40A6200F88808 /* UILabel+ESAdjustableLabel.m in Sources */,
 				2BCAF0B021A40A6200F88808 /* UIViewController+DDPopUpViewController.m in Sources */,
+				2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */,
 				2BCAF05121A40A6200F88808 /* UIImage+Capture.m in Sources */,
 				2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */,
 				2BCAF08E21A40A6200F88808 /* UIView+Find.m in Sources */,

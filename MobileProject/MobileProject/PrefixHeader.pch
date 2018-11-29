@@ -12,6 +12,7 @@
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS
 #import "Macros.h"
+#import "UIColor+Random.h"
 
 
 

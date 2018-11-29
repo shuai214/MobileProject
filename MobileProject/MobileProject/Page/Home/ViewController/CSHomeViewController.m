@@ -13,6 +13,7 @@
 #import "CSProtocolOptionalViewController.h"
 #import "CSCADisplayLinkerViewController.h"
 #import "CSBesierPathViewController.h"
+#import "CSTextTestViewController.h"
 @interface CSHomeViewController ()<UITableViewDelegate>
 @property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic,strong) TableViewDataSource *dataSource;
@@ -52,7 +53,7 @@
     TableViewCellConfigureBlock block = ^(UITableViewCell *cell,NSString *cellData){
         cell.textLabel.text = cellData;
     };
-    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"protocol的学习",@"CADisplayLink学习",@"UIBezierPath 学习",@"4444"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
+    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"protocol的学习",@"CADisplayLink学习",@"UIBezierPath 学习",@"YYText 学习"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
     self.myTableView.dataSource = self.dataSource;
     [self.myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 
@@ -76,6 +77,11 @@
         case 2:
         {
             [self.navigationController pushViewController:[CSBesierPathViewController new] animated:YES];
+            break;
+        }
+        case 3:
+        {
+            [self.navigationController pushViewController:[CSTextTestViewController new] animated:YES];
             break;
         }
     }
