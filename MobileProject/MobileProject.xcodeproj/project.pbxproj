@@ -15,6 +15,8 @@
 		2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */; };
 		2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */; };
 		2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */; };
+		2BC1325921B0D86600A591B3 /* CSKVOCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */; };
+		2BC1325D21B0D89E00A591B3 /* NSObject+KVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1325C21B0D89E00A591B3 /* NSObject+KVO.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
 		2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0021A40A1F00F88808 /* Assets.xcassets */; };
 		2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEF0221A40A1F00F88808 /* LaunchScreen.storyboard */; };
@@ -196,6 +198,10 @@
 		2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTextTestViewController.m; sourceTree = "<group>"; };
 		2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcPolarAxis.m; sourceTree = "<group>"; };
 		2BAF5FBC21A94A3300D78C5A /* AxcPolarAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcPolarAxis.h; sourceTree = "<group>"; };
+		2BC1325721B0D86600A591B3 /* CSKVOCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSKVOCustomViewController.h; sourceTree = "<group>"; };
+		2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSKVOCustomViewController.m; sourceTree = "<group>"; };
+		2BC1325B21B0D89E00A591B3 /* NSObject+KVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVO.h"; sourceTree = "<group>"; };
+		2BC1325C21B0D89E00A591B3 /* NSObject+KVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVO.m"; sourceTree = "<group>"; };
 		2BCAEEF421A40A1E00F88808 /* MobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BCAEEFE21A40A1E00F88808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BCAEF0021A40A1F00F88808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -570,6 +576,24 @@
 			path = YYTextStudy;
 			sourceTree = "<group>";
 		};
+		2BC1325621B0D85900A591B3 /* CustomKVO */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1325721B0D86600A591B3 /* CSKVOCustomViewController.h */,
+				2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */,
+			);
+			path = CustomKVO;
+			sourceTree = "<group>";
+		};
+		2BC1325A21B0D88300A591B3 /* CustomKVO */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1325B21B0D89E00A591B3 /* NSObject+KVO.h */,
+				2BC1325C21B0D89E00A591B3 /* NSObject+KVO.m */,
+			);
+			path = CustomKVO;
+			sourceTree = "<group>";
+		};
 		2BCAEEEB21A40A1E00F88808 = {
 			isa = PBXGroup;
 			children = (
@@ -894,38 +918,38 @@
 		2BCAEFAF21A40A6100F88808 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				2BCAEFB021A40A6100F88808 /* UIView+Debug.m */,
-				2BCAEFB121A40A6100F88808 /* UIView+Nib.m */,
-				2BCAEFB221A40A6100F88808 /* UIView+Shake.h */,
-				2BCAEFB321A40A6100F88808 /* UIView+CustomBorder.m */,
-				2BCAEFB421A40A6100F88808 /* UIView+GestureCallback.m */,
-				2BCAEFB521A40A6100F88808 /* UIView+draggable.h */,
-				2BCAEFB621A40A6100F88808 /* UIView+ViewController.m */,
-				2BCAEFB721A40A6100F88808 /* UIView+Recursion.h */,
-				2BCAEFB821A40A6100F88808 /* UIView+Frame.m */,
-				2BCAEFB921A40A6100F88808 /* UIView+Find.h */,
-				2BCAEFBA21A40A6100F88808 /* UIView+Visuals.h */,
-				2BCAEFBB21A40A6100F88808 /* UIView+BlockGesture.m */,
-				2BCAEFBC21A40A6100F88808 /* UIView+Toast.h */,
-				2BCAEFBD21A40A6100F88808 /* UIView+Screenshot.h */,
+				2BCAEFCD21A40A6100F88808 /* UIView+Animation.h */,
 				2BCAEFBE21A40A6100F88808 /* UIView+Animation.m */,
-				2BCAEFBF21A40A6100F88808 /* UIView+Constraints.h */,
-				2BCAEFC021A40A6100F88808 /* UIView+Shake.m */,
-				2BCAEFC121A40A6100F88808 /* UIView+Debug.h */,
-				2BCAEFC221A40A6100F88808 /* UIView+Nib.h */,
-				2BCAEFC321A40A6100F88808 /* UIView+Recursion.m */,
-				2BCAEFC421A40A6100F88808 /* UIView+ViewController.h */,
-				2BCAEFC521A40A6100F88808 /* UIView+draggable.m */,
-				2BCAEFC621A40A6100F88808 /* UIView+GestureCallback.h */,
-				2BCAEFC721A40A6100F88808 /* UIView+CustomBorder.h */,
 				2BCAEFC821A40A6100F88808 /* UIView+BlockGesture.h */,
-				2BCAEFC921A40A6100F88808 /* UIView+Visuals.m */,
+				2BCAEFBB21A40A6100F88808 /* UIView+BlockGesture.m */,
+				2BCAEFBF21A40A6100F88808 /* UIView+Constraints.h */,
+				2BCAEFCC21A40A6100F88808 /* UIView+Constraints.m */,
+				2BCAEFC721A40A6100F88808 /* UIView+CustomBorder.h */,
+				2BCAEFB321A40A6100F88808 /* UIView+CustomBorder.m */,
+				2BCAEFC121A40A6100F88808 /* UIView+Debug.h */,
+				2BCAEFB021A40A6100F88808 /* UIView+Debug.m */,
+				2BCAEFB521A40A6100F88808 /* UIView+draggable.h */,
+				2BCAEFC521A40A6100F88808 /* UIView+draggable.m */,
+				2BCAEFB921A40A6100F88808 /* UIView+Find.h */,
 				2BCAEFCA21A40A6100F88808 /* UIView+Find.m */,
 				2BCAEFCB21A40A6100F88808 /* UIView+Frame.h */,
-				2BCAEFCC21A40A6100F88808 /* UIView+Constraints.m */,
-				2BCAEFCD21A40A6100F88808 /* UIView+Animation.h */,
+				2BCAEFB821A40A6100F88808 /* UIView+Frame.m */,
+				2BCAEFC621A40A6100F88808 /* UIView+GestureCallback.h */,
+				2BCAEFB421A40A6100F88808 /* UIView+GestureCallback.m */,
+				2BCAEFC221A40A6100F88808 /* UIView+Nib.h */,
+				2BCAEFB121A40A6100F88808 /* UIView+Nib.m */,
+				2BCAEFB721A40A6100F88808 /* UIView+Recursion.h */,
+				2BCAEFC321A40A6100F88808 /* UIView+Recursion.m */,
+				2BCAEFBD21A40A6100F88808 /* UIView+Screenshot.h */,
 				2BCAEFCE21A40A6100F88808 /* UIView+Screenshot.m */,
+				2BCAEFB221A40A6100F88808 /* UIView+Shake.h */,
+				2BCAEFC021A40A6100F88808 /* UIView+Shake.m */,
+				2BCAEFBC21A40A6100F88808 /* UIView+Toast.h */,
 				2BCAEFCF21A40A6100F88808 /* UIView+Toast.m */,
+				2BCAEFC421A40A6100F88808 /* UIView+ViewController.h */,
+				2BCAEFB621A40A6100F88808 /* UIView+ViewController.m */,
+				2BCAEFBA21A40A6100F88808 /* UIView+Visuals.h */,
+				2BCAEFC921A40A6100F88808 /* UIView+Visuals.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1238,6 +1262,7 @@
 		2BCAF0ED21A53C2200F88808 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2BC1325A21B0D88300A591B3 /* CustomKVO */,
 				2BCAF10921A6918900F88808 /* Protocol */,
 				2BCAF0EE21A53C2200F88808 /* DataSource */,
 			);
@@ -1283,6 +1308,7 @@
 		2BCAF10521A6915400F88808 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				2BC1325621B0D85900A591B3 /* CustomKVO */,
 				2B68EDBC21AFD5CB007677B0 /* YYTextStudy */,
 				2B52875321A7AD6600EC87CB /* UIBesierPath */,
 				2BCAF11821A69BAD00F88808 /* CADisplayLink */,
@@ -1593,6 +1619,7 @@
 				2BCAF04921A40A6200F88808 /* UIImage+GIF.m in Sources */,
 				2BCAF08421A40A6200F88808 /* UIView+CustomBorder.m in Sources */,
 				2BCAF07621A40A6200F88808 /* UIColor+Modify.m in Sources */,
+				2BC1325921B0D86600A591B3 /* CSKVOCustomViewController.m in Sources */,
 				2BCAF07421A40A6200F88808 /* UIColor+Random.m in Sources */,
 				2BCAF0A221A40A6200F88808 /* UIBezierPath+LxThroughPointsBezier.m in Sources */,
 				2BCAF09221A40A6200F88808 /* UIFont-TTF.m in Sources */,
@@ -1608,6 +1635,7 @@
 				2BCAF05821A40A6200F88808 /* UILabel+ESAdjustableLabel.m in Sources */,
 				2BCAF0B021A40A6200F88808 /* UIViewController+DDPopUpViewController.m in Sources */,
 				2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */,
+				2BC1325D21B0D89E00A591B3 /* NSObject+KVO.m in Sources */,
 				2BCAF05121A40A6200F88808 /* UIImage+Capture.m in Sources */,
 				2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */,
 				2BCAF08E21A40A6200F88808 /* UIView+Find.m in Sources */,
