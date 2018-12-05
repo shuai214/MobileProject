@@ -15,6 +15,7 @@
 #import "CSBesierPathViewController.h"
 #import "CSTextTestViewController.h"
 #import "CSKVOCustomViewController.h"
+#import "CSBlockStudyViewController.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 @interface CSHomeViewController ()<UITableViewDelegate>
@@ -56,7 +57,7 @@
     TableViewCellConfigureBlock block = ^(UITableViewCell *cell,NSString *cellData){
         cell.textLabel.text = cellData;
     };
-    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"protocol的学习",@"CADisplayLink学习",@"UIBezierPath 学习",@"YYText 学习",@"自定义KVO 学习"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
+    self.dataSource = [[TableViewDataSource alloc] initWithItems:@[@"protocol的学习",@"CADisplayLink学习",@"UIBezierPath 学习",@"YYText 学习",@"自定义KVO 学习",@"block学习"] cellIdentifier:NSStringFromClass([UITableViewCell class]) cellConfigureBlock:block];
     self.myTableView.dataSource = self.dataSource;
     [self.myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 
@@ -90,6 +91,11 @@
         case 4:
         {
             [self.navigationController pushViewController:[CSKVOCustomViewController new] animated:YES];
+            break;
+        }
+        case 5:
+        {
+            [self.navigationController pushViewController:[CSBlockStudyViewController new] animated:YES];
             break;
         }
     }

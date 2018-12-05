@@ -14,6 +14,7 @@
 		2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6321ABD7D7004FF899 /* XYCommon.m */; };
 		2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */; };
 		2B5677EB21B4DF2000AD7AF9 /* CSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5677EA21B4DF2000AD7AF9 /* CSTableViewController.m */; };
+		2B5ACAE921B7B0EE00236AD3 /* CSBlockStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5ACAE821B7B0EE00236AD3 /* CSBlockStudyViewController.m */; };
 		2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */; };
 		2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */; };
 		2BC1325921B0D86600A591B3 /* CSKVOCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */; };
@@ -197,6 +198,8 @@
 		2B52875521A7ADF500EC87CB /* CSBesierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBesierPathViewController.m; sourceTree = "<group>"; };
 		2B5677E921B4DF2000AD7AF9 /* CSTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSTableViewController.h; sourceTree = "<group>"; };
 		2B5677EA21B4DF2000AD7AF9 /* CSTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTableViewController.m; sourceTree = "<group>"; };
+		2B5ACAE721B7B0EE00236AD3 /* CSBlockStudyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBlockStudyViewController.h; sourceTree = "<group>"; };
+		2B5ACAE821B7B0EE00236AD3 /* CSBlockStudyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBlockStudyViewController.m; sourceTree = "<group>"; };
 		2B68EDBD21AFD5D9007677B0 /* CSTextTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSTextTestViewController.h; sourceTree = "<group>"; };
 		2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTextTestViewController.m; sourceTree = "<group>"; };
 		2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcPolarAxis.m; sourceTree = "<group>"; };
@@ -577,6 +580,15 @@
 				2B5677EA21B4DF2000AD7AF9 /* CSTableViewController.m */,
 			);
 			path = TableViewSDWebImage;
+			sourceTree = "<group>";
+		};
+		2B5ACAE621B7B0D700236AD3 /* BlockStudy */ = {
+			isa = PBXGroup;
+			children = (
+				2B5ACAE721B7B0EE00236AD3 /* CSBlockStudyViewController.h */,
+				2B5ACAE821B7B0EE00236AD3 /* CSBlockStudyViewController.m */,
+			);
+			path = BlockStudy;
 			sourceTree = "<group>";
 		};
 		2B68EDBC21AFD5CB007677B0 /* YYTextStudy */ = {
@@ -1320,6 +1332,7 @@
 		2BCAF10521A6915400F88808 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				2B5ACAE621B7B0D700236AD3 /* BlockStudy */,
 				2B5677E821B4DF0C00AD7AF9 /* TableViewSDWebImage */,
 				2BC1325621B0D85900A591B3 /* CustomKVO */,
 				2B68EDBC21AFD5CB007677B0 /* YYTextStudy */,
@@ -1571,6 +1584,7 @@
 				2BCAF0A521A40A6200F88808 /* UIImageView+GeometryConversion.m in Sources */,
 				2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */,
 				2BCAF07521A40A6200F88808 /* UIColor+Web.m in Sources */,
+				2B5ACAE921B7B0EE00236AD3 /* CSBlockStudyViewController.m in Sources */,
 				2BCAF05621A40A6200F88808 /* UIImage+Resize.m in Sources */,
 				2BCAF04A21A40A6200F88808 /* UIImage+RemoteSize.m in Sources */,
 				2BCAF11021A697ED00F88808 /* Teachers.m in Sources */,
