@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B33E4AA21C4E10D00E65510 /* CSScoketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33E4A821C4E10D00E65510 /* CSScoketViewController.m */; };
+		2B33E4AB21C4E10D00E65510 /* CSScoketViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B33E4A921C4E10D00E65510 /* CSScoketViewController.xib */; };
 		2B35AB6421ABD7D7004FF899 /* XYRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB5C21ABD7D7004FF899 /* XYRenderView.m */; };
 		2B35AB6521ABD7D7004FF899 /* PieChart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35AB5E21ABD7D7004FF899 /* PieChart.xcassets */; };
 		2B35AB6621ABD7D7004FF899 /* XYPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35AB6021ABD7D7004FF899 /* XYPieChartView.m */; };
@@ -17,8 +19,8 @@
 		2B5ACAE921B7B0EE00236AD3 /* CSBlockStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5ACAE821B7B0EE00236AD3 /* CSBlockStudyViewController.m */; };
 		2B68EDBF21AFD5D9007677B0 /* CSTextTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */; };
 		2B91F8F121B8BAAF00E876F4 /* CSBlockApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B91F8F021B8BAAF00E876F4 /* CSBlockApplicationViewController.m */; };
-		2B91F8F521B907D000E876F4 /* CSHttpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B91F8F421B907D000E876F4 /* CSHttpViewController.m */; };
 		2BAF5FBD21A94A3300D78C5A /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */; };
+		2BB0EE4F21C7927D008A38B4 /* CSDrawDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB0EE4E21C7927D008A38B4 /* CSDrawDashboardViewController.m */; };
 		2BC1325921B0D86600A591B3 /* CSKVOCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */; };
 		2BC1325D21B0D89E00A591B3 /* NSObject+KVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1325C21B0D89E00A591B3 /* NSObject+KVO.m */; };
 		2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAEEFD21A40A1E00F88808 /* Main.storyboard */; };
@@ -187,6 +189,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B33E4A721C4E10D00E65510 /* CSScoketViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSScoketViewController.h; sourceTree = "<group>"; };
+		2B33E4A821C4E10D00E65510 /* CSScoketViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSScoketViewController.m; sourceTree = "<group>"; };
+		2B33E4A921C4E10D00E65510 /* CSScoketViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSScoketViewController.xib; sourceTree = "<group>"; };
 		2B35AB5B21ABD7D7004FF899 /* XYPieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChartView.h; sourceTree = "<group>"; };
 		2B35AB5C21ABD7D7004FF899 /* XYRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYRenderView.m; sourceTree = "<group>"; };
 		2B35AB5D21ABD7D7004FF899 /* XYRotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYRotatedView.h; sourceTree = "<group>"; };
@@ -206,10 +211,10 @@
 		2B68EDBE21AFD5D9007677B0 /* CSTextTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTextTestViewController.m; sourceTree = "<group>"; };
 		2B91F8EF21B8BAAF00E876F4 /* CSBlockApplicationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBlockApplicationViewController.h; sourceTree = "<group>"; };
 		2B91F8F021B8BAAF00E876F4 /* CSBlockApplicationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBlockApplicationViewController.m; sourceTree = "<group>"; };
-		2B91F8F321B907D000E876F4 /* CSHttpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSHttpViewController.h; sourceTree = "<group>"; };
-		2B91F8F421B907D000E876F4 /* CSHttpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSHttpViewController.m; sourceTree = "<group>"; };
 		2BAF5FBB21A94A3300D78C5A /* AxcPolarAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcPolarAxis.m; sourceTree = "<group>"; };
 		2BAF5FBC21A94A3300D78C5A /* AxcPolarAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcPolarAxis.h; sourceTree = "<group>"; };
+		2BB0EE4D21C7927D008A38B4 /* CSDrawDashboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSDrawDashboardViewController.h; sourceTree = "<group>"; };
+		2BB0EE4E21C7927D008A38B4 /* CSDrawDashboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSDrawDashboardViewController.m; sourceTree = "<group>"; };
 		2BC1325721B0D86600A591B3 /* CSKVOCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSKVOCustomViewController.h; sourceTree = "<group>"; };
 		2BC1325821B0D86600A591B3 /* CSKVOCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSKVOCustomViewController.m; sourceTree = "<group>"; };
 		2BC1325B21B0D89E00A591B3 /* NSObject+KVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVO.h"; sourceTree = "<group>"; };
@@ -611,8 +616,9 @@
 		2B91F8F221B907C300E876F4 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				2B91F8F321B907D000E876F4 /* CSHttpViewController.h */,
-				2B91F8F421B907D000E876F4 /* CSHttpViewController.m */,
+				2B33E4A721C4E10D00E65510 /* CSScoketViewController.h */,
+				2B33E4A821C4E10D00E65510 /* CSScoketViewController.m */,
+				2B33E4A921C4E10D00E65510 /* CSScoketViewController.xib */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -1389,6 +1395,8 @@
 			children = (
 				2BCAF11921A69BC000F88808 /* CSCADisplayLinkerViewController.h */,
 				2BCAF11A21A69BC000F88808 /* CSCADisplayLinkerViewController.m */,
+				2BB0EE4D21C7927D008A38B4 /* CSDrawDashboardViewController.h */,
+				2BB0EE4E21C7927D008A38B4 /* CSDrawDashboardViewController.m */,
 			);
 			path = CADisplayLink;
 			sourceTree = "<group>";
@@ -1499,6 +1507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BCAEF0421A40A1F00F88808 /* LaunchScreen.storyboard in Resources */,
+				2B33E4AB21C4E10D00E65510 /* CSScoketViewController.xib in Resources */,
 				2B35AB6521ABD7D7004FF899 /* PieChart.xcassets in Resources */,
 				2BCAEF0121A40A1F00F88808 /* Assets.xcassets in Resources */,
 				2BCAEEFF21A40A1E00F88808 /* Main.storyboard in Resources */,
@@ -1598,6 +1607,7 @@
 				2BCAF08221A40A6200F88808 /* UIView+Debug.m in Sources */,
 				2BCAF0B221A40A6200F88808 /* UIViewController+BackButtonItemTitle.m in Sources */,
 				2BCAF0CD21A4113C00F88808 /* CSMainViewController.m in Sources */,
+				2B33E4AA21C4E10D00E65510 /* CSScoketViewController.m in Sources */,
 				2BCAF08D21A40A6200F88808 /* UIView+Visuals.m in Sources */,
 				2BCAF0A521A40A6200F88808 /* UIImageView+GeometryConversion.m in Sources */,
 				2B35AB6821ABD7D7004FF899 /* XYCommon.m in Sources */,
@@ -1657,7 +1667,6 @@
 				2BCAF10121A63EEA00F88808 /* HomeRequest.m in Sources */,
 				2BCAF09921A40A6200F88808 /* UITextView+PinchZoom.m in Sources */,
 				2BCAF0A421A40A6200F88808 /* UIImageView+Letters.m in Sources */,
-				2B91F8F521B907D000E876F4 /* CSHttpViewController.m in Sources */,
 				2BCAF0A021A40A6200F88808 /* UIBezierPath+BasicShapes.m in Sources */,
 				2BCAF10D21A697DE00F88808 /* Students.m in Sources */,
 				2B35AB6621ABD7D7004FF899 /* XYPieChartView.m in Sources */,
@@ -1685,6 +1694,7 @@
 				2BC1325D21B0D89E00A591B3 /* NSObject+KVO.m in Sources */,
 				2BCAF05121A40A6200F88808 /* UIImage+Capture.m in Sources */,
 				2B52875621A7ADF500EC87CB /* CSBesierPathViewController.m in Sources */,
+				2BB0EE4F21C7927D008A38B4 /* CSDrawDashboardViewController.m in Sources */,
 				2BCAF08E21A40A6200F88808 /* UIView+Find.m in Sources */,
 				2BCAF09121A40A6200F88808 /* UIView+Toast.m in Sources */,
 				2BCAF08821A40A6200F88808 /* UIView+BlockGesture.m in Sources */,

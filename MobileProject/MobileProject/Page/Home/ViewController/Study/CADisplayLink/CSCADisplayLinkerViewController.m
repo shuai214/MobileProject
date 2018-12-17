@@ -7,7 +7,7 @@
 //
 
 #import "CSCADisplayLinkerViewController.h"
-
+#import "CSDrawDashboardViewController.h"
 @interface CSCADisplayLinkerViewController ()
 @property(nonatomic,strong)CADisplayLink *displayLink;
 
@@ -77,8 +77,17 @@
     [self setUI];
     
     
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 90, 90)];
+    [button setTitle:@"PUSH" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor RandomColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(pushBlockApplicationVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
 }
 
+- (void)pushBlockApplicationVC{
+    [self.navigationController pushViewController:[CSDrawDashboardViewController new] animated:YES];
+}
 
 - (void)setUI{
     _shapeLayer = [CAShapeLayer layer];

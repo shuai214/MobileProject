@@ -1,12 +1,12 @@
 //
-//  CSHttpViewController.m
+//  CSScoketViewController.m
 //  MobileProject
 //
-//  Created by capaipai@sina.com on 2018/12/6.
+//  Created by capaipai@sina.com on 2018/12/15.
 //  Copyright © 2018年 capaipai. All rights reserved.
 //
 
-#import "CSHttpViewController.h"
+#import "CSScoketViewController.h"
 #import <sys/socket.h>
 
 #import <netinet/in.h>
@@ -16,18 +16,16 @@
 #import <unistd.h>
 
 #import <netinet/tcp.h>
-
-
-@interface CSHttpViewController ()
+static const char *server_ip = "127.0.0.1";
+static const short server_port = 6969;
+@interface CSScoketViewController ()
 {
     int _clientSocket;
-   const char *server_ip;
-   const char *server_port;
-    
 }
+@property (weak, nonatomic) IBOutlet UITextField *messageField;
 @end
 
-@implementation CSHttpViewController
+@implementation CSScoketViewController
 
 /**
  什么是长连接、短连接？
@@ -43,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self initSocket];
 }
 
 - (void)initSocket{
@@ -69,7 +67,46 @@
     sockAddr.sin_family = AF_INET;
     inet_aton(server_ip, &sockAddr.sin_addr);
     sockAddr.sin_port = htons(server_port);
-    connect(_clientSocket, sockAddr, <#socklen_t#>)
+    int flag = connect(_clientSocket, (struct sockaddr *)&sockAddr, sizeof(sockAddr));
+    if (!flag) {
+        //链接成功的话 就开始进行读写操作。。。
+        //开辟新的线程 接受服务端的数据
+        NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(receiveAction) object:nil];
+        [thread start];
+        
+    }else{
+        NSLog(@"链接错误");
+    }
+}
+
+- (void)receiveAction{
+    //死循环 保持连接。接收消息
+    while (1) {
+        /*
+         第一个参数:客户端 socket
+         第二个参数:接收内容缓冲区域
+         第三个参数:接收内容缓冲区长度
+         第四个参数:接收方式 0 表示阻塞，必须等服务器返回数据。
+         返回值 : 成功 ---> 返回读入字节数
+         */
+        //数据流是NSData 的二进制数据，。
+        //需要接收数据。先声明一个缓冲区。
+        char recv_msg[1024];
+        //接收消息 api
+        recv(_clientSocket, recv_msg, sizeof(recv_msg), 0);
+        printf("%s\n",recv_msg);
+    }
+}
+- (void)sendMessage:(NSString *)msg{
+    const char *send_Msg = [msg cStringUsingEncoding:NSUTF8StringEncoding];
+    //发送消息 api
+    send(_clientSocket, send_Msg, strlen(send_Msg), 0);
+    
+}
+- (IBAction)action:(id)sender {
+    if (!kStringIsEmpty(self.messageField.text)) {
+        [self sendMessage:self.messageField.text];
+    }
 }
 
 @end

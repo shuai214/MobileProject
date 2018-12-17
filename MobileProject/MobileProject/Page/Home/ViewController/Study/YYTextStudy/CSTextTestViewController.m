@@ -17,9 +17,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self layoutYYText];
+//    [self layoutYYText];
+    [self print];
+//    NSLog(@"%@ --- %@",[self class],[super class]);
+}
+- (void)print
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"A");
+    });
+//    NSLog(@"B");
+    dispatch_queue_t queuetmp = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_sync(queuetmp, ^{
+        NSLog(@"C");
+    });
+    dispatch_async(queuetmp, ^{
+        NSLog(@"D");
+    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"E");
+    });
+//    [self performSelector:@selector(method) withObject:nil afterDelay:0.0f];
+//    NSLog(@"F");
+    
 }
 
+- (void)method
+{
+    NSLog(@"G");
+}
 - (void)layoutYYText{
     
     /**

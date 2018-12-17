@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      // Do any additional setup after loading the view.
+    NSLog(@"%@",[self class]);
     self.view.backgroundColor = [UIColor whiteColor];
     // 状态栏不透明(必须设置，并且为NO)
     self.navigationController.navigationBar.translucent = NO;
