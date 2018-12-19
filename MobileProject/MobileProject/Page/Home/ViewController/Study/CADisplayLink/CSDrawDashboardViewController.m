@@ -17,6 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    CALayer *mainLayer = ([CALayer layer]);
+    mainLayer.frame = CGRectMake(0, 200, 100, 100);
+    mainLayer.backgroundColor = [UIColor redColor].CGColor;
+    mainLayer.anchorPoint = CGPointMake(1, 1);
+    [self.view.layer addSublayer:mainLayer];
+    
     [self drawDashboardView];
 }
 
@@ -125,6 +132,29 @@
         perLayer.path = tickPath.CGPath;
         [self.view.layer addSublayer:perLayer];
     }
+    
+    // 指针
+    UIView *clockView = [[UIView alloc] initWithFrame:CGRectMake((Main_Screen_Width-140)/2, (Main_Screen_Height-2)/2, 140, 2)];
+    clockView.tag = 100;
+    clockView.backgroundColor = [UIColor whiteColor];
+    clockView.layer.anchorPoint = CGPointMake(1.0, 0.5);
+    [self.view addSubview:clockView];
+
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    CGFloat progress = (arc4random_uniform(40)+60)/100.0;
+    UIView *clockView = [self.view viewWithTag:100];
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]; // 动画快慢
+    animation.removedOnCompletion = NO;
+    animation.repeatCount = 1;
+    animation.autoreverses = YES;
+    animation.duration = 1.0f*progress;
+    animation.fromValue = @(0);
+    animation.toValue = @(M_PI*progress);
+    [clockView.layer addAnimation:animation forKey:@"dsgsdg"];
 }
 // 计算位置,默认半径125
 - (CGPoint)calculateTextPositonWithArcCenter:(CGPoint)center Angle:(CGFloat)angel {

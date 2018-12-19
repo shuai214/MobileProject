@@ -1,0 +1,1875 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
+		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
+		EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE012193C596006A8AE1 /* CAPTabBarController.m */; };
+		EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF12AE032193C915006A8AE1 /* CAPWeekView.xib */; };
+		EF12AE072193C926006A8AE1 /* CAPWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE062193C926006A8AE1 /* CAPWeekView.m */; };
+		EF358BE321913B0D00EFB4BF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF358BE221913B0D00EFB4BF /* Login.storyboard */; };
+		EF358BE62191437D00EFB4BF /* CAPCheckableCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BE52191437D00EFB4BF /* CAPCheckableCollectionCell.m */; };
+		EF358BE9219143A700EFB4BF /* CAPSelectableCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BE8219143A600EFB4BF /* CAPSelectableCollectionCell.m */; };
+		EF358BEC2191441600EFB4BF /* CAPCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BEA2191441600EFB4BF /* CAPCollectionCell.m */; };
+		EF358BF32191443200EFB4BF /* CAPSelectableTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BED2191443100EFB4BF /* CAPSelectableTableCell.m */; };
+		EF358BF42191443200EFB4BF /* CAPTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF02191443200EFB4BF /* CAPTableCell.m */; };
+		EF358BF52191443200EFB4BF /* CAPCheckableTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF12191443200EFB4BF /* CAPCheckableTableCell.m */; };
+		EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF6219144A700EFB4BF /* CAPStyles.m */; };
+		EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */; };
+		EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BFC219159C600EFB4BF /* CAPTrackerView.m */; };
+		EF358C002191766200EFB4BF /* CAPCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BFF2191766200EFB4BF /* CAPCardView.m */; };
+		EF358C0321918B6300EFB4BF /* CAPBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358C0221918B6300EFB4BF /* CAPBatteryView.m */; };
+		EF358C0621918B7500EFB4BF /* CAPDeviceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358C0521918B7500EFB4BF /* CAPDeviceListView.m */; };
+		EF358C082191D84100EFB4BF /* EditName.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF358C072191D84100EFB4BF /* EditName.storyboard */; };
+		EF46F27221928F68009A357C /* CAPFeedbackService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F27121928F68009A357C /* CAPFeedbackService.m */; };
+		EF46F27521929080009A357C /* CAPFenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F27421929080009A357C /* CAPFenceService.m */; };
+		EF46F2782192916A009A357C /* CAPGuardianService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F2772192916A009A357C /* CAPGuardianService.m */; };
+		EF46F27B21929285009A357C /* CAPFence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F27A21929285009A357C /* CAPFence.m */; };
+		EF46F27E219294BE009A357C /* CAPFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F27D219294BE009A357C /* CAPFeedback.m */; };
+		EF46F2812192991A009A357C /* CAPFootprint.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F2802192991A009A357C /* CAPFootprint.m */; };
+		EF46F28421929AE0009A357C /* CAPGuardian.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F28321929AE0009A357C /* CAPGuardian.m */; };
+		EF46F28921929BCA009A357C /* CAPPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F28821929BCA009A357C /* CAPPhotoService.m */; };
+		EF46F28C21929BE1009A357C /* CAPMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F28B21929BE1009A357C /* CAPMessageService.m */; };
+		EF46F29021929CD0009A357C /* CAPFileService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F28F21929CD0009A357C /* CAPFileService.m */; };
+		EF46F29321929D17009A357C /* CAPFileItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F29221929D17009A357C /* CAPFileItem.m */; };
+		EF46F2962192D24E009A357C /* CAPHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F2952192D24E009A357C /* CAPHUD.m */; };
+		EF46F2992192D265009A357C /* CAPNetworks.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F2982192D265009A357C /* CAPNetworks.m */; };
+		EF46F29C2192DD05009A357C /* CAPUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F29B2192DD05009A357C /* CAPUserDefaults.m */; };
+		EF46F29F2192E0F8009A357C /* CAPCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F29E2192E0F7009A357C /* CAPCrypto.m */; };
+		EF46F2A22192E103009A357C /* CAPKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF46F2A12192E103009A357C /* CAPKeyChain.m */; };
+		EF6CA63F218D30FF0014771E /* CAPReadUserInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA63C218D30FF0014771E /* CAPReadUserInfoResponse.m */; };
+		EF6CA640218D30FF0014771E /* CAPFetchUserProfileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA63E218D30FF0014771E /* CAPFetchUserProfileResponse.m */; };
+		EF6CA647218D311E0014771E /* CAPUpdateUserInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA641218D311D0014771E /* CAPUpdateUserInfoResponse.m */; };
+		EF6CA648218D311E0014771E /* CAPUpdateUserProfileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA644218D311E0014771E /* CAPUpdateUserProfileResponse.m */; };
+		EF6CA649218D311E0014771E /* CAPUpdateUserSettingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA645218D311E0014771E /* CAPUpdateUserSettingResponse.m */; };
+		EF6CA64E218D31380014771E /* CAPReadUserSettingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA64B218D31370014771E /* CAPReadUserSettingResponse.m */; };
+		EF6CA652218D31680014771E /* CAPCheckRemoteSettingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */; };
+		EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA653218D31AC0014771E /* CAPRemoteSetting.m */; };
+		EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA659218D58160014771E /* libWeChatSDK.a */; };
+		EF6CA65F218D58170014771E /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA65B218D58170014771E /* NullSafe.m */; };
+		EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA65D218D58170014771E /* TencentOpenAPI.framework */; };
+		EF6CA666218D778A0014771E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA668218D778A0014771E /* InfoPlist.strings */; };
+		EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA66E218D7A7B0014771E /* CAPSocialService.m */; };
+		EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA670218D7C7F0014771E /* libc++.tbd */; };
+		EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA672218D7CA90014771E /* CoreTelephony.framework */; };
+		EF6CA675218D7CB10014771E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA674218D7CB10014771E /* Security.framework */; };
+		EF6CA677218D7CBA0014771E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA676218D7CBA0014771E /* SystemConfiguration.framework */; };
+		EF6CA679218D7CC30014771E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA678218D7CC30014771E /* AVFoundation.framework */; };
+		EF6CA67B218D7CCB0014771E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA67A218D7CCB0014771E /* CoreGraphics.framework */; };
+		EF6CA67D218D7CD40014771E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA67C218D7CD40014771E /* CoreMedia.framework */; };
+		EF6CA67F218D7CDD0014771E /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA67E218D7CDD0014771E /* libbz2.tbd */; };
+		EF6CA681218D7CE70014771E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA680218D7CE70014771E /* libz.tbd */; };
+		EF6CA683218D7CFC0014771E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA682218D7CFC0014771E /* MobileCoreServices.framework */; };
+		EF6CA685218D7D060014771E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA684218D7D050014771E /* QuartzCore.framework */; };
+		EF6CA687218D7D100014771E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA686218D7D100014771E /* UIKit.framework */; };
+		EF6CA68A218D818E0014771E /* CAPUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA689218D818E0014771E /* CAPUserCenter.m */; };
+		EF6CA68D218D833F0014771E /* CAPDeviceCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA68C218D833F0014771E /* CAPDeviceCenter.m */; };
+		EF6CA690218D836C0014771E /* CAPBasePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA68F218D836C0014771E /* CAPBasePresenter.m */; };
+		EF6CA693218D83800014771E /* CAPDevicePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA692218D83800014771E /* CAPDevicePresenter.m */; };
+		EF6CA696218D83890014771E /* CAPUserPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA695218D83890014771E /* CAPUserPresenter.m */; };
+		EF6CA699218D84180014771E /* CAPFencePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA698218D84180014771E /* CAPFencePresenter.m */; };
+		EF6CA69C218D84220014771E /* CAPFootprintPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA69B218D84220014771E /* CAPFootprintPresenter.m */; };
+		EF6CA69F218D842C0014771E /* CAPGuardianPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA69E218D842C0014771E /* CAPGuardianPresenter.m */; };
+		EF6CA6A2218D84350014771E /* CAPMapPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6A1218D84350014771E /* CAPMapPresenter.m */; };
+		EF6CA6A5218D84420014771E /* CAPMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6A4218D84420014771E /* CAPMessagePresenter.m */; };
+		EF6CA6A8218D84530014771E /* CAPPhotoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6A7218D84530014771E /* CAPPhotoPresenter.m */; };
+		EF6CA6AB218EA24C0014771E /* CAPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6A9218EA24C0014771E /* CAPNavigationController.m */; };
+		EF6CA6AE218EA3620014771E /* CAPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6AC218EA3610014771E /* CAPApplication.m */; };
+		EF6CA6B0218EC35D0014771E /* Pair.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6AF218EC35D0014771E /* Pair.storyboard */; };
+		EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6B4218EC7DA0014771E /* Me.storyboard */; };
+		EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6B6218EC90E0014771E /* Tracker.storyboard */; };
+		EF6CA6BA218EC9B30014771E /* CAPPhotographViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6B9218EC9B30014771E /* CAPPhotographViewController.m */; };
+		EF6CA6BC218ECA240014771E /* MasterSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */; };
+		EF6CA6BE218ECA5A0014771E /* GuestSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */; };
+		EF79BB5B21886AD1000358FA /* MQTTCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF79BB5A21886AD1000358FA /* MQTTCenter.m */; };
+		EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EF79BB5D21888C3A000358FA /* MQTTInfo.m */; };
+		EF79BB6121888E07000358FA /* MQTTResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EF79BB6021888E07000358FA /* MQTTResult.m */; };
+		EF7BE557218845AB00562EE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE556218845AB00562EE9 /* AppDelegate.m */; };
+		EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE559218845AB00562EE9 /* MainViewController.m */; };
+		EF7BE55D218845AB00562EE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE55B218845AB00562EE9 /* Main.storyboard */; };
+		EF7BE560218845AB00562EE9 /* GPSTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */; };
+		EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE561218845AC00562EE9 /* Assets.xcassets */; };
+		EF7BE565218845AC00562EE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */; };
+		EF7BE568218845AD00562EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE567218845AD00562EE9 /* main.m */; };
+		EF7BE572218845AD00562EE9 /* GPSTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE571218845AD00562EE9 /* GPSTrackerTests.m */; };
+		EF7BE57D218845AD00562EE9 /* GPSTrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE57C218845AD00562EE9 /* GPSTrackerUITests.m */; };
+		EFD0AC83218C3CE500405FD8 /* CAPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC82218C3CE500405FD8 /* CAPBaseViewController.m */; };
+		EFD0AC86218C3D0F00405FD8 /* CAPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC85218C3D0F00405FD8 /* CAPLoginViewController.m */; };
+		EFD0AC89218C3DFF00405FD8 /* CAPAddFenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */; };
+		EFD0AC8C218C3E0F00405FD8 /* CAPAddTrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */; };
+		EFD0AC8F218C3E4400405FD8 /* CAPEditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC8E218C3E4400405FD8 /* CAPEditNameViewController.m */; };
+		EFD0AC92218C3E4F00405FD8 /* CAPEditFenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC91218C3E4F00405FD8 /* CAPEditFenceViewController.m */; };
+		EFD0AC95218C3E6200405FD8 /* CAPFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */; };
+		EFD0AC98218C3E6C00405FD8 /* CAPFenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */; };
+		EFD0AC9B218C3E7800405FD8 /* CAPFootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC9A218C3E7800405FD8 /* CAPFootprintViewController.m */; };
+		EFD0AC9E218C3E9700405FD8 /* CAPGuardianInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AC9D218C3E9700405FD8 /* CAPGuardianInvitationViewController.m */; };
+		EFD0ACA1218C3EA000405FD8 /* CAPGuardianListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACA0218C3EA000405FD8 /* CAPGuardianListViewController.m */; };
+		EFD0ACA4218C3EAB00405FD8 /* CAPGuestSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACA3218C3EAB00405FD8 /* CAPGuestSettingViewController.m */; };
+		EFD0ACA7218C3EB500405FD8 /* CAPLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACA6218C3EB500405FD8 /* CAPLanguageViewController.m */; };
+		EFD0ACAA218C3EC900405FD8 /* CAPMasterSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACA9218C3EC900405FD8 /* CAPMasterSettingViewController.m */; };
+		EFD0ACAD218C3EDA00405FD8 /* CAPPairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACAC218C3EDA00405FD8 /* CAPPairViewController.m */; };
+		EFD0ACB0218C3EEE00405FD8 /* CAPhotographViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACAF218C3EEE00405FD8 /* CAPhotographViewController.m */; };
+		EFD0ACB3218C3EF800405FD8 /* CAPPhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACB2218C3EF800405FD8 /* CAPPhotoListViewController.m */; };
+		EFD0ACB6218C3F0100405FD8 /* CAPScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACB5218C3F0100405FD8 /* CAPScanViewController.m */; };
+		EFD0ACB9218C41F100405FD8 /* CAPTrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACB8218C41F100405FD8 /* CAPTrackerViewController.m */; };
+		EFD0ACBC218C420400405FD8 /* CAPMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACBB218C420400405FD8 /* CAPMessageListViewController.m */; };
+		EFD0ACBF218C420C00405FD8 /* CAPMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACBE218C420C00405FD8 /* CAPMeViewController.m */; };
+		EFD0ACCC218C467000405FD8 /* CAPAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC2218C466F00405FD8 /* CAPAlerts.m */; };
+		EFD0ACCD218C467000405FD8 /* CAPToast.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC4218C466F00405FD8 /* CAPToast.m */; };
+		EFD0ACCE218C467000405FD8 /* CAPViews.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC5218C466F00405FD8 /* CAPViews.m */; };
+		EFD0ACCF218C467000405FD8 /* CAPImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC6218C466F00405FD8 /* CAPImagePicker.m */; };
+		EFD0ACD0218C467000405FD8 /* CAPGuards.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC7218C466F00405FD8 /* CAPGuards.m */; };
+		EFD0ACD1218C467000405FD8 /* CAPFormats.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACC8218C467000405FD8 /* CAPFormats.m */; };
+		EFD0ACE6218C46A500405FD8 /* CAPValidators.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACD2218C46A300405FD8 /* CAPValidators.m */; };
+		EFD0ACE7218C46A500405FD8 /* CAPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACD5218C46A300405FD8 /* CAPNotifications.m */; };
+		EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACD7218C46A300405FD8 /* CAPCapabilities.m */; };
+		EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACD8218C46A300405FD8 /* CAPStrings.m */; };
+		EFD0ACEA218C46A500405FD8 /* CAPPhones.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACDA218C46A400405FD8 /* CAPPhones.m */; };
+		EFD0ACEB218C46A500405FD8 /* CAPFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACDB218C46A400405FD8 /* CAPFiles.m */; };
+		EFD0ACEC218C46A500405FD8 /* CAPImages.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACDC218C46A400405FD8 /* CAPImages.m */; };
+		EFD0ACED218C46A500405FD8 /* CAPTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACE1218C46A500405FD8 /* CAPTimes.m */; };
+		EFD0ACEE218C46A500405FD8 /* CAPColors.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACE3218C46A500405FD8 /* CAPColors.m */; };
+		EFD0ACEF218C46A500405FD8 /* CAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACE4218C46A500405FD8 /* CAPCache.m */; };
+		EFD0ACFE218C47D900405FD8 /* CAPHttpResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACF1218C47D800405FD8 /* CAPHttpResponse.m */; };
+		EFD0ACFF218C47D900405FD8 /* CAPHttpService.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACF2218C47D800405FD8 /* CAPHttpService.m */; };
+		EFD0AD00218C47D900405FD8 /* CAPHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACF4218C47D800405FD8 /* CAPHttpRequest.m */; };
+		EFD0AD01218C47D900405FD8 /* CAPUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACF5218C47D800405FD8 /* CAPUserService.m */; };
+		EFD0AD02218C47D900405FD8 /* CAPDeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACF6218C47D900405FD8 /* CAPDeviceService.m */; };
+		EFD0AD03218C47D900405FD8 /* CAPNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACFB218C47D900405FD8 /* CAPNetworkService.m */; };
+		EFD0AD04218C47D900405FD8 /* CAPBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0ACFC218C47D900405FD8 /* CAPBaseService.m */; };
+		EFD0AD07218C483D00405FD8 /* CAPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD06218C483D00405FD8 /* CAPResponse.m */; };
+		EFD0AD0A218C485D00405FD8 /* CAPBaseJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD09218C485D00405FD8 /* CAPBaseJSON.m */; };
+		EFD0AD1C218C4F7200405FD8 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD0C218C4F6F00405FD8 /* NSString+Size.m */; };
+		EFD0AD1D218C4F7200405FD8 /* NSData+CAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD0D218C4F6F00405FD8 /* NSData+CAP.m */; };
+		EFD0AD1E218C4F7200405FD8 /* UIColor+CAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD10218C4F7000405FD8 /* UIColor+CAP.m */; };
+		EFD0AD1F218C4F7200405FD8 /* UIImage+CAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD12218C4F7000405FD8 /* UIImage+CAP.m */; };
+		EFD0AD20218C4F7200405FD8 /* NSDictionary+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD14218C4F7100405FD8 /* NSDictionary+JSON.m */; };
+		EFD0AD21218C4F7200405FD8 /* UIImage+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD15218C4F7100405FD8 /* UIImage+Size.m */; };
+		EFD0AD22218C4F7200405FD8 /* UITableView+CAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD17218C4F7100405FD8 /* UITableView+CAP.m */; };
+		EFD0AD23218C4F7200405FD8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD1B218C4F7200405FD8 /* UIView+Frame.m */; };
+		EFD0AD26218C4FB600405FD8 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD24218C4FB600405FD8 /* AppConfig.m */; };
+		EFD0AD29218C503200405FD8 /* CAPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD28218C503100405FD8 /* CAPSession.m */; };
+		EFD0AD2C218C505900405FD8 /* CAPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD2A218C505900405FD8 /* CAPUser.m */; };
+		EFD0AD2F218C507A00405FD8 /* CAPDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD2D218C507900405FD8 /* CAPDevice.m */; };
+		EFD0AD38218C536700405FD8 /* CAPCloudItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD36218C536700405FD8 /* CAPCloudItemButton.m */; };
+		EFD0AD3B218C540800405FD8 /* CAPSocialUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD39218C540700405FD8 /* CAPSocialUser.m */; };
+		EFD0AD42218C550C00405FD8 /* CAPSocialLoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD3C218C550B00405FD8 /* CAPSocialLoginResponse.m */; };
+		EFD0AD43218C550C00405FD8 /* CAPSignInResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD3F218C550C00405FD8 /* CAPSignInResponse.m */; };
+		EFD0AD44218C550C00405FD8 /* CAPSignOutResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD0AD41218C550C00405FD8 /* CAPSignOutResponse.m */; };
+		FCCD79478894543AACC87C64 /* libPods-GPSTrackerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B29FEFE3E8FCC9423963000 /* libPods-GPSTrackerTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF7BE56E218845AD00562EE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF7BE54A218845AB00562EE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF7BE551218845AB00562EE9;
+			remoteInfo = GPSTracker;
+		};
+		EF7BE579218845AD00562EE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF7BE54A218845AB00562EE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF7BE551218845AB00562EE9;
+			remoteInfo = GPSTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.release.xcconfig"; sourceTree = "<group>"; };
+		77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B29FEFE3E8FCC9423963000 /* libPods-GPSTrackerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8B1C4B877FE6F514C3A7F5E /* Pods-GPSTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C466A4AD6BBE31F6C93A52F9 /* Pods-GPSTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		EF12AE002193C596006A8AE1 /* CAPTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPTabBarController.h; sourceTree = "<group>"; };
+		EF12AE012193C596006A8AE1 /* CAPTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPTabBarController.m; sourceTree = "<group>"; };
+		EF12AE032193C915006A8AE1 /* CAPWeekView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPWeekView.xib; sourceTree = "<group>"; };
+		EF12AE052193C926006A8AE1 /* CAPWeekView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPWeekView.h; sourceTree = "<group>"; };
+		EF12AE062193C926006A8AE1 /* CAPWeekView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPWeekView.m; sourceTree = "<group>"; };
+		EF358BE221913B0D00EFB4BF /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		EF358BE42191437D00EFB4BF /* CAPCheckableCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCheckableCollectionCell.h; sourceTree = "<group>"; };
+		EF358BE52191437D00EFB4BF /* CAPCheckableCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCheckableCollectionCell.m; sourceTree = "<group>"; };
+		EF358BE7219143A600EFB4BF /* CAPSelectableCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSelectableCollectionCell.h; sourceTree = "<group>"; };
+		EF358BE8219143A600EFB4BF /* CAPSelectableCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSelectableCollectionCell.m; sourceTree = "<group>"; };
+		EF358BEA2191441600EFB4BF /* CAPCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCollectionCell.m; sourceTree = "<group>"; };
+		EF358BEB2191441600EFB4BF /* CAPCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCollectionCell.h; sourceTree = "<group>"; };
+		EF358BED2191443100EFB4BF /* CAPSelectableTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSelectableTableCell.m; sourceTree = "<group>"; };
+		EF358BEE2191443100EFB4BF /* CAPCheckableTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCheckableTableCell.h; sourceTree = "<group>"; };
+		EF358BEF2191443100EFB4BF /* CAPTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPTableCell.h; sourceTree = "<group>"; };
+		EF358BF02191443200EFB4BF /* CAPTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPTableCell.m; sourceTree = "<group>"; };
+		EF358BF12191443200EFB4BF /* CAPCheckableTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCheckableTableCell.m; sourceTree = "<group>"; };
+		EF358BF22191443200EFB4BF /* CAPSelectableTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSelectableTableCell.h; sourceTree = "<group>"; };
+		EF358BF6219144A700EFB4BF /* CAPStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPStyles.m; sourceTree = "<group>"; };
+		EF358BF7219144A700EFB4BF /* CAPStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPStyles.h; sourceTree = "<group>"; };
+		EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPTrackerView.xib; sourceTree = "<group>"; };
+		EF358BFB219159C600EFB4BF /* CAPTrackerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPTrackerView.h; sourceTree = "<group>"; };
+		EF358BFC219159C600EFB4BF /* CAPTrackerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPTrackerView.m; sourceTree = "<group>"; };
+		EF358BFE2191766200EFB4BF /* CAPCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCardView.h; sourceTree = "<group>"; };
+		EF358BFF2191766200EFB4BF /* CAPCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCardView.m; sourceTree = "<group>"; };
+		EF358C0121918B6300EFB4BF /* CAPBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPBatteryView.h; sourceTree = "<group>"; };
+		EF358C0221918B6300EFB4BF /* CAPBatteryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPBatteryView.m; sourceTree = "<group>"; };
+		EF358C0421918B7500EFB4BF /* CAPDeviceListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceListView.h; sourceTree = "<group>"; };
+		EF358C0521918B7500EFB4BF /* CAPDeviceListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceListView.m; sourceTree = "<group>"; };
+		EF358C072191D84100EFB4BF /* EditName.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditName.storyboard; sourceTree = "<group>"; };
+		EF46F27021928F68009A357C /* CAPFeedbackService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFeedbackService.h; sourceTree = "<group>"; };
+		EF46F27121928F68009A357C /* CAPFeedbackService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFeedbackService.m; sourceTree = "<group>"; };
+		EF46F27321929080009A357C /* CAPFenceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceService.h; sourceTree = "<group>"; };
+		EF46F27421929080009A357C /* CAPFenceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFenceService.m; sourceTree = "<group>"; };
+		EF46F2762192916A009A357C /* CAPGuardianService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianService.h; sourceTree = "<group>"; };
+		EF46F2772192916A009A357C /* CAPGuardianService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianService.m; sourceTree = "<group>"; };
+		EF46F27921929285009A357C /* CAPFence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFence.h; sourceTree = "<group>"; };
+		EF46F27A21929285009A357C /* CAPFence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFence.m; sourceTree = "<group>"; };
+		EF46F27C219294BE009A357C /* CAPFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFeedback.h; sourceTree = "<group>"; };
+		EF46F27D219294BE009A357C /* CAPFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFeedback.m; sourceTree = "<group>"; };
+		EF46F27F2192991A009A357C /* CAPFootprint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFootprint.h; sourceTree = "<group>"; };
+		EF46F2802192991A009A357C /* CAPFootprint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFootprint.m; sourceTree = "<group>"; };
+		EF46F28221929AE0009A357C /* CAPGuardian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardian.h; sourceTree = "<group>"; };
+		EF46F28321929AE0009A357C /* CAPGuardian.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardian.m; sourceTree = "<group>"; };
+		EF46F28721929BCA009A357C /* CAPPhotoService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPhotoService.h; sourceTree = "<group>"; };
+		EF46F28821929BCA009A357C /* CAPPhotoService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPhotoService.m; sourceTree = "<group>"; };
+		EF46F28A21929BE1009A357C /* CAPMessageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMessageService.h; sourceTree = "<group>"; };
+		EF46F28B21929BE1009A357C /* CAPMessageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMessageService.m; sourceTree = "<group>"; };
+		EF46F28E21929CD0009A357C /* CAPFileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFileService.h; sourceTree = "<group>"; };
+		EF46F28F21929CD0009A357C /* CAPFileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFileService.m; sourceTree = "<group>"; };
+		EF46F29121929D17009A357C /* CAPFileItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFileItem.h; sourceTree = "<group>"; };
+		EF46F29221929D17009A357C /* CAPFileItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFileItem.m; sourceTree = "<group>"; };
+		EF46F2942192D24E009A357C /* CAPHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPHUD.h; sourceTree = "<group>"; };
+		EF46F2952192D24E009A357C /* CAPHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPHUD.m; sourceTree = "<group>"; };
+		EF46F2972192D265009A357C /* CAPNetworks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPNetworks.h; sourceTree = "<group>"; };
+		EF46F2982192D265009A357C /* CAPNetworks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPNetworks.m; sourceTree = "<group>"; };
+		EF46F29A2192DD05009A357C /* CAPUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUserDefaults.h; sourceTree = "<group>"; };
+		EF46F29B2192DD05009A357C /* CAPUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUserDefaults.m; sourceTree = "<group>"; };
+		EF46F29D2192E0F7009A357C /* CAPCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCrypto.h; sourceTree = "<group>"; };
+		EF46F29E2192E0F7009A357C /* CAPCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCrypto.m; sourceTree = "<group>"; };
+		EF46F2A02192E103009A357C /* CAPKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPKeyChain.h; sourceTree = "<group>"; };
+		EF46F2A12192E103009A357C /* CAPKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPKeyChain.m; sourceTree = "<group>"; };
+		EF6CA63B218D30FE0014771E /* CAPFetchUserProfileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPFetchUserProfileResponse.h; sourceTree = "<group>"; };
+		EF6CA63C218D30FF0014771E /* CAPReadUserInfoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPReadUserInfoResponse.m; sourceTree = "<group>"; };
+		EF6CA63D218D30FF0014771E /* CAPReadUserInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPReadUserInfoResponse.h; sourceTree = "<group>"; };
+		EF6CA63E218D30FF0014771E /* CAPFetchUserProfileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPFetchUserProfileResponse.m; sourceTree = "<group>"; };
+		EF6CA641218D311D0014771E /* CAPUpdateUserInfoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPUpdateUserInfoResponse.m; sourceTree = "<group>"; };
+		EF6CA642218D311E0014771E /* CAPUpdateUserProfileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPUpdateUserProfileResponse.h; sourceTree = "<group>"; };
+		EF6CA643218D311E0014771E /* CAPUpdateUserSettingResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPUpdateUserSettingResponse.h; sourceTree = "<group>"; };
+		EF6CA644218D311E0014771E /* CAPUpdateUserProfileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPUpdateUserProfileResponse.m; sourceTree = "<group>"; };
+		EF6CA645218D311E0014771E /* CAPUpdateUserSettingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPUpdateUserSettingResponse.m; sourceTree = "<group>"; };
+		EF6CA646218D311E0014771E /* CAPUpdateUserInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPUpdateUserInfoResponse.h; sourceTree = "<group>"; };
+		EF6CA64A218D31370014771E /* CAPReadUserSettingResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPReadUserSettingResponse.h; sourceTree = "<group>"; };
+		EF6CA64B218D31370014771E /* CAPReadUserSettingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPReadUserSettingResponse.m; sourceTree = "<group>"; };
+		EF6CA650218D31680014771E /* CAPCheckRemoteSettingResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCheckRemoteSettingResponse.h; sourceTree = "<group>"; };
+		EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCheckRemoteSettingResponse.m; sourceTree = "<group>"; };
+		EF6CA653218D31AC0014771E /* CAPRemoteSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRemoteSetting.m; sourceTree = "<group>"; };
+		EF6CA654218D31AD0014771E /* CAPRemoteSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRemoteSetting.h; sourceTree = "<group>"; };
+		EF6CA657218D58160014771E /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		EF6CA658218D58160014771E /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		EF6CA659218D58160014771E /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		EF6CA65B218D58170014771E /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		EF6CA65D218D58170014771E /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		EF6CA661218D77200014771E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		EF6CA667218D778A0014771E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF6CA669218D77A60014771E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF6CA66A218D78070014771E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		EF6CA66B218D781E0014771E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF6CA66D218D7A7B0014771E /* CAPSocialService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSocialService.h; sourceTree = "<group>"; };
+		EF6CA66E218D7A7B0014771E /* CAPSocialService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSocialService.m; sourceTree = "<group>"; };
+		EF6CA670218D7C7F0014771E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EF6CA672218D7CA90014771E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EF6CA674218D7CB10014771E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EF6CA676218D7CBA0014771E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EF6CA678218D7CC30014771E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EF6CA67A218D7CCB0014771E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF6CA67C218D7CD40014771E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		EF6CA67E218D7CDD0014771E /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		EF6CA680218D7CE70014771E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EF6CA682218D7CFC0014771E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EF6CA684218D7D050014771E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EF6CA686218D7D100014771E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EF6CA688218D818E0014771E /* CAPUserCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUserCenter.h; sourceTree = "<group>"; };
+		EF6CA689218D818E0014771E /* CAPUserCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUserCenter.m; sourceTree = "<group>"; };
+		EF6CA68B218D833F0014771E /* CAPDeviceCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceCenter.h; sourceTree = "<group>"; };
+		EF6CA68C218D833F0014771E /* CAPDeviceCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceCenter.m; sourceTree = "<group>"; };
+		EF6CA68E218D836C0014771E /* CAPBasePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPBasePresenter.h; sourceTree = "<group>"; };
+		EF6CA68F218D836C0014771E /* CAPBasePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPBasePresenter.m; sourceTree = "<group>"; };
+		EF6CA691218D83800014771E /* CAPDevicePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDevicePresenter.h; sourceTree = "<group>"; };
+		EF6CA692218D83800014771E /* CAPDevicePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDevicePresenter.m; sourceTree = "<group>"; };
+		EF6CA694218D83890014771E /* CAPUserPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUserPresenter.h; sourceTree = "<group>"; };
+		EF6CA695218D83890014771E /* CAPUserPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUserPresenter.m; sourceTree = "<group>"; };
+		EF6CA697218D84180014771E /* CAPFencePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFencePresenter.h; sourceTree = "<group>"; };
+		EF6CA698218D84180014771E /* CAPFencePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFencePresenter.m; sourceTree = "<group>"; };
+		EF6CA69A218D84220014771E /* CAPFootprintPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFootprintPresenter.h; sourceTree = "<group>"; };
+		EF6CA69B218D84220014771E /* CAPFootprintPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFootprintPresenter.m; sourceTree = "<group>"; };
+		EF6CA69D218D842C0014771E /* CAPGuardianPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianPresenter.h; sourceTree = "<group>"; };
+		EF6CA69E218D842C0014771E /* CAPGuardianPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianPresenter.m; sourceTree = "<group>"; };
+		EF6CA6A0218D84350014771E /* CAPMapPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMapPresenter.h; sourceTree = "<group>"; };
+		EF6CA6A1218D84350014771E /* CAPMapPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMapPresenter.m; sourceTree = "<group>"; };
+		EF6CA6A3218D84420014771E /* CAPMessagePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMessagePresenter.h; sourceTree = "<group>"; };
+		EF6CA6A4218D84420014771E /* CAPMessagePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMessagePresenter.m; sourceTree = "<group>"; };
+		EF6CA6A6218D84530014771E /* CAPPhotoPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPhotoPresenter.h; sourceTree = "<group>"; };
+		EF6CA6A7218D84530014771E /* CAPPhotoPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPhotoPresenter.m; sourceTree = "<group>"; };
+		EF6CA6A9218EA24C0014771E /* CAPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNavigationController.m; sourceTree = "<group>"; };
+		EF6CA6AA218EA24C0014771E /* CAPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPNavigationController.h; sourceTree = "<group>"; };
+		EF6CA6AC218EA3610014771E /* CAPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPApplication.m; sourceTree = "<group>"; };
+		EF6CA6AD218EA3620014771E /* CAPApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPApplication.h; sourceTree = "<group>"; };
+		EF6CA6AF218EC35D0014771E /* Pair.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pair.storyboard; sourceTree = "<group>"; };
+		EF6CA6B4218EC7DA0014771E /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		EF6CA6B6218EC90E0014771E /* Tracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracker.storyboard; sourceTree = "<group>"; };
+		EF6CA6B8218EC9B30014771E /* CAPPhotographViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPhotographViewController.h; sourceTree = "<group>"; };
+		EF6CA6B9218EC9B30014771E /* CAPPhotographViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPhotographViewController.m; sourceTree = "<group>"; };
+		EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterSetting.storyboard; sourceTree = "<group>"; };
+		EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuestSetting.storyboard; sourceTree = "<group>"; };
+		EF79BB5921886AD1000358FA /* MQTTCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTTCenter.h; sourceTree = "<group>"; };
+		EF79BB5A21886AD1000358FA /* MQTTCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTCenter.m; sourceTree = "<group>"; };
+		EF79BB5C21888C3A000358FA /* MQTTInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTTInfo.h; sourceTree = "<group>"; };
+		EF79BB5D21888C3A000358FA /* MQTTInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTInfo.m; sourceTree = "<group>"; };
+		EF79BB5F21888E07000358FA /* MQTTResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTTResult.h; sourceTree = "<group>"; };
+		EF79BB6021888E07000358FA /* MQTTResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTResult.m; sourceTree = "<group>"; };
+		EF7BE552218845AB00562EE9 /* GPSTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF7BE555218845AB00562EE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EF7BE556218845AB00562EE9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EF7BE558218845AB00562EE9 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EF7BE559218845AB00562EE9 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EF7BE55C218845AB00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
+		EF7BE561218845AC00562EE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF7BE564218845AC00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF7BE567218845AD00562EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF7BE56D218845AD00562EE9 /* GPSTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF7BE571218845AD00562EE9 /* GPSTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSTrackerTests.m; sourceTree = "<group>"; };
+		EF7BE573218845AD00562EE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF7BE578218845AD00562EE9 /* GPSTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF7BE57C218845AD00562EE9 /* GPSTrackerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSTrackerUITests.m; sourceTree = "<group>"; };
+		EF7BE57E218845AD00562EE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFD0AC81218C3CE500405FD8 /* CAPBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPBaseViewController.h; sourceTree = "<group>"; };
+		EFD0AC82218C3CE500405FD8 /* CAPBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPBaseViewController.m; sourceTree = "<group>"; };
+		EFD0AC84218C3D0F00405FD8 /* CAPLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPLoginViewController.h; sourceTree = "<group>"; };
+		EFD0AC85218C3D0F00405FD8 /* CAPLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPLoginViewController.m; sourceTree = "<group>"; };
+		EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAddFenceViewController.h; sourceTree = "<group>"; };
+		EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAddFenceViewController.m; sourceTree = "<group>"; };
+		EFD0AC8A218C3E0F00405FD8 /* CAPAddTrackerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAddTrackerViewController.h; sourceTree = "<group>"; };
+		EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAddTrackerViewController.m; sourceTree = "<group>"; };
+		EFD0AC8D218C3E4400405FD8 /* CAPEditNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPEditNameViewController.h; sourceTree = "<group>"; };
+		EFD0AC8E218C3E4400405FD8 /* CAPEditNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPEditNameViewController.m; sourceTree = "<group>"; };
+		EFD0AC90218C3E4F00405FD8 /* CAPEditFenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPEditFenceViewController.h; sourceTree = "<group>"; };
+		EFD0AC91218C3E4F00405FD8 /* CAPEditFenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPEditFenceViewController.m; sourceTree = "<group>"; };
+		EFD0AC93218C3E6200405FD8 /* CAPFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFeedbackViewController.h; sourceTree = "<group>"; };
+		EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFeedbackViewController.m; sourceTree = "<group>"; };
+		EFD0AC96218C3E6C00405FD8 /* CAPFenceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceListViewController.h; sourceTree = "<group>"; };
+		EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFenceListViewController.m; sourceTree = "<group>"; };
+		EFD0AC99218C3E7800405FD8 /* CAPFootprintViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFootprintViewController.h; sourceTree = "<group>"; };
+		EFD0AC9A218C3E7800405FD8 /* CAPFootprintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFootprintViewController.m; sourceTree = "<group>"; };
+		EFD0AC9C218C3E9700405FD8 /* CAPGuardianInvitationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianInvitationViewController.h; sourceTree = "<group>"; };
+		EFD0AC9D218C3E9700405FD8 /* CAPGuardianInvitationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianInvitationViewController.m; sourceTree = "<group>"; };
+		EFD0AC9F218C3EA000405FD8 /* CAPGuardianListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianListViewController.h; sourceTree = "<group>"; };
+		EFD0ACA0218C3EA000405FD8 /* CAPGuardianListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianListViewController.m; sourceTree = "<group>"; };
+		EFD0ACA2218C3EAB00405FD8 /* CAPGuestSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuestSettingViewController.h; sourceTree = "<group>"; };
+		EFD0ACA3218C3EAB00405FD8 /* CAPGuestSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuestSettingViewController.m; sourceTree = "<group>"; };
+		EFD0ACA5218C3EB500405FD8 /* CAPLanguageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPLanguageViewController.h; sourceTree = "<group>"; };
+		EFD0ACA6218C3EB500405FD8 /* CAPLanguageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPLanguageViewController.m; sourceTree = "<group>"; };
+		EFD0ACA8218C3EC900405FD8 /* CAPMasterSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMasterSettingViewController.h; sourceTree = "<group>"; };
+		EFD0ACA9218C3EC900405FD8 /* CAPMasterSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMasterSettingViewController.m; sourceTree = "<group>"; };
+		EFD0ACAB218C3EDA00405FD8 /* CAPPairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPairViewController.h; sourceTree = "<group>"; };
+		EFD0ACAC218C3EDA00405FD8 /* CAPPairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPairViewController.m; sourceTree = "<group>"; };
+		EFD0ACAE218C3EEE00405FD8 /* CAPhotographViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPhotographViewController.h; sourceTree = "<group>"; };
+		EFD0ACAF218C3EEE00405FD8 /* CAPhotographViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPhotographViewController.m; sourceTree = "<group>"; };
+		EFD0ACB1218C3EF800405FD8 /* CAPPhotoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPhotoListViewController.h; sourceTree = "<group>"; };
+		EFD0ACB2218C3EF800405FD8 /* CAPPhotoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPhotoListViewController.m; sourceTree = "<group>"; };
+		EFD0ACB4218C3F0100405FD8 /* CAPScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPScanViewController.h; sourceTree = "<group>"; };
+		EFD0ACB5218C3F0100405FD8 /* CAPScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPScanViewController.m; sourceTree = "<group>"; };
+		EFD0ACB7218C41F100405FD8 /* CAPTrackerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPTrackerViewController.h; sourceTree = "<group>"; };
+		EFD0ACB8218C41F100405FD8 /* CAPTrackerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPTrackerViewController.m; sourceTree = "<group>"; };
+		EFD0ACBA218C420400405FD8 /* CAPMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMessageListViewController.h; sourceTree = "<group>"; };
+		EFD0ACBB218C420400405FD8 /* CAPMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMessageListViewController.m; sourceTree = "<group>"; };
+		EFD0ACBD218C420C00405FD8 /* CAPMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMeViewController.h; sourceTree = "<group>"; };
+		EFD0ACBE218C420C00405FD8 /* CAPMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMeViewController.m; sourceTree = "<group>"; };
+		EFD0ACC0218C466F00405FD8 /* CAPToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPToast.h; sourceTree = "<group>"; };
+		EFD0ACC1218C466F00405FD8 /* CAPViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPViews.h; sourceTree = "<group>"; };
+		EFD0ACC2218C466F00405FD8 /* CAPAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPAlerts.m; sourceTree = "<group>"; };
+		EFD0ACC3218C466F00405FD8 /* CAPGuards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPGuards.h; sourceTree = "<group>"; };
+		EFD0ACC4218C466F00405FD8 /* CAPToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPToast.m; sourceTree = "<group>"; };
+		EFD0ACC5218C466F00405FD8 /* CAPViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPViews.m; sourceTree = "<group>"; };
+		EFD0ACC6218C466F00405FD8 /* CAPImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPImagePicker.m; sourceTree = "<group>"; };
+		EFD0ACC7218C466F00405FD8 /* CAPGuards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPGuards.m; sourceTree = "<group>"; };
+		EFD0ACC8218C467000405FD8 /* CAPFormats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPFormats.m; sourceTree = "<group>"; };
+		EFD0ACC9218C467000405FD8 /* CAPImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPImagePicker.h; sourceTree = "<group>"; };
+		EFD0ACCA218C467000405FD8 /* CAPAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPAlerts.h; sourceTree = "<group>"; };
+		EFD0ACCB218C467000405FD8 /* CAPFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPFormats.h; sourceTree = "<group>"; };
+		EFD0ACD2218C46A300405FD8 /* CAPValidators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPValidators.m; sourceTree = "<group>"; };
+		EFD0ACD3218C46A300405FD8 /* CAPImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPImages.h; sourceTree = "<group>"; };
+		EFD0ACD4218C46A300405FD8 /* CAPPhones.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPPhones.h; sourceTree = "<group>"; };
+		EFD0ACD5218C46A300405FD8 /* CAPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNotifications.m; sourceTree = "<group>"; };
+		EFD0ACD6218C46A300405FD8 /* CAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCache.h; sourceTree = "<group>"; };
+		EFD0ACD7218C46A300405FD8 /* CAPCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCapabilities.m; sourceTree = "<group>"; };
+		EFD0ACD8218C46A300405FD8 /* CAPStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPStrings.m; sourceTree = "<group>"; };
+		EFD0ACD9218C46A400405FD8 /* CAPTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPTimes.h; sourceTree = "<group>"; };
+		EFD0ACDA218C46A400405FD8 /* CAPPhones.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPPhones.m; sourceTree = "<group>"; };
+		EFD0ACDB218C46A400405FD8 /* CAPFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPFiles.m; sourceTree = "<group>"; };
+		EFD0ACDC218C46A400405FD8 /* CAPImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPImages.m; sourceTree = "<group>"; };
+		EFD0ACDD218C46A400405FD8 /* CAPStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPStrings.h; sourceTree = "<group>"; };
+		EFD0ACDE218C46A400405FD8 /* CAPColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPColors.h; sourceTree = "<group>"; };
+		EFD0ACDF218C46A400405FD8 /* CAPValidators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPValidators.h; sourceTree = "<group>"; };
+		EFD0ACE0218C46A400405FD8 /* CAPFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPFiles.h; sourceTree = "<group>"; };
+		EFD0ACE1218C46A500405FD8 /* CAPTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPTimes.m; sourceTree = "<group>"; };
+		EFD0ACE2218C46A500405FD8 /* CAPNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPNotifications.h; sourceTree = "<group>"; };
+		EFD0ACE3218C46A500405FD8 /* CAPColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPColors.m; sourceTree = "<group>"; };
+		EFD0ACE4218C46A500405FD8 /* CAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCache.m; sourceTree = "<group>"; };
+		EFD0ACE5218C46A500405FD8 /* CAPCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCapabilities.h; sourceTree = "<group>"; };
+		EFD0ACF0218C47D800405FD8 /* CAPHttpService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPHttpService.h; sourceTree = "<group>"; };
+		EFD0ACF1218C47D800405FD8 /* CAPHttpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPHttpResponse.m; sourceTree = "<group>"; };
+		EFD0ACF2218C47D800405FD8 /* CAPHttpService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPHttpService.m; sourceTree = "<group>"; };
+		EFD0ACF3218C47D800405FD8 /* CAPHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPHttpRequest.h; sourceTree = "<group>"; };
+		EFD0ACF4218C47D800405FD8 /* CAPHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPHttpRequest.m; sourceTree = "<group>"; };
+		EFD0ACF5218C47D800405FD8 /* CAPUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPUserService.m; sourceTree = "<group>"; };
+		EFD0ACF6218C47D900405FD8 /* CAPDeviceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceService.m; sourceTree = "<group>"; };
+		EFD0ACF7218C47D900405FD8 /* CAPUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPUserService.h; sourceTree = "<group>"; };
+		EFD0ACF8218C47D900405FD8 /* CAPNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPNetworkService.h; sourceTree = "<group>"; };
+		EFD0ACF9218C47D900405FD8 /* CAPDeviceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPDeviceService.h; sourceTree = "<group>"; };
+		EFD0ACFA218C47D900405FD8 /* CAPHttpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPHttpResponse.h; sourceTree = "<group>"; };
+		EFD0ACFB218C47D900405FD8 /* CAPNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNetworkService.m; sourceTree = "<group>"; };
+		EFD0ACFC218C47D900405FD8 /* CAPBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPBaseService.m; sourceTree = "<group>"; };
+		EFD0ACFD218C47D900405FD8 /* CAPBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPBaseService.h; sourceTree = "<group>"; };
+		EFD0AD05218C483C00405FD8 /* CAPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPResponse.h; sourceTree = "<group>"; };
+		EFD0AD06218C483D00405FD8 /* CAPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPResponse.m; sourceTree = "<group>"; };
+		EFD0AD08218C485D00405FD8 /* CAPBaseJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPBaseJSON.h; sourceTree = "<group>"; };
+		EFD0AD09218C485D00405FD8 /* CAPBaseJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPBaseJSON.m; sourceTree = "<group>"; };
+		EFD0AD0C218C4F6F00405FD8 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		EFD0AD0D218C4F6F00405FD8 /* NSData+CAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CAP.m"; sourceTree = "<group>"; };
+		EFD0AD0E218C4F7000405FD8 /* NSData+CAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CAP.h"; sourceTree = "<group>"; };
+		EFD0AD0F218C4F7000405FD8 /* NSDictionary+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSON.h"; sourceTree = "<group>"; };
+		EFD0AD10218C4F7000405FD8 /* UIColor+CAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CAP.m"; sourceTree = "<group>"; };
+		EFD0AD11218C4F7000405FD8 /* UIImage+CAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CAP.h"; sourceTree = "<group>"; };
+		EFD0AD12218C4F7000405FD8 /* UIImage+CAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CAP.m"; sourceTree = "<group>"; };
+		EFD0AD13218C4F7100405FD8 /* UIImage+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Size.h"; sourceTree = "<group>"; };
+		EFD0AD14218C4F7100405FD8 /* NSDictionary+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSON.m"; sourceTree = "<group>"; };
+		EFD0AD15218C4F7100405FD8 /* UIImage+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Size.m"; sourceTree = "<group>"; };
+		EFD0AD16218C4F7100405FD8 /* UIColor+CAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CAP.h"; sourceTree = "<group>"; };
+		EFD0AD17218C4F7100405FD8 /* UITableView+CAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CAP.m"; sourceTree = "<group>"; };
+		EFD0AD18218C4F7200405FD8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		EFD0AD19218C4F7200405FD8 /* UITableView+CAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CAP.h"; sourceTree = "<group>"; };
+		EFD0AD1A218C4F7200405FD8 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		EFD0AD1B218C4F7200405FD8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		EFD0AD24218C4FB600405FD8 /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
+		EFD0AD25218C4FB600405FD8 /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		EFD0AD27218C503100405FD8 /* CAPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSession.h; sourceTree = "<group>"; };
+		EFD0AD28218C503100405FD8 /* CAPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSession.m; sourceTree = "<group>"; };
+		EFD0AD2A218C505900405FD8 /* CAPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPUser.m; sourceTree = "<group>"; };
+		EFD0AD2B218C505900405FD8 /* CAPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPUser.h; sourceTree = "<group>"; };
+		EFD0AD2D218C507900405FD8 /* CAPDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPDevice.m; sourceTree = "<group>"; };
+		EFD0AD2E218C507900405FD8 /* CAPDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPDevice.h; sourceTree = "<group>"; };
+		EFD0AD36218C536700405FD8 /* CAPCloudItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCloudItemButton.m; sourceTree = "<group>"; };
+		EFD0AD37218C536700405FD8 /* CAPCloudItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPCloudItemButton.h; sourceTree = "<group>"; };
+		EFD0AD39218C540700405FD8 /* CAPSocialUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSocialUser.m; sourceTree = "<group>"; };
+		EFD0AD3A218C540800405FD8 /* CAPSocialUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSocialUser.h; sourceTree = "<group>"; };
+		EFD0AD3C218C550B00405FD8 /* CAPSocialLoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSocialLoginResponse.m; sourceTree = "<group>"; };
+		EFD0AD3D218C550B00405FD8 /* CAPSocialLoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSocialLoginResponse.h; sourceTree = "<group>"; };
+		EFD0AD3E218C550B00405FD8 /* CAPSignOutResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSignOutResponse.h; sourceTree = "<group>"; };
+		EFD0AD3F218C550C00405FD8 /* CAPSignInResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSignInResponse.m; sourceTree = "<group>"; };
+		EFD0AD40218C550C00405FD8 /* CAPSignInResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSignInResponse.h; sourceTree = "<group>"; };
+		EFD0AD41218C550C00405FD8 /* CAPSignOutResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSignOutResponse.m; sourceTree = "<group>"; };
+		F33ED978AA85B55879D3584C /* Pods-GPSTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF7BE54F218845AB00562EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF6CA687218D7D100014771E /* UIKit.framework in Frameworks */,
+				EF6CA685218D7D060014771E /* QuartzCore.framework in Frameworks */,
+				EF6CA683218D7CFC0014771E /* MobileCoreServices.framework in Frameworks */,
+				EF6CA681218D7CE70014771E /* libz.tbd in Frameworks */,
+				EF6CA67F218D7CDD0014771E /* libbz2.tbd in Frameworks */,
+				EF6CA67D218D7CD40014771E /* CoreMedia.framework in Frameworks */,
+				EF6CA67B218D7CCB0014771E /* CoreGraphics.framework in Frameworks */,
+				EF6CA679218D7CC30014771E /* AVFoundation.framework in Frameworks */,
+				EF6CA677218D7CBA0014771E /* SystemConfiguration.framework in Frameworks */,
+				EF6CA675218D7CB10014771E /* Security.framework in Frameworks */,
+				EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */,
+				EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */,
+				EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */,
+				EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */,
+				02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE56A218845AD00562EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCCD79478894543AACC87C64 /* libPods-GPSTrackerTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE575218845AD00562EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97D268F9824ED8AB9EADECD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F33ED978AA85B55879D3584C /* Pods-GPSTracker.debug.xcconfig */,
+				56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */,
+				A8B1C4B877FE6F514C3A7F5E /* Pods-GPSTrackerTests.debug.xcconfig */,
+				C466A4AD6BBE31F6C93A52F9 /* Pods-GPSTrackerTests.release.xcconfig */,
+				1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */,
+				46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED96D2246544977505A18EA0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA686218D7D100014771E /* UIKit.framework */,
+				EF6CA684218D7D050014771E /* QuartzCore.framework */,
+				EF6CA682218D7CFC0014771E /* MobileCoreServices.framework */,
+				EF6CA680218D7CE70014771E /* libz.tbd */,
+				EF6CA67E218D7CDD0014771E /* libbz2.tbd */,
+				EF6CA67C218D7CD40014771E /* CoreMedia.framework */,
+				EF6CA67A218D7CCB0014771E /* CoreGraphics.framework */,
+				EF6CA678218D7CC30014771E /* AVFoundation.framework */,
+				EF6CA676218D7CBA0014771E /* SystemConfiguration.framework */,
+				EF6CA674218D7CB10014771E /* Security.framework */,
+				EF6CA672218D7CA90014771E /* CoreTelephony.framework */,
+				EF6CA670218D7C7F0014771E /* libc++.tbd */,
+				77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */,
+				8B29FEFE3E8FCC9423963000 /* libPods-GPSTrackerTests.a */,
+				49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF46F28521929BAB009A357C /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F28A21929BE1009A357C /* CAPMessageService.h */,
+				EF46F28B21929BE1009A357C /* CAPMessageService.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		EF46F28621929BB0009A357C /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F28721929BCA009A357C /* CAPPhotoService.h */,
+				EF46F28821929BCA009A357C /* CAPPhotoService.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		EF6CA656218D58160014771E /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA657218D58160014771E /* WXApi.h */,
+				EF6CA658218D58160014771E /* WXApiObject.h */,
+				EF6CA659218D58160014771E /* libWeChatSDK.a */,
+			);
+			path = Wechat;
+			sourceTree = "<group>";
+		};
+		EF6CA65A218D58170014771E /* NullSafe */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA65B218D58170014771E /* NullSafe.m */,
+			);
+			path = NullSafe;
+			sourceTree = "<group>";
+		};
+		EF6CA65C218D58170014771E /* QQ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = QQ;
+			sourceTree = "<group>";
+		};
+		EF79BB4C218860C0000358FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
+				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
+				EFD0AC8A218C3E0F00405FD8 /* CAPAddTrackerViewController.h */,
+				EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */,
+				EFD0AC81218C3CE500405FD8 /* CAPBaseViewController.h */,
+				EFD0AC82218C3CE500405FD8 /* CAPBaseViewController.m */,
+				EFD0AC90218C3E4F00405FD8 /* CAPEditFenceViewController.h */,
+				EFD0AC91218C3E4F00405FD8 /* CAPEditFenceViewController.m */,
+				EFD0AC8D218C3E4400405FD8 /* CAPEditNameViewController.h */,
+				EFD0AC8E218C3E4400405FD8 /* CAPEditNameViewController.m */,
+				EFD0AC93218C3E6200405FD8 /* CAPFeedbackViewController.h */,
+				EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */,
+				EFD0AC96218C3E6C00405FD8 /* CAPFenceListViewController.h */,
+				EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */,
+				EFD0AC99218C3E7800405FD8 /* CAPFootprintViewController.h */,
+				EFD0AC9A218C3E7800405FD8 /* CAPFootprintViewController.m */,
+				EFD0AC9C218C3E9700405FD8 /* CAPGuardianInvitationViewController.h */,
+				EFD0AC9D218C3E9700405FD8 /* CAPGuardianInvitationViewController.m */,
+				EFD0AC9F218C3EA000405FD8 /* CAPGuardianListViewController.h */,
+				EFD0ACA0218C3EA000405FD8 /* CAPGuardianListViewController.m */,
+				EFD0ACA2218C3EAB00405FD8 /* CAPGuestSettingViewController.h */,
+				EFD0ACA3218C3EAB00405FD8 /* CAPGuestSettingViewController.m */,
+				EFD0ACAE218C3EEE00405FD8 /* CAPhotographViewController.h */,
+				EFD0ACAF218C3EEE00405FD8 /* CAPhotographViewController.m */,
+				EFD0ACA5218C3EB500405FD8 /* CAPLanguageViewController.h */,
+				EFD0ACA6218C3EB500405FD8 /* CAPLanguageViewController.m */,
+				EFD0AC84218C3D0F00405FD8 /* CAPLoginViewController.h */,
+				EFD0AC85218C3D0F00405FD8 /* CAPLoginViewController.m */,
+				EFD0ACA8218C3EC900405FD8 /* CAPMasterSettingViewController.h */,
+				EFD0ACA9218C3EC900405FD8 /* CAPMasterSettingViewController.m */,
+				EFD0ACBA218C420400405FD8 /* CAPMessageListViewController.h */,
+				EFD0ACBB218C420400405FD8 /* CAPMessageListViewController.m */,
+				EFD0ACBD218C420C00405FD8 /* CAPMeViewController.h */,
+				EFD0ACBE218C420C00405FD8 /* CAPMeViewController.m */,
+				EF6CA6AA218EA24C0014771E /* CAPNavigationController.h */,
+				EF6CA6A9218EA24C0014771E /* CAPNavigationController.m */,
+				EFD0ACAB218C3EDA00405FD8 /* CAPPairViewController.h */,
+				EFD0ACAC218C3EDA00405FD8 /* CAPPairViewController.m */,
+				EF6CA6B8218EC9B30014771E /* CAPPhotographViewController.h */,
+				EF6CA6B9218EC9B30014771E /* CAPPhotographViewController.m */,
+				EFD0ACB1218C3EF800405FD8 /* CAPPhotoListViewController.h */,
+				EFD0ACB2218C3EF800405FD8 /* CAPPhotoListViewController.m */,
+				EFD0ACB4218C3F0100405FD8 /* CAPScanViewController.h */,
+				EFD0ACB5218C3F0100405FD8 /* CAPScanViewController.m */,
+				EF12AE002193C596006A8AE1 /* CAPTabBarController.h */,
+				EF12AE012193C596006A8AE1 /* CAPTabBarController.m */,
+				EFD0ACB7218C41F100405FD8 /* CAPTrackerViewController.h */,
+				EFD0ACB8218C41F100405FD8 /* CAPTrackerViewController.m */,
+				EF7BE558218845AB00562EE9 /* MainViewController.h */,
+				EF7BE559218845AB00562EE9 /* MainViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF79BB4D218860F5000358FA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA68E218D836C0014771E /* CAPBasePresenter.h */,
+				EF6CA68F218D836C0014771E /* CAPBasePresenter.m */,
+				EF6CA691218D83800014771E /* CAPDevicePresenter.h */,
+				EF6CA692218D83800014771E /* CAPDevicePresenter.m */,
+				EF6CA697218D84180014771E /* CAPFencePresenter.h */,
+				EF6CA698218D84180014771E /* CAPFencePresenter.m */,
+				EF6CA69A218D84220014771E /* CAPFootprintPresenter.h */,
+				EF6CA69B218D84220014771E /* CAPFootprintPresenter.m */,
+				EF6CA69D218D842C0014771E /* CAPGuardianPresenter.h */,
+				EF6CA69E218D842C0014771E /* CAPGuardianPresenter.m */,
+				EF6CA6A0218D84350014771E /* CAPMapPresenter.h */,
+				EF6CA6A1218D84350014771E /* CAPMapPresenter.m */,
+				EF6CA6A3218D84420014771E /* CAPMessagePresenter.h */,
+				EF6CA6A4218D84420014771E /* CAPMessagePresenter.m */,
+				EF6CA694218D83890014771E /* CAPUserPresenter.h */,
+				EF6CA695218D83890014771E /* CAPUserPresenter.m */,
+				EF6CA6A6218D84530014771E /* CAPPhotoPresenter.h */,
+				EF6CA6A7218D84530014771E /* CAPPhotoPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		EF79BB4E218860FE000358FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EF358C0121918B6300EFB4BF /* CAPBatteryView.h */,
+				EF358C0221918B6300EFB4BF /* CAPBatteryView.m */,
+				EF358BFE2191766200EFB4BF /* CAPCardView.h */,
+				EF358BFF2191766200EFB4BF /* CAPCardView.m */,
+				EF358BE42191437D00EFB4BF /* CAPCheckableCollectionCell.h */,
+				EF358BE52191437D00EFB4BF /* CAPCheckableCollectionCell.m */,
+				EF358BEE2191443100EFB4BF /* CAPCheckableTableCell.h */,
+				EF358BF12191443200EFB4BF /* CAPCheckableTableCell.m */,
+				EFD0AD37218C536700405FD8 /* CAPCloudItemButton.h */,
+				EFD0AD36218C536700405FD8 /* CAPCloudItemButton.m */,
+				EF358BEB2191441600EFB4BF /* CAPCollectionCell.h */,
+				EF358BEA2191441600EFB4BF /* CAPCollectionCell.m */,
+				EF358C0421918B7500EFB4BF /* CAPDeviceListView.h */,
+				EF358C0521918B7500EFB4BF /* CAPDeviceListView.m */,
+				EF358BE7219143A600EFB4BF /* CAPSelectableCollectionCell.h */,
+				EF358BE8219143A600EFB4BF /* CAPSelectableCollectionCell.m */,
+				EF358BF22191443200EFB4BF /* CAPSelectableTableCell.h */,
+				EF358BED2191443100EFB4BF /* CAPSelectableTableCell.m */,
+				EF358BEF2191443100EFB4BF /* CAPTableCell.h */,
+				EF358BF02191443200EFB4BF /* CAPTableCell.m */,
+				EF358BFB219159C600EFB4BF /* CAPTrackerView.h */,
+				EF358BFC219159C600EFB4BF /* CAPTrackerView.m */,
+				EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */,
+				EF12AE052193C926006A8AE1 /* CAPWeekView.h */,
+				EF12AE062193C926006A8AE1 /* CAPWeekView.m */,
+				EF12AE032193C915006A8AE1 /* CAPWeekView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF79BB4F21886122000358FA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0ACCA218C467000405FD8 /* CAPAlerts.h */,
+				EFD0ACC2218C466F00405FD8 /* CAPAlerts.m */,
+				EFD0ACD6218C46A300405FD8 /* CAPCache.h */,
+				EFD0ACE4218C46A500405FD8 /* CAPCache.m */,
+				EFD0ACE5218C46A500405FD8 /* CAPCapabilities.h */,
+				EFD0ACD7218C46A300405FD8 /* CAPCapabilities.m */,
+				EFD0ACDE218C46A400405FD8 /* CAPColors.h */,
+				EFD0ACE3218C46A500405FD8 /* CAPColors.m */,
+				EF46F29D2192E0F7009A357C /* CAPCrypto.h */,
+				EF46F29E2192E0F7009A357C /* CAPCrypto.m */,
+				EFD0ACE0218C46A400405FD8 /* CAPFiles.h */,
+				EFD0ACDB218C46A400405FD8 /* CAPFiles.m */,
+				EFD0ACCB218C467000405FD8 /* CAPFormats.h */,
+				EFD0ACC8218C467000405FD8 /* CAPFormats.m */,
+				EFD0ACC3218C466F00405FD8 /* CAPGuards.h */,
+				EFD0ACC7218C466F00405FD8 /* CAPGuards.m */,
+				EF46F2942192D24E009A357C /* CAPHUD.h */,
+				EF46F2952192D24E009A357C /* CAPHUD.m */,
+				EFD0ACC9218C467000405FD8 /* CAPImagePicker.h */,
+				EFD0ACC6218C466F00405FD8 /* CAPImagePicker.m */,
+				EFD0ACD3218C46A300405FD8 /* CAPImages.h */,
+				EFD0ACDC218C46A400405FD8 /* CAPImages.m */,
+				EF46F2A02192E103009A357C /* CAPKeyChain.h */,
+				EF46F2A12192E103009A357C /* CAPKeyChain.m */,
+				EF46F2972192D265009A357C /* CAPNetworks.h */,
+				EF46F2982192D265009A357C /* CAPNetworks.m */,
+				EFD0ACE2218C46A500405FD8 /* CAPNotifications.h */,
+				EFD0ACD5218C46A300405FD8 /* CAPNotifications.m */,
+				EFD0ACD4218C46A300405FD8 /* CAPPhones.h */,
+				EFD0ACDA218C46A400405FD8 /* CAPPhones.m */,
+				EFD0ACDD218C46A400405FD8 /* CAPStrings.h */,
+				EFD0ACD8218C46A300405FD8 /* CAPStrings.m */,
+				EF358BF7219144A700EFB4BF /* CAPStyles.h */,
+				EF358BF6219144A700EFB4BF /* CAPStyles.m */,
+				EFD0ACD9218C46A400405FD8 /* CAPTimes.h */,
+				EFD0ACE1218C46A500405FD8 /* CAPTimes.m */,
+				EFD0ACC0218C466F00405FD8 /* CAPToast.h */,
+				EFD0ACC4218C466F00405FD8 /* CAPToast.m */,
+				EF46F29A2192DD05009A357C /* CAPUserDefaults.h */,
+				EF46F29B2192DD05009A357C /* CAPUserDefaults.m */,
+				EFD0ACDF218C46A400405FD8 /* CAPValidators.h */,
+				EFD0ACD2218C46A300405FD8 /* CAPValidators.m */,
+				EFD0ACC1218C466F00405FD8 /* CAPViews.h */,
+				EFD0ACC5218C466F00405FD8 /* CAPViews.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		EF79BB502188613B000358FA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0AD08218C485D00405FD8 /* CAPBaseJSON.h */,
+				EFD0AD09218C485D00405FD8 /* CAPBaseJSON.m */,
+				EFD0ACFD218C47D900405FD8 /* CAPBaseService.h */,
+				EFD0ACFC218C47D900405FD8 /* CAPBaseService.m */,
+				EFD0AD05218C483C00405FD8 /* CAPResponse.h */,
+				EFD0AD06218C483D00405FD8 /* CAPResponse.m */,
+				EFD0AD30218C511C00405FD8 /* Device */,
+				EFD0AD31218C512300405FD8 /* Feedback */,
+				EFD0AD32218C512A00405FD8 /* Fence */,
+				EFD0AD33218C512F00405FD8 /* File */,
+				EFD0AD34218C513600405FD8 /* Guardian */,
+				EF46F28521929BAB009A357C /* Message */,
+				EF46F28621929BB0009A357C /* Photo */,
+				EFD0AD35218C513D00405FD8 /* User */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EF79BB5121886149000358FA /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA65A218D58170014771E /* NullSafe */,
+				EF6CA65C218D58170014771E /* QQ */,
+				EF6CA65D218D58170014771E /* TencentOpenAPI.framework */,
+				EF6CA656218D58160014771E /* Wechat */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		EF79BB522188615C000358FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA6AD218EA3620014771E /* CAPApplication.h */,
+				EF6CA6AC218EA3610014771E /* CAPApplication.m */,
+				EFD0AD25218C4FB600405FD8 /* AppConfig.h */,
+				EFD0AD24218C4FB600405FD8 /* AppConfig.m */,
+				EF7BE555218845AB00562EE9 /* AppDelegate.h */,
+				EF7BE556218845AB00562EE9 /* AppDelegate.m */,
+				EF7BE567218845AD00562EE9 /* main.m */,
+				EF6CA668218D778A0014771E /* InfoPlist.strings */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF79BB5321886175000358FA /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				EF358C072191D84100EFB4BF /* EditName.storyboard */,
+				EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */,
+				EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */,
+				EF358BE221913B0D00EFB4BF /* Login.storyboard */,
+				EF7BE55B218845AB00562EE9 /* Main.storyboard */,
+				EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */,
+				EF6CA6B4218EC7DA0014771E /* Me.storyboard */,
+				EF6CA6AF218EC35D0014771E /* Pair.storyboard */,
+				EF6CA6B6218EC90E0014771E /* Tracker.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		EF79BB5421886180000358FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF79BB55218861A5000358FA /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		EF79BB56218861F0000358FA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0ACF3218C47D800405FD8 /* CAPHttpRequest.h */,
+				EFD0ACF4218C47D800405FD8 /* CAPHttpRequest.m */,
+				EFD0ACFA218C47D900405FD8 /* CAPHttpResponse.h */,
+				EFD0ACF1218C47D800405FD8 /* CAPHttpResponse.m */,
+				EFD0ACF0218C47D800405FD8 /* CAPHttpService.h */,
+				EFD0ACF2218C47D800405FD8 /* CAPHttpService.m */,
+				EFD0ACF8218C47D900405FD8 /* CAPNetworkService.h */,
+				EFD0ACFB218C47D900405FD8 /* CAPNetworkService.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EF79BB572188622D000358FA /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		EF79BB582188678C000358FA /* MQTT */ = {
+			isa = PBXGroup;
+			children = (
+				EF79BB5921886AD1000358FA /* MQTTCenter.h */,
+				EF79BB5A21886AD1000358FA /* MQTTCenter.m */,
+				EF79BB5C21888C3A000358FA /* MQTTInfo.h */,
+				EF79BB5D21888C3A000358FA /* MQTTInfo.m */,
+				EF79BB5F21888E07000358FA /* MQTTResult.h */,
+				EF79BB6021888E07000358FA /* MQTTResult.m */,
+			);
+			path = MQTT;
+			sourceTree = "<group>";
+		};
+		EF7BE549218845AB00562EE9 = {
+			isa = PBXGroup;
+			children = (
+				EF7BE554218845AB00562EE9 /* GPSTracker */,
+				EF7BE570218845AD00562EE9 /* GPSTrackerTests */,
+				EF7BE57B218845AD00562EE9 /* GPSTrackerUITests */,
+				EF7BE553218845AB00562EE9 /* Products */,
+				97D268F9824ED8AB9EADECD8 /* Pods */,
+				ED96D2246544977505A18EA0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF7BE553218845AB00562EE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BE552218845AB00562EE9 /* GPSTracker.app */,
+				EF7BE56D218845AD00562EE9 /* GPSTrackerTests.xctest */,
+				EF7BE578218845AD00562EE9 /* GPSTrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF7BE554218845AB00562EE9 /* GPSTracker */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BE561218845AC00562EE9 /* Assets.xcassets */,
+				EF79BB4C218860C0000358FA /* Controller */,
+				EF79BB572188622D000358FA /* Core Data */,
+				EFD0AD0B218C4F2A00405FD8 /* Extension */,
+				EF6CA662218D77200014771E /* Info.plist */,
+				EF79BB55218861A5000358FA /* Mock */,
+				EF79BB5421886180000358FA /* Model */,
+				EF79BB582188678C000358FA /* MQTT */,
+				EF79BB56218861F0000358FA /* Network */,
+				EF79BB4D218860F5000358FA /* Presenter */,
+				EF79BB502188613B000358FA /* Service */,
+				EF79BB5321886175000358FA /* Storyboard */,
+				EF79BB522188615C000358FA /* Supporting Files */,
+				EF79BB4F21886122000358FA /* Util */,
+				EF79BB5121886149000358FA /* Vendor */,
+				EF79BB4E218860FE000358FA /* View */,
+			);
+			path = GPSTracker;
+			sourceTree = "<group>";
+		};
+		EF7BE570218845AD00562EE9 /* GPSTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BE571218845AD00562EE9 /* GPSTrackerTests.m */,
+				EF7BE573218845AD00562EE9 /* Info.plist */,
+			);
+			path = GPSTrackerTests;
+			sourceTree = "<group>";
+		};
+		EF7BE57B218845AD00562EE9 /* GPSTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BE57C218845AD00562EE9 /* GPSTrackerUITests.m */,
+				EF7BE57E218845AD00562EE9 /* Info.plist */,
+			);
+			path = GPSTrackerUITests;
+			sourceTree = "<group>";
+		};
+		EFD0AD0B218C4F2A00405FD8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0AD0E218C4F7000405FD8 /* NSData+CAP.h */,
+				EFD0AD0D218C4F6F00405FD8 /* NSData+CAP.m */,
+				EFD0AD0F218C4F7000405FD8 /* NSDictionary+JSON.h */,
+				EFD0AD14218C4F7100405FD8 /* NSDictionary+JSON.m */,
+				EFD0AD1A218C4F7200405FD8 /* NSString+Size.h */,
+				EFD0AD0C218C4F6F00405FD8 /* NSString+Size.m */,
+				EFD0AD16218C4F7100405FD8 /* UIColor+CAP.h */,
+				EFD0AD10218C4F7000405FD8 /* UIColor+CAP.m */,
+				EFD0AD11218C4F7000405FD8 /* UIImage+CAP.h */,
+				EFD0AD12218C4F7000405FD8 /* UIImage+CAP.m */,
+				EFD0AD13218C4F7100405FD8 /* UIImage+Size.h */,
+				EFD0AD15218C4F7100405FD8 /* UIImage+Size.m */,
+				EFD0AD19218C4F7200405FD8 /* UITableView+CAP.h */,
+				EFD0AD17218C4F7100405FD8 /* UITableView+CAP.m */,
+				EFD0AD18218C4F7200405FD8 /* UIView+Frame.h */,
+				EFD0AD1B218C4F7200405FD8 /* UIView+Frame.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EFD0AD30218C511C00405FD8 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				EFD0AD2E218C507900405FD8 /* CAPDevice.h */,
+				EFD0AD2D218C507900405FD8 /* CAPDevice.m */,
+				EF6CA68B218D833F0014771E /* CAPDeviceCenter.h */,
+				EF6CA68C218D833F0014771E /* CAPDeviceCenter.m */,
+				EFD0ACF9218C47D900405FD8 /* CAPDeviceService.h */,
+				EFD0ACF6218C47D900405FD8 /* CAPDeviceService.m */,
+				EF46F27F2192991A009A357C /* CAPFootprint.h */,
+				EF46F2802192991A009A357C /* CAPFootprint.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		EFD0AD31218C512300405FD8 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F27021928F68009A357C /* CAPFeedbackService.h */,
+				EF46F27121928F68009A357C /* CAPFeedbackService.m */,
+				EF46F27C219294BE009A357C /* CAPFeedback.h */,
+				EF46F27D219294BE009A357C /* CAPFeedback.m */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		EFD0AD32218C512A00405FD8 /* Fence */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F27921929285009A357C /* CAPFence.h */,
+				EF46F27A21929285009A357C /* CAPFence.m */,
+				EF46F27321929080009A357C /* CAPFenceService.h */,
+				EF46F27421929080009A357C /* CAPFenceService.m */,
+			);
+			path = Fence;
+			sourceTree = "<group>";
+		};
+		EFD0AD33218C512F00405FD8 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F28E21929CD0009A357C /* CAPFileService.h */,
+				EF46F28F21929CD0009A357C /* CAPFileService.m */,
+				EF46F29121929D17009A357C /* CAPFileItem.h */,
+				EF46F29221929D17009A357C /* CAPFileItem.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		EFD0AD34218C513600405FD8 /* Guardian */ = {
+			isa = PBXGroup;
+			children = (
+				EF46F2762192916A009A357C /* CAPGuardianService.h */,
+				EF46F2772192916A009A357C /* CAPGuardianService.m */,
+				EF46F28221929AE0009A357C /* CAPGuardian.h */,
+				EF46F28321929AE0009A357C /* CAPGuardian.m */,
+			);
+			path = Guardian;
+			sourceTree = "<group>";
+		};
+		EFD0AD35218C513D00405FD8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA650218D31680014771E /* CAPCheckRemoteSettingResponse.h */,
+				EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */,
+				EF6CA63D218D30FF0014771E /* CAPReadUserInfoResponse.h */,
+				EF6CA63C218D30FF0014771E /* CAPReadUserInfoResponse.m */,
+				EF6CA63B218D30FE0014771E /* CAPFetchUserProfileResponse.h */,
+				EF6CA63E218D30FF0014771E /* CAPFetchUserProfileResponse.m */,
+				EF6CA64A218D31370014771E /* CAPReadUserSettingResponse.h */,
+				EF6CA64B218D31370014771E /* CAPReadUserSettingResponse.m */,
+				EF6CA654218D31AD0014771E /* CAPRemoteSetting.h */,
+				EF6CA653218D31AC0014771E /* CAPRemoteSetting.m */,
+				EFD0AD27218C503100405FD8 /* CAPSession.h */,
+				EFD0AD28218C503100405FD8 /* CAPSession.m */,
+				EFD0AD40218C550C00405FD8 /* CAPSignInResponse.h */,
+				EFD0AD3F218C550C00405FD8 /* CAPSignInResponse.m */,
+				EFD0AD3E218C550B00405FD8 /* CAPSignOutResponse.h */,
+				EFD0AD41218C550C00405FD8 /* CAPSignOutResponse.m */,
+				EFD0AD3D218C550B00405FD8 /* CAPSocialLoginResponse.h */,
+				EFD0AD3C218C550B00405FD8 /* CAPSocialLoginResponse.m */,
+				EF6CA66D218D7A7B0014771E /* CAPSocialService.h */,
+				EF6CA66E218D7A7B0014771E /* CAPSocialService.m */,
+				EFD0AD3A218C540800405FD8 /* CAPSocialUser.h */,
+				EFD0AD39218C540700405FD8 /* CAPSocialUser.m */,
+				EF6CA646218D311E0014771E /* CAPUpdateUserInfoResponse.h */,
+				EF6CA641218D311D0014771E /* CAPUpdateUserInfoResponse.m */,
+				EF6CA642218D311E0014771E /* CAPUpdateUserProfileResponse.h */,
+				EF6CA644218D311E0014771E /* CAPUpdateUserProfileResponse.m */,
+				EF6CA643218D311E0014771E /* CAPUpdateUserSettingResponse.h */,
+				EF6CA645218D311E0014771E /* CAPUpdateUserSettingResponse.m */,
+				EFD0AD2B218C505900405FD8 /* CAPUser.h */,
+				EFD0AD2A218C505900405FD8 /* CAPUser.m */,
+				EF6CA688218D818E0014771E /* CAPUserCenter.h */,
+				EF6CA689218D818E0014771E /* CAPUserCenter.m */,
+				EFD0ACF7218C47D900405FD8 /* CAPUserService.h */,
+				EFD0ACF5218C47D800405FD8 /* CAPUserService.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF7BE551218845AB00562EE9 /* GPSTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF7BE581218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTracker" */;
+			buildPhases = (
+				3752B75710594A83DC3FA309 /* [CP] Check Pods Manifest.lock */,
+				EF7BE54E218845AB00562EE9 /* Sources */,
+				EF7BE54F218845AB00562EE9 /* Frameworks */,
+				EF7BE550218845AB00562EE9 /* Resources */,
+				8725BE1F916034DB9DAA7BC4 /* [CP] Embed Pods Frameworks */,
+				43AA8479DDE726CF022A23F0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GPSTracker;
+			productName = GPSTracker;
+			productReference = EF7BE552218845AB00562EE9 /* GPSTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF7BE56C218845AD00562EE9 /* GPSTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF7BE584218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTrackerTests" */;
+			buildPhases = (
+				340F6A6A8C58B4477506BD8A /* [CP] Check Pods Manifest.lock */,
+				EF7BE569218845AD00562EE9 /* Sources */,
+				EF7BE56A218845AD00562EE9 /* Frameworks */,
+				EF7BE56B218845AD00562EE9 /* Resources */,
+				0FEC54F6CFF0463AD90601A6 /* [CP] Embed Pods Frameworks */,
+				7437229F691AD0C271AF4506 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF7BE56F218845AD00562EE9 /* PBXTargetDependency */,
+			);
+			name = GPSTrackerTests;
+			productName = GPSTrackerTests;
+			productReference = EF7BE56D218845AD00562EE9 /* GPSTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EF7BE577218845AD00562EE9 /* GPSTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF7BE587218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTrackerUITests" */;
+			buildPhases = (
+				16CBCFBAA2B89EDCD5FEB701 /* [CP] Check Pods Manifest.lock */,
+				EF7BE574218845AD00562EE9 /* Sources */,
+				EF7BE575218845AD00562EE9 /* Frameworks */,
+				EF7BE576218845AD00562EE9 /* Resources */,
+				C5ABEC8709FAF90BF3A901C8 /* [CP] Embed Pods Frameworks */,
+				442A696097386701986A0742 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF7BE57A218845AD00562EE9 /* PBXTargetDependency */,
+			);
+			name = GPSTrackerUITests;
+			productName = GPSTrackerUITests;
+			productReference = EF7BE578218845AD00562EE9 /* GPSTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF7BE54A218845AB00562EE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CAP;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Capelabs;
+				TargetAttributes = {
+					EF7BE551218845AB00562EE9 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					EF7BE56C218845AD00562EE9 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = EF7BE551218845AB00562EE9;
+					};
+					EF7BE577218845AD00562EE9 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = EF7BE551218845AB00562EE9;
+					};
+				};
+			};
+			buildConfigurationList = EF7BE54D218845AB00562EE9 /* Build configuration list for PBXProject "GPSTracker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+				th,
+			);
+			mainGroup = EF7BE549218845AB00562EE9;
+			productRefGroup = EF7BE553218845AB00562EE9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF7BE551218845AB00562EE9 /* GPSTracker */,
+				EF7BE56C218845AD00562EE9 /* GPSTrackerTests */,
+				EF7BE577218845AD00562EE9 /* GPSTrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF7BE550218845AB00562EE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF7BE565218845AC00562EE9 /* LaunchScreen.storyboard in Resources */,
+				EF358C082191D84100EFB4BF /* EditName.storyboard in Resources */,
+				EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */,
+				EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */,
+				EF6CA666218D778A0014771E /* InfoPlist.strings in Resources */,
+				EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */,
+				EF6CA6BE218ECA5A0014771E /* GuestSetting.storyboard in Resources */,
+				EF6CA6B0218EC35D0014771E /* Pair.storyboard in Resources */,
+				EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */,
+				EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */,
+				EF7BE55D218845AB00562EE9 /* Main.storyboard in Resources */,
+				EF358BE321913B0D00EFB4BF /* Login.storyboard in Resources */,
+				EF6CA6BC218ECA240014771E /* MasterSetting.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE56B218845AD00562EE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE576218845AD00562EE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FEC54F6CFF0463AD90601A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		16CBCFBAA2B89EDCD5FEB701 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GPSTrackerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		340F6A6A8C58B4477506BD8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GPSTrackerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3752B75710594A83DC3FA309 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GPSTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43AA8479DDE726CF022A23F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		442A696097386701986A0742 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7437229F691AD0C271AF4506 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8725BE1F916034DB9DAA7BC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5ABEC8709FAF90BF3A901C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF7BE54E218845AB00562EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */,
+				EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */,
+				EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */,
+				EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */,
+				EF6CA6A5218D84420014771E /* CAPMessagePresenter.m in Sources */,
+				EF358BF42191443200EFB4BF /* CAPTableCell.m in Sources */,
+				EF358BE62191437D00EFB4BF /* CAPCheckableCollectionCell.m in Sources */,
+				EF6CA6BA218EC9B30014771E /* CAPPhotographViewController.m in Sources */,
+				EF7BE557218845AB00562EE9 /* AppDelegate.m in Sources */,
+				EFD0AD20218C4F7200405FD8 /* NSDictionary+JSON.m in Sources */,
+				EF6CA68A218D818E0014771E /* CAPUserCenter.m in Sources */,
+				EFD0AD3B218C540800405FD8 /* CAPSocialUser.m in Sources */,
+				EFD0ACFF218C47D900405FD8 /* CAPHttpService.m in Sources */,
+				EF6CA65F218D58170014771E /* NullSafe.m in Sources */,
+				EFD0ACEF218C46A500405FD8 /* CAPCache.m in Sources */,
+				EFD0ACED218C46A500405FD8 /* CAPTimes.m in Sources */,
+				EFD0ACEE218C46A500405FD8 /* CAPColors.m in Sources */,
+				EFD0AD26218C4FB600405FD8 /* AppConfig.m in Sources */,
+				EFD0ACA4218C3EAB00405FD8 /* CAPGuestSettingViewController.m in Sources */,
+				EF7BE568218845AD00562EE9 /* main.m in Sources */,
+				EFD0ACB3218C3EF800405FD8 /* CAPPhotoListViewController.m in Sources */,
+				EF6CA6AE218EA3620014771E /* CAPApplication.m in Sources */,
+				EFD0ACEA218C46A500405FD8 /* CAPPhones.m in Sources */,
+				EFD0AD03218C47D900405FD8 /* CAPNetworkService.m in Sources */,
+				EFD0AD1E218C4F7200405FD8 /* UIColor+CAP.m in Sources */,
+				EFD0ACCE218C467000405FD8 /* CAPViews.m in Sources */,
+				EFD0AD44218C550C00405FD8 /* CAPSignOutResponse.m in Sources */,
+				EFD0AD2C218C505900405FD8 /* CAPUser.m in Sources */,
+				EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */,
+				EF46F27221928F68009A357C /* CAPFeedbackService.m in Sources */,
+				EFD0AD22218C4F7200405FD8 /* UITableView+CAP.m in Sources */,
+				EFD0AD1C218C4F7200405FD8 /* NSString+Size.m in Sources */,
+				EF46F29321929D17009A357C /* CAPFileItem.m in Sources */,
+				EF6CA647218D311E0014771E /* CAPUpdateUserInfoResponse.m in Sources */,
+				EFD0AC83218C3CE500405FD8 /* CAPBaseViewController.m in Sources */,
+				EF6CA6A8218D84530014771E /* CAPPhotoPresenter.m in Sources */,
+				EF79BB6121888E07000358FA /* MQTTResult.m in Sources */,
+				EF6CA690218D836C0014771E /* CAPBasePresenter.m in Sources */,
+				EFD0AC98218C3E6C00405FD8 /* CAPFenceListViewController.m in Sources */,
+				EF6CA648218D311E0014771E /* CAPUpdateUserProfileResponse.m in Sources */,
+				EF6CA699218D84180014771E /* CAPFencePresenter.m in Sources */,
+				EFD0AD02218C47D900405FD8 /* CAPDeviceService.m in Sources */,
+				EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */,
+				EF46F27521929080009A357C /* CAPFenceService.m in Sources */,
+				EFD0ACE6218C46A500405FD8 /* CAPValidators.m in Sources */,
+				EF358BEC2191441600EFB4BF /* CAPCollectionCell.m in Sources */,
+				EF46F2812192991A009A357C /* CAPFootprint.m in Sources */,
+				EFD0ACB6218C3F0100405FD8 /* CAPScanViewController.m in Sources */,
+				EFD0AD42218C550C00405FD8 /* CAPSocialLoginResponse.m in Sources */,
+				EFD0AC95218C3E6200405FD8 /* CAPFeedbackViewController.m in Sources */,
+				EF12AE072193C926006A8AE1 /* CAPWeekView.m in Sources */,
+				EF46F2A22192E103009A357C /* CAPKeyChain.m in Sources */,
+				EF6CA640218D30FF0014771E /* CAPFetchUserProfileResponse.m in Sources */,
+				EFD0ACA1218C3EA000405FD8 /* CAPGuardianListViewController.m in Sources */,
+				EF6CA652218D31680014771E /* CAPCheckRemoteSettingResponse.m in Sources */,
+				EFD0AC89218C3DFF00405FD8 /* CAPAddFenceViewController.m in Sources */,
+				EFD0AD1D218C4F7200405FD8 /* NSData+CAP.m in Sources */,
+				EFD0ACFE218C47D900405FD8 /* CAPHttpResponse.m in Sources */,
+				EFD0AD38218C536700405FD8 /* CAPCloudItemButton.m in Sources */,
+				EFD0AD2F218C507A00405FD8 /* CAPDevice.m in Sources */,
+				EF46F27B21929285009A357C /* CAPFence.m in Sources */,
+				EFD0AD29218C503200405FD8 /* CAPSession.m in Sources */,
+				EF46F28C21929BE1009A357C /* CAPMessageService.m in Sources */,
+				EF358C0621918B7500EFB4BF /* CAPDeviceListView.m in Sources */,
+				EF6CA696218D83890014771E /* CAPUserPresenter.m in Sources */,
+				EFD0AC8C218C3E0F00405FD8 /* CAPAddTrackerViewController.m in Sources */,
+				EFD0ACD1218C467000405FD8 /* CAPFormats.m in Sources */,
+				EF6CA649218D311E0014771E /* CAPUpdateUserSettingResponse.m in Sources */,
+				EF358C002191766200EFB4BF /* CAPCardView.m in Sources */,
+				EFD0AD23218C4F7200405FD8 /* UIView+Frame.m in Sources */,
+				EF358C0321918B6300EFB4BF /* CAPBatteryView.m in Sources */,
+				EF6CA69F218D842C0014771E /* CAPGuardianPresenter.m in Sources */,
+				EFD0ACCF218C467000405FD8 /* CAPImagePicker.m in Sources */,
+				EFD0AD21218C4F7200405FD8 /* UIImage+Size.m in Sources */,
+				EFD0ACE7218C46A500405FD8 /* CAPNotifications.m in Sources */,
+				EFD0AD0A218C485D00405FD8 /* CAPBaseJSON.m in Sources */,
+				EF358BE9219143A700EFB4BF /* CAPSelectableCollectionCell.m in Sources */,
+				EFD0AC8F218C3E4400405FD8 /* CAPEditNameViewController.m in Sources */,
+				EF46F27E219294BE009A357C /* CAPFeedback.m in Sources */,
+				EF46F29C2192DD05009A357C /* CAPUserDefaults.m in Sources */,
+				EF6CA63F218D30FF0014771E /* CAPReadUserInfoResponse.m in Sources */,
+				EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */,
+				EFD0ACB0218C3EEE00405FD8 /* CAPhotographViewController.m in Sources */,
+				EF6CA68D218D833F0014771E /* CAPDeviceCenter.m in Sources */,
+				EF6CA693218D83800014771E /* CAPDevicePresenter.m in Sources */,
+				EFD0AD07218C483D00405FD8 /* CAPResponse.m in Sources */,
+				EFD0ACBC218C420400405FD8 /* CAPMessageListViewController.m in Sources */,
+				EF6CA64E218D31380014771E /* CAPReadUserSettingResponse.m in Sources */,
+				EFD0AC86218C3D0F00405FD8 /* CAPLoginViewController.m in Sources */,
+				EF6CA69C218D84220014771E /* CAPFootprintPresenter.m in Sources */,
+				EFD0AC92218C3E4F00405FD8 /* CAPEditFenceViewController.m in Sources */,
+				EF46F2782192916A009A357C /* CAPGuardianService.m in Sources */,
+				EF358BF52191443200EFB4BF /* CAPCheckableTableCell.m in Sources */,
+				EFD0ACAA218C3EC900405FD8 /* CAPMasterSettingViewController.m in Sources */,
+				EFD0AD1F218C4F7200405FD8 /* UIImage+CAP.m in Sources */,
+				EFD0AD04218C47D900405FD8 /* CAPBaseService.m in Sources */,
+				EF46F2962192D24E009A357C /* CAPHUD.m in Sources */,
+				EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */,
+				EF79BB5B21886AD1000358FA /* MQTTCenter.m in Sources */,
+				EF46F29021929CD0009A357C /* CAPFileService.m in Sources */,
+				EFD0AC9E218C3E9700405FD8 /* CAPGuardianInvitationViewController.m in Sources */,
+				EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */,
+				EFD0ACCD218C467000405FD8 /* CAPToast.m in Sources */,
+				EFD0AC9B218C3E7800405FD8 /* CAPFootprintViewController.m in Sources */,
+				EFD0ACBF218C420C00405FD8 /* CAPMeViewController.m in Sources */,
+				EFD0ACEC218C46A500405FD8 /* CAPImages.m in Sources */,
+				EFD0AD01218C47D900405FD8 /* CAPUserService.m in Sources */,
+				EFD0AD00218C47D900405FD8 /* CAPHttpRequest.m in Sources */,
+				EFD0ACAD218C3EDA00405FD8 /* CAPPairViewController.m in Sources */,
+				EFD0ACA7218C3EB500405FD8 /* CAPLanguageViewController.m in Sources */,
+				EF46F28921929BCA009A357C /* CAPPhotoService.m in Sources */,
+				EFD0ACB9218C41F100405FD8 /* CAPTrackerViewController.m in Sources */,
+				EF6CA6A2218D84350014771E /* CAPMapPresenter.m in Sources */,
+				EF7BE560218845AB00562EE9 /* GPSTracker.xcdatamodeld in Sources */,
+				EF46F28421929AE0009A357C /* CAPGuardian.m in Sources */,
+				EF46F2992192D265009A357C /* CAPNetworks.m in Sources */,
+				EF46F29F2192E0F8009A357C /* CAPCrypto.m in Sources */,
+				EFD0ACD0218C467000405FD8 /* CAPGuards.m in Sources */,
+				EF358BF32191443200EFB4BF /* CAPSelectableTableCell.m in Sources */,
+				EF6CA6AB218EA24C0014771E /* CAPNavigationController.m in Sources */,
+				EFD0AD43218C550C00405FD8 /* CAPSignInResponse.m in Sources */,
+				EFD0ACEB218C46A500405FD8 /* CAPFiles.m in Sources */,
+				EFD0ACCC218C467000405FD8 /* CAPAlerts.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE569218845AD00562EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF7BE572218845AD00562EE9 /* GPSTrackerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF7BE574218845AD00562EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF7BE57D218845AD00562EE9 /* GPSTrackerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF7BE56F218845AD00562EE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF7BE551218845AB00562EE9 /* GPSTracker */;
+			targetProxy = EF7BE56E218845AD00562EE9 /* PBXContainerItemProxy */;
+		};
+		EF7BE57A218845AD00562EE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF7BE551218845AB00562EE9 /* GPSTracker */;
+			targetProxy = EF7BE579218845AD00562EE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EF6CA662218D77200014771E /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF6CA661218D77200014771E /* Base */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		EF6CA668218D778A0014771E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF6CA667218D778A0014771E /* en */,
+				EF6CA669218D77A60014771E /* Base */,
+				EF6CA66A218D78070014771E /* zh-Hans */,
+				EF6CA66B218D781E0014771E /* th */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EF7BE55B218845AB00562EE9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF7BE55C218845AB00562EE9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF7BE564218845AC00562EE9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF7BE57F218845AD00562EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EF7BE580218845AD00562EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF7BE582218845AD00562EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F33ED978AA85B55879D3584C /* Pods-GPSTracker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXL59BD977;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GPSTracker/Vendor",
+					"$(PROJECT_DIR)/GPSTracker",
+				);
+				INFOPLIST_FILE = GPSTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GPSTracker/Vendor/Wechat",
+					"$(PROJECT_DIR)/GPSTracker/Vendor",
+					"$(PROJECT_DIR)/GPSTracker",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF7BE583218845AD00562EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXL59BD977;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GPSTracker/Vendor",
+					"$(PROJECT_DIR)/GPSTracker",
+				);
+				INFOPLIST_FILE = GPSTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GPSTracker/Vendor/Wechat",
+					"$(PROJECT_DIR)/GPSTracker/Vendor",
+					"$(PROJECT_DIR)/GPSTracker",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF7BE585218845AD00562EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8B1C4B877FE6F514C3A7F5E /* Pods-GPSTrackerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N3G27BB3BC;
+				INFOPLIST_FILE = GPSTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ais.GPSTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSTracker.app/GPSTracker";
+			};
+			name = Debug;
+		};
+		EF7BE586218845AD00562EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C466A4AD6BBE31F6C93A52F9 /* Pods-GPSTrackerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N3G27BB3BC;
+				INFOPLIST_FILE = GPSTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ais.GPSTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSTracker.app/GPSTracker";
+			};
+			name = Release;
+		};
+		EF7BE588218845AD00562EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N3G27BB3BC;
+				INFOPLIST_FILE = GPSTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ais.GPSTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPSTracker;
+			};
+			name = Debug;
+		};
+		EF7BE589218845AD00562EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N3G27BB3BC;
+				INFOPLIST_FILE = GPSTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ais.GPSTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPSTracker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF7BE54D218845AB00562EE9 /* Build configuration list for PBXProject "GPSTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7BE57F218845AD00562EE9 /* Debug */,
+				EF7BE580218845AD00562EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF7BE581218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7BE582218845AD00562EE9 /* Debug */,
+				EF7BE583218845AD00562EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF7BE584218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7BE585218845AD00562EE9 /* Debug */,
+				EF7BE586218845AD00562EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF7BE587218845AD00562EE9 /* Build configuration list for PBXNativeTarget "GPSTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7BE588218845AD00562EE9 /* Debug */,
+				EF7BE589218845AD00562EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */,
+			);
+			currentVersion = EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */;
+			path = GPSTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EF7BE54A218845AB00562EE9 /* Project object */;
+}

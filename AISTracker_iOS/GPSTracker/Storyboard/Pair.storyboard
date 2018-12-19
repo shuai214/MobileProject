@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hnc-BC-5U1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pair View Controller-->
+        <scene sceneID="mut-R4-6mG">
+            <objects>
+                <viewController id="hnc-BC-5U1" customClass="CAPPairViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7zT-rF-gpq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_pair" translatesAutoresizingMaskIntoConstraints="NO" id="vH7-5k-YEz">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUg-bI-aBv" userLabel="Scan Button">
+                                <rect key="frame" x="32" y="298.5" width="311" height="50"/>
+                                <color key="backgroundColor" red="0.45882353190000003" green="0.74901962280000001" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Npr-U8-Oq5"/>
+                                </constraints>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onScanButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="maZ-im-aUa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWH-2h-nGh" userLabel="Number Button">
+                                <rect key="frame" x="32" y="396.5" width="311" height="50"/>
+                                <color key="backgroundColor" red="0.45882353190000003" green="0.74901962280000001" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Number">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onNumberButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="AHh-7p-Hhn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tether the GPS Tracker to your smartphone." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dS-kl-qUT">
+                                <rect key="frame" x="32" y="140" width="311" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vH7-5k-YEz" firstAttribute="top" secondItem="VpW-ji-Zkm" secondAttribute="top" id="9mZ-da-fNw"/>
+                            <constraint firstItem="eUg-bI-aBv" firstAttribute="centerY" secondItem="VpW-ji-Zkm" secondAttribute="centerY" constant="-20" id="CFg-ot-ptj"/>
+                            <constraint firstItem="vH7-5k-YEz" firstAttribute="leading" secondItem="VpW-ji-Zkm" secondAttribute="leading" id="Fwh-h4-i64"/>
+                            <constraint firstItem="vH7-5k-YEz" firstAttribute="trailing" secondItem="VpW-ji-Zkm" secondAttribute="trailing" id="K6J-5N-4kv"/>
+                            <constraint firstItem="KWH-2h-nGh" firstAttribute="top" secondItem="eUg-bI-aBv" secondAttribute="bottom" constant="48" id="KlE-Qh-O4L"/>
+                            <constraint firstItem="KWH-2h-nGh" firstAttribute="trailing" secondItem="eUg-bI-aBv" secondAttribute="trailing" id="M1l-2j-WSo"/>
+                            <constraint firstItem="eUg-bI-aBv" firstAttribute="trailing" secondItem="7dS-kl-qUT" secondAttribute="trailing" id="QfQ-Ii-jQS"/>
+                            <constraint firstItem="eUg-bI-aBv" firstAttribute="leading" secondItem="VpW-ji-Zkm" secondAttribute="leading" constant="32" id="ZcN-QB-4o1"/>
+                            <constraint firstItem="7dS-kl-qUT" firstAttribute="top" secondItem="VpW-ji-Zkm" secondAttribute="top" constant="120" id="dzc-5c-q8r"/>
+                            <constraint firstItem="vH7-5k-YEz" firstAttribute="bottom" secondItem="VpW-ji-Zkm" secondAttribute="bottom" id="eFr-bE-OTk"/>
+                            <constraint firstItem="KWH-2h-nGh" firstAttribute="leading" secondItem="eUg-bI-aBv" secondAttribute="leading" id="kaM-SA-qzN"/>
+                            <constraint firstItem="eUg-bI-aBv" firstAttribute="trailing" secondItem="VpW-ji-Zkm" secondAttribute="trailing" constant="-32" id="lP4-A0-VDu"/>
+                            <constraint firstItem="eUg-bI-aBv" firstAttribute="leading" secondItem="7dS-kl-qUT" secondAttribute="leading" id="nfn-Yj-zbZ"/>
+                            <constraint firstItem="KWH-2h-nGh" firstAttribute="height" secondItem="eUg-bI-aBv" secondAttribute="height" id="zXr-An-AkM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VpW-ji-Zkm"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="7dS-kl-qUT" id="CIe-Kn-nqz"/>
+                        <outlet property="numberButton" destination="KWH-2h-nGh" id="JVk-mK-Sqm"/>
+                        <outlet property="scanButton" destination="eUg-bI-aBv" id="rbF-bD-bbW"/>
+                        <segue destination="U11-Qf-USh" kind="show" identifier="number.segue" id="ehi-dx-EhU"/>
+                        <segue destination="X6P-bG-u6W" kind="show" identifier="scan.segue" id="emO-NI-9hO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJK-ot-VlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-106.40000000000001" y="-184.85757121439281"/>
+        </scene>
+        <!--Add Tracker View Controller-->
+        <scene sceneID="xog-Vc-a1S">
+            <objects>
+                <viewController id="U11-Qf-USh" customClass="CAPAddTrackerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OvO-tt-2hQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8Jp-Yq-wgB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lc3-NZ-ccQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="168"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="A0a-VR-hTQ">
+            <objects>
+                <viewController id="X6P-bG-u6W" customClass="CAPScanViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gKJ-xD-YHw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="pmY-gm-A87"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6rd-Wi-Iaz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-496"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg_pair" width="540" height="960"/>
+    </resources>
+</document>

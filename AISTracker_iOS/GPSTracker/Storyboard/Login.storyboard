@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PTM-Dr-Tkc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="9FV-2U-bir">
+            <objects>
+                <viewController id="PTM-Dr-Tkc" customClass="CAPLoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oRq-xL-4Bv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_app" translatesAutoresizingMaskIntoConstraints="NO" id="glJ-lV-CV2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zxs-Ra-acI">
+                                <rect key="frame" x="20" y="20" width="335" height="647"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fli-qN-ccB" userLabel="Wechat Button">
+                                        <rect key="frame" x="0.0" y="280.5" width="111.5" height="86"/>
+                                        <state key="normal" image="ic_login_wechat"/>
+                                        <connections>
+                                            <action selector="onWechatButtonClicked:" destination="PTM-Dr-Tkc" eventType="touchUpInside" id="QSm-xQ-fzd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsE-lE-rTV" userLabel="Facebook Button">
+                                        <rect key="frame" x="111.5" y="280.5" width="112" height="86"/>
+                                        <state key="normal" image="ic_login_facebook"/>
+                                        <connections>
+                                            <action selector="onFacebookButtonClicked:" destination="PTM-Dr-Tkc" eventType="touchUpInside" id="7b2-nt-p0o"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-By-QYZ" userLabel="Line Button">
+                                        <rect key="frame" x="223.5" y="280.5" width="111.5" height="86"/>
+                                        <state key="normal" image="ic_login_line"/>
+                                        <connections>
+                                            <action selector="onLineButtonClicked:" destination="PTM-Dr-Tkc" eventType="touchUpInside" id="naz-8u-ZGO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zxs-Ra-acI" firstAttribute="top" secondItem="xl9-zl-2bg" secondAttribute="top" id="0Ru-5Y-fiq"/>
+                            <constraint firstItem="Zxs-Ra-acI" firstAttribute="bottom" secondItem="xl9-zl-2bg" secondAttribute="bottom" id="2ne-sj-4JX"/>
+                            <constraint firstItem="Zxs-Ra-acI" firstAttribute="leading" secondItem="xl9-zl-2bg" secondAttribute="leading" constant="20" id="DHc-Zg-ygI"/>
+                            <constraint firstAttribute="trailing" secondItem="glJ-lV-CV2" secondAttribute="trailing" id="Fxo-FR-2rZ"/>
+                            <constraint firstAttribute="bottom" secondItem="glJ-lV-CV2" secondAttribute="bottom" id="JNt-wU-h9g"/>
+                            <constraint firstItem="glJ-lV-CV2" firstAttribute="leading" secondItem="oRq-xL-4Bv" secondAttribute="leading" id="Psx-fC-frw"/>
+                            <constraint firstItem="glJ-lV-CV2" firstAttribute="top" secondItem="oRq-xL-4Bv" secondAttribute="top" id="W1T-5T-NXA"/>
+                            <constraint firstItem="Zxs-Ra-acI" firstAttribute="trailing" secondItem="xl9-zl-2bg" secondAttribute="trailing" constant="-20" id="dM9-Md-kYk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xl9-zl-2bg"/>
+                    </view>
+                    <connections>
+                        <segue destination="AKQ-Bx-cri" kind="show" identifier="main.segue" id="5em-2x-J6O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="63b-Ss-lZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="156" y="123"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="RwF-qk-hOS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="AKQ-Bx-cri" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VLW-gM-jNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="122"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg_app" width="540" height="960"/>
+        <image name="ic_login_facebook" width="86" height="86"/>
+        <image name="ic_login_line" width="86" height="86"/>
+        <image name="ic_login_wechat" width="86" height="86"/>
+    </resources>
+</document>

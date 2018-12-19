@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '9.0'
+
+target 'GPSTracker' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for GPSTracker
+  pod 'MQTTClient'
+  pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'CRToast', '~> 0.0.7'
+  pod 'AFNetworking', '~> 3.1.0'
+  pod 'JSONModel', '~> 1.7.0'
+  pod 'IQKeyboardManager' #, '~> 3.3.7'
+  pod 'Bugly', '~> 2.4.8'
+  pod 'SCLAlertView-Objective-C', '~> 1.1.1'
+  pod 'SDWebImage', '~>3.8.2'
+  pod 'MJRefresh', '~> 3.1.12'
+  pod 'GoogleMaps', '~> 2.7.0'
+  pod 'GooglePlaces', '~> 2.7.0'
+  pod 'GooglePlacePicker', '~> 2.7.0'
+
+  target 'GPSTrackerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'GPSTrackerUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

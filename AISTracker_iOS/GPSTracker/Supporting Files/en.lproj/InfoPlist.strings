@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  GPSTracker
+
+  Created by WeifengYao on 3/11/2018.
+  Copyright © 2018 Capelabs. All rights reserved.
+*/
+"CFBundleDisplayName"="GPS Tracker";
+
+"NSMediaLibraryUsageDescription"="GPS Tracker need to access Media Library";
+"NSContactsUsageDescription"="GPS Tracker need to access Contacts";
+"NSPhotoLibraryUsageDescription"="GPS Tracker need to access Photos";
+
+"NSCameraUsageDescription"="GPS Tracker need to access Camera";
+"NSMicrophoneUsageDescription"="GPS Tracker need to access Microphone";
+"NSLocationUsageDescription"="Need to access Location information to help find the GPS Tracker";
