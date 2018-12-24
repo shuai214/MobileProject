@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hnc-BC-5U1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K6M-ND-WMm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="af7-zU-bo2">
+            <objects>
+                <navigationController id="K6M-ND-WMm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wFg-xd-utZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hnc-BC-5U1" kind="relationship" relationship="rootViewController" id="i2R-iC-dm5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lHe-ge-oeK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1161" y="-635"/>
+        </scene>
         <!--Pair View Controller-->
         <scene sceneID="mut-R4-6mG">
             <objects>
@@ -32,6 +48,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onScanButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="maZ-im-aUa"/>
+                                    <segue destination="X6P-bG-u6W" kind="push" id="pgY-iI-Ut5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWH-2h-nGh" userLabel="Number Button">
@@ -42,6 +59,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onNumberButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="AHh-7p-Hhn"/>
+                                    <segue destination="U11-Qf-USh" kind="push" id="onr-kj-zj8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tether the GPS Tracker to your smartphone." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dS-kl-qUT">
@@ -70,12 +88,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VpW-ji-Zkm"/>
                     </view>
+                    <navigationItem key="navigationItem" id="7X6-Lg-hyU"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="infoLabel" destination="7dS-kl-qUT" id="CIe-Kn-nqz"/>
                         <outlet property="numberButton" destination="KWH-2h-nGh" id="JVk-mK-Sqm"/>
                         <outlet property="scanButton" destination="eUg-bI-aBv" id="rbF-bD-bbW"/>
-                        <segue destination="U11-Qf-USh" kind="show" identifier="number.segue" id="ehi-dx-EhU"/>
-                        <segue destination="X6P-bG-u6W" kind="show" identifier="scan.segue" id="emO-NI-9hO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJK-ot-VlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,6 +110,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8Jp-Yq-wgB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KRf-KU-hu0"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lc3-NZ-ccQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,6 +127,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pmY-gm-A87"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Zzp-Cp-XIh"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rd-Wi-Iaz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

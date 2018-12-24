@@ -69,7 +69,7 @@
                              @"device_uuid": @"1234",
                              @"app_uuid": @"5678"
                              };
-    CAPHttpRequest *request = [self buildRequest:(user.mobile && user.mobile ? @"Account/ThirdSignInPlus" : @"Account/ThirdSignIn" ) method:@"POST" parameters:params];
+    CAPHttpRequest *request = [self buildRequest:(user.mobile && user.mobile ? @"Account/ThirdSignIn" : @"Account/ThirdSignInPlus" ) method:@"POST" parameters:params];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {
         reply([CAPSocialLoginResponse responseWithHttpResponse:response]);
     }];

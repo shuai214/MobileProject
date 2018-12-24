@@ -59,7 +59,7 @@
                      kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
                      kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
                      kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
-                     kCRToastImageKey : [UIImage imageNamed:@"alert_icon.png"],
+//                     kCRToastImageKey : [UIImage imageNamed:@"alert_icon.png"],
                      kCRToastImageAlignmentKey : @(CRToastAccessoryViewAlignmentLeft)
                      } mutableCopy];
     });
@@ -75,6 +75,7 @@
     static NSMutableDictionary *options;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        options = [NSMutableDictionary dictionary];
         options = [@{
                      kCRToastTextKey : @"",
                      kCRToastFontKey: [UIFont systemFontOfSize:15],
@@ -87,7 +88,7 @@
                      kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
                      kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
                      kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
-                     kCRToastImageKey : [UIImage imageNamed:@"alert_icon.png"],
+//                     kCRToastImageKey : [UIImage imageNamed:@"dialog_close_red"],
                      kCRToastImageAlignmentKey : @(CRToastAccessoryViewAlignmentLeft)
                      } mutableCopy];
     });

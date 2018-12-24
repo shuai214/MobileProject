@@ -45,10 +45,10 @@
 }
 
 - (IBAction)onScanButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
+//    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
 }
 
 - (IBAction)onNumberButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"number.segue" sender:nil];
+//    [self performSegueWithIdentifier:@"number.segue" sender:nil];
 }
 @end

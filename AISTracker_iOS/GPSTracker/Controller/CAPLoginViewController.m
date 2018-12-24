@@ -8,7 +8,10 @@
 
 #import "CAPLoginViewController.h"
 #import "CAPViews.h"
-
+#import "CAPSocialLoginResponse.h"
+#import "CAPSocialService.h"
+#import "CAPUser.h"
+#import "CAPUserService.h"
 @interface CAPLoginViewController ()
 
 @end
@@ -40,7 +43,12 @@
 }
 
 - (IBAction)onWechatButtonClicked:(id)sender {
-    [self showMainPage];
+    CAPSocialService *service = WXAUTH;
+    [service wechatLogin];
+    service.loginSuccessBlock = ^(CAPSocialUser *socialUser) {
+//        [self showMainPage];
+        [self loadLoginUrl:socialUser];
+    };
 }
 
 - (IBAction)onFacebookButtonClicked:(id)sender {
@@ -53,6 +61,29 @@
 
 - (void)showMainPage {
     [self performSegueWithIdentifier:@"main.segue" sender:nil];
+}
+- (void)showPairPage{
+    [self performSegueWithIdentifier:@"pair.segue" sender:nil];
+}
+- (void)loadLoginUrl:(CAPSocialUser *)user{
+    CAPUserService *userService = [[CAPUserService alloc] init];
+    [userService socialLogin:user reply:^(id response) {
+        NSLog(@"%@",response);
+        if ([response isKindOfClass:[CAPSocialLoginResponse class]]) {
+            CAPSocialLoginResponse *loginResponse = response;
+            if(loginResponse.isSucceed) {
+                CAPUser *user = loginResponse.result;
+                if (user.devices.count == 0) {
+                    [self showPairPage];
+                }else{
+                    [self showMainPage];
+                }
+                [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
+                [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];
+            }
+        }
+        }];
+
 }
 
 @end

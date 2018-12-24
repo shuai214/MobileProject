@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
+		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
+		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
 		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
 		EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE012193C596006A8AE1 /* CAPTabBarController.m */; };
 		EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF12AE032193C915006A8AE1 /* CAPWeekView.xib */; };
@@ -183,6 +185,12 @@
 
 /* Begin PBXFileReference section */
 		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
+		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2BA9278621CE334C00CF0D48 /* CAPCodeScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeScanView.h; sourceTree = "<group>"; };
+		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
+		2BA9278921CE336400CF0D48 /* CAPCodeBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeBackgroundView.h; sourceTree = "<group>"; };
+		2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeBackgroundView.m; sourceTree = "<group>"; };
 		46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -707,6 +715,10 @@
 				EF12AE052193C926006A8AE1 /* CAPWeekView.h */,
 				EF12AE062193C926006A8AE1 /* CAPWeekView.m */,
 				EF12AE032193C915006A8AE1 /* CAPWeekView.xib */,
+				2BA9278621CE334C00CF0D48 /* CAPCodeScanView.h */,
+				2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */,
+				2BA9278921CE336400CF0D48 /* CAPCodeBackgroundView.h */,
+				2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -758,6 +770,7 @@
 				EFD0ACD2218C46A300405FD8 /* CAPValidators.m */,
 				EFD0ACC1218C466F00405FD8 /* CAPViews.h */,
 				EFD0ACC5218C466F00405FD8 /* CAPViews.m */,
+				2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -805,6 +818,7 @@
 				EF7BE556218845AB00562EE9 /* AppDelegate.m */,
 				EF7BE567218845AD00562EE9 /* main.m */,
 				EF6CA668218D778A0014771E /* InfoPlist.strings */,
+				2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1025,10 +1039,10 @@
 			children = (
 				EF6CA650218D31680014771E /* CAPCheckRemoteSettingResponse.h */,
 				EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */,
-				EF6CA63D218D30FF0014771E /* CAPReadUserInfoResponse.h */,
-				EF6CA63C218D30FF0014771E /* CAPReadUserInfoResponse.m */,
 				EF6CA63B218D30FE0014771E /* CAPFetchUserProfileResponse.h */,
 				EF6CA63E218D30FF0014771E /* CAPFetchUserProfileResponse.m */,
+				EF6CA63D218D30FF0014771E /* CAPReadUserInfoResponse.h */,
+				EF6CA63C218D30FF0014771E /* CAPReadUserInfoResponse.m */,
 				EF6CA64A218D31370014771E /* CAPReadUserSettingResponse.h */,
 				EF6CA64B218D31370014771E /* CAPReadUserSettingResponse.m */,
 				EF6CA654218D31AD0014771E /* CAPRemoteSetting.h */,
@@ -1406,6 +1420,7 @@
 				EF46F29321929D17009A357C /* CAPFileItem.m in Sources */,
 				EF6CA647218D311E0014771E /* CAPUpdateUserInfoResponse.m in Sources */,
 				EFD0AC83218C3CE500405FD8 /* CAPBaseViewController.m in Sources */,
+				2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */,
 				EF6CA6A8218D84530014771E /* CAPPhotoPresenter.m in Sources */,
 				EF79BB6121888E07000358FA /* MQTTResult.m in Sources */,
 				EF6CA690218D836C0014771E /* CAPBasePresenter.m in Sources */,
@@ -1470,6 +1485,7 @@
 				EF46F2962192D24E009A357C /* CAPHUD.m in Sources */,
 				EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */,
 				EF79BB5B21886AD1000358FA /* MQTTCenter.m in Sources */,
+				2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */,
 				EF46F29021929CD0009A357C /* CAPFileService.m in Sources */,
 				EFD0AC9E218C3E9700405FD8 /* CAPGuardianInvitationViewController.m in Sources */,
 				EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */,
@@ -1692,6 +1708,7 @@
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
 				);
+				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1722,6 +1739,7 @@
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
 				);
+				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -22,6 +22,7 @@
 #import "WXApi.h"
 #import "IQKeyboardManager.h"
 #import <GooglePlaces/GooglePlaces.h>
+#import "CAPSocialService.h"
 @import GoogleMaps;
 
 AppDelegate* gApp = nil;
@@ -46,8 +47,8 @@ AppDelegate* gApp = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     gCfg = [AppConfig new];
     
-//        [self showLoginPage];
-    [self showMainPage];
+        [self showLoginPage];
+//    [self showMainPage];
 //    [self.window makeKeyAndVisible];
 
     if(!gCfg.isDev) {
@@ -74,7 +75,6 @@ AppDelegate* gApp = nil;
     [Bugly startWithAppId:(gCfg.isBuild ? @"7c5f7a10e5" : @"9ebc08e2a2")];
     [GMSServices provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
     [GMSPlacesClient provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
-    
 //    [GMSServices provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
 //    [GMSPlacesClient provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
     [self startNetworkMonitor];
@@ -85,7 +85,6 @@ AppDelegate* gApp = nil;
     //    [IQKeyboardManager sharedManager].canAdjustAdditionalSafeAreaInsets = YES;
     //    [IQKeyboardManager sharedManager].enableDebugging = YES;
     //[[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
-
     
     return YES;
 }
@@ -427,35 +426,33 @@ void UncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    BOOL ok = NO;
-    
-    if ([url.scheme hasPrefix:@"wx"]) {
-        ok = [WXApi handleOpenURL:url delegate:self];
-    }
-    else if ([url.scheme hasPrefix:@"tencent"]) {
-        ok = [TencentOAuth HandleOpenURL:url];
-    }
-    else if ([url.scheme hasPrefix:@"wb"]) {
-        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-    }
-    
-    return ok;
+//    BOOL ok = NO;
+//    if ([url.scheme hasPrefix:@"wx"]) {
+//        ok = [WXApi handleOpenURL:url delegate:self];
+//    }
+//    else if ([url.scheme hasPrefix:@"tencent"]) {
+//        ok = [TencentOAuth HandleOpenURL:url];
+//    }
+//    else if ([url.scheme hasPrefix:@"wb"]) {
+//        //ok = [WeiboSDK handleOpenURL:url delegate:self];
+//    }
+    return [WXAUTH handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    BOOL ok = NO;
-    
-    if ([url.scheme hasPrefix:@"wx"]) {
-        ok = [WXApi handleOpenURL:url delegate:self];
-    }
-    else if ([url.scheme hasPrefix:@"tencent"]) {
-        ok = [TencentOAuth HandleOpenURL:url];
-    }
-    else if ([url.scheme hasPrefix:@"wb"]) {
-        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-    }
-    
-    return ok;
+//    BOOL ok = NO;
+//
+//    if ([url.scheme hasPrefix:@"wx"]) {
+//        ok = [WXApi handleOpenURL:url delegate:self];
+//    }
+//    else if ([url.scheme hasPrefix:@"tencent"]) {
+//        ok = [TencentOAuth HandleOpenURL:url];
+//    }
+//    else if ([url.scheme hasPrefix:@"wb"]) {
+//        //ok = [WeiboSDK handleOpenURL:url delegate:self];
+//    }
+//
+    return [WXAUTH handleOpenURL:url];
 }
 
 - (void)logByteArray:(const uint8_t *)buf length:(NSUInteger)length {
@@ -467,37 +464,42 @@ void UncaughtExceptionHandler(NSException *exception) {
     }
 }
 
-#pragma mark - WXApiDelegate
-/*! @brief 接收并处理来自微信终端程序的事件消息
- *
- * 接收并处理来自微信终端程序的事件消息，期间微信界面会切换到第三方应用程序。
- * WXApiDelegate 会在handleOpenURL:delegate:中使用并触发。
- */
-
-/*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
- *
- * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
- * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
- * @param req 具体请求内容，是自动释放的
- */
-- (void)onReq:(BaseReq*)req {
-    DLog(@"%s", __FUNCTION__);
-}
-
-/*! @brief 发送一个sendReq后，收到微信的回应
- *
- * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
- * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
- * @param resp具体的回应内容，是自动释放的
- */
-- (void)onResp:(BaseResp*)resp {
-    DLog(@"%s", __FUNCTION__);
-    if ([resp isKindOfClass:[SendAuthResp class]]) {
-        SendAuthResp* res = (SendAuthResp*)resp;
-        if (res.code) {
-            DLog(@"[*]Wechat Login with code: %@", res.code);
-            [CAPNotifications notify:kNotificationWechatLogin object:res.code];
-        }
-    }
-}
+//#pragma mark - WXApiDelegate
+///*! @brief 接收并处理来自微信终端程序的事件消息
+// *
+// * 接收并处理来自微信终端程序的事件消息，期间微信界面会切换到第三方应用程序。
+// * WXApiDelegate 会在handleOpenURL:delegate:中使用并触发。
+// */
+//
+///*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
+// *
+// * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
+// * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
+// * @param req 具体请求内容，是自动释放的
+// */
+//- (void)onReq:(BaseReq*)req {
+//    DLog(@"%s", __FUNCTION__);
+//}
+//
+///*! @brief 发送一个sendReq后，收到微信的回应
+// *
+// * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+// * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+// * @param resp具体的回应内容，是自动释放的
+// */
+//- (void)onResp:(BaseResp*)resp {
+//    DLog(@"%s", __FUNCTION__);
+//    if ([resp isKindOfClass:[SendAuthResp class]]) {
+//        SendAuthResp* res = (SendAuthResp*)resp;
+//        if (res.code) {
+//            NSLog(@"%@", kNotificationWechatLogin);
+//            [CAPNotifications notify:kNotificationWechatLogin object:res.code];
+//            DLog(@"[*]Wechat Login with code: %@", res.code);
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"3123123"
+//                                                                object:res.code
+//                                                              userInfo:nil];
+//
+//        }
+//    }
+//}
 @end

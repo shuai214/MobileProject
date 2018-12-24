@@ -11,11 +11,12 @@
 #import "CAPTrackerView.h"
 @import GoogleMaps;
 
-@interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate>
+@interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet CAPDeviceListView *deviceListView;
 
 @property (weak, nonatomic) IBOutlet CAPTrackerView *trackerView;
+@property (strong, nonatomic)CLLocationManager *loacationManager;
 
 @end
 
@@ -25,12 +26,25 @@
     [super viewDidLoad];
     
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
-    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
+//    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(22.290664, 114.195304);
-    marker.title = @"香港";
-    marker.snippet = @"Hong Kong";
-    marker.map = self.mapView;
+//    marker.position = CLLocationCoordinate2DMake(22.290664, 114.195304);
+//    marker.title = @"香港";
+//    marker.snippet = @"Hong Kong";
+//    marker.map = self.mapView;
+    self.mapView.delegate = self;
+    self.mapView.indoorEnabled = NO;
+    self.mapView.settings.rotateGestures = NO;
+    self.mapView.settings.tiltGestures = NO;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.myLocationEnabled = YES;
+    
+    
+    
+    _loacationManager = [[CLLocationManager alloc] init];
+    _loacationManager.delegate  = self;
+    [_loacationManager requestWhenInUseAuthorization];
+    
     
     CGRect rect = self.deviceListView.frame;
     rect.size.width = self.view.frame.size.width;
@@ -46,7 +60,26 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - CLLocationManagerDelegate
 
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    /**
+     *    拿到授权发起定位请求
+     
+     */
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [_loacationManager startUpdatingLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    /**
+     * 位置更新时调用
+     */
+    CLLocation *currentLocation = locations.firstObject;
+    self.mapView.camera = [[GMSCameraPosition alloc] initWithTarget:currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
+    [_loacationManager stopUpdatingLocation];
+}
 /*
 #pragma mark - Navigation
 
