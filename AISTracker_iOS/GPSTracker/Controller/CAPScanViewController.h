@@ -10,4 +10,6 @@
 
 @interface CAPScanViewController : CAPBaseViewController
 
+@property (nonatomic, copy) void (^ScanSuccessBlock)(NSString *successStr);
+
 @end

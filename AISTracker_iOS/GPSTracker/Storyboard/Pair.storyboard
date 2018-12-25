@@ -29,7 +29,7 @@
         <!--Pair View Controller-->
         <scene sceneID="mut-R4-6mG">
             <objects>
-                <viewController id="hnc-BC-5U1" customClass="CAPPairViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairViewController" id="hnc-BC-5U1" customClass="CAPPairViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7zT-rF-gpq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onScanButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="maZ-im-aUa"/>
-                                    <segue destination="X6P-bG-u6W" kind="push" id="pgY-iI-Ut5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWH-2h-nGh" userLabel="Number Button">
@@ -59,7 +58,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onNumberButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="AHh-7p-Hhn"/>
-                                    <segue destination="U11-Qf-USh" kind="push" id="onr-kj-zj8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tether the GPS Tracker to your smartphone." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dS-kl-qUT">
@@ -120,7 +118,7 @@
         <!--Scan View Controller-->
         <scene sceneID="A0a-VR-hTQ">
             <objects>
-                <viewController id="X6P-bG-u6W" customClass="CAPScanViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScanViewController" id="X6P-bG-u6W" customClass="CAPScanViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gKJ-xD-YHw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -109,14 +109,8 @@
             //取第一个元素就是二维码所存放的文本信息
             CIQRCodeFeature *feature = features[0];
             NSString *scannedResult = feature.messageString;
-            //通过对话框的形式呈现
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果"
-                                                            message:scannedResult
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"确定", nil];
-            [self.view addSubview:alert];
-            [alert show];
+            [self.navigationController popViewControllerAnimated:YES];
+            !self->_ScanSuccessBlock ? : self->_ScanSuccessBlock(scannedResult);
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果"
                                                             message:@"不是二维码图片"
@@ -234,13 +228,8 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         // 获取扫描到的信息
         NSString *stringValue = metadataObject.stringValue;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果"
-                                                        message:stringValue
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"确定", nil];
-        [self.view addSubview:alert];
-        [alert show];
+        [self.navigationController popViewControllerAnimated:YES];
+        !_ScanSuccessBlock ? :_ScanSuccessBlock(stringValue);
     }
 }
 

@@ -29,7 +29,11 @@
     [alert addButton:buttonTitle actionBlock:action];
     [alert showSuccess:@"" subTitle:message closeButtonTitle:nil duration:0.0f];
 }
-
++ (void)showSuccess:(NSString *)message subTitle:(NSString *)subTitle buttonTitle:(NSString *)buttonTitle cancleButtonTitle:(NSString *)cancleTitle actionBlock:(CAPAlertActionBlock)action {
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert addButton:buttonTitle actionBlock:action];
+    [alert showSuccess:message subTitle:subTitle closeButtonTitle:cancleTitle duration:0.0f];
+}
 + (void)alertWarning:(NSString *)message {
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     [alert showWarning:@"" subTitle:message closeButtonTitle:NSLocalizedString(@"ok", nil) duration:0.0f];

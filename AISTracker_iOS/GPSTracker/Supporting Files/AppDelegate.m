@@ -47,7 +47,13 @@ AppDelegate* gApp = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     gCfg = [AppConfig new];
     
+    if ([CAPUserDefaults objectForKey:@"accessToken"]) {
+        NSLog(@"%@",[CAPUserDefaults objectForKey:@"accessToken"]);
+        [self showMainPage];
+    }else{
         [self showLoginPage];
+    }
+    
 //    [self showMainPage];
 //    [self.window makeKeyAndVisible];
 

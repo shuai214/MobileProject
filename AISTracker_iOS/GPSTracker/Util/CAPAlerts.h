@@ -18,7 +18,7 @@ typedef void (^CAPAlertEditBlock)(NSString * _Nullable text);
 + (CAPAlert *_Nullable)alertSuccess:(NSString *_Nullable)message;
 + (void)alertSuccess:(NSString *_Nullable)message actionBlock:(CAPAlertActionBlock _Nullable)action;
 + (void)alertSuccess:(NSString *_Nullable)message buttonTitle:(NSString *_Nullable)buttonTitle actionBlock:(CAPAlertActionBlock _Nullable)action;
-
++ (void)showSuccess:(NSString *)message subTitle:(NSString *)subTitle buttonTitle:(NSString *)buttonTitle cancleButtonTitle:(NSString *)cancleTitle actionBlock:(CAPAlertActionBlock)action;
 + (void)alertWarning:(NSString *_Nullable)message;
 + (void)alertWarning:(NSString *_Nullable)title message:(NSString *_Nullable)message;
 + (void)alertWarning:(NSString *_Nullable)message actionBlock:(CAPAlertActionBlock _Nullable)action;

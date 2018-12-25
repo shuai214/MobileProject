@@ -177,7 +177,7 @@ SCLTimerDisplay *buttonTimer;
     _titleFontFamily = @"HelveticaNeue";
     _bodyTextFontFamily = @"HelveticaNeue";
     _buttonsFontFamily = @"HelveticaNeue-Bold";
-    _titleFontSize = 20.0f;
+    _titleFontSize = 16.0f;
     _bodyFontSize = 14.0f;
     _buttonsFontSize = 14.0f;
     

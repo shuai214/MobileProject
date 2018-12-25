@@ -7,7 +7,7 @@
 //
 
 #import "CAPDeviceService.h"
-
+#import "CAPDeviceListResponse.h"
 @implementation CAPDeviceService
 
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {
@@ -16,10 +16,28 @@
 
 - (void)fetchDevice:(CAPServiceReply)reply {
     //TODO
+    NSDictionary *params = @{
+                             @"status": @"1",
+                             @"page": @"0",
+                             @"pagesize": @"20"
+                             };
+    CAPHttpRequest *request = [self buildRequest:@"Device/Devices" method:@"GET" parameters:params];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply([CAPDeviceListResponse responseWithHttpResponse:response]);
+    }];
 }
 
 - (void)addDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
     //TODO
+    NSDictionary *params = @{
+                             @"uuid": device.deviceID,
+                             @"token": [CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@"",
+                             @"name": device.name
+                             };
+    CAPHttpRequest *request = [self buildRequest:@"Device/Device" method:@"POST" parameters:params];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply(response);
+    }];
 }
 
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {

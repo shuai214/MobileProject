@@ -9,6 +9,10 @@
 #import "CAPTrackerViewController.h"
 #import "CAPDeviceListView.h"
 #import "CAPTrackerView.h"
+#import "CAPPairViewController.h"
+#import "CAPDeviceService.h"
+#import "CAPDeviceLists.h"
+#import "CAPDeviceListResponse.h"
 @import GoogleMaps;
 
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
@@ -45,7 +49,7 @@
     _loacationManager.delegate  = self;
     [_loacationManager requestWhenInUseAuthorization];
     
-    
+    [self fetchDevice];
     CGRect rect = self.deviceListView.frame;
     rect.size.width = self.view.frame.size.width;
     self.deviceListView.frame = rect;
@@ -56,16 +60,27 @@
     self.trackerView.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)fetchDevice{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:^(id response) {
+        NSLog(@"%@",response);
+        if ([response isKindOfClass:[CAPDeviceListResponse class]]) {
+            CAPDeviceListResponse *deviceResponse = response;
+            if(deviceResponse.isSucceed) {
+                CAPDeviceLists *deviceList = deviceResponse.deviceLists;
+                NSLog(@"%@",deviceList);
+            }
+        }
+//        self.deviceListView.devices = device.result.list;
+    }];
 }
+
+
 #pragma mark - CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     /**
      *    拿到授权发起定位请求
-     
      */
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         [_loacationManager startUpdatingLocation];
@@ -80,22 +95,16 @@
     self.mapView.camera = [[GMSCameraPosition alloc] initWithTarget:currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
     [_loacationManager stopUpdatingLocation];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)refreshLocalizedString {
     
 }
 
 - (void)onAddButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"pair.segue" sender:nil];
+//    [self performSegueWithIdentifier:@"pair.segue" sender:nil];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
+    CAPPairViewController *third = [story instantiateViewControllerWithIdentifier:@"PairViewController"];
+    [self.navigationController pushViewController:third animated:YES];
 }
 
 -(void)didSelectDeviceAtIndex:(NSUInteger)index {

@@ -14,5 +14,5 @@
 
 #import "CAPMacros.h"
 #import "CAPUserDefaults.h"
-
+#import "CAPAlerts.h"
 #endif /* PrefixHeader_pch */

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGY-et-eui">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGY-et-eui">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -159,7 +158,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-he-eUh">
-                                <rect key="frame" x="137" y="449.5" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="449.5" width="100" height="100"/>
                                 <state key="normal" image="camera"/>
                                 <connections>
                                     <action selector="onCameraButtonClicked:" destination="C02-rF-3Bd" eventType="touchUpInside" id="za8-Ad-Lwt"/>
@@ -243,7 +242,7 @@
                                                             </connections>
                                                         </button>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gb-Sk-7TD">
-                                                            <rect key="frame" x="0.0" y="40" width="80" height="17"/>
+                                                            <rect key="frame" x="0.0" y="39.5" width="80" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.15913115150000001" blue="0.082745887140000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -310,7 +309,7 @@
                 <viewControllerPlaceholder storyboardName="MasterSetting" id="sw8-h6-bdU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8U4-0O-QPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-895" y="1170"/>
+            <point key="canvasLocation" x="-946" y="462"/>
         </scene>
         <!--GuestSetting-->
         <scene sceneID="x9M-pd-u8a">
@@ -318,7 +317,7 @@
                 <viewControllerPlaceholder storyboardName="GuestSetting" id="n8G-KD-8JO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AzC-5j-Ma5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-659" y="1170"/>
+            <point key="canvasLocation" x="-832" y="965"/>
         </scene>
         <!--Pair-->
         <scene sceneID="ky2-qE-ceD">

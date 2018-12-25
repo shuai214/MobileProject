@@ -24,6 +24,7 @@
 
 - (void)sendRequest:(CAPHttpRequest *)request reply:(CAPHttpServiceCallback)reply {
     CAPHttpService *service = [CAPHttpService defaultService];
+    [service auth:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
     [service sendRequest:request reply:reply];
 }
 @end
