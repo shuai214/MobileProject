@@ -83,5 +83,9 @@
 
 - (IBAction)onNumberButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"number.segue" sender:nil];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
+    CAPAddTrackerViewController *AddTrackerVC = [story instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
+    [self.navigationController pushViewController:AddTrackerVC animated:YES];
+
 }
 @end

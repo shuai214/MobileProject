@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K6M-ND-WMm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K6M-ND-WMm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,6 +46,12 @@
                                 <state key="normal" title="Scan">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onScanButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="maZ-im-aUa"/>
                                 </connections>
@@ -56,6 +62,12 @@
                                 <state key="normal" title="Number">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onNumberButtonClicked:" destination="hnc-BC-5U1" eventType="touchUpInside" id="AHh-7p-Hhn"/>
                                 </connections>
@@ -101,11 +113,48 @@
         <!--Add Tracker View Controller-->
         <scene sceneID="xog-Vc-a1S">
             <objects>
-                <viewController id="U11-Qf-USh" customClass="CAPAddTrackerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTrackerViewController" id="U11-Qf-USh" customClass="CAPAddTrackerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OvO-tt-2hQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="请输入..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZt-7w-nCo">
+                                <rect key="frame" x="20" y="172" width="335" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="yw5-tY-V7Y"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2u1-ag-qf6" userLabel="Number Button">
+                                <rect key="frame" x="20" y="498" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.45882353190000003" green="0.74901962280000001" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="C2U-py-g21"/>
+                                </constraints>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8Jp-Yq-wgB" firstAttribute="bottom" secondItem="2u1-ag-qf6" secondAttribute="bottom" constant="129" id="JHr-B9-RXO"/>
+                            <constraint firstItem="8Jp-Yq-wgB" firstAttribute="trailing" secondItem="2u1-ag-qf6" secondAttribute="trailing" constant="20" id="Omu-Xn-Cex"/>
+                            <constraint firstItem="2u1-ag-qf6" firstAttribute="centerX" secondItem="8Jp-Yq-wgB" secondAttribute="centerX" id="R9S-CA-u0L"/>
+                            <constraint firstItem="jZt-7w-nCo" firstAttribute="centerX" secondItem="OvO-tt-2hQ" secondAttribute="centerX" id="Ty7-8f-aAh"/>
+                            <constraint firstItem="2u1-ag-qf6" firstAttribute="leading" secondItem="8Jp-Yq-wgB" secondAttribute="leading" constant="20" id="Vuv-xz-Vh1"/>
+                            <constraint firstItem="8Jp-Yq-wgB" firstAttribute="trailing" secondItem="jZt-7w-nCo" secondAttribute="trailing" constant="20" id="cjx-bf-ty4"/>
+                            <constraint firstItem="jZt-7w-nCo" firstAttribute="top" secondItem="8Jp-Yq-wgB" secondAttribute="top" constant="152" id="dIH-X5-m5V"/>
+                            <constraint firstItem="jZt-7w-nCo" firstAttribute="leading" secondItem="8Jp-Yq-wgB" secondAttribute="leading" constant="20" id="kBr-T4-SJe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8Jp-Yq-wgB"/>
                     </view>
                     <navigationItem key="navigationItem" id="KRf-KU-hu0"/>
@@ -113,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lc3-NZ-ccQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="168"/>
+            <point key="canvasLocation" x="749.60000000000002" y="167.76611694152925"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="A0a-VR-hTQ">
