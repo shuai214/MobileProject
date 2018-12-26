@@ -12,6 +12,7 @@
 #import "CAPPairViewController.h"
 #import "CAPDeviceService.h"
 #import "CAPDeviceLists.h"
+#import "CAPUser.h"
 @import GoogleMaps;
 
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
@@ -39,8 +40,6 @@
     
     self.trackerView.frame = self.view.frame;
     self.trackerView.delegate = self;
-    
-    
     
     GMSMarker *marker = [[GMSMarker alloc] init];
 //    marker.position = CLLocationCoordinate2DMake(22.290664, 114.195304);

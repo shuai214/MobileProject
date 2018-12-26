@@ -8,7 +8,7 @@
 
 #import "CAPMasterSettingViewController.h"
 #import "CAPBatteryView.h"
-
+#import "CAPEditNameViewController.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -20,6 +20,15 @@
 @end
 
 @implementation CAPMasterSettingViewController
+-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;   //返回的就是已经改变的图片
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +40,11 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = [[UIView alloc]init];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UIImage *avatar =GetImage(@"ic_default_avatar");
+    
+    [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
 }
 
 - (void)refreshLocalizedString {
@@ -60,9 +73,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     switch (indexPath.row) {
         case 0:
-            [self performSegueWithIdentifier:@"edit.name.segue" sender:nil];
+//            [self performSegueWithIdentifier:@"edit.name.segue" sender:nil];
+        {UIStoryboard *story = [UIStoryboard storyboardWithName:@"EditName" bundle:nil];
+            CAPEditNameViewController *EditNameVC = [story instantiateViewControllerWithIdentifier:@"EditNameViewController"];
+        [self.navigationController pushViewController:EditNameVC animated:YES];
+        }
             break;
         case 1:
             [self performSegueWithIdentifier:@"guardian.list.segue" sender:nil];

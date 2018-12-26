@@ -53,15 +53,7 @@
 //    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
     CAPScanViewController *ScanVC = [story instantiateViewControllerWithIdentifier:@"ScanViewController"];
-//    transport.port = 1883;
-//
-//    self.session = [[MQTTSession alloc] init];
-//    self.session.delegate = self;
-//    self.session.transport = transport;
-//    self.session.userName = @"demo_app";
-//    self.session.password = @"demo_890_123_654";
-//    self.session.clientId = @"X3211fd93441ed535NVWR4E00120000000052";
-//    self.session.keepAliveInterval = 20;
+
     [ScanVC setScanSuccessBlock:^(NSString *successStr) {
         [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",successStr] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
             CAPDevice *device = [[CAPDevice alloc] init];

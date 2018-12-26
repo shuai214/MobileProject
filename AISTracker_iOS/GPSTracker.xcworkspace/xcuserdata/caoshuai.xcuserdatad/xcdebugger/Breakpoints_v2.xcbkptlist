@@ -68,7 +68,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/MainViewController.m"
-                  timestampString = "567511457.662836"
+                  timestampString = "567521931.5452"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -83,7 +83,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/MainViewController.m"
-                  timestampString = "567511457.664584"
+                  timestampString = "567521931.554527"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -98,7 +98,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/MainViewController.m"
-                  timestampString = "567511457.666297"
+                  timestampString = "567521931.558934"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -131,7 +131,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/MainViewController.m"
-                  timestampString = "567511457.672124"
+                  timestampString = "567521931.568576"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -146,7 +146,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/MainViewController.m"
-                  timestampString = "567511457.674041"
+                  timestampString = "567521931.571825"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -233,22 +233,6 @@
             startingLineNumber = "75"
             endingLineNumber = "75"
             landmarkName = "-onFenceButtonClicked:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GPSTracker/View/CAPTrackerView.m"
-            timestampString = "567511457.5078911"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-onFootprintButtonClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
