@@ -11,8 +11,13 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <MJExtension.h>
+#import <SDWebImage/SDImageCache.h>
+#import <UIImageView+WebCache.h>
 
 #import "CAPMacros.h"
 #import "CAPUserDefaults.h"
 #import "CAPAlerts.h"
+#import "AppConfig.h"
+#import "CAPNotifications.h"
 #endif /* PrefixHeader_pch */

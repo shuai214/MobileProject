@@ -41,6 +41,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWX-tC-0Zm" customClass="CAPCardView">
                                 <rect key="frame" x="36" y="100" width="303" height="403"/>
+                                <color key="backgroundColor" red="0.98431372549999996" green="0.2901960784" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A7C-o6-EoC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
@@ -104,7 +105,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOK-0I-KC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-778" y="-414"/>
+            <point key="canvasLocation" x="-750" y="-406"/>
         </scene>
     </scenes>
     <resources>

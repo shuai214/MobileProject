@@ -12,7 +12,6 @@
 #import "CAPPairViewController.h"
 #import "CAPDeviceService.h"
 #import "CAPDeviceLists.h"
-#import "CAPDeviceListResponse.h"
 @import GoogleMaps;
 
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
@@ -31,6 +30,18 @@
     
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
 //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
+    
+    CGRect rect = self.deviceListView.frame;
+    rect.size.width = self.view.frame.size.width;
+    self.deviceListView.frame = rect;
+    self.deviceListView.userInteractionEnabled = YES;
+    self.deviceListView.delegate = self;
+    
+    self.trackerView.frame = self.view.frame;
+    self.trackerView.delegate = self;
+    
+    
+    
     GMSMarker *marker = [[GMSMarker alloc] init];
 //    marker.position = CLLocationCoordinate2DMake(22.290664, 114.195304);
 //    marker.title = @"香港";
@@ -50,30 +61,23 @@
     [_loacationManager requestWhenInUseAuthorization];
     
     [self fetchDevice];
-    CGRect rect = self.deviceListView.frame;
-    rect.size.width = self.view.frame.size.width;
-    self.deviceListView.frame = rect;
-    self.deviceListView.devices = @[@"1", @"2", @"3"];
-    self.deviceListView.delegate = self;
-    
-    self.trackerView.frame = self.view.frame;
-    self.trackerView.delegate = self;
+    [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
 }
 
 - (void)fetchDevice{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService fetchDevice:^(id response) {
-        NSLog(@"%@",response);
-        if ([response isKindOfClass:[CAPDeviceListResponse class]]) {
-            CAPDeviceListResponse *deviceResponse = response;
-            if(deviceResponse.isSucceed) {
-                CAPDeviceLists *deviceList = deviceResponse.deviceLists;
-                NSLog(@"%@",deviceList);
-            }
+        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
+        CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
+        NSLog(@"%@",deviceLists);
+        self.deviceListView.devices = deviceLists.result.list;
+        for (CAPDevice *device in deviceLists.result.list) {
+//            NSLog(@"%@",device.setting.avatar.path);
         }
-//        self.deviceListView.devices = device.result.list;
     }];
 }
+
+
 
 
 #pragma mark - CLLocationManagerDelegate
@@ -106,9 +110,16 @@
     CAPPairViewController *third = [story instantiateViewControllerWithIdentifier:@"PairViewController"];
     [self.navigationController pushViewController:third animated:YES];
 }
+#pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
 -(void)didSelectDeviceAtIndex:(NSUInteger)index {
     NSLog(@"didSelectDeviceAtIndex: %lu", (unsigned long)index);
+    if (index != 0) {
+      self.deviceListView.devices[index-1];
+    }else{
+        
+    }
+   
 }
 
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {

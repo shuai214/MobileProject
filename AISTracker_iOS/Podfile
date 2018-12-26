@@ -19,7 +19,7 @@ target 'GPSTracker' do
   pod 'GoogleMaps', '~> 2.7.0'
   pod 'GooglePlaces', '~> 2.7.0'
   pod 'GooglePlacePicker', '~> 2.7.0'
-
+  pod 'MJExtension' #model解析
   target 'GPSTrackerTests' do
     inherit! :search_paths
     # Pods for testing

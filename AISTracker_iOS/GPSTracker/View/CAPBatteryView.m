@@ -53,6 +53,7 @@
         self.batteryLabel.text = [NSString stringWithFormat:@"%.1f%%", self.battery];
         [self addSubview:self.batteryImageView];
         [self addSubview:self.batteryLabel];
+        
     }
 //    if(!self.button) {
 //        self.backgroundColor = [UIColor whiteColor];

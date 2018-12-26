@@ -29,6 +29,7 @@ PODS:
   - IQKeyboardManager (6.0.3)
   - JSONModel (1.7.0)
   - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.3)
   - MQTTClient (0.14.0):
     - MQTTClient/Core (= 0.14.0)
@@ -47,16 +48,34 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - Bugly (~> 2.4.8)
   - CRToast (~> 0.0.7)
-  - GoogleMaps
-  - GooglePlacePicker
-  - GooglePlaces
+  - GoogleMaps (~> 2.7.0)
+  - GooglePlacePicker (~> 2.7.0)
+  - GooglePlaces (~> 2.7.0)
   - IQKeyboardManager
   - JSONModel (~> 1.7.0)
   - MBProgressHUD (~> 1.0.0)
+  - MJExtension
   - MJRefresh (~> 3.1.12)
   - MQTTClient
   - SCLAlertView-Objective-C (~> 1.1.1)
   - SDWebImage (~> 3.8.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Bugly
+    - CRToast
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
+    - IQKeyboardManager
+    - JSONModel
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - MQTTClient
+    - SCLAlertView-Objective-C
+    - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -68,11 +87,12 @@ SPEC CHECKSUMS:
   IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MQTTClient: eea2eaaa6ddef852a1019a4dda091e22ad928b58
   SCLAlertView-Objective-C: 917836fb2349afa58edc43d592d22d21d46bb2a4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 2e382367e9deee8770533b0dd33488aad222c6d9
+PODFILE CHECKSUM: 4d0121b7993a73023360a48aabf308fa0922d8e9
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

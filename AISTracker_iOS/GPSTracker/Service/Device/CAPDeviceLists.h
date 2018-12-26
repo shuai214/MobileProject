@@ -6,24 +6,30 @@
 //  Copyright © 2018年 Capelabs. All rights reserved.
 //
 
-#import "CAPBaseJSON.h"
+#import <Foundation/Foundation.h>
 #import "CAPDevice.h"
 @class ResultLists;
 NS_ASSUME_NONNULL_BEGIN
+@protocol CAPDeviceLists <NSObject>
+@end
 
-@interface CAPDeviceLists : CAPBaseJSON
+@interface CAPDeviceLists : NSObject
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *status;
 @property (nonatomic, strong)ResultLists *result;
 @end
 
-@interface ResultLists : CAPBaseJSON
+@protocol ResultLists <NSObject>
+@end
+
+@interface ResultLists : NSObject
 @property (nonatomic, copy) NSString *page;
 @property (nonatomic, copy) NSString *pages;
 @property (nonatomic, copy) NSString *pagesize;
 @property (nonatomic, copy) NSString *total;
-//@property (nonatomic, strong)NSArray <CAPDevice *>*list;
+@property (nonatomic, strong)NSArray <CAPDevice >*list;
 @end
+
 
 NS_ASSUME_NONNULL_END

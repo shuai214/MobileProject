@@ -26,7 +26,7 @@
 
 - (IBAction)onTestButtonClick:(id)sender {
     MQTTCFSocketTransport *transport = [[MQTTCFSocketTransport alloc] init];
-    transport.host = @"www.capelabs.net";
+    transport.host = @"mqtt.kvtel.com";
     transport.port = 1883;
     
     self.session = [[MQTTSession alloc] init];

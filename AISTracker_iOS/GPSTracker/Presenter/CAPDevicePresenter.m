@@ -113,9 +113,9 @@
 }
 
 - (NSURL *)getAvatarURL:(CAPDevice *)device {
-    if(device.setting.avatar.url) {
-        return [NSURL URLWithString:device.setting.avatar.url];
-    }
+//    if(device.setting.avatar.url) {
+//        return [NSURL URLWithString:device.setting.avatar.url];
+//    }
     return nil;
 }
 

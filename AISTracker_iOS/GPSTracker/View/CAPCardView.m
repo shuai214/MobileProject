@@ -41,11 +41,11 @@
         self.clipsToBounds = NO;
         self.userInteractionEnabled = YES;
         
-        UIView *contentView = [[UIView alloc] initWithFrame:self.frame];
-        contentView.layer.cornerRadius = 20;
-        contentView.layer.masksToBounds = YES;
-        contentView.userInteractionEnabled = YES;
-        [self addSubview:contentView];
+//        UIView *contentView = [[UIView alloc] initWithFrame:self.frame];
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
+        self.userInteractionEnabled = YES;
+//        [self addSubview:contentView];
     }
 }
 

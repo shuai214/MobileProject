@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
-		2B8BEC7F21D22FA000D2E5CE /* CAPDeviceListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7E21D22FA000D2E5CE /* CAPDeviceListResponse.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
 		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
@@ -190,8 +189,6 @@
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
 		2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLists.m; sourceTree = "<group>"; };
-		2B8BEC7D21D22FA000D2E5CE /* CAPDeviceListResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceListResponse.h; sourceTree = "<group>"; };
-		2B8BEC7E21D22FA000D2E5CE /* CAPDeviceListResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceListResponse.m; sourceTree = "<group>"; };
 		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2BA9278621CE334C00CF0D48 /* CAPCodeScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeScanView.h; sourceTree = "<group>"; };
 		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
@@ -994,8 +991,6 @@
 				EFD0ACF6218C47D900405FD8 /* CAPDeviceService.m */,
 				EF46F27F2192991A009A357C /* CAPFootprint.h */,
 				EF46F2802192991A009A357C /* CAPFootprint.m */,
-				2B8BEC7D21D22FA000D2E5CE /* CAPDeviceListResponse.h */,
-				2B8BEC7E21D22FA000D2E5CE /* CAPDeviceListResponse.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -1096,7 +1091,6 @@
 				EF7BE54E218845AB00562EE9 /* Sources */,
 				EF7BE54F218845AB00562EE9 /* Frameworks */,
 				EF7BE550218845AB00562EE9 /* Resources */,
-				8725BE1F916034DB9DAA7BC4 /* [CP] Embed Pods Frameworks */,
 				43AA8479DDE726CF022A23F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1116,8 +1110,6 @@
 				EF7BE569218845AD00562EE9 /* Sources */,
 				EF7BE56A218845AD00562EE9 /* Frameworks */,
 				EF7BE56B218845AD00562EE9 /* Resources */,
-				0FEC54F6CFF0463AD90601A6 /* [CP] Embed Pods Frameworks */,
-				7437229F691AD0C271AF4506 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1137,8 +1129,6 @@
 				EF7BE574218845AD00562EE9 /* Sources */,
 				EF7BE575218845AD00562EE9 /* Frameworks */,
 				EF7BE576218845AD00562EE9 /* Resources */,
-				C5ABEC8709FAF90BF3A901C8 /* [CP] Embed Pods Frameworks */,
-				442A696097386701986A0742 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1233,21 +1223,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FEC54F6CFF0463AD90601A6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		16CBCFBAA2B89EDCD5FEB701 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1328,66 +1303,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		442A696097386701986A0742 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7437229F691AD0C271AF4506 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerTests/Pods-GPSTrackerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8725BE1F916034DB9DAA7BC4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C5ABEC8709FAF90BF3A901C8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1447,7 +1362,6 @@
 				EFD0ACB6218C3F0100405FD8 /* CAPScanViewController.m in Sources */,
 				EFD0AD42218C550C00405FD8 /* CAPSocialLoginResponse.m in Sources */,
 				EFD0AC95218C3E6200405FD8 /* CAPFeedbackViewController.m in Sources */,
-				2B8BEC7F21D22FA000D2E5CE /* CAPDeviceListResponse.m in Sources */,
 				EF12AE072193C926006A8AE1 /* CAPWeekView.m in Sources */,
 				EF46F2A22192E103009A357C /* CAPKeyChain.m in Sources */,
 				EF6CA640218D30FF0014771E /* CAPFetchUserProfileResponse.m in Sources */,

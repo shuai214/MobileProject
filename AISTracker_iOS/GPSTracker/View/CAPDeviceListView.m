@@ -7,7 +7,7 @@
 //
 
 #import "CAPDeviceListView.h"
-
+#import "CAPDevice.h"
 @interface CAPDeviceListView ()
 @property (nonatomic, weak) UIScrollView *scrollView;
 @end
@@ -17,6 +17,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self setup];
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -29,17 +30,21 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"11--11");
+}
 
 - (void)setup {
+    self.userInteractionEnabled = YES;
     if(!self.scrollView) {
         self.backgroundColor = [UIColor whiteColor];
-        self.userInteractionEnabled = YES;
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         scrollView.pagingEnabled = NO;
         scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview:scrollView];
         self.scrollView = scrollView;
+        scrollView.userInteractionEnabled = YES;
     }
 }
 
@@ -62,25 +67,21 @@
         CGFloat width = size.width/6;
         CGFloat height = size.height;
         self.scrollView.contentSize = CGSizeMake(width * self.devices.count, height);
-        for(int i=0; i<self.devices.count; i++) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
-            imageView.tag = i;
-            imageView.userInteractionEnabled = YES;
-            [imageView setImage:[UIImage imageNamed:@"tracker_phone"]];
-            [self.scrollView addSubview:imageView];
-            
-            UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(onDeviceClicked:)];
-            [imageView addGestureRecognizer:singleTap];
+        for(int i=0; i<self.devices.count + 1; i++) {
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
+            button.tag = i;
+            [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollView addSubview:button];
         }
     } else {
         self.scrollView.contentSize = CGSizeMake(0, 0);
     }
 }
 
-- (void)onDeviceClicked:(UIGestureRecognizer *)gestureRecognizer {
+- (void)onDeviceClicked:(UIButton *)button {
     if(self.delegate) {
-        UIView *view = [gestureRecognizer view];
-        [self.delegate didSelectDeviceAtIndex:view.tag];
+        [self.delegate didSelectDeviceAtIndex:button.tag];
     }
 }
 

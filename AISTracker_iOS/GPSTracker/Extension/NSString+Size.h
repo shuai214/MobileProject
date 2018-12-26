@@ -13,4 +13,6 @@
  *  根据文字计算高宽
  */
 - (CGSize)sizeWithAttributes:(NSDictionary *)attributes maxSize:(CGSize)maxSize;
+
++ (NSString *)calculateStringLength:(NSString *)userID;
 @end

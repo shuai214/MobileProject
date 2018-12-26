@@ -80,6 +80,9 @@
                 }
                 [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
                 [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];
+                [CAPUserDefaults setObject:user.account.userID forKey:@"userID"];
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+                [CAPUserDefaults setObject:data forKey:@"CAP_User"];
             }
         }
         }];

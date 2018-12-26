@@ -36,7 +36,8 @@ static NSString* const kMasterRole = @"owner";
 
 @protocol CAPDevice <NSObject>
 @end
-
+@protocol CAPDeviceSetting <NSObject>
+@end
 @interface CAPDeviceSetting : CAPBaseJSON
 @property (nonatomic, strong) CAPFileItem *avatar;
 @property (nonatomic, copy) NSString *name;
@@ -51,8 +52,10 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *role;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) NSTimeInterval createdDate;
+@property (nonatomic, assign) NSString *sos;
+@property (nonatomic, assign) NSString *mobile;
 
-@property (nonatomic, strong) CAPDeviceSetting *setting;
-@property (nonatomic, strong) CAPFootprint *footprint;
+//@property (nonatomic, strong) CAPDeviceSetting *setting;
+//@property (nonatomic, strong) CAPFootprint *footprint;
 @property (nonatomic, assign, readonly) BOOL isMaster;
 @end

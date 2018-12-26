@@ -11,6 +11,8 @@
 #import "CAPAddTrackerViewController.h"
 #import "CAPDevice.h"
 #import "CAPDeviceService.h"
+#import "MQTTCenter.h"
+#import "NSString+Size.h"
 @interface CAPPairViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
@@ -51,16 +53,36 @@
 //    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
     CAPScanViewController *ScanVC = [story instantiateViewControllerWithIdentifier:@"ScanViewController"];
-    
+//    transport.port = 1883;
+//
+//    self.session = [[MQTTSession alloc] init];
+//    self.session.delegate = self;
+//    self.session.transport = transport;
+//    self.session.userName = @"demo_app";
+//    self.session.password = @"demo_890_123_654";
+//    self.session.clientId = @"X3211fd93441ed535NVWR4E00120000000052";
+//    self.session.keepAliveInterval = 20;
     [ScanVC setScanSuccessBlock:^(NSString *successStr) {
         [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",successStr] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
-            NSLog(@"%@",@"1111");
             CAPDevice *device = [[CAPDevice alloc] init];
             [device setDeviceID:successStr];
             [device setName:successStr];
             CAPDeviceService *service = [[CAPDeviceService alloc] init];
             [service addDevice:device reply:^(CAPHttpResponse *response) {
-                NSLog(@"%@",response.data);
+                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+                MQTTCenter *mqttCenter = [MQTTCenter center];
+                MQTTConfig *config = [[MQTTConfig alloc] init];
+                config.host = @"mqtt.kvtel.com";
+                config.port = 1883;
+                config.username = @"demo_app";
+                config.password = @"demo_890_123_654";
+                config.userID = [CAPUserDefaults objectForKey:@"userID"];
+                config.keepAliveInterval = 20;
+                config.deviceType = MQTTDeviceTypeApp;
+                config.clientID = [getDevice.deviceID stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+                [mqttCenter open:config];
+                [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+                
             }];
         }];
     }];

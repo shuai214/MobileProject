@@ -9,5 +9,15 @@
 #import "CAPDeviceLists.h"
 
 @implementation CAPDeviceLists
++ (NSDictionary*)mj_objectClassInArray
+{
+    return @{@"result": @"ResultLists"};
+}
+@end
+@implementation ResultLists
 
++ (NSDictionary*)mj_objectClassInArray
+{
+    return @{@"list": @"CAPDevice"};
+}
 @end

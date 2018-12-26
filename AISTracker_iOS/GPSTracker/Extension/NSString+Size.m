@@ -14,4 +14,19 @@
                               options:NSStringDrawingUsesLineFragmentOrigin
                            attributes:attributes context:nil].size;
 }
+
++ (NSString *)calculateStringLength:(NSString *)userID{
+    if (userID.length >= 10) {
+        return userID;
+    }else{
+        NSString *zero = @"0";
+        NSInteger length = 10 - userID.length;
+        for (NSInteger i = 0; i < length; i++) {
+           userID = [zero stringByAppendingString:userID];
+        }
+        return userID;
+    }
+    return userID;
+}
+
 @end

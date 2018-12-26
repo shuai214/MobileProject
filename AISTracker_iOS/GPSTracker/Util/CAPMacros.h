@@ -29,6 +29,6 @@
 
 //获取图片资源
 #define GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
-#define DOMAIN_URL  @"https://iot.capelabs.net/trueiot/v1/"
+
 
 #endif /* CAPMacros_h */
