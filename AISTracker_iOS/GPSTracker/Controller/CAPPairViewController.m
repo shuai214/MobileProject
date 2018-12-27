@@ -51,8 +51,7 @@
 
 - (IBAction)onScanButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
-    CAPScanViewController *ScanVC = [story instantiateViewControllerWithIdentifier:@"ScanViewController"];
+    CAPScanViewController *ScanVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"ScanViewController"];
 
     [ScanVC setScanSuccessBlock:^(NSString *successStr) {
         [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",successStr] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
@@ -83,9 +82,9 @@
 
 - (IBAction)onNumberButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"number.segue" sender:nil];
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
-    CAPAddTrackerViewController *AddTrackerVC = [story instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
+    CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
+    
 
 }
 @end

@@ -64,10 +64,7 @@
                              @"type": @(user.type),
                              @"content": content,
                              @"mobile" : (user.mobile ? user.mobile : @""),
-                             @"verifyCode" : (user.verifyCode ? user.verifyCode : @""),
-                             @"device_connected": @"1",
-                             @"device_uuid": @"1234",
-                             @"app_uuid": @"5678"
+                             @"verifyCode" : (user.verifyCode ? user.verifyCode : @"")
                              };
     CAPHttpRequest *request = [self buildRequest:(user.mobile && user.mobile ? @"Account/ThirdSignIn" : @"Account/ThirdSignInPlus" ) method:@"POST" parameters:params];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {

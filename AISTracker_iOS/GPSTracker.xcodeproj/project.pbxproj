@@ -11,6 +11,7 @@
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
+		2BCC774B21D4D96E00A63433 /* CAPMessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC774A21D4D96E00A63433 /* CAPMessageListTableViewCell.m */; };
 		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
 		EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE012193C596006A8AE1 /* CAPTabBarController.m */; };
 		EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF12AE032193C915006A8AE1 /* CAPWeekView.xib */; };
@@ -194,6 +195,8 @@
 		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
 		2BA9278921CE336400CF0D48 /* CAPCodeBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeBackgroundView.h; sourceTree = "<group>"; };
 		2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeBackgroundView.m; sourceTree = "<group>"; };
+		2BCC774921D4D96E00A63433 /* CAPMessageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMessageListTableViewCell.h; sourceTree = "<group>"; };
+		2BCC774A21D4D96E00A63433 /* CAPMessageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMessageListTableViewCell.m; sourceTree = "<group>"; };
 		46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */,
 				2BA9278921CE336400CF0D48 /* CAPCodeBackgroundView.h */,
 				2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */,
+				2BCC774921D4D96E00A63433 /* CAPMessageListTableViewCell.h */,
+				2BCC774A21D4D96E00A63433 /* CAPMessageListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1315,6 +1320,7 @@
 				EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */,
 				EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */,
 				EF6CA6A5218D84420014771E /* CAPMessagePresenter.m in Sources */,
+				2BCC774B21D4D96E00A63433 /* CAPMessageListTableViewCell.m in Sources */,
 				EF358BF42191443200EFB4BF /* CAPTableCell.m in Sources */,
 				EF358BE62191437D00EFB4BF /* CAPCheckableCollectionCell.m in Sources */,
 				EF6CA6BA218EC9B30014771E /* CAPPhotographViewController.m in Sources */,

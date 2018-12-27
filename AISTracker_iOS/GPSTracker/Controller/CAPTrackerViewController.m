@@ -25,12 +25,17 @@
 @end
 
 @implementation CAPTrackerViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"GPS Tracker";
+
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
 //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
+    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
+    NSLog(@"%@",self.navigationController);
     
     CGRect rect = self.deviceListView.frame;
     rect.size.width = self.view.frame.size.width;
@@ -39,7 +44,7 @@
     self.deviceListView.delegate = self;
     
     self.trackerView.frame = self.view.frame;
-    self.trackerView.delegate = self;
+    self.trackerView.delegate = self;//0x10683b800
     
     GMSMarker *marker = [[GMSMarker alloc] init];
 //    marker.position = CLLocationCoordinate2DMake(22.290664, 114.195304);
@@ -105,9 +110,10 @@
 
 - (void)onAddButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"pair.segue" sender:nil];
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
-    CAPPairViewController *third = [story instantiateViewControllerWithIdentifier:@"PairViewController"];
-    [self.navigationController pushViewController:third animated:YES];
+//    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Pair" bundle:nil];
+//    CAPPairViewController *third = [story instantiateViewControllerWithIdentifier:@"PairViewController"];
+//    [self.navigationController pushViewController:third animated:YES];
+    [CAPViews pushFromViewController:self storyboarName:@"Pair" withIdentifier:@"PairViewController"];
 }
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 

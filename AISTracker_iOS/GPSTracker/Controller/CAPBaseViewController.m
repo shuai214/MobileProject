@@ -22,7 +22,7 @@
     NSLog(@"[%@ viewDidLoad]", [self class]);
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] init];
     backButtonItem.title = @"";
-    backButtonItem.accessibilityIdentifier = @"bar_back_button";
+//    backButtonItem.accessibilityIdentifier = @"bar_back_button";
     self.navigationItem.backBarButtonItem = backButtonItem;
 }
 
@@ -82,7 +82,7 @@
 }
 
 - (void)setRightBarImageButton:(NSString *_Nonnull)imageName action:(nullable SEL)action {
-//    self.navigationController.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
+//    self.tabBarController.navigationController.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
     self.tabBarController.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
 }
 
@@ -91,6 +91,7 @@
     //    [self.navigationItem setHidesBackButton:NO];
     self.navigationItem.leftBarButtonItem = nil;
 }
+
 
 - (void)hideBackBarItem {
     NSLog(@"hideBackBarItem");

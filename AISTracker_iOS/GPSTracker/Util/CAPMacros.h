@@ -30,5 +30,15 @@
 //获取图片资源
 #define GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 
+//状态栏的高度
+#define Application_StatusBar_Height [UIApplication sharedApplication].statusBarFrame.size.height
+//导航栏高度
+#define TopNavBarHeight 44
+//底部tabbar高度
+#define TabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+//适配X时底部要保留的高度
+#define BottomHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?34:0)
+//整个导航栏高度
+#define TopHeight (Application_StatusBar_Height + TopNavBarHeight)
 
 #endif /* CAPMacros_h */

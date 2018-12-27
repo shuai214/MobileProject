@@ -16,6 +16,7 @@
 #import <UIImageView+WebCache.h>
 
 #import "CAPMacros.h"
+#import "CAPViews.h"
 #import "CAPUserDefaults.h"
 #import "CAPAlerts.h"
 #import "AppConfig.h"
