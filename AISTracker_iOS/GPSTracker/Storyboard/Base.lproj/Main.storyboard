@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wcg-tg-2fZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wcg-tg-2fZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlJ-os-1Ks">
-                                <rect key="frame" x="0.0" y="279" width="375" height="45"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A7C-o6-EoC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29,14 +25,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AlJ-os-1Ks" firstAttribute="leading" secondItem="A7C-o6-EoC" secondAttribute="leading" id="Ctg-lD-IWQ"/>
-                            <constraint firstItem="AlJ-os-1Ks" firstAttribute="trailing" secondItem="A7C-o6-EoC" secondAttribute="trailing" id="DkD-Bs-rQi"/>
                             <constraint firstItem="A7C-o6-EoC" firstAttribute="bottom" secondItem="zHz-t1-i6w" secondAttribute="bottom" id="YjH-kq-BTe"/>
                             <constraint firstItem="A7C-o6-EoC" firstAttribute="leading" secondItem="zHz-t1-i6w" secondAttribute="leading" id="Zq8-pU-VtH"/>
                             <constraint firstItem="A7C-o6-EoC" firstAttribute="top" secondItem="zHz-t1-i6w" secondAttribute="top" id="bIi-GT-izU"/>
                             <constraint firstItem="A7C-o6-EoC" firstAttribute="trailing" secondItem="zHz-t1-i6w" secondAttribute="trailing" id="kKD-JK-5y3"/>
-                            <constraint firstItem="AlJ-os-1Ks" firstAttribute="top" secondItem="zHz-t1-i6w" secondAttribute="top" constant="279" id="s15-Rj-YjW"/>
-                            <constraint firstItem="AlJ-os-1Ks" firstAttribute="centerY" secondItem="xgt-ok-jgb" secondAttribute="centerY" id="xZ5-SE-FqB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zHz-t1-i6w"/>
                     </view>
@@ -93,7 +85,6 @@
         <!--Item-->
         <scene sceneID="aOI-pd-kZs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nCp-kN-Xf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="dc3-zr-fTh" customClass="CAPNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="uct-ME-hmw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Isd-7L-pMN">
@@ -104,6 +95,7 @@
                         <segue destination="5Cz-Qw-xdV" kind="relationship" relationship="rootViewController" id="piF-rh-0VX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nCp-kN-Xf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-735" y="849"/>
         </scene>

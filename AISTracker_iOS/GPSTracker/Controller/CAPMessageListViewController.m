@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listData;
 @property (strong, nonatomic) UIView *editingView;
-
+@property (assign , nonatomic)CGFloat tableHeight;
 @end
 
 @implementation CAPMessageListViewController
@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableHeight = self.tableView.frame.size.height;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -62,7 +63,7 @@
 {
     [UIView animateWithDuration:0.3 animations:^{
         self.editingView.frame = CGRectMake(0, isShow ? Main_Screen_Height - 45 - BottomHeight - TabBarHeight - TopHeight: Main_Screen_Height - BottomHeight - TabBarHeight - TopHeight, Main_Screen_Width, 45);
-//        self.tableView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+        self.tableView.frame = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, isShow ? self.tableHeight - 45 : self.tableHeight);
     }];
 }
 

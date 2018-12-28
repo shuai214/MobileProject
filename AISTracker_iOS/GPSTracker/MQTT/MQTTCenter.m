@@ -63,13 +63,7 @@
             self.infoDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
         }
         self.operatorCode = nil;
-        [self.session connectWithConnectHandler:^(NSError *error) {
-            if(error) {
-                NSLog(@"connect error: %@", error);
-            } else {
-                NSLog(@"connect success");
-            }
-        }];
+        [self.session connect];
     }
 }
 
