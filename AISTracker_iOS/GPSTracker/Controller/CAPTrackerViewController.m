@@ -13,6 +13,7 @@
 #import "CAPDeviceService.h"
 #import "CAPDeviceLists.h"
 #import "CAPUser.h"
+#import "MQTTCenter.h"
 @import GoogleMaps;
 
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
@@ -63,7 +64,7 @@
     _loacationManager = [[CLLocationManager alloc] init];
     _loacationManager.delegate  = self;
     [_loacationManager requestWhenInUseAuthorization];
-    
+    [self mqttConnect];
     [self fetchDevice];
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
 }
@@ -75,13 +76,23 @@
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
         NSLog(@"%@",deviceLists);
         self.deviceListView.devices = deviceLists.result.list;
-        for (CAPDevice *device in deviceLists.result.list) {
-//            NSLog(@"%@",device.setting.avatar.path);
-        }
     }];
 }
 
-
+- (void)mqttConnect{
+    MQTTCenter *mqttCenter = [MQTTCenter center];
+    MQTTConfig *config = [[MQTTConfig alloc] init];
+    config.host = @"mqtt.kvtel.com";
+    config.port = 1883;
+    config.username = @"demo_app";
+    config.password = @"demo_890_123_654";
+    config.userID = [CAPUserDefaults objectForKey:@"userID"];
+    config.keepAliveInterval = 20;
+    config.deviceType = MQTTDeviceTypeApp;
+    config.platformID = @"KVTELIOT";
+    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+    [mqttCenter open:config];
+}
 
 
 #pragma mark - CLLocationManagerDelegate

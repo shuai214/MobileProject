@@ -9,5 +9,5 @@
 #import "CAPBaseService.h"
 
 @interface CAPPhotoService : CAPBaseService
-
+- (void)takingPicturesReply:(CAPServiceReply)reply;
 @end

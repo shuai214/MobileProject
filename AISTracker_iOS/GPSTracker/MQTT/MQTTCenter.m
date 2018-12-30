@@ -58,6 +58,7 @@
         self.session.password = config.password;
         self.session.clientId = config.clientID;
         self.session.keepAliveInterval = config.keepAliveInterval;
+
         self.config = config;
         if(!self.infoDictionary) {
             self.infoDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -228,6 +229,7 @@
             break;
         case MQTTSessionEventConnectionClosed:
             NSLog(@"MQTTSessionEventConnectionClosed");
+            [self.session connect];
             break;
         case MQTTSessionEventConnectionError:
             NSLog(@"MQTTSessionEventConnectionError");

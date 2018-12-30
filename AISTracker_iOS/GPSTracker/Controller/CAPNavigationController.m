@@ -52,6 +52,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+#pragma mark - 返回
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.childViewControllers.count >= 1) {
+        viewController.hidesBottomBarWhenPushed = YES;
+        self.interactivePopGestureRecognizer.delegate = nil;
+    }
+    [super pushViewController:viewController animated:animated];
+}
 
 //#pragma mark - ScreenOrientation
 //

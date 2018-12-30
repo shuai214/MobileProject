@@ -12,7 +12,6 @@
 #import "CAPDevice.h"
 #import "CAPDeviceService.h"
 #import "MQTTCenter.h"
-#import "NSString+Size.h"
 @interface CAPPairViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
@@ -70,7 +69,7 @@
                 config.userID = [CAPUserDefaults objectForKey:@"userID"];
                 config.keepAliveInterval = 20;
                 config.deviceType = MQTTDeviceTypeApp;
-                config.clientID = [getDevice.deviceID stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+                config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
                 [mqttCenter open:config];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
                 

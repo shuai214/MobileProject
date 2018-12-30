@@ -326,7 +326,7 @@
                 <viewControllerPlaceholder storyboardName="MasterSetting" id="sw8-h6-bdU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8U4-0O-QPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1406" y="202"/>
+            <point key="canvasLocation" x="-1201" y="221"/>
         </scene>
         <!--GuestSetting-->
         <scene sceneID="x9M-pd-u8a">
@@ -334,7 +334,7 @@
                 <viewControllerPlaceholder storyboardName="GuestSetting" id="n8G-KD-8JO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AzC-5j-Ma5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1299" y="519"/>
+            <point key="canvasLocation" x="-1064" y="596"/>
         </scene>
         <!--Pair-->
         <scene sceneID="ky2-qE-ceD">
@@ -342,7 +342,7 @@
                 <viewControllerPlaceholder storyboardName="Pair" id="3aJ-Ez-1v4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JME-qY-zDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1379" y="349"/>
+            <point key="canvasLocation" x="-1149" y="413"/>
         </scene>
     </scenes>
     <resources>

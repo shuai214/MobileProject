@@ -70,7 +70,12 @@
         for(int i=0; i<self.devices.count + 1; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
             button.tag = i;
-            [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
+            if (i != 0) {
+                CAPDevice *device = self.devices[i - 1];
+//                [button sd_setImageWithURL:[NSURL URLWithString:device] forState:<#(UIControlState)#>]
+            }else{
+                [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
+            }
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
         }
@@ -78,6 +83,7 @@
         self.scrollView.contentSize = CGSizeMake(0, 0);
     }
 }
+
 
 - (void)onDeviceClicked:(UIButton *)button {
     if(self.delegate) {

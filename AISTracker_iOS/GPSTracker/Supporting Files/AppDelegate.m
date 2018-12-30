@@ -48,7 +48,7 @@ AppDelegate* gApp = nil;
     gCfg = [AppConfig new];
     
     if ([CAPUserDefaults objectForKey:@"accessToken"]) {
-        NSLog(@"%@",[CAPUserDefaults objectForKey:@"accessToken"]);
+        NSLog(@"accessToken - == %@",[CAPUserDefaults objectForKey:@"accessToken"]);
         [self showMainPage];
     }else{
         [self showLoginPage];
@@ -69,7 +69,7 @@ AppDelegate* gApp = nil;
     //NSLog(@"files\n%@", [CAPFiles listFiles:@"Log"]);
     NSLog(@"Version: %@ Build: %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]);
     
-    NSLog(@"PhoneModel: %@, PhoneName: %@, PhoneType: %@, SystemName: %@, SystemVersion: %@", [CAPPhones phoneModel], [CAPPhones phoneName], [CAPPhones phoneType], [CAPPhones systemName], [CAPPhones systemVersion]);
+    NSLog(@"PhoneModel: %@, PhoneName: %@, PhoneType: %@, SystemName: %@, SystemVersion: %@ UUID: %@", [CAPPhones phoneModel], [CAPPhones phoneName], [CAPPhones phoneType], [CAPPhones systemName], [CAPPhones systemVersion],[CAPPhones getUUIDString]);
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     

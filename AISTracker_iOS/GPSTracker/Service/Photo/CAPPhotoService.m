@@ -10,4 +10,16 @@
 
 @implementation CAPPhotoService
 
+- (void)takingPicturesReply:(CAPServiceReply)reply{
+    //TODO
+    
+    NSDictionary *params = @{
+                             @"uuid": @""
+                             };
+    CAPHttpRequest *request = [self buildRequest:@"Device/Device" method:@"POST" parameters:params];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply(response);
+    }];
+}
+
 @end
