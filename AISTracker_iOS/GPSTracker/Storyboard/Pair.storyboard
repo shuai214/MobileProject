@@ -151,6 +151,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addDevice:" destination="U11-Qf-USh" eventType="touchUpInside" id="yhV-Cs-338"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -168,6 +171,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="KRf-KU-hu0"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="numField" destination="jZt-7w-nCo" id="ff8-nR-mfz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lc3-NZ-ccQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,6 +9,7 @@
 #import "CAPAddTrackerViewController.h"
 
 @interface CAPAddTrackerViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *numField;
 
 @end
 
@@ -17,6 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (IBAction)addDevice:(UIButton *)sender {
+    if (self.numField.text.length != 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+        !self.inputSuccessBlock ? : self.inputSuccessBlock(self.numField.text);
+    }
 }
 
 - (void)didReceiveMemoryWarning {

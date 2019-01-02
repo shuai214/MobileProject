@@ -58,8 +58,8 @@ AppConfig* gCfg = nil;
     
     _appStoreLink = @"https://itunes.apple.com/cn/app/data-steward/id1316811650?mt=8";
 //    _rootURLString = (_isBuild ? @"https://GPSTracker.capelabs.net/GPSTracker/v1/" : @"https://GPSTracker.capelabs.cn/GPSTracker/v1/");
-//    _rootURLString = @"https://api.kvtel.com/smartiot/v1/";
-    _rootURLString = @"https://iot.capelabs.net/trueiot/v1/";
+    _rootURLString = @"https://api.kvtel.com/smartiot/v1/";
+//    _rootURLString = @"https://iot.capelabs.net/trueiot/v1/";
 }
 
 - (void)setBurnAfterBackup:(BOOL)isBurn {

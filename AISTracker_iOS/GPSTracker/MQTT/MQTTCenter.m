@@ -58,7 +58,7 @@
         self.session.password = config.password;
         self.session.clientId = config.clientID;
         self.session.keepAliveInterval = config.keepAliveInterval;
-
+        self.session.willQoS = MQTTQosLevelAtLeastOnce;
         self.config = config;
         if(!self.infoDictionary) {
             self.infoDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];

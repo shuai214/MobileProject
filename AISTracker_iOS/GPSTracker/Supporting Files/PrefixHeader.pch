@@ -15,7 +15,7 @@
 #import <SDWebImage/SDImageCache.h>
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
-
+#import "NSString+formateTime.h"
 #import "CAPMacros.h"
 #import "CAPViews.h"
 #import "CAPUserDefaults.h"

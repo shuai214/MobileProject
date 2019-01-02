@@ -11,6 +11,15 @@
 
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {
     //TODO
+//    NSDictionary *params = @{
+//                             @"uuid": deviceID
+//                             };
+    if (deviceID) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/RecentLocation/" stringByAppendingString:deviceID] method:@"GET" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)fetchDevice:(CAPServiceReply)reply {

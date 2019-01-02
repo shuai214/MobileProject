@@ -65,14 +65,16 @@
         }
         CGSize size = self.frame.size;
         CGFloat width = size.width/6;
-        CGFloat height = size.height;
+        CGFloat height = width;
         self.scrollView.contentSize = CGSizeMake(width * self.devices.count, height);
         for(int i=0; i<self.devices.count + 1; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
+            button.layer.cornerRadius = width / 2;
+            button.layer.masksToBounds = YES;
             button.tag = i;
             if (i != 0) {
                 CAPDevice *device = self.devices[i - 1];
-//                [button sd_setImageWithURL:[NSURL URLWithString:device] forState:<#(UIControlState)#>]
+                [button sd_setImageWithURL:[NSURL URLWithString:device.setting.avatar.url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"tracker_phone"]];
             }else{
                 [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
             }

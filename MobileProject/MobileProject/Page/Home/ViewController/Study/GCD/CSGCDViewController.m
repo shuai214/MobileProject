@@ -31,23 +31,23 @@
 //        NSLog(@"888");
 //    });
     
-//    dispatch_queue_t squeue = dispatch_queue_create("""", DISPATCH_QUEUE_CONCURRENT);
-//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-//    dispatch_async(squeue, ^{
-//        NSLog(@"11");
-//        NSLog(@"22");
-//        NSLog(@"33");
-//        NSLog(@"44");
-//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//    });
-//    dispatch_barrier_async(squeue, ^{
-////        [self dispatchSignal];
-//
-//        NSLog(@"55");
-//        NSLog(@"66");
-//        NSLog(@"77");
-//        NSLog(@"88");
-//    });
+    dispatch_queue_t squeue = dispatch_queue_create("""", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_async(squeue, ^{
+        NSLog(@"11");
+        NSLog(@"22");
+        NSLog(@"33");
+        NSLog(@"44");
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW);
+    });
+    dispatch_barrier_async(squeue, ^{
+//        [self dispatchSignal];
+
+        NSLog(@"55");
+        NSLog(@"66");
+        NSLog(@"77");
+        NSLog(@"88");
+    });
     
 //    [self dispatchSignal];
     
@@ -56,7 +56,8 @@
 //    selector 任务
 //    [NSThread detachNewThreadSelector:@selector(syncMain) toTarget:self withObject:nil];
     
-    [self barrier];
+//    [self asyncMain];
+//    [self dispatchSignal];
 }
 
 /**
@@ -346,40 +347,40 @@
     
     dispatch_async(queue, ^{
         // 追加任务1
-        for (int i = 0; i < 2; ++i) {
+//        for (int i = 0; i < 2; ++i) {
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
-        }
+//        }
     });
     dispatch_async(queue, ^{
         // 追加任务2
-        for (int i = 0; i < 2; ++i) {
+//        for (int i = 0; i < 2; ++i) {
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
-        }
+//        }
     });
     
     dispatch_barrier_async(queue, ^{
         // 追加任务 barrier
-        for (int i = 0; i < 2; ++i) {
+//        for (int i = 0; i < 2; ++i) {
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"barrier---%@",[NSThread currentThread]);// 打印当前线程
-        }
+//        }
     });
     
     dispatch_async(queue, ^{
         // 追加任务3
-        for (int i = 0; i < 2; ++i) {
+//        for (int i = 0; i < 2; ++i) {
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
-        }
+//        }
     });
     dispatch_async(queue, ^{
         // 追加任务4
-        for (int i = 0; i < 2; ++i) {
+//        for (int i = 0; i < 2; ++i) {
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"4---%@",[NSThread currentThread]);      // 打印当前线程
-        }
+//        }
     });
 }
 /**
