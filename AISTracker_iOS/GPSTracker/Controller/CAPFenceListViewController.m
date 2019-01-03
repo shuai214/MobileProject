@@ -9,8 +9,11 @@
 #import "CAPFenceListViewController.h"
 #import "CAPAddFenceViewController.h"
 #import "CAPFenceService.h"
-@interface CAPFenceListViewController ()
-
+#import "CAPFenceList.h"
+#import "CAPFenceListTableViewCell.h"
+@interface CAPFenceListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)CAPFenceList *fenceList;
+@property (weak, nonatomic) IBOutlet UITableView *fenceListTableView;
 @end
 
 @implementation CAPFenceListViewController
@@ -20,6 +23,10 @@
     // Do any additional setup after loading the view.
     self.title = @"围栏";
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
+    self.fenceListTableView.delegate = self;
+    self.fenceListTableView.dataSource = self;
+    self.fenceListTableView.rowHeight = 105;
+    self.fenceListTableView.tableFooterView = [UIView new];
     [self getFenceList];
 }
 
@@ -27,25 +34,35 @@
     CAPFenceService *fenceService = [[CAPFenceService alloc] init];
     [fenceService fetchFence:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
+        self.fenceList = [CAPFenceList mj_objectWithKeyValues:response.data];
+        [self.fenceListTableView reloadData];
     }];
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.fenceList.result.list.count;
 }
-*/
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"FenceListTableViewCell";
+
+    CAPFenceListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"CAPFenceListTableViewCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    List *list = self.fenceList.result.list[indexPath.row];
+    [cell setListData:list];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 - (void)refreshLocalizedString {
     
 }
