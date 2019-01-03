@@ -37,7 +37,7 @@ typedef void (^CAPAlertEditBlock)(NSString * _Nullable text);
 
 + (void)alertDetail:(NSArray * _Nullable)keys values:(NSArray * _Nullable)values actionBlock:(CAPAlertActionBlock)action;
 
-+ (void)alertEdit:(UIViewController *_Nonnull)vc title:(NSString *_Nullable)title  defaultText:(NSString *_Nullable)defaultText  placeholder:(NSString *_Nullable)placeholder actionBlock:(CAPAlertEditBlock _Nullable)action;
++ (void)alertEdit:(UIViewController *_Nonnull)vc title:(NSString *_Nullable)title subTitle:(NSString *)subtitle defaultText:(NSString *_Nullable)defaultText  placeholder:(NSString *_Nullable)placeholder actionBlock:(CAPAlertEditBlock _Nullable)action;
 
 + (void)alertCustomViews:(NSArray *_Nullable)views actionBlock:(CAPAlertActionBlock _Nullable)action;
 + (void)hideAnyAlert;

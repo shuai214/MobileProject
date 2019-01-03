@@ -9,6 +9,7 @@
 #import "CAPMasterSettingViewController.h"
 #import "CAPBatteryView.h"
 #import "CAPEditNameViewController.h"
+#import "CAPDeviceService.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -32,10 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"设备详情";
     self.titles = @[@"Name", @"Guardian", @"Update Frequency",
                     @"Untether", @"Firmware version"];
-    self.details = @[@"Baobao", @"", @"1 Hour", @"", @"V1.7.05"];
+    self.details = @[self.device.name, @"", [NSString dateFormateWithTimeInterval:self.device.createdDate], @"", @"V1.7.05"];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -45,10 +46,17 @@
     UIImage *avatar =GetImage(@"ic_default_avatar");
     
     [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
+    self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device.deviceID];
+}
+- (void)loadDeviceInfo{
+    
 }
 
 - (void)refreshLocalizedString {
-    
+//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    [deviceService fetchDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
+//         CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+//    }];
 }
 
 #pragma mark - UITableViewDataSource

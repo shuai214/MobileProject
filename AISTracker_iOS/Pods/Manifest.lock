@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BRPickerView (2.2.1)
   - Bugly (2.4.8)
   - CRToast (0.0.9)
   - GoogleMaps (2.7.0):
@@ -46,6 +47,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - BRPickerView (~> 2.2.1)
   - Bugly (~> 2.4.8)
   - CRToast (~> 0.0.7)
   - GoogleMaps (~> 2.7.0)
@@ -63,6 +65,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - BRPickerView
     - Bugly
     - CRToast
     - GoogleMaps
@@ -79,6 +82,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BRPickerView: 0590a8c5de9bd98c6b4e4f117a3dff6de287d5b2
   Bugly: da3c02408c14838d498429320545a8e439392978
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
@@ -93,6 +97,6 @@ SPEC CHECKSUMS:
   SCLAlertView-Objective-C: 917836fb2349afa58edc43d592d22d21d46bb2a4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 4d0121b7993a73023360a48aabf308fa0922d8e9
+PODFILE CHECKSUM: 5e30fc2ab5bda96c1de3674de3ce76cf875d98d2
 
 COCOAPODS: 1.5.3

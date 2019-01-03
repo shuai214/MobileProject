@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.titles = @[@"Name", @"Guardian", @"Update Frequency",
                     @"Untether", @"Firmware version"];
     self.tableView.dataSource = self;
@@ -30,6 +31,10 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     NSLog(@"%@",self.navigationController);
 }
+
+
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

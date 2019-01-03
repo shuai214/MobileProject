@@ -210,6 +210,7 @@
 
 - (void)handleInfo:(MQTTInfo *)info {
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
+    [self.infoDictionary setObject:info forKey:info.deviceID];
 }
 
 #pragma mark - MQTTSessionDelegate

@@ -30,9 +30,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"11--11");
-}
 
 - (void)setup {
     self.userInteractionEnabled = YES;

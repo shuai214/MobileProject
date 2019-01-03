@@ -7,6 +7,9 @@
 //
 
 #import "CAPPhotographViewController.h"
+#import "CAPPhotoService.h"
+#import "AppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface CAPPhotographViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -45,7 +48,23 @@
     
 }
 
+- (void)setDevice:(CAPDevice *)device{
+    if (_device != device) {
+        _device = device;
+    }
+}
+
 - (IBAction)onCameraButtonClicked:(id)sender {
+    CAPPhotoService *photoService = [[CAPPhotoService alloc] init];
+    [photoService takingPicturesWithDeviceID:self.device.deviceID Reply:^(id response) {
+        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
+        NSDictionary *dataDic = httpResponse.data;
+        if ([[dataDic objectForKey:@"code"] integerValue] == 200) {
+            [gApp showHUD:[dataDic objectForKey:@"message"]];
+            
+        }
+        
+    }];
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "CAPFenceListViewController.h"
-
+#import "CAPAddFenceViewController.h"
+#import "CAPFenceService.h"
 @interface CAPFenceListViewController ()
 
 @end
@@ -17,7 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"栅栏";
+    self.title = @"围栏";
+    [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
+    [self getFenceList];
+}
+
+- (void)getFenceList{
+    CAPFenceService *fenceService = [[CAPFenceService alloc] init];
+    [fenceService fetchFence:self.device.deviceID reply:^(CAPHttpResponse *response) {
+        NSLog(@"%@",response);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,5 +49,9 @@
 - (void)refreshLocalizedString {
     
 }
-
+- (void)onAddButtonClicked:(id)sender {
+    CAPAddFenceViewController *addFence = [[CAPAddFenceViewController alloc] init];
+    addFence.device = self.device;
+    [self.navigationController pushViewController:addFence animated:YES];
+}
 @end

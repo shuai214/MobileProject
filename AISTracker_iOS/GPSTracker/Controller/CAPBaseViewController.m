@@ -83,7 +83,7 @@
 
 - (void)setRightBarImageButton:(NSString *_Nonnull)imageName action:(nullable SEL)action {
 //    self.tabBarController.navigationController.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
-    self.tabBarController.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
+    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:imageName target:self action:action]];
 }
 
 - (void)showBackBarItem {

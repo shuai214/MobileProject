@@ -16,6 +16,10 @@
 #import "MQTTCenter.h"
 #import "CAPDeviceRecentLocation.h"
 #import <GooglePlaces/GooglePlaces.h>
+#import "CAPPhotographViewController.h"
+#import "CAPMasterSettingViewController.h"
+#import "CAPFenceListViewController.h"
+#import "UIView+Frame.h"
 @import GoogleMaps;
 
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
@@ -27,6 +31,10 @@
 @property (weak, nonatomic) IBOutlet CAPDeviceListView *deviceListView;
 
 @property (weak, nonatomic) IBOutlet CAPTrackerView *trackerView;
+
+@property (assign,nonatomic)CGRect rectTrackerView;
+@property (assign,nonatomic)CGRect rectDeviceListView;
+@property (strong,nonatomic)CAPDevice *currentDevice;
 
 @end
 
@@ -40,17 +48,20 @@
 
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
 //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
-    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
-    NSLog(@"%@",self.navigationController);
+//    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
     
-    CGRect rect = self.deviceListView.frame;
-    rect.size.width = self.view.frame.size.width;
-    self.deviceListView.frame = rect;
+//    CGRect rect = self.deviceListView.frame;
+//    rect.size.width = self.view.frame.size.width;
+//    self.deviceListView.frame = rect;
     self.deviceListView.userInteractionEnabled = YES;
     self.deviceListView.delegate = self;
+    self.rectDeviceListView = self.deviceListView.frame;
     
+    self.rectTrackerView = self.trackerView.frame;
     self.trackerView.frame = self.view.frame;
     self.trackerView.delegate = self;//0x10683b800
+    
+    NSLog(@"%@ -- %@ - %@ - %@" ,self.trackerView,self.deviceListView,NSStringFromCGRect(self.rectTrackerView),NSStringFromCGRect(self.rectDeviceListView));
     
     self.mapView.delegate = self;
     self.mapView.indoorEnabled = NO;
@@ -90,6 +101,7 @@
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
         NSLog(@"%@",deviceLists);
         self.deviceListView.devices = deviceLists.result.list;
+        self.currentDevice = self.deviceListView.devices.firstObject;
         [self getDeviceLocation:self.deviceListView.devices.firstObject];
     }];
 }
@@ -124,17 +136,27 @@
     }
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+   
     /**
      * 位置更新时调用
      */
     CLLocation *curLocation = [locations lastObject];
     // 通过location  或得到当前位置的经纬度
-    CLLocationCoordinate2D curCoordinate2D = curLocation.coordinate;
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:curCoordinate2D.latitude longitude:curCoordinate2D.longitude zoom:15];
+    GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:curLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
     self.mapView.camera = camera;
     [self.locationManager stopUpdatingLocation];//定位成功后停止定位
 }
-
+- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position{
+    
+    //反向地理编码
+    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:position.target completionHandler:^(GMSReverseGeocodeResponse * response, NSError * error) {
+        if (response.results) {
+            GMSAddress *address = response.results[0];
+            NSLog(@"%@",address.thoroughfare);
+            
+        }
+    }];
+}
 - (void)refreshLocalizedString {
     
 }
@@ -147,28 +169,48 @@
 -(void)didSelectDeviceAtIndex:(NSUInteger)index {
     NSLog(@"didSelectDeviceAtIndex: %lu", (unsigned long)index);
     if (index != 0) {
+        [UIView animateWithDuration:0.37 animations:^{
+            self.trackerView.frame = self.rectTrackerView;
+            self.deviceListView.frame = self.rectDeviceListView;
+        }];
         CAPDevice *device = self.deviceListView.devices[index-1];
+        self.currentDevice = device;
         [self getDeviceLocation:device];
     }else{
-        
+        [UIView animateWithDuration:0.37 animations:^{
+            [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+            [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+        }];
     }
 }
 
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {
     switch (action) {
         case CAPTrackerViewActionFence:
-            [self performSegueWithIdentifier:@"fence.list.segue" sender:nil];
+//            [self performSegueWithIdentifier:@"fence.list.segue" sender:nil];
+        {CAPFenceListViewController *fenceList = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"FenceListViewController"];
+            fenceList.device = self.currentDevice;
+            [self.navigationController pushViewController:fenceList animated:YES];
+        }
             break;
         case CCAPTrackerViewActionFootprint:
             [self performSegueWithIdentifier:@"footprint.segue" sender:nil];
             break;
         case CAPTrackerViewActionPhotograph:
-            [self performSegueWithIdentifier:@"photograph.segue" sender:nil];
+//            [self performSegueWithIdentifier:@"photograph.segue" sender:nil];
+        {CAPPhotographViewController *photograph = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotographViewController"];
+            photograph.device = self.currentDevice;
+            [self.navigationController pushViewController:photograph animated:YES];
+        }
             break;
         case CAPTrackerViewActionNavigation:
             break;
         case CAPTrackerViewActionSetting:
-            [self performSegueWithIdentifier:@"master.setting.segue" sender:nil];
+//            [self performSegueWithIdentifier:@"master.setting.segue" sender:nil];
+        {CAPMasterSettingViewController *masterSetting = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"MasterSettingViewController"];
+            masterSetting.device = self.currentDevice;
+            [self.navigationController pushViewController:masterSetting animated:YES];
+        }
             break;
         default:
             break;

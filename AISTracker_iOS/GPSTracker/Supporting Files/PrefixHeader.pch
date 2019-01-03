@@ -24,5 +24,7 @@
 #import "CAPPhones.h"
 #import "CAPNotifications.h"
 #import "NSString+Size.h"
-
+#import <BRPickerView/BRPickerView.h>
+#import "AppDelegate.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #endif /* PrefixHeader_pch */

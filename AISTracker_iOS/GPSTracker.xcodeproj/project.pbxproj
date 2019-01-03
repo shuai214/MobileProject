@@ -619,8 +619,6 @@
 		EF79BB4C218860C0000358FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
-				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
 				EFD0AC8A218C3E0F00405FD8 /* CAPAddTrackerViewController.h */,
 				EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */,
 				EFD0AC81218C3CE500405FD8 /* CAPBaseViewController.h */,
@@ -633,6 +631,8 @@
 				EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */,
 				EFD0AC96218C3E6C00405FD8 /* CAPFenceListViewController.h */,
 				EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */,
+				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
+				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
 				EFD0AC99218C3E7800405FD8 /* CAPFootprintViewController.h */,
 				EFD0AC9A218C3E7800405FD8 /* CAPFootprintViewController.m */,
 				EFD0AC9C218C3E9700405FD8 /* CAPGuardianInvitationViewController.h */,
@@ -1299,6 +1299,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh",
+				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
@@ -1307,6 +1308,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",

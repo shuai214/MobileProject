@@ -10,13 +10,13 @@
 
 @implementation CAPPhotoService
 
-- (void)takingPicturesReply:(CAPServiceReply)reply{
+- (void)takingPicturesWithDeviceID:(NSString *)deviceID Reply:(CAPServiceReply)reply{
     //TODO
     
-    NSDictionary *params = @{
-                             @"uuid": @""
-                             };
-    CAPHttpRequest *request = [self buildRequest:@"Device/Device" method:@"POST" parameters:params];
+//    NSDictionary *params = @{
+//                             @"uuid":deviceID
+//                             };
+    CAPHttpRequest *request = [self buildRequest:[@"Device/Photo/" stringByAppendingString:deviceID] method:@"POST" parameters:nil];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {
         reply(response);
     }];
