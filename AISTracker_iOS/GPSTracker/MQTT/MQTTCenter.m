@@ -58,6 +58,7 @@
         self.session.password = config.password;
         self.session.clientId = config.clientID;
         self.session.keepAliveInterval = config.keepAliveInterval;
+        self.session.willQoS = MQTTQosLevelAtLeastOnce;
         self.config = config;
         if(!self.infoDictionary) {
             self.infoDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -209,6 +210,7 @@
 
 - (void)handleInfo:(MQTTInfo *)info {
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
+    [self.infoDictionary setObject:info forKey:info.deviceID];
 }
 
 #pragma mark - MQTTSessionDelegate
@@ -228,6 +230,7 @@
             break;
         case MQTTSessionEventConnectionClosed:
             NSLog(@"MQTTSessionEventConnectionClosed");
+            [self.session connect];
             break;
         case MQTTSessionEventConnectionError:
             NSLog(@"MQTTSessionEventConnectionError");

@@ -7,12 +7,12 @@
 //
 
 #import "CAPPairViewController.h"
+#import "CAPTrackerViewController.h"
 #import "CAPScanViewController.h"
 #import "CAPAddTrackerViewController.h"
 #import "CAPDevice.h"
 #import "CAPDeviceService.h"
 #import "MQTTCenter.h"
-#import "NSString+Size.h"
 @interface CAPPairViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
@@ -24,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"%@",self.navigationController.viewControllers);
+
     [self setTitle:NSLocalizedString(@"tether", nil)];
 //    [self.infoLabel setText:NSLocalizedString(@"tether", nil)];
 //    [self.scanButton setTitle:NSLocalizedString(@"scan", nil) forState:UIControlStateNormal];
@@ -52,30 +53,9 @@
 - (IBAction)onScanButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"scan.segue" sender:nil];
     CAPScanViewController *ScanVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"ScanViewController"];
-
+    CAPWeakSelf(self);
     [ScanVC setScanSuccessBlock:^(NSString *successStr) {
-        [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",successStr] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
-            CAPDevice *device = [[CAPDevice alloc] init];
-            [device setDeviceID:successStr];
-            [device setName:successStr];
-            CAPDeviceService *service = [[CAPDeviceService alloc] init];
-            [service addDevice:device reply:^(CAPHttpResponse *response) {
-                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-                MQTTCenter *mqttCenter = [MQTTCenter center];
-                MQTTConfig *config = [[MQTTConfig alloc] init];
-                config.host = @"mqtt.kvtel.com";
-                config.port = 1883;
-                config.username = @"demo_app";
-                config.password = @"demo_890_123_654";
-                config.userID = [CAPUserDefaults objectForKey:@"userID"];
-                config.keepAliveInterval = 20;
-                config.deviceType = MQTTDeviceTypeApp;
-                config.clientID = [getDevice.deviceID stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
-                [mqttCenter open:config];
-                [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
-                
-            }];
-        }];
+        [weakself addDeviceService:successStr];
     }];
     [self.navigationController pushViewController:ScanVC animated:YES];
 }
@@ -83,8 +63,28 @@
 - (IBAction)onNumberButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"number.segue" sender:nil];
     CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
+    CAPWeakSelf(self);
+    [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
+        [weakself addDeviceService:successStr];
+    }];
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
-    
+}
 
+- (void)addDeviceService:(NSString *)deviceNum{
+    [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",deviceNum] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
+        CAPDevice *device = [[CAPDevice alloc] init];
+        [device setDeviceID:deviceNum];
+        [device setName:deviceNum];
+        CAPDeviceService *service = [[CAPDeviceService alloc] init];
+        [service addDevice:device reply:^(CAPHttpResponse *response) {
+            CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+            [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+            if ([self.navigationController.viewControllers.firstObject isKindOfClass:[CAPTrackerViewController class]]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [self performSegueWithIdentifier:@"main.segue" sender:nil];
+            }
+        }];
+    }];
 }
 @end

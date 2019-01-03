@@ -15,8 +15,6 @@
 {
     return @{@"avatar": @"CAPFileItem"};
 }
-
-
 @end
 
 @implementation CAPDevice

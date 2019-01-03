@@ -11,6 +11,15 @@
 
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {
     //TODO
+//    NSDictionary *params = @{
+//                             @"uuid": deviceID
+//                             };
+    if (deviceID) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/RecentLocation/" stringByAppendingString:deviceID] method:@"GET" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)fetchDevice:(CAPServiceReply)reply {
@@ -43,10 +52,18 @@
 
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
     //TODO
+    CAPHttpRequest *request = [self buildRequest:[@"Device/Device" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply(response);
+    }];
 }
 
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
     //TODO
+    CAPHttpRequest *request = [self buildRequest:[@"Device/Device" stringByAppendingString:device.deviceID] method:@"DELETE" parameters:nil];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply(response);
+    }];
 }
 
 - (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply {

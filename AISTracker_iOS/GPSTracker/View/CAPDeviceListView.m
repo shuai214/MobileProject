@@ -30,9 +30,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"11--11");
-}
 
 - (void)setup {
     self.userInteractionEnabled = YES;
@@ -65,12 +62,19 @@
         }
         CGSize size = self.frame.size;
         CGFloat width = size.width/6;
-        CGFloat height = size.height;
+        CGFloat height = width;
         self.scrollView.contentSize = CGSizeMake(width * self.devices.count, height);
         for(int i=0; i<self.devices.count + 1; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
+            button.layer.cornerRadius = width / 2;
+            button.layer.masksToBounds = YES;
             button.tag = i;
-            [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
+            if (i != 0) {
+                CAPDevice *device = self.devices[i - 1];
+                [button sd_setImageWithURL:[NSURL URLWithString:device.setting.avatar.url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"tracker_phone"]];
+            }else{
+                [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
+            }
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
         }
@@ -78,6 +82,7 @@
         self.scrollView.contentSize = CGSizeMake(0, 0);
     }
 }
+
 
 - (void)onDeviceClicked:(UIButton *)button {
     if(self.delegate) {

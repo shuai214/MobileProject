@@ -14,11 +14,17 @@
 #import <MJExtension.h>
 #import <SDWebImage/SDImageCache.h>
 #import <UIImageView+WebCache.h>
-
+#import <UIButton+WebCache.h>
+#import "NSString+formateTime.h"
 #import "CAPMacros.h"
 #import "CAPViews.h"
 #import "CAPUserDefaults.h"
 #import "CAPAlerts.h"
 #import "AppConfig.h"
+#import "CAPPhones.h"
 #import "CAPNotifications.h"
+#import "NSString+Size.h"
+#import <BRPickerView/BRPickerView.h>
+#import "AppDelegate.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #endif /* PrefixHeader_pch */

@@ -233,7 +233,7 @@
     [alert showNotice:NSLocalizedString(@"notice", nil) subTitle:message closeButtonTitle:nil duration:0.0f];
 }
 
-+ (void)alertEdit:(UIViewController *)vc title:(NSString *)title  defaultText:(NSString *)defaultText placeholder:(NSString *)placeholder actionBlock:(CAPAlertEditBlock)action {
++ (void)alertEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subtitle defaultText:(NSString *)defaultText placeholder:(NSString *)placeholder actionBlock:(CAPAlertEditBlock)action {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     SCLTextView *textField = [alert addTextField:placeholder];
@@ -248,7 +248,7 @@
     }];
     okButton.accessibilityIdentifier = @"alert_ok_button";
     
-    [alert showEdit:vc title:title subTitle:@"" closeButtonTitle:NSLocalizedString(@"cancel", nil) duration:0.0f];
+    [alert showEdit:vc title:title subTitle:subtitle closeButtonTitle:NSLocalizedString(@"cancel", nil) duration:0.0f];
 }
 
 + (void)alertCustomViews:(NSArray *)views actionBlock:(CAPAlertActionBlock)action {

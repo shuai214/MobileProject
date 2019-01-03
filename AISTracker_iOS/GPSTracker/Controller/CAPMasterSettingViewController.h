@@ -7,7 +7,10 @@
 //
 
 #import "CAPBaseViewController.h"
+#import "CAPDevice.h"
 
 @interface CAPMasterSettingViewController : CAPBaseViewController
+
+@property(nonatomic,strong)CAPDevice *device;
 
 @end

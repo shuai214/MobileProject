@@ -13,7 +13,7 @@
         <!--Master Setting View Controller-->
         <scene sceneID="zPG-rS-VIT">
             <objects>
-                <viewController id="V4x-c6-7hB" customClass="CAPMasterSettingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MasterSettingViewController" id="V4x-c6-7hB" customClass="CAPMasterSettingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xdm-qw-oFM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

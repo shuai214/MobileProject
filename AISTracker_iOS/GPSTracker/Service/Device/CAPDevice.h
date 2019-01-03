@@ -55,7 +55,7 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, assign) NSString *sos;
 @property (nonatomic, assign) NSString *mobile;
 
-//@property (nonatomic, strong) CAPDeviceSetting *setting;
+@property (nonatomic, strong) CAPDeviceSetting *setting;
 //@property (nonatomic, strong) CAPFootprint *footprint;
 @property (nonatomic, assign, readonly) BOOL isMaster;
 @end

@@ -12,6 +12,8 @@
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
 		2BCC774B21D4D96E00A63433 /* CAPMessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC774A21D4D96E00A63433 /* CAPMessageListTableViewCell.m */; };
+		2BECD33121D86E5C00EEBFCD /* CAPDeviceRecentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD33021D86E5C00EEBFCD /* CAPDeviceRecentLocation.m */; };
+		2BECD33421D89CDE00EEBFCD /* NSString+formateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BECD33321D89CDE00EEBFCD /* NSString+formateTime.m */; };
 		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
 		EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE012193C596006A8AE1 /* CAPTabBarController.m */; };
 		EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF12AE032193C915006A8AE1 /* CAPWeekView.xib */; };
@@ -197,6 +199,10 @@
 		2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeBackgroundView.m; sourceTree = "<group>"; };
 		2BCC774921D4D96E00A63433 /* CAPMessageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMessageListTableViewCell.h; sourceTree = "<group>"; };
 		2BCC774A21D4D96E00A63433 /* CAPMessageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMessageListTableViewCell.m; sourceTree = "<group>"; };
+		2BECD32F21D86E5C00EEBFCD /* CAPDeviceRecentLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceRecentLocation.h; sourceTree = "<group>"; };
+		2BECD33021D86E5C00EEBFCD /* CAPDeviceRecentLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceRecentLocation.m; sourceTree = "<group>"; };
+		2BECD33221D89CDE00EEBFCD /* NSString+formateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+formateTime.h"; sourceTree = "<group>"; };
+		2BECD33321D89CDE00EEBFCD /* NSString+formateTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+formateTime.m"; sourceTree = "<group>"; };
 		46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -613,8 +619,6 @@
 		EF79BB4C218860C0000358FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
-				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
 				EFD0AC8A218C3E0F00405FD8 /* CAPAddTrackerViewController.h */,
 				EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */,
 				EFD0AC81218C3CE500405FD8 /* CAPBaseViewController.h */,
@@ -627,6 +631,8 @@
 				EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */,
 				EFD0AC96218C3E6C00405FD8 /* CAPFenceListViewController.h */,
 				EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */,
+				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
+				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
 				EFD0AC99218C3E7800405FD8 /* CAPFootprintViewController.h */,
 				EFD0AC9A218C3E7800405FD8 /* CAPFootprintViewController.m */,
 				EFD0AC9C218C3E9700405FD8 /* CAPGuardianInvitationViewController.h */,
@@ -979,6 +985,8 @@
 				EFD0AD17218C4F7100405FD8 /* UITableView+CAP.m */,
 				EFD0AD18218C4F7200405FD8 /* UIView+Frame.h */,
 				EFD0AD1B218C4F7200405FD8 /* UIView+Frame.m */,
+				2BECD33221D89CDE00EEBFCD /* NSString+formateTime.h */,
+				2BECD33321D89CDE00EEBFCD /* NSString+formateTime.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -996,6 +1004,8 @@
 				EFD0ACF6218C47D900405FD8 /* CAPDeviceService.m */,
 				EF46F27F2192991A009A357C /* CAPFootprint.h */,
 				EF46F2802192991A009A357C /* CAPFootprint.m */,
+				2BECD32F21D86E5C00EEBFCD /* CAPDeviceRecentLocation.h */,
+				2BECD33021D86E5C00EEBFCD /* CAPDeviceRecentLocation.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -1289,6 +1299,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh",
+				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
@@ -1297,6 +1308,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
@@ -1337,6 +1349,7 @@
 				EFD0ACA4218C3EAB00405FD8 /* CAPGuestSettingViewController.m in Sources */,
 				EF7BE568218845AD00562EE9 /* main.m in Sources */,
 				2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */,
+				2BECD33421D89CDE00EEBFCD /* NSString+formateTime.m in Sources */,
 				EFD0ACB3218C3EF800405FD8 /* CAPPhotoListViewController.m in Sources */,
 				EF6CA6AE218EA3620014771E /* CAPApplication.m in Sources */,
 				EFD0ACEA218C46A500405FD8 /* CAPPhones.m in Sources */,
@@ -1429,6 +1442,7 @@
 				EFD0AD00218C47D900405FD8 /* CAPHttpRequest.m in Sources */,
 				EFD0ACAD218C3EDA00405FD8 /* CAPPairViewController.m in Sources */,
 				EFD0ACA7218C3EB500405FD8 /* CAPLanguageViewController.m in Sources */,
+				2BECD33121D86E5C00EEBFCD /* CAPDeviceRecentLocation.m in Sources */,
 				EF46F28921929BCA009A357C /* CAPPhotoService.m in Sources */,
 				EFD0ACB9218C41F100405FD8 /* CAPTrackerViewController.m in Sources */,
 				EF6CA6A2218D84350014771E /* CAPMapPresenter.m in Sources */,

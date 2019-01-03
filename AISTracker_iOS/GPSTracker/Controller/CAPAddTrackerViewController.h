@@ -9,5 +9,6 @@
 #import "CAPBaseViewController.h"
 
 @interface CAPAddTrackerViewController : CAPBaseViewController
+@property (nonatomic, copy) void (^inputSuccessBlock)(NSString *successStr);
 
 @end

@@ -41,4 +41,7 @@
 //整个导航栏高度
 #define TopHeight (Application_StatusBar_Height + TopNavBarHeight)
 
+//弱引用/强引用  可配对引用在外面用MPWeakSelf(self)，block用MPStrongSelf(self)  也可以单独引用在外面用MPWeakSelf(self) block里面用weakself
+#define CAPWeakSelf(type)  __weak typeof(type) weak##type = type;
+#define CAPStrongSelf(type)  __strong typeof(type) type = weak##type;
 #endif /* CAPMacros_h */

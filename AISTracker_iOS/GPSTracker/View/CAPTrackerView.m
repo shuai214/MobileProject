@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *photographButton;
 @property (weak, nonatomic) IBOutlet UIButton *navigationButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingButton;
+@property (weak, nonatomic) IBOutlet UILabel *DeviceName;
+@property (weak, nonatomic) IBOutlet UILabel *DeviceLocation;
+@property (weak, nonatomic) IBOutlet UILabel *updateTime;
 
 @end
 
@@ -40,7 +43,11 @@
     [super setFrame:frame];
     self.contentView.frame = self.bounds;
 }
-
+- (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location{
+    self.DeviceName.text = device.name;
+    self.DeviceLocation.text = location;
+    self.updateTime.text = [NSString stringWithFormat:@"更新时间：%@",[NSString dateFormateWithTimeInterval:device.createdDate]];
+}
 //- (void)layoutSubviews {
 //    [super layoutSubviews];
 //    [self.contentView layoutSubviews];
