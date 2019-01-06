@@ -8,11 +8,16 @@
 
 #import "CAPMessageListViewController.h"
 #import "CAPMessageListTableViewCell.h"
+#import "CAPDeviceService.h"
+#import "CAPDeviceLogs.h"
+#import "MJRefresh.h"
 @interface CAPMessageListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listData;
 @property (strong, nonatomic) UIView *editingView;
 @property (assign , nonatomic)CGFloat tableHeight;
+@property (strong, nonatomic) CAPDeviceLogs *deviceLogs;
+@property (assign , nonatomic)NSInteger page;
 @end
 
 @implementation CAPMessageListViewController
@@ -20,22 +25,73 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"消息";
     self.tableHeight = self.tableView.frame.size.height;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc]init];
-    [self loadData];
+    
     [self layoutSubviews];
     [self.tableView reloadData];
     [self.view addSubview:self.editingView];
-}
-- (void)loadData
-{
+    
     self.listData = [NSMutableArray array];
-    for (int i = 0; i < 40 ; i++) {
-        [self.listData addObject:@(i)];
+    self.page = 0;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
     }
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = footer;
+    [footer setTitle:@"正在加载中" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    footer.stateLabel.font = [UIFont systemFontOfSize:15.0f];
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    header.automaticallyChangeAlpha = YES;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 马上进入刷新状态
+    [header beginRefreshing];
+    // 设置header
+    self.tableView.mj_header = header;
+}
+- (void)loadNewData{
+    self.listData = [NSMutableArray array];
+    self.page = 0;
+    [self loadData:NO];
+}
+
+- (void)loadMoreData{
+    [self loadData:YES];
+}
+
+- (void)loadData:(BOOL)isLoadMore;
+{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService getDeviceLogs:@"0" page:self.page reply:^(CAPHttpResponse *response) {
+        self.deviceLogs = [CAPDeviceLogs mj_objectWithKeyValues:response.data];
+        NSLog(@"%@",response);
+        [self.listData addObjectsFromArray:self.deviceLogs.result.list];
+        if (!isLoadMore) {
+            self.page = 1;
+            self.tableView.mj_footer.hidden = NO;
+        }else{
+            if (self.page == (self.deviceLogs.result.pages - 1)) {
+                self.tableView.mj_footer.hidden = YES;
+            }else{
+                self.page ++;
+            }
+        }
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 - (void)layoutSubviews
 {
@@ -80,8 +136,18 @@
     {
         cell = [[CAPMessageListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"第%ld条",(long)indexPath.row + 1];
-    
+    ListLog *list = self.listData[indexPath.row];
+//    if (list.logContent.data) {
+//        NSData *_decodedImageData   = [[NSData alloc] initWithBase64Encoding:list.logContent.data];
+//        UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];
+//        [cell.imageView setImage:_decodedImage];
+//    }else{
+//        [cell.imageView setImage:nil];
+//    }
+    NSString *time = [NSString dateFormateWithTimeInterval:list.createdAt];
+    cell.detailTextLabel.text = list.logContent.deviceID;
+    cell.textLabel.text = time;
+
     return cell;
 }
 

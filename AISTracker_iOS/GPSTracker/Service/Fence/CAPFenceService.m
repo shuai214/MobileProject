@@ -10,16 +10,18 @@
 
 @implementation CAPFenceService
 - (void)fetchFence:(NSString *)deviceID reply:(CAPServiceReply)reply {
-    CAPHttpRequest *request = [self buildRequest:[@"Fence/Fences/" stringByAppendingString:deviceID] method:@"GET"];
-    [self sendRequest:request reply:^(CAPHttpResponse *response) {
-        reply(response);
-    }];
+    if (deviceID) {
+        CAPHttpRequest *request = [self buildRequest:[@"Fence/Fences/" stringByAppendingString:deviceID] method:@"GET"];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)addFence:(CAPFence *)fence reply:(CAPServiceReply)reply {
     NSString *lat = [NSString stringWithFormat:@"%lf",fence.latitude];
     NSString *lng = [NSString stringWithFormat:@"%lf",fence.longitude];
-    NSString *range = [NSString stringWithFormat:@"%ld",fence.range];
+    NSString *range = [NSString stringWithFormat:@"%ld",(long)fence.range];
     NSDictionary *params = @{
                              @"name":fence.name,
                              @"address": fence.address,

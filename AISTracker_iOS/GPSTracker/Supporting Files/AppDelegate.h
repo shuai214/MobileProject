@@ -39,7 +39,7 @@ typedef void (^CAPHUDCancelReply)();
 - (void)showHUDWithCancel;
 
 - (void)updateProgress:(CGFloat)progress;
-
+- (void)showNotifyInfo:(NSString *)info backGroundColor:(UIColor *)color;
 - (void)hideHUD;
 - (void)logByteArray:(const uint8_t *)buf length:(NSUInteger)length;
 @end

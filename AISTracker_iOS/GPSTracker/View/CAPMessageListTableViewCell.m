@@ -7,6 +7,11 @@
 //
 
 #import "CAPMessageListTableViewCell.h"
+@interface CAPMessageListTableViewCell()
+//@property (nonatomic,strong)UILabel *nameLabel;
+//@property (nonatomic,strong)UILabel *deviceIDlabel;
+
+@end
 
 @implementation CAPMessageListTableViewCell
 
@@ -15,9 +20,10 @@
     // Initialization code
 }
 
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
     // Configure the view for the selected state
     self.multipleSelectionBackgroundView = [UIView new];
 }

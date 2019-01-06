@@ -10,4 +10,6 @@
 
 @interface CAPPhotoService : CAPBaseService
 - (void)takingPicturesWithDeviceID:(NSString *)deviceID  Reply:(CAPServiceReply)reply;
+- (void)getPhotoListDeviceID:(NSString *)deviceID reply:(CAPServiceReply)reply;
+
 @end

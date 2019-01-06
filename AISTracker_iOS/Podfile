@@ -8,6 +8,7 @@ target 'GPSTracker' do
   # Pods for GPSTracker
   pod 'MQTTClient'
   pod 'MBProgressHUD', '~> 1.0.0'
+#  pod 'NHHUDExtend',
   pod 'CRToast', '~> 0.0.7'
   pod 'AFNetworking', '~> 3.1.0'
   pod 'JSONModel', '~> 1.7.0'
@@ -21,6 +22,8 @@ target 'GPSTracker' do
   pod 'GooglePlacePicker', '~> 2.7.0'
   pod 'MJExtension' #model解析
   pod 'BRPickerView', '~> 2.2.1'
+  pod 'Masonry'
+  pod 'DateTools', '~> 1.7.0'
   target 'GPSTrackerTests' do
     inherit! :search_paths
     # Pods for testing

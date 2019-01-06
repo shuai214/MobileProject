@@ -105,11 +105,20 @@
                         <outlet property="numberButton" destination="KWH-2h-nGh" id="JVk-mK-Sqm"/>
                         <outlet property="scanButton" destination="eUg-bI-aBv" id="rbF-bD-bbW"/>
                         <segue destination="PF4-gp-CGa" kind="show" identifier="tracker.segue" id="8GL-Rt-kQD"/>
+                        <segue destination="rNp-ou-H0a" kind="presentation" identifier="main.segue" id="GA2-vB-YOs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJK-ot-VlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-273" y="-636"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="jsY-si-FG3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="rNp-ou-H0a" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mMF-Vw-xn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-567" y="-154"/>
         </scene>
         <!--Tracker-->
         <scene sceneID="iIj-g8-zZ3">

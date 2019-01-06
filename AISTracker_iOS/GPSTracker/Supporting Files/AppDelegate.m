@@ -362,7 +362,10 @@ void UncaughtExceptionHandler(NSException *exception) {
     [_textHud hideAnimated:YES];
     [_progressHud hideAnimated:YES];
 }
-
+- (void)showNotifyInfo:(NSString *)info backGroundColor:(UIColor *)color{
+     MBProgressHUD *hud = [MBProgressHUD showTitleToView:self.window postion:NHHUDPostionBottom title:info];
+    hud.bezelBackgroundColor(color);
+}
 - (BOOL)createHUD {
     NSLog(@"[%@ createHUD]", [self class]);
     BOOL result = NO;

@@ -210,6 +210,20 @@
 
 - (void)handleInfo:(MQTTInfo *)info {
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
+    if ([info.command isEqualToString:@"STATUS"]) {
+        NSString *status = nil;
+        UIColor *color = nil;
+        if (info.online ? 0 : 1) {
+            status = @"离线";
+            color = [UIColor grayColor];
+        }else{
+            status = @"上线";
+            color = [UIColor greenColor];
+        }
+        [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:nil];
+    }else if ([info.command isEqualToString:@"PHOTO"]){
+        [CAPNotifications notify:kNotificationPhotoCountChange object:info];
+    }
     [self.infoDictionary setObject:info forKey:info.deviceID];
 }
 
@@ -257,12 +271,11 @@
           retained:(BOOL)retained
                mid:(unsigned int)mid {
     NSLog(@"+++++ MQTT Message +++++: %@", topic);
-    //NSLog(@"message data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    //    +++++++newMessageArrived: SUB/TRUEIOT/DEVICE/APP/52/Setup
-    //    message data = {"UserID":"52","operatorCode":"TRUEIOT/THA"}
-    
-    //    +++++++newMessageArrived: SUB/TRUEIOT/THA/APP/52/ResultInfo
-    //    message data = {"cmd":"STATUS","deviceID":"356199060459401","status":200,"result":{"online":1}}
+    NSLog(@"message data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//        +++++++newMessageArrived: SUB/TRUEIOT/DEVICE/APP/52/Setup
+//        message data = {"UserID":"52","operatorCode":"TRUEIOT/THA"}
+//        +++++++newMessageArrived: SUB/TRUEIOT/THA/APP/52/ResultInfo
+//        message data = {"cmd":"STATUS","deviceID":"356199060459401","status":200,"result":{"online":1}}
     [self handleMessage:topic data:data];
 }
 

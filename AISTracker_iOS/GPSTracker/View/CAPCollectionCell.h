@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CAPCollectionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *currentImageView;
 @property (nonatomic, copy) NSString *representedIdentifier;
 @end

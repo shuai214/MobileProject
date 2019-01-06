@@ -9,6 +9,8 @@
 #import "CAPBaseService.h"
 #import "CAPDevice.h"
 
+
+
 @interface CAPDeviceService : CAPBaseService
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply;
 - (void)fetchDevice:(CAPServiceReply)reply;
@@ -21,4 +23,6 @@
 
 - (void)fetchLastFootprint:(NSString *)deviceID reply:(CAPServiceReply)reply;
 - (void)fetchFootprint:(NSString *)deviceID range:(NSRange)range reply:(CAPServiceReply)reply;
+- (void)getDeviceLogs:(NSString *)deviceID page:(NSInteger)page reply:(CAPServiceReply)reply;
+- (void)deviceSendCommand:(NSString *)deviceID cmd:(NSString *)cmd param:(NSString *)param reply:(CAPServiceReply)reply;
 @end

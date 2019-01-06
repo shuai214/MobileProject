@@ -168,20 +168,20 @@
 
 -(void)didSelectDeviceAtIndex:(NSUInteger)index {
     NSLog(@"didSelectDeviceAtIndex: %lu", (unsigned long)index);
-    if (index != 0) {
-        [UIView animateWithDuration:0.37 animations:^{
-            self.trackerView.frame = self.rectTrackerView;
-            self.deviceListView.frame = self.rectDeviceListView;
-        }];
-        CAPDevice *device = self.deviceListView.devices[index-1];
+//    if (index != 0) {
+//        [UIView animateWithDuration:0.37 animations:^{
+//            self.trackerView.frame = self.rectTrackerView;
+//            self.deviceListView.frame = self.rectDeviceListView;
+//        }];
+        CAPDevice *device = self.deviceListView.devices[index];
         self.currentDevice = device;
         [self getDeviceLocation:device];
-    }else{
-        [UIView animateWithDuration:0.37 animations:^{
-            [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
-            [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
-        }];
-    }
+//    }else{
+//        [UIView animateWithDuration:0.37 animations:^{
+//            [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+//            [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+//        }];
+//    }
 }
 
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {

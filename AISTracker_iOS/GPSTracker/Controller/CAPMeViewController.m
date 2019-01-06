@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"Me";
     self.titles = @[@"Name", @"Guardian", @"Update Frequency",
                     @"Untether", @"Firmware version"];
     self.tableView.dataSource = self;

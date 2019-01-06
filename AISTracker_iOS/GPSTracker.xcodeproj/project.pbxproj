@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
+		2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */; };
+		2B1C07ED21DF2FBE00B258C1 /* HMWeeklySelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EB21DF2FBD00B258C1 /* HMWeeklySelectDateView.m */; };
+		2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */; };
+		2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */; };
+		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
@@ -192,6 +197,17 @@
 
 /* Begin PBXFileReference section */
 		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B1C07E521DF0B0700B258C1 /* CAPDeviceLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLogs.h; sourceTree = "<group>"; };
+		2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLogs.m; sourceTree = "<group>"; };
+		2B1C07E921DF2FBD00B258C1 /* HMWeeklySelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWeeklySelectDateView.h; sourceTree = "<group>"; };
+		2B1C07EA21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMDateSelectCollectionViewCell.h; sourceTree = "<group>"; };
+		2B1C07EB21DF2FBD00B258C1 /* HMWeeklySelectDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWeeklySelectDateView.m; sourceTree = "<group>"; };
+		2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMDateSelectCollectionViewCell.m; sourceTree = "<group>"; };
+		2B1C080821E0A03400B258C1 /* MBProgressHUD_NHExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD_NHExtend.h; sourceTree = "<group>"; };
+		2B1C080921E0A03400B258C1 /* MBProgressHUD+NHAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+NHAdd.h"; sourceTree = "<group>"; };
+		2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+NHAdd.m"; sourceTree = "<group>"; };
+		2B1C080C21E0ABF400B258C1 /* CAPDeviceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceCommand.h; sourceTree = "<group>"; };
+		2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceCommand.m; sourceTree = "<group>"; };
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
 		2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLists.m; sourceTree = "<group>"; };
@@ -546,6 +562,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1C07E821DF2FBD00B258C1 /* week */ = {
+			isa = PBXGroup;
+			children = (
+				2B1C07E921DF2FBD00B258C1 /* HMWeeklySelectDateView.h */,
+				2B1C07EA21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.h */,
+				2B1C07EB21DF2FBD00B258C1 /* HMWeeklySelectDateView.m */,
+				2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */,
+			);
+			path = week;
+			sourceTree = "<group>";
+		};
+		2B1C080721E0A03400B258C1 /* NHHUDExtend */ = {
+			isa = PBXGroup;
+			children = (
+				2B1C080821E0A03400B258C1 /* MBProgressHUD_NHExtend.h */,
+				2B1C080921E0A03400B258C1 /* MBProgressHUD+NHAdd.h */,
+				2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */,
+			);
+			path = NHHUDExtend;
+			sourceTree = "<group>";
+		};
 		97D268F9824ED8AB9EADECD8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +746,7 @@
 		EF79BB4E218860FE000358FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B1C07E821DF2FBD00B258C1 /* week */,
 				EF358C0121918B6300EFB4BF /* CAPBatteryView.h */,
 				EF358C0221918B6300EFB4BF /* CAPBatteryView.m */,
 				EF358BFE2191766200EFB4BF /* CAPCardView.h */,
@@ -824,6 +862,7 @@
 		EF79BB5121886149000358FA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2B1C080721E0A03400B258C1 /* NHHUDExtend */,
 				EF6CA65A218D58170014771E /* NullSafe */,
 				EF6CA65C218D58170014771E /* QQ */,
 				EF6CA65D218D58170014771E /* TencentOpenAPI.framework */,
@@ -1017,6 +1056,10 @@
 				EF46F2802192991A009A357C /* CAPFootprint.m */,
 				2BECD32F21D86E5C00EEBFCD /* CAPDeviceRecentLocation.h */,
 				2BECD33021D86E5C00EEBFCD /* CAPDeviceRecentLocation.m */,
+				2B1C07E521DF0B0700B258C1 /* CAPDeviceLogs.h */,
+				2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */,
+				2B1C080C21E0ABF400B258C1 /* CAPDeviceCommand.h */,
+				2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -1314,6 +1357,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker-resources.sh",
 				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
@@ -1323,6 +1367,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
@@ -1372,6 +1417,7 @@
 				EFD0AD1E218C4F7200405FD8 /* UIColor+CAP.m in Sources */,
 				EFD0ACCE218C467000405FD8 /* CAPViews.m in Sources */,
 				EFD0AD44218C550C00405FD8 /* CAPSignOutResponse.m in Sources */,
+				2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */,
 				EFD0AD2C218C505900405FD8 /* CAPUser.m in Sources */,
 				EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */,
 				EF46F27221928F68009A357C /* CAPFeedbackService.m in Sources */,
@@ -1389,6 +1435,7 @@
 				EF6CA699218D84180014771E /* CAPFencePresenter.m in Sources */,
 				EFD0AD02218C47D900405FD8 /* CAPDeviceService.m in Sources */,
 				EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */,
+				2B1C07ED21DF2FBE00B258C1 /* HMWeeklySelectDateView.m in Sources */,
 				EF46F27521929080009A357C /* CAPFenceService.m in Sources */,
 				EFD0ACE6218C46A500405FD8 /* CAPValidators.m in Sources */,
 				EF358BEC2191441600EFB4BF /* CAPCollectionCell.m in Sources */,
@@ -1425,6 +1472,7 @@
 				EFD0AD0A218C485D00405FD8 /* CAPBaseJSON.m in Sources */,
 				EF358BE9219143A700EFB4BF /* CAPSelectableCollectionCell.m in Sources */,
 				EFD0AC8F218C3E4400405FD8 /* CAPEditNameViewController.m in Sources */,
+				2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */,
 				EF46F27E219294BE009A357C /* CAPFeedback.m in Sources */,
 				EF46F29C2192DD05009A357C /* CAPUserDefaults.m in Sources */,
 				EF6CA63F218D30FF0014771E /* CAPReadUserInfoResponse.m in Sources */,
@@ -1450,6 +1498,8 @@
 				EF46F29021929CD0009A357C /* CAPFileService.m in Sources */,
 				EFD0AC9E218C3E9700405FD8 /* CAPGuardianInvitationViewController.m in Sources */,
 				EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */,
+				2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */,
+				2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */,
 				EFD0ACCD218C467000405FD8 /* CAPToast.m in Sources */,
 				EFD0AC9B218C3E7800405FD8 /* CAPFootprintViewController.m in Sources */,
 				EFD0ACBF218C420C00405FD8 /* CAPMeViewController.m in Sources */,

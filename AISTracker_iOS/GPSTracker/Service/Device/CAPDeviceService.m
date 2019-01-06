@@ -82,6 +82,32 @@
     //TODO
 }
 
+- (void)getDeviceLogs:(NSString *)deviceID page:(NSInteger)page reply:(CAPServiceReply)reply{
+    if (deviceID) {
+        NSString *pageStr = [NSString stringWithFormat:@"%ld",(long)page];
+        NSDictionary *params = @{
+                                 @"page": pageStr,
+                                 @"pagesize":@"20"
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Logs/" stringByAppendingString:deviceID] method:@"GET" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+
+- (void)deviceSendCommand:(NSString *)deviceID cmd:(NSString *)cmd param:(NSString *)param reply:(CAPServiceReply)reply{
+    if (deviceID) {
+        NSDictionary *params = @{
+                                 @"cmd": cmd,
+                                 @"param":param
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Command/" stringByAppendingString:deviceID] method:@"POST" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
 
 //+ (instancetype)defaultService {
 //    static id instance = NULL;
@@ -93,11 +119,11 @@
 //}
 
 - (void)checkDeviceVersion:(NSUInteger)versionCode reply:(CAPServiceReply)reply {
-    NSLog(@"[%@ checkDeviceVersion:%lu]", [self class], (unsigned long)versionCode);
+//    NSLog(@"[%@ checkDeviceVersion:%lu]", [self class], (unsigned long)versionCode);
 //    NSString *requestURLString = [NSString stringWithFormat:@"Device/Logs/%lu", (unsigned long)versionCode];
 //    CAPHttpRequest *request = [self buildRequest:requestURLString method:@"GET" parameters:nil];
 //    [self sendRequest:request reply:^(CAPHttpResponse *response) {
-//        reply([CAPCheckDeviceVersionResponse responseWithHttpResponse:response]);
+////        reply([CAPCheckDeviceVersionResponse responseWithHttpResponse:response]);
 //    }];
 }
 @end

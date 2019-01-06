@@ -9,6 +9,7 @@
 #import "CAPMasterSettingViewController.h"
 #import "CAPBatteryView.h"
 #import "CAPEditNameViewController.h"
+#import "CAPGuardianListViewController.h"
 #import "CAPDeviceService.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -91,7 +92,11 @@
         }
             break;
         case 1:
-            [self performSegueWithIdentifier:@"guardian.list.segue" sender:nil];
+//            [self performSegueWithIdentifier:@"guardian.list.segue" sender:nil];GuardianListViewController
+        {UIStoryboard *story = [UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil];
+            CAPGuardianListViewController *GuardianVC = [story instantiateViewControllerWithIdentifier:@"GuardianListViewController"];
+            [self.navigationController pushViewController:GuardianVC animated:YES];
+        }
             break;
         case 2:
             break;

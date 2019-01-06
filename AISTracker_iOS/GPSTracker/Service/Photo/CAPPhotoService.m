@@ -16,10 +16,20 @@
 //    NSDictionary *params = @{
 //                             @"uuid":deviceID
 //                             };
-    CAPHttpRequest *request = [self buildRequest:[@"Device/Photo/" stringByAppendingString:deviceID] method:@"POST" parameters:nil];
-    [self sendRequest:request reply:^(CAPHttpResponse *response) {
-        reply(response);
-    }];
+    if (deviceID) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Photo/" stringByAppendingString:deviceID] method:@"POST" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+    
 }
-
+- (void)getPhotoListDeviceID:(NSString *)deviceID reply:(CAPServiceReply)reply{
+    if (deviceID) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Photos/" stringByAppendingString:deviceID] method:@"GET"];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
 @end
