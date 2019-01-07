@@ -18,7 +18,7 @@
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply;
-
+- (void)getDeviceBindinfo:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)shareDevice:(NSString *)deviceID reply:(CAPServiceReply)reply;
 
 - (void)fetchLastFootprint:(NSString *)deviceID reply:(CAPServiceReply)reply;

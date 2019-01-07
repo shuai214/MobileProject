@@ -80,6 +80,7 @@
     [self fetchDevice];
 
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
+    [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
 }
 
 - (void)mqttConnect{
@@ -133,6 +134,26 @@
 //            [gApp showHUD:command.message];
         }
     }];
+}
+
+- (void)deviceRefreshLocation:(NSNotification *)notifi{
+    MQTTInfo *info = notifi.object;
+    
+    if ([info.command isEqualToString:@"GPS"]) {
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:info.latitude longitude:info.longitude zoom:15];
+        CLLocationCoordinate2D position2D = CLLocationCoordinate2DMake(info.latitude,info.longitude);
+        self.mapView.camera = camera;
+        //大头针
+        self.marker = [GMSMarker markerWithPosition:position2D];
+        self.marker.map = self.mapView;
+        GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+        [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@",response);
+            GMSAddress *placemark = response.firstResult;
+            [self.trackerView refreshDeviceLocation:self.currentDevice location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
+        }];
+
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -233,7 +254,6 @@
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {
     switch (action) {
         case CAPTrackerViewActionFence:
-//            [self performSegueWithIdentifier:@"fence.list.segue" sender:nil];
         {CAPFenceListViewController *fenceList = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"FenceListViewController"];
             fenceList.device = self.currentDevice;
             [self.navigationController pushViewController:fenceList animated:YES];
@@ -243,7 +263,6 @@
             [self performSegueWithIdentifier:@"footprint.segue" sender:nil];
             break;
         case CAPTrackerViewActionPhotograph:
-//            [self performSegueWithIdentifier:@"photograph.segue" sender:nil];
         {CAPPhotographViewController *photograph = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotographViewController"];
             photograph.device = self.currentDevice;
             [self.navigationController pushViewController:photograph animated:YES];
@@ -252,7 +271,6 @@
         case CAPTrackerViewActionNavigation:
             break;
         case CAPTrackerViewActionSetting:
-//            [self performSegueWithIdentifier:@"master.setting.segue" sender:nil];
         {CAPMasterSettingViewController *masterSetting = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"MasterSettingViewController"];
             masterSetting.device = self.currentDevice;
             [self.navigationController pushViewController:masterSetting animated:YES];

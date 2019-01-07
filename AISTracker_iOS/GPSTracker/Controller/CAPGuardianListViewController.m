@@ -24,6 +24,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+- (void)loadDeviceBindInfo{
+    
+}
+
 - (void)refreshLocalizedString {
     
 }

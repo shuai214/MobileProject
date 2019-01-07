@@ -7,7 +7,7 @@
 //
 
 #import "CAPBaseViewController.h"
-
+#import "CAPDevice.h"
 @interface CAPGuardianListViewController : CAPBaseViewController
-
+@property(strong,nonatomic)CAPDevice *device;
 @end

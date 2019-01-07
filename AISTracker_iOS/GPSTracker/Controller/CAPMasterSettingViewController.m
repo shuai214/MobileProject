@@ -11,6 +11,7 @@
 #import "CAPEditNameViewController.h"
 #import "CAPGuardianListViewController.h"
 #import "CAPDeviceService.h"
+#import "CAPGuardianListViewController.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -94,16 +95,21 @@
             break;
         case 1:
 //            [self performSegueWithIdentifier:@"guardian.list.segue" sender:nil];GuardianListViewController
-        {UIStoryboard *story = [UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil];
-            CAPGuardianListViewController *GuardianVC = [story instantiateViewControllerWithIdentifier:@"GuardianListViewController"];
-            [self.navigationController pushViewController:GuardianVC animated:YES];
-        }
+//        {UIStoryboard *story = [UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil];
+//            CAPGuardianListViewController *GuardianVC = [story instantiateViewControllerWithIdentifier:@"GuardianListViewController"];
+//            [self.navigationController pushViewController:GuardianVC animated:YES];
+//        }
             break;
         case 2:
             break;
         case 3:
             break;
         case 4:
+        {UIStoryboard *story = [UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil];
+            CAPGuardianListViewController *GuardianVC = [story instantiateViewControllerWithIdentifier:@"GuardianListViewController"];
+            GuardianVC.device = self.device;
+            [self.navigationController pushViewController:GuardianVC animated:YES];
+        }
             break;
         default:
             break;

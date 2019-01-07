@@ -224,7 +224,7 @@
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
     }else if ([info.command isEqualToString:@"GPS"]){
-        [CAPNotifications notify:kNotificationPhotoCountChange object:info];
+        [CAPNotifications notify:kNotificationGPSCountChange object:info];
     }else if (!info.command){
         if ([info.status isEqualToString:@"00010000"]) {
             

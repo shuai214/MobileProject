@@ -50,14 +50,14 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.showPhotos.count * 5;
+    return self.showPhotos.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * CellIdentifier = @"CollectionCell";
     CAPCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     if (self.showPhotos) {
-        NSData *imgData = self.showPhotos[1];
+        NSData *imgData = self.showPhotos[indexPath.row];
         [cell.currentImageView setImage:[UIImage imageWithData:imgData]];
     }
     return cell;
