@@ -100,7 +100,7 @@
     if (deviceID) {
         NSDictionary *params = @{
                                  @"cmd": cmd,
-                                 @"param":param
+                                 @"param":param ? param : @""
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/Command/" stringByAppendingString:deviceID] method:@"POST" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {

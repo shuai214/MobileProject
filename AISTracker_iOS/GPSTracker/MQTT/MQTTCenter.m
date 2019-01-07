@@ -223,6 +223,12 @@
         [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:nil];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
+    }else if ([info.command isEqualToString:@"GPS"]){
+        [CAPNotifications notify:kNotificationPhotoCountChange object:info];
+    }else if (!info.command){
+        if ([info.status isEqualToString:@"00010000"]) {
+            
+        }
     }
     [self.infoDictionary setObject:info forKey:info.deviceID];
 }

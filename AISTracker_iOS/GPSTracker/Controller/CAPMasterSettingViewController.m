@@ -35,9 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设备详情";
-    self.titles = @[@"Name", @"Guardian", @"Update Frequency",
-                    @"Untether", @"Firmware version"];
-    self.details = @[self.device.name, @"", [NSString dateFormateWithTimeInterval:self.device.createdDate], @"", @"V1.7.05"];
+    self.titles = @[@"名称", @"Device ID", @"Device IMEI",
+                    @"Device Number", @"监护人",@"SOS号码",@"更新频率",@"解绑",@"固件版本"];
+    self.details = @[self.device.name, self.device.deviceID, @"XXXX", self.device.deviceID, @"",@"",@"",@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -75,6 +75,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.titles[indexPath.row];
     cell.detailTextLabel.text = self.details[indexPath.row];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     return cell;
 }
 
