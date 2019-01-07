@@ -15,6 +15,7 @@
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply;
 - (void)fetchDevice:(CAPServiceReply)reply;
 - (void)addDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
+- (void)getDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 - (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply;

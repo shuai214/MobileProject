@@ -49,13 +49,18 @@
         reply(response);
     }];
 }
-
-- (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
+-(void)getDevice:(CAPDevice *)device reply:(CAPServiceReply)reply{
     //TODO
-    CAPHttpRequest *request = [self buildRequest:[@"Device/Device" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
-    [self sendRequest:request reply:^(CAPHttpResponse *response) {
-        reply(response);
-    }];
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Device/" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+   
+}
+- (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
+   
 }
 
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {

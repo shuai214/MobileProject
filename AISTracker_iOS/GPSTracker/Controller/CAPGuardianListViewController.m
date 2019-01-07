@@ -8,6 +8,8 @@
 
 #import "CAPGuardianListViewController.h"
 #import "CAPCheckableTableCell.h"
+#import "CAPDeviceService.h"
+
 @interface CAPGuardianListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -22,10 +24,15 @@
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self loadDeviceBindInfo];
 }
 
 - (void)loadDeviceBindInfo{
-    
+    CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
+    [deviceServer getDevice:self.device reply:^(CAPHttpResponse *response) {
+        self.device = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+         NSLog(@"%@",response);
+    }];
 }
 
 - (void)refreshLocalizedString {
