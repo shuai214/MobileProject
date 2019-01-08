@@ -38,17 +38,17 @@
     self.title = @"设备详情";
     self.titles = @[@"名称", @"Device ID", @"Device IMEI",
                     @"Device Number", @"监护人",@"SOS号码",@"更新频率",@"解绑",@"固件版本"];
-    self.details = @[self.device.name, self.device.deviceID, @"XXXX", self.device.deviceID, @"",@"",@"",@"",@""];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.deviceID:@"", @"",@"",@"",@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc]init];
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    UIImage *avatar =GetImage(@"ic_default_avatar");
+    UIImage *avatar = GetImage(@"ic_default_avatar");
     
     [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
-    self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device.deviceID];
+    self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
 }
 - (void)loadDeviceInfo{
     

@@ -60,7 +60,17 @@
    
 }
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
-   
+    //TODO
+    if (device) {
+        NSDictionary *params = @{
+                                 @"name": device.name,
+                                 @"mobile":device.mobile
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
@@ -77,6 +87,16 @@
 
 - (void)shareDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {
     //TODO
+    if (deviceID) {
+        NSDictionary *params = @{
+                                 @"share": @"1",
+                                 @"monitor": @"1"
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Share/" stringByAppendingString:deviceID] method:@"POST" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)fetchLastFootprint:(NSString *)deviceID reply:(CAPServiceReply)reply {

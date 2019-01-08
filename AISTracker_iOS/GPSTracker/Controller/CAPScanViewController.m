@@ -110,7 +110,13 @@
             CIQRCodeFeature *feature = features[0];
             NSString *scannedResult = feature.messageString;
             [self.navigationController popViewControllerAnimated:YES];
-            !self->_ScanSuccessBlock ? : self->_ScanSuccessBlock(scannedResult);
+            NSString *DEVICE = @"DEVICE||||";
+            if ([scannedResult containsString:DEVICE]) {
+                scannedResult = [scannedResult substringFromIndex:DEVICE.length];
+                !self->_bindSuccessBlock ? : self->_bindSuccessBlock(scannedResult);
+            }else{
+                !self->_ScanSuccessBlock ? : self->_ScanSuccessBlock(scannedResult);
+            }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果"
                                                             message:@"不是二维码图片"
@@ -228,8 +234,14 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         // 获取扫描到的信息
         NSString *stringValue = metadataObject.stringValue;
+        NSString *DEVICE = @"DEVICE||||";
+        if ([stringValue containsString:DEVICE]) {
+            stringValue = [stringValue substringFromIndex:DEVICE.length];
+            !_bindSuccessBlock ? :_bindSuccessBlock(stringValue);
+        }else{
+            !_ScanSuccessBlock ? :_ScanSuccessBlock(stringValue);
+        }
         [self.navigationController popViewControllerAnimated:YES];
-        !_ScanSuccessBlock ? :_ScanSuccessBlock(stringValue);
     }
 }
 
