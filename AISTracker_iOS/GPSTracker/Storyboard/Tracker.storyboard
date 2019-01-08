@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foW-oZ-cwO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foW-oZ-cwO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,17 +39,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-6C-F6m" userLabel="Device List View" customClass="CAPDeviceListView">
-                                <rect key="frame" x="12" y="372" width="351" height="51"/>
+                                <rect key="frame" x="12" y="402" width="351" height="51"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="ZgK-qF-9qW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0u-U3-Hl7" customClass="CAPTrackerView">
-                                <rect key="frame" x="12" y="431" width="351" height="166"/>
+                                <rect key="frame" x="12" y="468" width="351" height="130"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.1647058824" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="166" id="GsK-Dl-82L"/>
+                                    <constraint firstAttribute="height" constant="130" id="GsK-Dl-82L"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -57,13 +57,13 @@
                         <constraints>
                             <constraint firstItem="LRZ-6C-F6m" firstAttribute="leading" secondItem="7Yq-h0-FFn" secondAttribute="leading" constant="12" id="Olu-yx-8sd"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="bottom" secondItem="7Yq-h0-FFn" secondAttribute="bottom" id="RgF-dA-zSH"/>
-                            <constraint firstItem="c0u-U3-Hl7" firstAttribute="top" secondItem="LRZ-6C-F6m" secondAttribute="bottom" constant="8" id="VBs-mc-ivA"/>
+                            <constraint firstItem="c0u-U3-Hl7" firstAttribute="top" secondItem="LRZ-6C-F6m" secondAttribute="bottom" constant="15" id="VBs-mc-ivA"/>
                             <constraint firstItem="c0u-U3-Hl7" firstAttribute="trailing" secondItem="LRZ-6C-F6m" secondAttribute="trailing" id="VZ8-vL-B08"/>
                             <constraint firstItem="LRZ-6C-F6m" firstAttribute="centerX" secondItem="7Yq-h0-FFn" secondAttribute="centerX" id="WSp-dW-jBV"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="leading" secondItem="7Yq-h0-FFn" secondAttribute="leading" id="Z5S-MT-NPO"/>
                             <constraint firstItem="c0u-U3-Hl7" firstAttribute="leading" secondItem="LRZ-6C-F6m" secondAttribute="leading" id="aKc-xf-Gs1"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="top" secondItem="7Yq-h0-FFn" secondAttribute="top" id="gqN-jO-JKN"/>
-                            <constraint firstItem="7Yq-h0-FFn" firstAttribute="bottom" secondItem="c0u-U3-Hl7" secondAttribute="bottom" constant="21" id="ujb-pT-bWP"/>
+                            <constraint firstItem="7Yq-h0-FFn" firstAttribute="bottom" secondItem="c0u-U3-Hl7" secondAttribute="bottom" constant="20" id="ujb-pT-bWP"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="trailing" secondItem="7Yq-h0-FFn" secondAttribute="trailing" id="yYI-yf-EIb"/>
                             <constraint firstItem="7Yq-h0-FFn" firstAttribute="trailing" secondItem="LRZ-6C-F6m" secondAttribute="trailing" constant="12" id="yls-PU-IHe"/>
                         </constraints>

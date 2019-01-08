@@ -61,7 +61,7 @@
             [view removeFromSuperview];
         }
         CGSize size = self.frame.size;
-        CGFloat width = size.width/6;
+        CGFloat width = size.width/7;
         CGFloat height = width;
         self.scrollView.contentSize = CGSizeMake(width * self.devices.count, height);
         for(int i=0; i<self.devices.count; i++) {
