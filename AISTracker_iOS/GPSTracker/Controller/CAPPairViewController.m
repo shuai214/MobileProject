@@ -13,6 +13,7 @@
 #import "CAPDevice.h"
 #import "CAPDeviceService.h"
 #import "MQTTCenter.h"
+#import "CAPDeviceSettingViewController.h"
 @interface CAPPairViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
@@ -55,7 +56,10 @@
     CAPScanViewController *ScanVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"ScanViewController"];
     CAPWeakSelf(self);
     [ScanVC setScanSuccessBlock:^(NSString *successStr) {
-        [weakself addDeviceService:successStr];
+        [weakself addDeviceService:successStr owner:YES];
+    }];
+    [ScanVC setBindSuccessBlock:^(NSString *successStr) {
+        [weakself addDeviceService:successStr owner:NO];
     }];
     [self.navigationController pushViewController:ScanVC animated:YES];
 }
@@ -65,24 +69,35 @@
     CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
     CAPWeakSelf(self);
     [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
-        [weakself addDeviceService:successStr];
+        [weakself addDeviceService:successStr owner:YES];
     }];
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
 }
 
-- (void)addDeviceService:(NSString *)deviceNum{
+- (void)addDeviceService:(NSString *)deviceNum owner:(BOOL)is{
     [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",deviceNum] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
         CAPDevice *device = [[CAPDevice alloc] init];
         [device setDeviceID:deviceNum];
         [device setName:deviceNum];
+        [gApp showHUD:@"正在处理，请稍后..."];
         CAPDeviceService *service = [[CAPDeviceService alloc] init];
         [service addDevice:device reply:^(CAPHttpResponse *response) {
-            CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-            [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
-            if ([self.navigationController.viewControllers.firstObject isKindOfClass:[CAPTrackerViewController class]]) {
-                [self.navigationController popViewControllerAnimated:YES];
+            [gApp hideHUD];
+            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+                [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+//                if ([self.navigationController.viewControllers.firstObject isKindOfClass:[CAPTrackerViewController class]]) {
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                }else{
+//                    //                [self performSegueWithIdentifier:@"main.segue" sender:nil];
+                    CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
+                    [self.navigationController pushViewController:AddTrackerVC animated:YES];
+//                }
             }else{
-                [self performSegueWithIdentifier:@"main.segue" sender:nil];
+//                [gApp showNotifyInfo:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] backGroundColor:nil];
+                [CAPAlerts alertWarning:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] buttonTitle:@"确定" actionBlock:^{
+                    
+                }];
             }
         }];
     }];
