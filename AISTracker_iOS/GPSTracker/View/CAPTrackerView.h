@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CAPCardView.h"
 #import "CAPDevice.h"
+#import "CAPBatteryView.h"
 typedef NS_ENUM(NSUInteger, CAPTrackerViewAction) {
     CAPTrackerViewActionFence= 0,
     CCAPTrackerViewActionFootprint,
@@ -22,6 +23,7 @@ typedef NS_ENUM(NSUInteger, CAPTrackerViewAction) {
 @end
 
 @interface CAPTrackerView : CAPCardView
+@property (weak, nonatomic) IBOutlet CAPBatteryView *batteryView;
 @property (strong, nonatomic) IBOutlet CAPTrackerView *contentView;
 @property (nonatomic, weak) id<CAPTrackerViewDelegate> delegate;
 - (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location;

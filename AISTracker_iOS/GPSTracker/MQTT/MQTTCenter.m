@@ -220,7 +220,7 @@
             status = @"上线";
             color = [UIColor greenColor];
         }
-        [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:nil];
+        [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:color];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
     }else if ([info.command isEqualToString:@"GPS"]){

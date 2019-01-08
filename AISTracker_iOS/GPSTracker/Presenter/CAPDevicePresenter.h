@@ -31,4 +31,5 @@
 - (void)presentLastUpdate:(NSTimeInterval *)time label:(UILabel *)label;
 
 - (NSString *)getName;
+
 @end

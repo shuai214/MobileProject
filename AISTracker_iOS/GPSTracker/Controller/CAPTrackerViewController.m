@@ -14,6 +14,7 @@
 #import "CAPDeviceLists.h"
 #import "CAPUser.h"
 #import "MQTTCenter.h"
+#import "CAPDeviceCenter.h"
 #import "CAPDeviceRecentLocation.h"
 #import <GooglePlaces/GooglePlaces.h>
 #import "CAPPhotographViewController.h"
@@ -106,27 +107,11 @@
         self.deviceListView.devices = deviceLists.result.list;
         self.currentDevice = self.deviceListView.devices.firstObject;
         [self getDeviceLocation:self.deviceListView.devices.firstObject];
+        
     }];
 }
 - (void)getDeviceLocation:(CAPDevice *)device{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-//    [deviceService fetchDevice:device.deviceID reply:^(id response) {
-//        NSLog(@"%@",response);
-//        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
-//        CAPDeviceRecentLocation *recentLocation = [CAPDeviceRecentLocation mj_objectWithKeyValues:httpResponse.data];
-//        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:recentLocation.result.lat longitude:recentLocation.result.lng zoom:15];
-//        CLLocationCoordinate2D position2D = CLLocationCoordinate2DMake(recentLocation.result.lat,recentLocation.result.lng);
-//        self.mapView.camera = camera;
-//        //大头针
-//        self.marker = [GMSMarker markerWithPosition:position2D];
-//        self.marker.map = self.mapView;
-//        GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-//        [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-//            NSLog(@"%@",response);
-//            GMSAddress *placemark = response.firstResult;
-//            [self.trackerView refreshDeviceLocation:device location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
-//        }];
-//    }];
     [deviceService deviceSendCommand:device.deviceID cmd:@"GPS" param:nil reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
@@ -138,21 +123,10 @@
 
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
-    
     if ([info.command isEqualToString:@"GPS"]) {
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:info.latitude longitude:info.longitude zoom:15];
-        CLLocationCoordinate2D position2D = CLLocationCoordinate2DMake(info.latitude,info.longitude);
-        self.mapView.camera = camera;
-        //大头针
-        self.marker = [GMSMarker markerWithPosition:position2D];
-        self.marker.map = self.mapView;
-        GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-        [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-            NSLog(@"%@",response);
-            GMSAddress *placemark = response.firstResult;
-            [self.trackerView refreshDeviceLocation:self.currentDevice location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
-        }];
-
+        CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
+        [self refreshDeviceLocalized:coords];
+        [self.trackerView.batteryView reloadBattery:info.batlevel];
     }
 }
 
@@ -176,24 +150,26 @@
     self.mapView.camera = camera;
     [self.locationManager stopUpdatingLocation];//定位成功后停止定位
 }
-- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
-    CLLocationCoordinate2D position2D = coordinate;
-    self.mapView.camera = camera;
-    [self.marker.map clear];
-    self.marker.map = nil;
-    //大头针
-    self.marker = [GMSMarker markerWithPosition:position2D];
-    [self.marker setIcon:[UIImage imageNamed:@"map_drop_blue"]];
-    self.marker.map = self.mapView;
-    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-    [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@",response);
-        GMSAddress *placemark = response.firstResult;
-        [self.trackerView refreshDeviceLocation:self.currentDevice location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
-    }];
-}
-- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate{
+//- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
+//    [self refreshDeviceLocalized:coordinate];
+//}
+//- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate{
+//    [self refreshDeviceLocalized:coordinate];
+//}
+
+//- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position{
+//
+//    //反向地理编码
+//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:position.target completionHandler:^(GMSReverseGeocodeResponse * response, NSError * error) {
+//        if (response.results) {
+//            GMSAddress *address = response.results[0];
+//            NSLog(@"%@",address.thoroughfare);
+//
+//        }
+//    }];
+//}
+//重新定位
+- (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
     CLLocationCoordinate2D position2D = coordinate;
     self.mapView.camera = camera;
@@ -209,19 +185,6 @@
         NSLog(@"%@",response);
         GMSAddress *placemark = response.firstResult;
         [self.trackerView refreshDeviceLocation:self.currentDevice location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
-    }];
-
-}
-
-- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position{
-    
-    //反向地理编码
-    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:position.target completionHandler:^(GMSReverseGeocodeResponse * response, NSError * error) {
-        if (response.results) {
-            GMSAddress *address = response.results[0];
-            NSLog(@"%@",address.thoroughfare);
-            
-        }
     }];
 }
 - (void)refreshLocalizedString {

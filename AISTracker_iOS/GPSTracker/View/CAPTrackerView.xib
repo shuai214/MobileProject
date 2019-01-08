@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="DeviceLocation" destination="Gvk-xK-UjP" id="req-E9-E5k"/>
                 <outlet property="DeviceName" destination="7BX-E9-mWS" id="3P9-w8-NzC"/>
+                <outlet property="batteryView" destination="bsB-KE-e0T" id="aUZ-w6-aHb"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="brg-vJ-4Ax"/>
                 <outlet property="fenceButton" destination="oFp-nj-B0Q" id="R0x-Cz-wRl"/>
                 <outlet property="footprintButton" destination="grP-VJ-lwi" id="Jja-Ef-7fW"/>
