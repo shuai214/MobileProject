@@ -19,6 +19,7 @@
 		2B6DDB9C21E47126004CAE09 /* CAPDeviceNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9B21E47126004CAE09 /* CAPDeviceNumber.m */; };
 		2B6DDB9E21E48961004CAE09 /* diallingcode.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9D21E48960004CAE09 /* diallingcode.json */; };
 		2B6DDBA121E489F7004CAE09 /* CAPMMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */; };
+		2B714CE121E4E83100AF7B82 /* CAPDeviceBindInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
@@ -225,6 +226,8 @@
 		2B6DDB9D21E48960004CAE09 /* diallingcode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = diallingcode.json; sourceTree = "<group>"; };
 		2B6DDB9F21E489F7004CAE09 /* CAPMMCountry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMMCountry.h; sourceTree = "<group>"; };
 		2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMMCountry.m; sourceTree = "<group>"; };
+		2B714CDF21E4E83100AF7B82 /* CAPDeviceBindInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceBindInfo.h; sourceTree = "<group>"; };
+		2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceBindInfo.m; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
 		2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLists.m; sourceTree = "<group>"; };
 		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1086,6 +1089,8 @@
 				2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */,
 				2B6DDB9F21E489F7004CAE09 /* CAPMMCountry.h */,
 				2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */,
+				2B714CDF21E4E83100AF7B82 /* CAPDeviceBindInfo.h */,
+				2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -1507,6 +1512,7 @@
 				EF46F27E219294BE009A357C /* CAPFeedback.m in Sources */,
 				EF46F29C2192DD05009A357C /* CAPUserDefaults.m in Sources */,
 				EF6CA63F218D30FF0014771E /* CAPReadUserInfoResponse.m in Sources */,
+				2B714CE121E4E83100AF7B82 /* CAPDeviceBindInfo.m in Sources */,
 				EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */,
 				EFD0ACB0218C3EEE00405FD8 /* CAPhotographViewController.m in Sources */,
 				EF6CA68D218D833F0014771E /* CAPDeviceCenter.m in Sources */,

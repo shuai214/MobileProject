@@ -20,7 +20,7 @@
 }
 
 + (UIColor *)red {
-    return [UIColor colorFromHex:0xFF0000];
+    return [UIColor colorFromHex:0xE9212D];
 }
 
 //+ (UIColor *)white70 {

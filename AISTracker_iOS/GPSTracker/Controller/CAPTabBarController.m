@@ -9,6 +9,7 @@
 #import "CAPTabBarController.h"
 #import "CAPNotifications.h"
 #import "CAPBaseViewController.h"
+#import "CAPColors.h"
 
 @interface CAPTabBarController ()
 
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     
     [CAPNotifications addObserver:self selector:@selector(didReceiveNotificationLanguageChange:) name:kNotificationLanguageChange object:nil];
+    [[UITabBar appearance] setBarTintColor:[CAPColors red]];
 }
 
 - (void)didReceiveNotificationLanguageChange:(NSNotification*)notification {

@@ -58,6 +58,7 @@
     self.deviceListView.userInteractionEnabled = YES;
     self.deviceListView.delegate = self;
     self.rectDeviceListView = self.deviceListView.frame;
+    self.deviceListView.backgroundColor = [UIColor clearColor];
     
     self.rectTrackerView = self.trackerView.frame;
     self.trackerView.frame = self.view.frame;
@@ -76,28 +77,13 @@
     _locationManager.delegate  = self;
     [_locationManager requestWhenInUseAuthorization];
     
-    
-    [self mqttConnect];
     [self fetchDevice];
 
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
 }
 
-- (void)mqttConnect{
-    MQTTCenter *mqttCenter = [MQTTCenter center];
-    MQTTConfig *config = [[MQTTConfig alloc] init];
-    config.host = @"mqtt.kvtel.com";
-    config.port = 1883;
-    config.username = @"demo_app";
-    config.password = @"demo_890_123_654";
-    config.userID = [CAPUserDefaults objectForKey:@"userID"];
-    config.keepAliveInterval = 20;
-    config.deviceType = MQTTDeviceTypeApp;
-    config.platformID = @"KVTELIOT";
-    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
-    [mqttCenter open:config];
-}
+
 - (void)fetchDevice{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService fetchDevice:^(id response) {
@@ -196,7 +182,7 @@
 }
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
--(void)didSelectDeviceAtIndex:(NSUInteger)index {
+-(void)didSelectDeviceAtIndex:(NSInteger)index {
     NSLog(@"didSelectDeviceAtIndex: %lu", (unsigned long)index);
 //    if (index != 0) {
 //        [UIView animateWithDuration:0.37 animations:^{

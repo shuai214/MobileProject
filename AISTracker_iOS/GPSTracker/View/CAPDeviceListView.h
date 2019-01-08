@@ -10,7 +10,7 @@
 #import "CAPDevice.h"
 
 @protocol CAPDeviceListViewDelegate
-- (void)didSelectDeviceAtIndex:(NSUInteger)index;
+- (void)didSelectDeviceAtIndex:(NSInteger)index;
 @end
 
 @interface CAPDeviceListView : UIView

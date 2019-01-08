@@ -52,8 +52,8 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *role;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) NSTimeInterval createdDate;
-@property (nonatomic, assign) NSString *sos;
-@property (nonatomic, assign) NSString *mobile;
+@property (nonatomic, copy) NSString *sos;
+@property (nonatomic, copy) NSString *mobile;
 
 @property (nonatomic, strong) CAPDeviceSetting *setting;
 //@property (nonatomic, strong) CAPFootprint *footprint;

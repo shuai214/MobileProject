@@ -50,14 +50,17 @@
     }];
 }
 -(void)getDevice:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    
+   
+}
+- (void)getDeviceBindinfo:(CAPDevice *)device reply:(CAPServiceReply)reply{
     //TODO
     if (device) {
-        CAPHttpRequest *request = [self buildRequest:[@"Device/Device/" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
+        CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
         }];
     }
-   
 }
 - (void)updateDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
     //TODO
@@ -66,7 +69,7 @@
                                  @"name": device.name,
                                  @"mobile":device.mobile
                                  };
-        CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:nil];
+        CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
         }];

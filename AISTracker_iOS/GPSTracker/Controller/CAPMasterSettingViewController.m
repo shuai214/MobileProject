@@ -50,15 +50,28 @@
     [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
     self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
 }
-- (void)loadDeviceInfo{
-    
-}
+//- (void)loadDeviceInfo{
+//    [gApp showHUD:@"正在处理，请稍后..."];
+//
+//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    [deviceService getDevice:self.device reply:^(id response) {
+//
+//    }];
+//    //    [deviceService getDeviceBindinfo:self.device reply:^(CAPHttpResponse *response) {
+//    //        self.deviceBindInfo = [CAPDeviceBindInfo mj_objectWithKeyValues:response.data];
+//    //        if (self.deviceBindInfo.code == 200) {
+//    //            self.details = @[self.deviceBindInfo.result.bindinfo.name? self.deviceBindInfo.result.bindinfo.name:@"", self.deviceBindInfo.result.deviceID?self.deviceBindInfo.result.deviceID:@"", @"XXXX", self.deviceBindInfo.result.mobile?self.deviceBindInfo.result.mobile:@"", @"",@"",@"",@"",@""];
+//    //            [self.tableView reloadData];
+//    //            [gApp hideHUD];
+//    //        }
+//    //    }];
+//}
 
 - (void)refreshLocalizedString {
-//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-//    [deviceService fetchDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
-//         CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-//    }];
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
+         CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+    }];
 }
 
 #pragma mark - UITableViewDataSource

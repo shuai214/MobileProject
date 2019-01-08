@@ -30,7 +30,7 @@
         CGRect rect=CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
         UIGraphicsBeginImageContext(rect.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [CAPColors green1].CGColor);
+        CGContextSetFillColorWithColor(context, [CAPColors red].CGColor);
         CGContextFillRect(context, rect);
         UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
