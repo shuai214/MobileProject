@@ -13,6 +13,7 @@
 #import "CAPDeviceService.h"
 #import "CAPGuardianListViewController.h"
 #import "CAPSOSMobileViewController.h"
+#import "CAPUploadFrequencyViewController.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -39,7 +40,7 @@
     self.title = @"设备详情";
     self.titles = @[@"名称", @"Device ID", @"Device IMEI",
                     @"Device Number", @"监护人",@"SOS号码",@"更新频率",@"解绑",@"固件版本"];
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.deviceID:@"", @"",@"",@"",@"",@""];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.deviceID:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -129,6 +130,13 @@
         {
             CAPSOSMobileViewController *sosVC = [[CAPSOSMobileViewController alloc] init];
             [self.navigationController pushViewController:sosVC animated:YES];
+        }
+            break;
+        case 6:
+        {
+            CAPUploadFrequencyViewController *uploadVC = [[CAPUploadFrequencyViewController alloc] init];
+            uploadVC.device = self.device;
+            [self.navigationController pushViewController:uploadVC animated:YES];
         }
             break;
         default:

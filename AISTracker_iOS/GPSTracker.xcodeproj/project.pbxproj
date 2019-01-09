@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
+		2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */; };
 		2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */; };
 		2B1C07ED21DF2FBE00B258C1 /* HMWeeklySelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EB21DF2FBD00B258C1 /* HMWeeklySelectDateView.m */; };
 		2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */; };
@@ -206,6 +207,8 @@
 
 /* Begin PBXFileReference section */
 		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B066F3D21E623B80087A741 /* CAPUploadFrequencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUploadFrequencyViewController.h; sourceTree = "<group>"; };
+		2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUploadFrequencyViewController.m; sourceTree = "<group>"; };
 		2B1C07E521DF0B0700B258C1 /* CAPDeviceLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLogs.h; sourceTree = "<group>"; };
 		2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLogs.m; sourceTree = "<group>"; };
 		2B1C07E921DF2FBD00B258C1 /* HMWeeklySelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWeeklySelectDateView.h; sourceTree = "<group>"; };
@@ -721,6 +724,8 @@
 				EFD0ACA9218C3EC900405FD8 /* CAPMasterSettingViewController.m */,
 				2B527E2421E5D32A00EE6D02 /* CAPSOSMobileViewController.h */,
 				2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */,
+				2B066F3D21E623B80087A741 /* CAPUploadFrequencyViewController.h */,
+				2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */,
 				EFD0ACBA218C420400405FD8 /* CAPMessageListViewController.h */,
 				EFD0ACBB218C420400405FD8 /* CAPMessageListViewController.m */,
 				EFD0ACBD218C420C00405FD8 /* CAPMeViewController.h */,
@@ -1432,6 +1437,7 @@
 				EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */,
 				EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */,
 				2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */,
+				2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */,
 				EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */,
 				EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */,
 				EF6CA6A5218D84420014771E /* CAPMessagePresenter.m in Sources */,
@@ -1772,6 +1778,7 @@
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1803,6 +1810,7 @@
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

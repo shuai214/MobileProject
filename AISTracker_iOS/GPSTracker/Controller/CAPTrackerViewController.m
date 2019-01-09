@@ -24,15 +24,19 @@
 #import "CAPDeviceCommand.h"
 @import GoogleMaps;
 
+#define VIEW_X 12
+#define DEVICE_LIST_H 55
+#define TRACKER_H 130
+#define PACE_H 15
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSMarker *marker;
 @property (nonatomic,strong) CLLocationManager *locationManager;//地图定位对象
 @property (nonatomic,strong) GMSPlacesClient * placesClient;//可以获取某个地方的信息
 
-@property (weak, nonatomic) IBOutlet CAPDeviceListView *deviceListView;
+@property (strong, nonatomic)  CAPDeviceListView *deviceListView;
 
-@property (weak, nonatomic) IBOutlet CAPTrackerView *trackerView;
+@property (strong, nonatomic)  CAPTrackerView *trackerView;
 
 @property (assign,nonatomic)CGRect rectTrackerView;
 @property (assign,nonatomic)CGRect rectDeviceListView;
@@ -52,19 +56,22 @@
 //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
 //    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
     
-//    CGRect rect = self.deviceListView.frame;
-//    rect.size.width = self.view.frame.size.width;
-//    self.deviceListView.frame = rect;
+    self.deviceListView = [[CAPDeviceListView alloc] initWithFrame:CGRectMake(VIEW_X, Main_Screen_Height - TabBarHeight - PACE_H * 2 - TRACKER_H - DEVICE_LIST_H, Main_Screen_Width - 2 * VIEW_X, DEVICE_LIST_H)];
+    self.deviceListView.backgroundColor = [UIColor clearColor];
     self.deviceListView.userInteractionEnabled = YES;
     self.deviceListView.delegate = self;
     self.rectDeviceListView = self.deviceListView.frame;
-    self.deviceListView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.deviceListView];
     
+    self.trackerView = [[CAPTrackerView alloc] initWithFrame:CGRectMake(VIEW_X, self.deviceListView.bottom + PACE_H, self.deviceListView.width, TRACKER_H)];
     self.rectTrackerView = self.trackerView.frame;
-    self.trackerView.frame = self.view.frame;
-    self.trackerView.delegate = self;//0x10683b800
+    self.trackerView.delegate = self;
+    [self.view addSubview:self.trackerView];
     
-    NSLog(@"%@ -- %@ - %@ - %@" ,self.trackerView,self.deviceListView,NSStringFromCGRect(self.rectTrackerView),NSStringFromCGRect(self.rectDeviceListView));
+    [UIView animateWithDuration:0.37 animations:^{
+        [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+        [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+    }];
     
     self.mapView.delegate = self;
     self.mapView.indoorEnabled = NO;
@@ -82,6 +89,7 @@
     
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
+    
 }
 - (void)mqttConnect{
     MQTTCenter *mqttCenter = [MQTTCenter center];
@@ -99,6 +107,7 @@
 }
 
 - (void)fetchDevice{
+    
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService fetchDevice:^(id response) {
         CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
@@ -106,8 +115,6 @@
         NSLog(@"%@",deviceLists);
         self.deviceListView.devices = deviceLists.result.list;
         self.currentDevice = self.deviceListView.devices.firstObject;
-        [self getDeviceLocation:self.deviceListView.devices.firstObject];
-        
     }];
 }
 - (void)getDeviceLocation:(CAPDevice *)device{
@@ -116,7 +123,6 @@
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command) {
-//            [gApp showHUD:command.message];
         }
     }];
 }
@@ -150,24 +156,6 @@
     self.mapView.camera = camera;
     [self.locationManager stopUpdatingLocation];//定位成功后停止定位
 }
-//- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
-//    [self refreshDeviceLocalized:coordinate];
-//}
-//- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate{
-//    [self refreshDeviceLocalized:coordinate];
-//}
-
-//- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position{
-//
-//    //反向地理编码
-//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:position.target completionHandler:^(GMSReverseGeocodeResponse * response, NSError * error) {
-//        if (response.results) {
-//            GMSAddress *address = response.results[0];
-//            NSLog(@"%@",address.thoroughfare);
-//
-//        }
-//    }];
-//}
 //重新定位
 - (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
@@ -197,21 +185,14 @@
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
 -(void)didSelectDeviceAtIndex:(NSInteger)index {
-    NSLog(@"didSelectDeviceAtIndex: %lu", (unsigned long)index);
-//    if (index != 0) {
-//        [UIView animateWithDuration:0.37 animations:^{
-//            self.trackerView.frame = self.rectTrackerView;
-//            self.deviceListView.frame = self.rectDeviceListView;
-//        }];
-        CAPDevice *device = self.deviceListView.devices[index];
-        self.currentDevice = device;
-        [self getDeviceLocation:device];
-//    }else{
-//        [UIView animateWithDuration:0.37 animations:^{
-//            [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
-//            [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
-//        }];
-//    }
+    [self getDeviceLocation:self.deviceListView.devices.firstObject];
+    [UIView animateWithDuration:0.37 animations:^{
+        self.trackerView.frame = self.rectTrackerView;
+        self.deviceListView.frame = self.rectDeviceListView;
+    }];
+    CAPDevice *device = self.deviceListView.devices[index];
+    self.currentDevice = device;
+    [self getDeviceLocation:device];
 }
 
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {

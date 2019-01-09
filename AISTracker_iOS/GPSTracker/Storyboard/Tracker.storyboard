@@ -38,34 +38,13 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-6C-F6m" userLabel="Device List View" customClass="CAPDeviceListView">
-                                <rect key="frame" x="12" y="402" width="351" height="51"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="ZgK-qF-9qW"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0u-U3-Hl7" customClass="CAPTrackerView">
-                                <rect key="frame" x="12" y="468" width="351" height="130"/>
-                                <color key="backgroundColor" red="0.8980392157" green="0.1647058824" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="GsK-Dl-82L"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LRZ-6C-F6m" firstAttribute="leading" secondItem="7Yq-h0-FFn" secondAttribute="leading" constant="12" id="Olu-yx-8sd"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="bottom" secondItem="7Yq-h0-FFn" secondAttribute="bottom" id="RgF-dA-zSH"/>
-                            <constraint firstItem="c0u-U3-Hl7" firstAttribute="top" secondItem="LRZ-6C-F6m" secondAttribute="bottom" constant="15" id="VBs-mc-ivA"/>
-                            <constraint firstItem="c0u-U3-Hl7" firstAttribute="trailing" secondItem="LRZ-6C-F6m" secondAttribute="trailing" id="VZ8-vL-B08"/>
-                            <constraint firstItem="LRZ-6C-F6m" firstAttribute="centerX" secondItem="7Yq-h0-FFn" secondAttribute="centerX" id="WSp-dW-jBV"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="leading" secondItem="7Yq-h0-FFn" secondAttribute="leading" id="Z5S-MT-NPO"/>
-                            <constraint firstItem="c0u-U3-Hl7" firstAttribute="leading" secondItem="LRZ-6C-F6m" secondAttribute="leading" id="aKc-xf-Gs1"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="top" secondItem="7Yq-h0-FFn" secondAttribute="top" id="gqN-jO-JKN"/>
-                            <constraint firstItem="7Yq-h0-FFn" firstAttribute="bottom" secondItem="c0u-U3-Hl7" secondAttribute="bottom" constant="20" id="ujb-pT-bWP"/>
                             <constraint firstItem="TpI-EX-8wC" firstAttribute="trailing" secondItem="7Yq-h0-FFn" secondAttribute="trailing" id="yYI-yf-EIb"/>
-                            <constraint firstItem="7Yq-h0-FFn" firstAttribute="trailing" secondItem="LRZ-6C-F6m" secondAttribute="trailing" constant="12" id="yls-PU-IHe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Yq-h0-FFn"/>
                     </view>
@@ -73,9 +52,7 @@
                     <navigationItem key="navigationItem" id="Vog-Ut-w2x"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="deviceListView" destination="LRZ-6C-F6m" id="CdI-lZ-cXF"/>
                         <outlet property="mapView" destination="TpI-EX-8wC" id="vto-rT-qcT"/>
-                        <outlet property="trackerView" destination="c0u-U3-Hl7" id="KLw-jc-VVv"/>
                         <segue destination="Vuf-JL-ani" kind="show" identifier="fence.list.segue" id="lvN-dO-VYJ"/>
                         <segue destination="Qac-Ey-ifn" kind="show" identifier="footprint.segue" id="Ntt-Vp-E6P"/>
                         <segue destination="C02-rF-3Bd" kind="show" identifier="photograph.segue" id="HUn-Yz-OrC"/>

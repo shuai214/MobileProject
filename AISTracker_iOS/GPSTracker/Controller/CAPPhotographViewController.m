@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UIImageView *showPhotoImage;
 @property (strong, nonatomic) NSMutableArray *showPhotos;
+@property (strong, nonatomic) MQTTInfo *mqttInfo;
+
 @end
 
 @implementation CAPPhotographViewController
@@ -79,17 +81,25 @@
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command) {
             [gApp showHUD:command.message];
+            [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationPhotoCountChange object:nil];
+            //GCD延迟
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (!self.mqttInfo) {
+                    [gApp hideHUD];
+                    [gApp showNotifyInfo:@"请求错误❌" backGroundColor:[CAPColors gray1]];
+                }
+            });
         }
-        [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationPhotoCountChange object:nil];
+        
     }];
 }
 
 - (void)getNotification:(NSNotification *)notifi{
-    MQTTInfo *info = notifi.object;
-    NSLog(@"%@",info);
+    self.mqttInfo = notifi.object;
+    NSLog(@"%@",self.mqttInfo);
     [gApp hideHUD];
     // 将base64字符串转为NSData
-    NSData *decodeData = [[NSData alloc]initWithBase64EncodedString:info.data options:(NSDataBase64DecodingIgnoreUnknownCharacters)];
+    NSData *decodeData = [[NSData alloc]initWithBase64EncodedString:self.mqttInfo.data options:(NSDataBase64DecodingIgnoreUnknownCharacters)];
     // 将NSData转为UIImage
     UIImage *decodedImage = [UIImage imageWithData:decodeData];
     [self.showPhotoImage setImage:decodedImage];

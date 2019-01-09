@@ -21,6 +21,21 @@
 
 @implementation CAPTrackerView
 
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [[NSBundle mainBundle] loadNibNamed:@"CAPTrackerView" owner:self options:nil];
+        [self addSubview:self.contentView];
+        self.userInteractionEnabled = YES;
+        [self initButton:self.fenceButton];
+        [self initButton:self.footprintButton];
+        [self initButton:self.photographButton];
+        [self initButton:self.callButton];
+        [self initButton:self.settingButton];
+        [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return self;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

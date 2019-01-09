@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *param;
 @end
 @interface CAPDeviceCommand : NSObject
-@property(nonatomic,copy)NSString *code;
+@property(nonatomic,assign)NSInteger code;
 @property(nonatomic,copy)NSString *message;
 @property(nonatomic,copy)NSString *status;
 @property(nonatomic,strong)ResultCommand *result;
