@@ -23,7 +23,7 @@
 #import "IQKeyboardManager.h"
 #import <GooglePlaces/GooglePlaces.h>
 #import "CAPSocialService.h"
-#import "MQTTCenter.h"
+
 @import GoogleMaps;
 
 AppDelegate* gApp = nil;
@@ -84,7 +84,7 @@ AppDelegate* gApp = nil;
     [GMSPlacesClient provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
 //    [GMSServices provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
 //    [GMSPlacesClient provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
-    [self mqttConnect];
+    
     [self startNetworkMonitor];
     
     [IQKeyboardManager sharedManager].enable = YES;
@@ -113,20 +113,7 @@ AppDelegate* gApp = nil;
     [self.window makeKeyAndVisible];
 }
 
-- (void)mqttConnect{
-    MQTTCenter *mqttCenter = [MQTTCenter center];
-    MQTTConfig *config = [[MQTTConfig alloc] init];
-    config.host = @"mqtt.kvtel.com";
-    config.port = 1883;
-    config.username = @"demo_app";
-    config.password = @"demo_890_123_654";
-    config.userID = [CAPUserDefaults objectForKey:@"userID"];
-    config.keepAliveInterval = 20;
-    config.deviceType = MQTTDeviceTypeApp;
-    config.platformID = @"KVTELIOT";
-    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
-    [mqttCenter open:config];
-}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

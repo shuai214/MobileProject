@@ -39,7 +39,7 @@
     
     AFHTTPRequestSerializer* requestSerializer = [AFJSONRequestSerializer serializerWithWritingOptions:0];
     requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    requestSerializer.timeoutInterval = 15;
+    requestSerializer.timeoutInterval = 60;
     [requestSerializer setValue:@"1234567890" forHTTPHeaderField:@"App-Key"];
     [requestSerializer setValue:@"1" forHTTPHeaderField:@"App-OS"]; //1-iOS, 2-android, 3-windows
     [requestSerializer setValue:[CAPPhones phoneModel] forHTTPHeaderField:@"App-OS-Model"];

@@ -30,5 +30,7 @@
 #import <Masonry.h>
 #import <DateTools/DateTools.h>
 #import "MBProgressHUD+NHAdd.h"
-
+#import "CAPColors.h"
+#import "AppConfig.h"
+#import "UIViewExt.h"
 #endif /* PrefixHeader_pch */

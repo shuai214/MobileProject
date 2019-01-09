@@ -256,6 +256,7 @@
                                 <rect key="frame" x="30" y="372" width="315" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="315" id="31d-2m-fyx"/>
                                     <constraint firstAttribute="height" constant="80" id="QIi-ra-VWw"/>
                                 </constraints>
                             </view>
@@ -279,7 +280,6 @@
                             <constraint firstItem="Llw-au-FSy" firstAttribute="centerX" secondItem="Xo2-7D-gRZ" secondAttribute="centerX" id="58r-pn-DAp"/>
                             <constraint firstItem="Xo2-7D-gRZ" firstAttribute="trailing" secondItem="2qZ-NO-2Xo" secondAttribute="trailing" constant="30" id="EQX-Wk-0hL"/>
                             <constraint firstItem="Q3X-xq-dDV" firstAttribute="top" secondItem="53f-DX-qwM" secondAttribute="bottom" constant="17" id="Ond-jN-liX"/>
-                            <constraint firstItem="gwY-92-Qkp" firstAttribute="leading" secondItem="Xo2-7D-gRZ" secondAttribute="leading" constant="30" id="QGS-CN-h1s"/>
                             <constraint firstItem="Llw-au-FSy" firstAttribute="leading" secondItem="Xo2-7D-gRZ" secondAttribute="leading" constant="16" id="SYT-qx-N6m"/>
                             <constraint firstItem="Xo2-7D-gRZ" firstAttribute="trailing" secondItem="Llw-au-FSy" secondAttribute="trailing" constant="16" id="Zl8-N3-tB7"/>
                             <constraint firstItem="Q3X-xq-dDV" firstAttribute="centerX" secondItem="Xo2-7D-gRZ" secondAttribute="centerX" id="c2g-5g-1pt"/>
@@ -294,7 +294,6 @@
                             <constraint firstItem="Xo2-7D-gRZ" firstAttribute="trailing" secondItem="Q3X-xq-dDV" secondAttribute="trailing" constant="16" id="qI4-mo-wkf"/>
                             <constraint firstItem="2qZ-NO-2Xo" firstAttribute="top" secondItem="gwY-92-Qkp" secondAttribute="bottom" constant="66" id="rgg-lW-2Gw"/>
                             <constraint firstItem="2qZ-NO-2Xo" firstAttribute="centerX" secondItem="Xo2-7D-gRZ" secondAttribute="centerX" id="sSe-or-aXc"/>
-                            <constraint firstItem="Xo2-7D-gRZ" firstAttribute="trailing" secondItem="gwY-92-Qkp" secondAttribute="trailing" constant="30" id="umO-Fj-XOy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xo2-7D-gRZ"/>
                     </view>

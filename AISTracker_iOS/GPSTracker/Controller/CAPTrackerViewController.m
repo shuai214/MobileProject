@@ -78,11 +78,25 @@
     [_locationManager requestWhenInUseAuthorization];
     
     [self fetchDevice];
-
+    [self mqttConnect];
+    
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
 }
-
+- (void)mqttConnect{
+    MQTTCenter *mqttCenter = [MQTTCenter center];
+    MQTTConfig *config = [[MQTTConfig alloc] init];
+    config.host = @"mqtt.kvtel.com";
+    config.port = 1883;
+    config.username = @"demo_app";
+    config.password = @"demo_890_123_654";
+    config.userID = [CAPUserDefaults objectForKey:@"userID"];
+    config.keepAliveInterval = 20;
+    config.deviceType = MQTTDeviceTypeApp;
+    config.platformID = @"KVTELIOT";
+    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+    [mqttCenter open:config];
+}
 
 - (void)fetchDevice{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];

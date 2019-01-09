@@ -13,6 +13,8 @@
 		2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */; };
 		2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */; };
 		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
+		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
+		2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2721E5DCD100EE6D02 /* UIViewExt.m */; };
 		2B6DDB9521E43C96004CAE09 /* CAPGuardianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */; };
 		2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */; };
 		2B6DDB9921E46F25004CAE09 /* CAPDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */; };
@@ -216,6 +218,10 @@
 		2B1C080C21E0ABF400B258C1 /* CAPDeviceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceCommand.h; sourceTree = "<group>"; };
 		2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceCommand.m; sourceTree = "<group>"; };
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
+		2B527E2421E5D32A00EE6D02 /* CAPSOSMobileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSOSMobileViewController.h; sourceTree = "<group>"; };
+		2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSMobileViewController.m; sourceTree = "<group>"; };
+		2B527E2721E5DCD100EE6D02 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		2B527E2821E5DCD100EE6D02 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		2B6DDB9221E43C96004CAE09 /* CAPGuardianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianTableViewCell.h; sourceTree = "<group>"; };
 		2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianTableViewCell.m; sourceTree = "<group>"; };
 		2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPGuardianTableViewCell.xib; sourceTree = "<group>"; };
@@ -713,6 +719,8 @@
 				EFD0AC85218C3D0F00405FD8 /* CAPLoginViewController.m */,
 				EFD0ACA8218C3EC900405FD8 /* CAPMasterSettingViewController.h */,
 				EFD0ACA9218C3EC900405FD8 /* CAPMasterSettingViewController.m */,
+				2B527E2421E5D32A00EE6D02 /* CAPSOSMobileViewController.h */,
+				2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */,
 				EFD0ACBA218C420400405FD8 /* CAPMessageListViewController.h */,
 				EFD0ACBB218C420400405FD8 /* CAPMessageListViewController.m */,
 				EFD0ACBD218C420C00405FD8 /* CAPMeViewController.h */,
@@ -1064,6 +1072,8 @@
 				EFD0AD1B218C4F7200405FD8 /* UIView+Frame.m */,
 				2BECD33221D89CDE00EEBFCD /* NSString+formateTime.h */,
 				2BECD33321D89CDE00EEBFCD /* NSString+formateTime.m */,
+				2B527E2821E5DCD100EE6D02 /* UIViewExt.h */,
+				2B527E2721E5DCD100EE6D02 /* UIViewExt.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1454,6 +1464,7 @@
 				2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */,
 				EFD0AD2C218C505900405FD8 /* CAPUser.m in Sources */,
 				EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */,
+				2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */,
 				EF46F27221928F68009A357C /* CAPFeedbackService.m in Sources */,
 				EFD0AD22218C4F7200405FD8 /* UITableView+CAP.m in Sources */,
 				EFD0AD1C218C4F7200405FD8 /* NSString+Size.m in Sources */,
@@ -1480,6 +1491,7 @@
 				EF12AE072193C926006A8AE1 /* CAPWeekView.m in Sources */,
 				EF46F2A22192E103009A357C /* CAPKeyChain.m in Sources */,
 				EF6CA640218D30FF0014771E /* CAPFetchUserProfileResponse.m in Sources */,
+				2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */,
 				EFD0ACA1218C3EA000405FD8 /* CAPGuardianListViewController.m in Sources */,
 				EF6CA652218D31680014771E /* CAPCheckRemoteSettingResponse.m in Sources */,
 				EFD0AC89218C3DFF00405FD8 /* CAPAddFenceViewController.m in Sources */,

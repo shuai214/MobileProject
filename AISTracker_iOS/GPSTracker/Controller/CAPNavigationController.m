@@ -26,7 +26,8 @@
     UIColor * color = [CAPColors white];
     NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName]; //UITextAttributeTextColor
     self.navigationBar.titleTextAttributes = dict;
-    
+    self.navigationBar.tintColor=[UIColor whiteColor];
+
         CGRect rect=CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
         UIGraphicsBeginImageContext(rect.size);
         CGContextRef context = UIGraphicsGetCurrentContext();

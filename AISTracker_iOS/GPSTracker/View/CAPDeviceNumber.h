@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPDeviceNumber : UIView
+- (instancetype)initWithFrame:(CGRect)frame isEdit:(BOOL)isEdit;
 @property(nonatomic,strong)UILabel *telAreaCodeLabel;
 @property(nonatomic,strong)UILabel *countryNameLabel;
 @property(nonatomic,strong)UITextField *telField;
-
+@property(nonatomic,assign)BOOL isEdit;
 @end
 
 NS_ASSUME_NONNULL_END

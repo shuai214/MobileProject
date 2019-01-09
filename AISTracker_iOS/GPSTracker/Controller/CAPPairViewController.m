@@ -66,11 +66,13 @@
 
 - (IBAction)onNumberButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"number.segue" sender:nil];
-    CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
-    CAPWeakSelf(self);
-    [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
-        [weakself addDeviceService:successStr owner:YES];
-    }];
+//    CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
+//    CAPWeakSelf(self);
+//    [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
+//        [weakself addDeviceService:successStr owner:YES];
+//    }];
+//    [self.navigationController pushViewController:AddTrackerVC animated:YES];
+    CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
 }
 

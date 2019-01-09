@@ -12,6 +12,7 @@
 #import "CAPGuardianListViewController.h"
 #import "CAPDeviceService.h"
 #import "CAPGuardianListViewController.h"
+#import "CAPSOSMobileViewController.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -122,6 +123,12 @@
             CAPGuardianListViewController *GuardianVC = [story instantiateViewControllerWithIdentifier:@"GuardianListViewController"];
             GuardianVC.device = self.device;
             [self.navigationController pushViewController:GuardianVC animated:YES];
+        }
+            break;
+        case 5:
+        {
+            CAPSOSMobileViewController *sosVC = [[CAPSOSMobileViewController alloc] init];
+            [self.navigationController pushViewController:sosVC animated:YES];
         }
             break;
         default:

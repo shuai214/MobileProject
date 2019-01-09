@@ -26,6 +26,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.deviceNumber.countryNameLabel.userInteractionEnabled = YES;
+    self.deviceNumber.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.deviceNumber.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
     
