@@ -49,6 +49,30 @@
         reply(response);
     }];
 }
+
+- (void)bindDevice:(NSString *)shareid param:(NSDictionary *)param reply:(CAPServiceReply)reply{
+    //TODO
+    if (shareid) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Bind/" stringByAppendingString:shareid] method:@"POST" parameters:param];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+    
+- (void)deviceConfirm:(NSString *)deviceID userid:(NSString *)userid result:(NSString *)result reply:(CAPServiceReply)reply{
+    if (deviceID) {
+        NSDictionary *params = @{
+                                 @"uuid": deviceID,
+                                 @"userid": userid,
+                                 @"result": result
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[NSString stringWithFormat:@"%@%@/%@/%@",@"Device/Confirm/",deviceID,userid,result] method:@"POST" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
 -(void)getDevice:(CAPDevice *)device reply:(CAPServiceReply)reply{
     
    
@@ -73,15 +97,20 @@
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
         }];
+    }else{
+        [gApp hideHUD];
     }
 }
 
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply {
     //TODO
-    CAPHttpRequest *request = [self buildRequest:[@"Device/Device" stringByAppendingString:device.deviceID] method:@"DELETE" parameters:nil];
-    [self sendRequest:request reply:^(CAPHttpResponse *response) {
-        reply(response);
-    }];
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Device/" stringByAppendingString:device.deviceID] method:@"DELETE" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+    
 }
 
 - (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply {
@@ -106,8 +135,18 @@
     //TODO
 }
 
-- (void)fetchFootprint:(NSString *)deviceID range:(NSRange)range reply:(CAPServiceReply)reply {
+- (void)fetchFootprint:(NSString *)deviceID starttime:(NSString *)starttime endtime:(NSString *)endtime reply:(CAPServiceReply)reply{
     //TODO
+    if (deviceID) {
+        NSDictionary *params = @{
+                                 @"starttime": starttime,
+                                 @"endtime": endtime
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Locations/" stringByAppendingString:deviceID] method:@"GET" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)getDeviceLogs:(NSString *)deviceID page:(NSInteger)page reply:(CAPServiceReply)reply{

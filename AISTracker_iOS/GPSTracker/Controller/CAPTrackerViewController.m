@@ -20,6 +20,7 @@
 #import "CAPPhotographViewController.h"
 #import "CAPMasterSettingViewController.h"
 #import "CAPFenceListViewController.h"
+#import "CAPFootprintViewController.h"
 #import "UIView+Frame.h"
 #import "CAPDeviceCommand.h"
 @import GoogleMaps;
@@ -41,6 +42,7 @@
 @property (assign,nonatomic)CGRect rectTrackerView;
 @property (assign,nonatomic)CGRect rectDeviceListView;
 @property (strong,nonatomic)CAPDevice *currentDevice;
+@property (strong,nonatomic)NSString *address;
 
 @end
 
@@ -115,6 +117,13 @@
         NSLog(@"%@",deviceLists);
         self.deviceListView.devices = deviceLists.result.list;
         self.currentDevice = self.deviceListView.devices.firstObject;
+        if ([self.currentDevice.role isEqualToString:@"user"]) {
+            [self.trackerView userOrowner:YES];
+        }else{
+            [self.trackerView userOrowner:NO];
+        }
+        [self.marker.map clear];
+        self.marker.map = nil;
     }];
 }
 - (void)getDeviceLocation:(CAPDevice *)device{
@@ -172,7 +181,9 @@
     [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@",response);
         GMSAddress *placemark = response.firstResult;
-        [self.trackerView refreshDeviceLocation:self.currentDevice location:[NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare]];
+        self.address = [NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare];
+        self.currentDevice.address = self.address;
+        [self.trackerView refreshDeviceLocation:self.currentDevice location:self.address];
     }];
 }
 - (void)refreshLocalizedString {
@@ -185,13 +196,20 @@
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
 -(void)didSelectDeviceAtIndex:(NSInteger)index {
-    [self getDeviceLocation:self.deviceListView.devices.firstObject];
+    CAPDevice *device = self.deviceListView.devices[index];
+    [self getDeviceLocation:device];
     [UIView animateWithDuration:0.37 animations:^{
         self.trackerView.frame = self.rectTrackerView;
         self.deviceListView.frame = self.rectDeviceListView;
     }];
-    CAPDevice *device = self.deviceListView.devices[index];
     self.currentDevice = device;
+    [self.trackerView refreshDeviceLocation:device location:self.currentDevice.address];
+
+    if ([device.role isEqualToString:@"user"]) {
+        [self.trackerView userOrowner:YES];
+    }else{
+        [self.trackerView userOrowner:NO];
+    }
     [self getDeviceLocation:device];
 }
 
@@ -204,7 +222,10 @@
         }
             break;
         case CCAPTrackerViewActionFootprint:
-            [self performSegueWithIdentifier:@"footprint.segue" sender:nil];
+        {CAPFootprintViewController *footprintList = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"FootprintViewController"];
+            footprintList.device = self.currentDevice;
+            [self.navigationController pushViewController:footprintList animated:YES];
+        }
             break;
         case CAPTrackerViewActionPhotograph:
         {CAPPhotographViewController *photograph = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotographViewController"];

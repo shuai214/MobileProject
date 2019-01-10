@@ -14,39 +14,29 @@
 #import "CAPDeviceService.h"
 #import "MQTTCenter.h"
 #import "CAPDeviceSettingViewController.h"
-@interface CAPPairViewController ()
+@interface CAPPairViewController ()<YWAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIButton *numberButton;
-
+@property (nonatomic,strong) id <YWAlertViewProtocol>ywAlert;
 @end
 
 @implementation CAPPairViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",self.navigationController.viewControllers);
-
     [self setTitle:NSLocalizedString(@"tether", nil)];
-//    [self.infoLabel setText:NSLocalizedString(@"tether", nil)];
-//    [self.scanButton setTitle:NSLocalizedString(@"scan", nil) forState:UIControlStateNormal];
-//    [self.numberButton setTitle:NSLocalizedString(@"number", nil) forState:UIControlStateNormal];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (id<YWAlertViewProtocol>)ywAlert{
+    if (!_ywAlert) {
+        _ywAlert = [YWAlertView alertViewWithTitle:nil message:@"" delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
+    }
+    return _ywAlert;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didClickAlertView:(NSInteger)buttonIndex value:(id)value{
+    NSLog(@"委托代理=当前点击--%zi",buttonIndex);
+    
 }
-*/
 - (void)refreshLocalizedString {
     
 }
@@ -59,7 +49,17 @@
         [weakself addDeviceService:successStr owner:YES];
     }];
     [ScanVC setBindSuccessBlock:^(NSString *successStr) {
-        [weakself addDeviceService:successStr owner:NO];
+//        [weakself addDeviceService:successStr owner:NO];
+        [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",successStr] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
+            CAPDeviceSettingViewController *deviceSettingVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
+            deviceSettingVC.deviceStr = successStr;
+            [deviceSettingVC setInputDeviceBlock:^(CAPDevice *device) {
+                id <YWAlertViewProtocol>alert = [YWAlertView alertViewWithTitle:nil message:@"设备正在绑定中，请求owner确认。" delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleVertical bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert setMessageFontWithName:@"BodoniSvtyTwoITCTT-BookIta" size:16];
+                [alert show];
+            }];
+            [self.navigationController pushViewController:deviceSettingVC animated:YES];
+        }];
     }];
     [self.navigationController pushViewController:ScanVC animated:YES];
 }
@@ -76,6 +76,9 @@
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
 }
 
+
+
+
 - (void)addDeviceService:(NSString *)deviceNum owner:(BOOL)is{
     [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",deviceNum] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
         CAPDevice *device = [[CAPDevice alloc] init];
@@ -88,15 +91,10 @@
             if ([[response.data objectForKey:@"code"] integerValue] == 200) {
                 CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
-//                if ([self.navigationController.viewControllers.firstObject isKindOfClass:[CAPTrackerViewController class]]) {
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                }else{
-//                    //                [self performSegueWithIdentifier:@"main.segue" sender:nil];
-                    CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
-                    [self.navigationController pushViewController:AddTrackerVC animated:YES];
-//                }
+                CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
+                AddTrackerVC.device = getDevice;
+                [self.navigationController pushViewController:AddTrackerVC animated:YES];
             }else{
-//                [gApp showNotifyInfo:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] backGroundColor:nil];
                 [CAPAlerts alertWarning:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] buttonTitle:@"确定" actionBlock:^{
                     
                 }];

@@ -10,6 +10,9 @@
 #import "CAPDevice.h"
 @interface CAPDeviceListView ()
 @property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic,strong) UIButton *selectedBtn;
+
+
 @end
 
 @implementation CAPDeviceListView
@@ -66,14 +69,20 @@
         self.scrollView.contentSize = CGSizeMake(width * self.devices.count, height);
         for(int i=0; i<self.devices.count; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
+            //边框宽度
+            [button.layer setBorderWidth:2.0];
+            if (i == 0) {
+                [button.layer setBorderColor:[CAPColors red].CGColor];//边框颜色
+                button.selected = YES;
+                self.selectedBtn = button;
+            }else{
+                [button.layer setBorderColor:[CAPColors gray1].CGColor];//边框颜色
+            }
             button.layer.cornerRadius = width / 2;
             button.layer.masksToBounds = YES;
             button.tag = i;
             CAPDevice *device = self.devices[i];
             [button sd_setImageWithURL:[NSURL URLWithString:device.setting.avatar.url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"tracker_phone"]];
-//            }else{
-//                [button setBackgroundImage:[UIImage imageNamed:@"tracker_phone"] forState:UIControlStateNormal];
-//            }
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
         }
@@ -87,6 +96,15 @@
     if(self.delegate) {
         [self.delegate didSelectDeviceAtIndex:button.tag];
     }
+
+    if (!button.isSelected) {
+        self.selectedBtn.selected = !self.selectedBtn.selected;
+        [self.selectedBtn.layer setBorderColor:[CAPColors gray1].CGColor];
+        button.selected = !button.selected;
+        [button.layer setBorderColor:[CAPColors red].CGColor];
+        self.selectedBtn = button;
+    }
+ 
 }
 
 @end

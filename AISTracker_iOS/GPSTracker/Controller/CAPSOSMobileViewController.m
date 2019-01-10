@@ -8,6 +8,7 @@
 
 #import "CAPSOSMobileViewController.h"
 #import "CAPDeviceNumber.h"
+#import "CAPMMCountry.h"
 @interface CAPSOSMobileViewController ()
 @property(nonatomic,strong)UIScrollView *bgscrollView;
 @end
@@ -68,14 +69,68 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:10];
-    label.text = [NSString stringWithFormat:@"%d",index];
+    label.text = [NSString stringWithFormat:@"%ld",(long)index];
     [imgView addSubview:label];
     [bgView addSubview:imgView];
     
     CAPDeviceNumber *deviceNumberView = [[CAPDeviceNumber alloc] initWithFrame:CGRectMake(imgView.right + 10, 0, width - imgView.right - 30, height) isEdit:is];
+    deviceNumberView.countryNameLabel.tag = index + 99;
+    deviceNumberView.countryNameLabel.userInteractionEnabled = is;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    [deviceNumberView.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
     [bgView addSubview:deviceNumberView];
     return bgView;
-    
+}
+-(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+    UILabel *label= (UILabel *)recognizer.view;
+    CAPDeviceNumber *deviceNumber = (CAPDeviceNumber *)label.superview;
+    [self get:deviceNumber];
 }
 
+-(void)get:(CAPDeviceNumber *)deviceNumber{
+    NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"diallingcode" ofType:@"json"]];
+    NSError *error = nil;
+    NSArray *arrayCode = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if ( error ) {
+        return;
+    }
+    NSLog(@"%@", arrayCode);
+    //读取文件
+    NSMutableDictionary *dicCode = [@{} mutableCopy];
+    for ( NSDictionary *item in arrayCode ){
+        CAPMMCountry *c = [CAPMMCountry new];
+        c.code      = item[@"code"];
+        c.dial_code = item[@"dial_code"];
+        [dicCode setObject:c forKey:c.code];
+    }
+    //获取国家名
+    NSLocale *locale = [NSLocale currentLocale];
+    NSArray *countryArray = [NSLocale ISOCountryCodes];
+    NSMutableArray*countriesArray = [[NSMutableArray alloc] init];
+    NSMutableArray*countryCodeArray = [[NSMutableArray alloc] init];
+    
+    for (NSString *countryCode in countryArray) {
+        if (dicCode[countryCode] ){
+            CAPMMCountry *c = dicCode[countryCode];
+            if ([c.code isEqualToString:@"CN"]) {
+                c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
+                [countriesArray insertObject:c.name atIndex:0];
+                [countryCodeArray insertObject:c.dial_code atIndex:0];
+            }
+            c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
+            if ( [c.name isEqualToString:@"台湾"] ){
+                c.name = @"中国台湾";
+            }
+            [countriesArray addObject:c.name];
+            [countryCodeArray addObject:c.dial_code];
+        }
+    }
+    NSArray *array = countriesArray;
+    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
+        NSUInteger index = [array indexOfObject:selectValue];
+        NSString *telCode = [countryCodeArray objectAtIndex:(NSInteger)index];
+        deviceNumber.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
+        deviceNumber.countryNameLabel.text = selectValue;
+    }];
+}
 @end

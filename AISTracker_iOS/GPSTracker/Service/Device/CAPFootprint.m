@@ -7,7 +7,12 @@
 //
 
 #import "CAPFootprint.h"
+@implementation ResultFootprintList
 
+@end
 @implementation CAPFootprint
-
++ (NSDictionary*)mj_objectClassInArray
+{
+    return @{@"result": @"ResultFootprintList"};
+}
 @end

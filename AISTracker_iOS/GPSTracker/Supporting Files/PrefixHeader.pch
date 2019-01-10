@@ -33,4 +33,6 @@
 #import "CAPColors.h"
 #import "AppConfig.h"
 #import "UIViewExt.h"
+#import "YWAlertView.h"
+
 #endif /* PrefixHeader_pch */

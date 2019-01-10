@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *settingButton;
 @property (weak, nonatomic) IBOutlet UILabel *DeviceName;
 @property (weak, nonatomic) IBOutlet UILabel *DeviceLocation;
+@property (weak, nonatomic) IBOutlet UIStackView *ownerStackView;
+@property (weak, nonatomic) IBOutlet UIStackView *userStackView;
+@property (weak, nonatomic) IBOutlet UIButton *userCall;
+@property (weak, nonatomic) IBOutlet UIButton *userFootprint;
+@property (weak, nonatomic) IBOutlet UIButton *userSetting;
 
 @end
 
@@ -32,6 +37,9 @@
         [self initButton:self.photographButton];
         [self initButton:self.callButton];
         [self initButton:self.settingButton];
+        [self initButton:self.userCall];
+        [self initButton:self.userFootprint];
+        [self initButton:self.userSetting];
         [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -47,7 +55,20 @@
     [self initButton:self.photographButton];
     [self initButton:self.callButton];
     [self initButton:self.settingButton];
+    [self initButton:self.userCall];
+    [self initButton:self.userFootprint];
+    [self initButton:self.userSetting];
     [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)userOrowner:(BOOL)is{
+    if (is) {
+        self.ownerStackView.hidden = YES;
+        self.userStackView.hidden = NO;
+    }else{
+        self.ownerStackView.hidden = NO;
+        self.userStackView.hidden = YES;
+    }
 }
 
 - (void)did{

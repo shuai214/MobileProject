@@ -46,6 +46,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - YWAlertView (1.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - MQTTClient
   - SCLAlertView-Objective-C (~> 1.1.1)
   - SDWebImage (~> 3.8.2)
+  - YWAlertView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -85,6 +87,7 @@ SPEC REPOS:
     - MQTTClient
     - SCLAlertView-Objective-C
     - SDWebImage
+    - YWAlertView
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -104,7 +107,8 @@ SPEC CHECKSUMS:
   MQTTClient: eea2eaaa6ddef852a1019a4dda091e22ad928b58
   SCLAlertView-Objective-C: 917836fb2349afa58edc43d592d22d21d46bb2a4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  YWAlertView: 79f125a2a9fe4f5c8d314626233248875e89d233
 
-PODFILE CHECKSUM: 78e6b099be63b63c0b0cbb674c419924ffff73d2
+PODFILE CHECKSUM: 4ba34e279686694f08e5ab61dde470229b3ed639
 
 COCOAPODS: 1.5.3

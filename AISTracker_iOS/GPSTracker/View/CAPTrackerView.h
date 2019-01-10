@@ -27,4 +27,5 @@ typedef NS_ENUM(NSUInteger, CAPTrackerViewAction) {
 @property (strong, nonatomic) IBOutlet CAPTrackerView *contentView;
 @property (nonatomic, weak) id<CAPTrackerViewDelegate> delegate;
 - (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location;
+- (void)userOrowner:(BOOL)is;
 @end

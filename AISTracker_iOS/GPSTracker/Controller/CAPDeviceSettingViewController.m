@@ -76,7 +76,6 @@
         self.deviceNumber.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
         self.deviceNumber.countryNameLabel.text = selectValue;
     }];
-    
 }
 - (IBAction)nextAction:(UIButton *)sender {
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
@@ -92,9 +91,38 @@
         [CAPToast toastError:@"输入的号码不正确"];
         return;
     }
-    [deviceService updateDevice:self.device reply:^(id response) {
-        
-    }];
+    if (self.device) {
+         [gApp showHUD:@"正在处理，请稍后..."];
+        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
+            NSDictionary *data = response.data;
+            if ([[data objectForKey:@"code"] integerValue] == 200) {
+                [gApp hideHUD];
+                [CAPNotifications notify:kNotificationDeviceCountChange object:self.device];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [gApp hideHUD];
+                }];
+            }
+        }];
+    }else{
+        if (self.deviceStr) {
+            [gApp showHUD:@"正在处理，请稍后..."];
+            NSDictionary *param = @{
+                                    @"name":self.deviceName.text,
+                                    @"sos":self.deviceNumber.telField.text
+                                    };
+            [deviceService bindDevice:self.deviceStr param:param reply:^(CAPHttpResponse *response) {
+                NSDictionary *data = response.data;
+                if ([[data objectForKey:@"code"] integerValue] == 200) {
+                    self.device = [CAPDevice mj_objectWithKeyValues:[data objectForKey:@"result"]];
+                    [gApp hideHUD];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    !self->_inputDeviceBlock ? : self->_inputDeviceBlock(self.device);
+                }
+            }];
+        }
+    }
 }
 
 -(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{

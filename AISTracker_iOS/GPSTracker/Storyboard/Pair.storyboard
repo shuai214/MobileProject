@@ -266,7 +266,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="PKY-Ih-GAt"/>
                                 </constraints>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="确定">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPDeviceSettingViewController : CAPBaseViewController
 @property(nonatomic,strong)CAPDevice *device;
+@property (nonatomic, copy) void (^inputDeviceBlock)(CAPDevice *device);
+@property (nonatomic,copy)NSString *deviceStr;
 @end
 
 NS_ASSUME_NONNULL_END

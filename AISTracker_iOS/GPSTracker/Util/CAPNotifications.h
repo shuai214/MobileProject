@@ -21,8 +21,9 @@ static NSString* _Nullable const kNotificationDeviceInfoChange = @"cap.notificat
 static NSString* _Nullable const kNotificationDeviceSettingChange = @"cap.notification.device.setting.change";
 
 static NSString* _Nullable const kNotificationPhotoCountChange = @"cap.notification.photo.count.change";
-static NSString* _Nullable const kNotificationGPSCountChange = @"cap.notification.photo.count.change";
-static NSString* _Nullable const kNotificationUPLOADCountChange = @"cap.notification.photo.count.change";
+static NSString* _Nullable const kNotificationGPSCountChange = @"cap.notification.gps.count.change";
+static NSString* _Nullable const kNotificationUPLOADCountChange = @"cap.notification.upload.count.change";
+static NSString* _Nullable const kNotificationBINDREQCountChange = @"cap.notification.bindreq.count.change";
 static NSString* _Nullable const kNotificationMessageCountChange = @"cap.notification.message.count.change";
 
 //static NSString* _Nullable const kNotificationSOS = @"cap.notification.sos";

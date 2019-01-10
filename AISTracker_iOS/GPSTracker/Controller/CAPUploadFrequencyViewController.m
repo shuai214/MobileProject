@@ -86,7 +86,7 @@
 - (void)electricityAction{
     [self.sdImageView setImage:GetImage(@"check_on")];
     [self.customImageView setImage:GetImage(@"check_off")];
-    self.time = @"0";
+    self.time = @"-1";
     [CAPUserDefaults removeObjectForKey:@"uploadTime"];
 }
 
@@ -100,7 +100,7 @@
         NSInteger index = [times indexOfObject:selectValue];
         switch (index) {
             case 0:
-                self.time = @"1";
+                self.time = @"0";
                 break;
             case 1:{
                 NSInteger timeInterval = 60 * 60;

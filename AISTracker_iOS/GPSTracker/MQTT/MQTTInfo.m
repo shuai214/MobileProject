@@ -16,6 +16,8 @@
 
 @implementation WifiInfo
 @end
+@implementation UserProfile
+@end
 
 @implementation MQTTInfo
 //+ (JSONKeyMapper *)keyMapper {

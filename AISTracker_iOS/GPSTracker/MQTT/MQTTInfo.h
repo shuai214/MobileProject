@@ -43,7 +43,13 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
     @property (nonatomic, copy) NSString *mac;
     @property (nonatomic, assign) NSInteger ss;
 @end
+@interface UserProfile : CAPBaseJSON
+@property (nonatomic, copy) NSString *firstName;
+@property (nonatomic, copy) NSString *avatarPath;
+@property (nonatomic, copy) NSString *avatarBaseUrl;
+@property (nonatomic, copy) NSString *locale;
 
+@end
 @interface MQTTInfo : CAPBaseJSON
 //private static final int MASK_SOS = 0x10;
 
@@ -61,6 +67,8 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 @property (nonatomic, assign) NSInteger rolls;
 @property (nonatomic, copy) NSString *status;
 @property (nonatomic, strong) StationInfo *station;
+@property (nonatomic, strong) UserProfile *userProfile;
+
 @property (nonatomic, strong) NSArray<NeighborInfo *>  *neighbors;
 @property (nonatomic, strong) NSArray<WifiInfo *> *wifis;
 

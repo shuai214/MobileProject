@@ -7,7 +7,7 @@
 //
 
 #import "CAPBaseViewController.h"
-
+#import "CAPDevice.h"
 @interface CAPFootprintViewController : CAPBaseViewController
-
+@property(nonatomic,strong)CAPDevice *device;
 @end

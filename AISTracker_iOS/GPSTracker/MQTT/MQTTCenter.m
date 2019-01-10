@@ -9,13 +9,15 @@
 #import "MQTTCenter.h"
 #import "MQTTClient.h"
 #import "MQTTResult.h"
-
+#import "CAPDeviceService.h"
 @implementation MQTTConfig
 @end
 
 @interface MQTTSubResult : CAPBaseJSON
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *operatorCode;
+@property (nonatomic, copy) NSString *userRole;
+
 @end
 
 @implementation MQTTSubResult
@@ -26,11 +28,16 @@
 }
 @end
 
-@interface MQTTCenter () <MQTTSessionDelegate>
+@interface MQTTCenter () <MQTTSessionDelegate,YWAlertViewDelegate>
 @property (nonatomic, strong) MQTTConfig *config;
+@property (nonatomic, strong) MQTTInfo *bindInfo;
+
 @property (nonatomic, strong) MQTTSession *session;
 @property (nonatomic, strong) NSMutableDictionary *infoDictionary;
 @property (nonatomic, copy) NSString *operatorCode;
+
+@property (nonatomic,strong) id <YWAlertViewProtocol>ywAlert;
+
 @end
 
 @implementation MQTTCenter
@@ -67,7 +74,23 @@
         [self.session connect];
     }
 }
-
+- (id<YWAlertViewProtocol>)ywAlert{
+    if (!_ywAlert) {
+        _ywAlert = [YWAlertView alertViewWithTitle:nil message:@"" delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
+    }
+    return _ywAlert;
+}
+- (void)didClickAlertView:(NSInteger)buttonIndex value:(id)value{
+    NSLog(@"委托代理=当前点击--%zi",buttonIndex);
+    if (buttonIndex) {
+        [gApp showHUD:@"正在处理，请稍后..."];
+        CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+        [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
+            NSLog(@"%@",response);
+        }];
+    }
+    
+}
 - (void)close {
     if(self.session) {
         [self.session close];
@@ -227,6 +250,13 @@
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
+    }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
+//        [CAPNotifications notify:kNotificationBINDREQCountChange object:info];
+        self.bindInfo = info;
+        id <YWAlertViewProtocol>alert = [YWAlertView alertViewWithTitle:nil message:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
+        [alert setButtionTitleFontWithName:@"AmericanTypewriter" size:16 index:1];
+        [alert setButtionTitleFontWithName:@"AmericanTypewriter-Bold" size:16 index:0];
+        [alert show];
     }else if (!info.command){
         if ([info.status isEqualToString:@"00010000"]) {
             
