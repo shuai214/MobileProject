@@ -19,6 +19,7 @@
 }
 
 - (void)addFence:(CAPFence *)fence reply:(CAPServiceReply)reply {
+    
     NSString *lat = [NSString stringWithFormat:@"%lf",fence.latitude];
     NSString *lng = [NSString stringWithFormat:@"%lf",fence.longitude];
     NSString *range = [NSString stringWithFormat:@"%ld",(long)fence.range];
@@ -37,7 +38,25 @@
     }];
 }
 
-- (void)editFence:(CAPFence *)fence reply:(CAPServiceReply)reply {
+- (void)editFence:(List *)fenceItem reply:(CAPServiceReply)reply{
+    if(fenceItem) {
+        NSString *lat = [NSString stringWithFormat:@"%lf",fenceItem.lat];
+        NSString *lng = [NSString stringWithFormat:@"%lf",fenceItem.lng];
+        NSString *range = [NSString stringWithFormat:@"%ld",(long)fenceItem.range];
+        NSDictionary *params = @{
+                                 @"name":fenceItem.name,
+                                 @"address": fenceItem.address,
+                                 @"lat":lat,
+                                 @"lng":lng,
+                                 @"range":range,
+                                 @"status":fenceItem.status,
+                                 @"content":@""
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Fence/Fence/" stringByAppendingString:fenceItem.fid] method:@"PUT" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
     
 }
 

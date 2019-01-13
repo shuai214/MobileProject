@@ -87,6 +87,12 @@
         CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
         [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
             NSLog(@"%@",response);
+            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                [gApp hideHUD];
+                [gApp showHUD:@"设备绑定成功！" cancelTitle:@"确定" onCancelled:^{
+                    [gApp hideHUD];
+                }];
+            }
         }];
     }
     
@@ -250,8 +256,9 @@
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
+    }else if ([info.command isEqualToString:@"UNBIND"]){
+        [CAPNotifications notify:kNotificationDeviceCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
-//        [CAPNotifications notify:kNotificationBINDREQCountChange object:info];
         self.bindInfo = info;
         id <YWAlertViewProtocol>alert = [YWAlertView alertViewWithTitle:nil message:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
         [alert setButtionTitleFontWithName:@"AmericanTypewriter" size:16 index:1];

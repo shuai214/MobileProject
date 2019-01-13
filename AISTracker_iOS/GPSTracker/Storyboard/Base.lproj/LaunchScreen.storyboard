@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_app" translatesAutoresizingMaskIntoConstraints="NO" id="PBg-XE-QdO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4Ih-99-AoC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_app_new" translatesAutoresizingMaskIntoConstraints="NO" id="PBg-XE-QdO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -29,12 +26,8 @@
                         <constraints>
                             <constraint firstItem="PBg-XE-QdO" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="6Ns-SA-Qbc"/>
                             <constraint firstAttribute="trailing" secondItem="PBg-XE-QdO" secondAttribute="trailing" id="BJA-Rr-e1l"/>
-                            <constraint firstItem="4Ih-99-AoC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Fe5-So-IWf"/>
                             <constraint firstAttribute="bottom" secondItem="PBg-XE-QdO" secondAttribute="bottom" id="Lwc-Ud-eNk"/>
                             <constraint firstItem="PBg-XE-QdO" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MSk-I0-WR4"/>
-                            <constraint firstAttribute="bottom" secondItem="4Ih-99-AoC" secondAttribute="bottom" id="afQ-mq-BvR"/>
-                            <constraint firstAttribute="trailing" secondItem="4Ih-99-AoC" secondAttribute="trailing" id="van-B6-UHR"/>
-                            <constraint firstItem="4Ih-99-AoC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zc7-ba-4CB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -45,7 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_app" width="540" height="960"/>
-        <image name="logo" width="348" height="164"/>
+        <image name="bg_app_new" width="540" height="960"/>
     </resources>
 </document>

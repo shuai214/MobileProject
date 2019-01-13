@@ -21,8 +21,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhN-qm-QO4" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="AtO-9E-4fo" userLabel="Avatar Image View">
-                                        <rect key="frame" x="112.5" y="0.0" width="150" height="150"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="AtO-9E-4fo" userLabel="Avatar Image View">
+                                        <rect key="frame" x="131.5" y="19" width="112" height="112"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_gray" translatesAutoresizingMaskIntoConstraints="NO" id="bra-F8-oxM">
                                         <rect key="frame" x="328" y="57.5" width="35" height="35"/>
@@ -291,8 +291,8 @@
     </scenes>
     <resources>
         <image name="bg_app" width="540" height="960"/>
-        <image name="ic_default_avatar" width="150" height="150"/>
         <image name="next_gray" width="35" height="35"/>
         <image name="tab_me" width="35" height="35"/>
+        <image name="user_default_avatar" width="112" height="112"/>
     </resources>
 </document>

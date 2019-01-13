@@ -21,8 +21,9 @@
 }
 @end
 @implementation List
-+ (NSDictionary*)mj_objectClassInArray
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
 {
-    return @{@"id": @"fid",};
+    return @{@"fid": @"id"};
 }
 @end

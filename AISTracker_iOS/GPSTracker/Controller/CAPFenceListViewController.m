@@ -17,7 +17,11 @@
 @end
 
 @implementation CAPFenceListViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getFenceList];
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -25,17 +29,21 @@
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
     self.fenceListTableView.delegate = self;
     self.fenceListTableView.dataSource = self;
-    self.fenceListTableView.rowHeight = 105;
+    self.fenceListTableView.rowHeight = 80;
     self.fenceListTableView.tableFooterView = [UIView new];
-    [self getFenceList];
 }
 
 - (void)getFenceList{
+    [gApp showHUD:@"正在加载，请稍后..."];
     CAPFenceService *fenceService = [[CAPFenceService alloc] init];
     [fenceService fetchFence:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         self.fenceList = [CAPFenceList mj_objectWithKeyValues:response.data];
         [self.fenceListTableView reloadData];
+        [gApp hideHUD];
+        if (self.fenceList.result.list.count == 0) {
+            [gApp showNotifyInfo:@"您还没有设置围栏！" backGroundColor:[UIColor orangeColor]];
+        }
     }];
 
 }
@@ -58,6 +66,24 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     List *list = self.fenceList.result.list[indexPath.row];
     [cell setListData:list];
+    CAPWeakSelf(self);
+    [cell setSwitchIsBlock:^(BOOL isOn,CAPFenceListTableViewCell *Cell) {
+        NSIndexPath *indexCellPath = [tableView indexPathForCell:Cell];
+        List *cellList = weakself.fenceList.result.list[indexCellPath.row];
+        cellList.status = isOn ? @"1":@"0";
+        CAPFenceService *fenceService = [[CAPFenceService alloc] init];
+        [gApp showHUD:@"正在更新设置，请稍后..."];
+        [fenceService editFence:cellList reply:^(CAPHttpResponse *response) {
+            NSDictionary *data = response.data;
+            if ([[data objectForKey:@"code"] integerValue] == 200) {
+                [gApp hideHUD];
+            }else{
+                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [gApp hideHUD];
+                }];
+            }
+        }];
+    }];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

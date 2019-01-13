@@ -23,6 +23,7 @@
 #import "CAPFootprintViewController.h"
 #import "UIView+Frame.h"
 #import "CAPDeviceCommand.h"
+#import "CAPDeviceLocal.h"
 @import GoogleMaps;
 
 #define VIEW_X 12
@@ -117,6 +118,13 @@
         NSLog(@"%@",deviceLists);
         self.deviceListView.devices = deviceLists.result.list;
         self.currentDevice = self.deviceListView.devices.firstObject;
+        if (deviceLists.result.list.count == 0) {
+            [UIView animateWithDuration:0.37 animations:^{
+                [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+                [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+            }];
+            [self performSegueWithIdentifier:@"pair.segue" sender:nil];
+        }
         if ([self.currentDevice.role isEqualToString:@"user"]) {
             [self.trackerView userOrowner:YES];
         }else{
@@ -126,21 +134,22 @@
         self.marker.map = nil;
     }];
 }
+//向设备发送GPS信号。
 - (void)getDeviceLocation:(CAPDevice *)device{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService deviceSendCommand:device.deviceID cmd:@"GPS" param:nil reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
-        if (command) {
-        }
     }];
 }
-
+//通过MQTT获取设备的位置。
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
     if ([info.command isEqualToString:@"GPS"]) {
         CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
         [self refreshDeviceLocalized:coords];
+        CAPDeviceLocal *local = [CAPDeviceLocal local];
+        [local setLocal:coords];
         [self.trackerView.batteryView reloadBattery:info.batlevel];
     }
 }

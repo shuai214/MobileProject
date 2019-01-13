@@ -12,6 +12,7 @@
 #import "CAPDeviceService.h"
 #import "CAPValidators.h"
 #import "CAPToast.h"
+#import "CAPUserSettingViewController.h"
 @interface CAPDeviceSettingViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *deviceImage;
 @property (weak, nonatomic) IBOutlet UITextField *deviceName;
@@ -24,11 +25,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if ([self.device.role isEqualToString:@"owner"] && self.device.isOwner.length == 0) {
+        self.title = @"填写设备信息";
+    }else if (self.device.isOwner != nil){
+        self.title = @"填写用户信息";
+    }else{
+        self.title = @"填写设备信息";
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     self.deviceNumber.countryNameLabel.userInteractionEnabled = YES;
     self.deviceNumber.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.deviceNumber.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+    
+}
+-(void)back{
     
 }
 -(void)get {
@@ -92,19 +104,28 @@
         return;
     }
     if (self.device) {
-         [gApp showHUD:@"正在处理，请稍后..."];
+        [gApp showHUD:@"正在处理，请稍后..."];
         [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
             NSDictionary *data = response.data;
             if ([[data objectForKey:@"code"] integerValue] == 200) {
+                NSString *userSettingStr = [CAPUserDefaults objectForKey:@"userSetting"];
+                if (userSettingStr) {
+                    [self performSegueWithIdentifier:@"Main" sender:nil];
+                    return ;
+                }
                 [gApp hideHUD];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:self.device];
-                [self.navigationController popViewControllerAnimated:YES];
+                CAPUserSettingViewController *userSetting = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"UserSettingViewController"];
+                userSetting.device = self.device;
+                userSetting.device.isOwner = @"owner";
+                [self.navigationController pushViewController:userSetting animated:YES];
             }else{
                 [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
                     [gApp hideHUD];
                 }];
             }
         }];
+        
     }else{
         if (self.deviceStr) {
             [gApp showHUD:@"正在处理，请稍后..."];

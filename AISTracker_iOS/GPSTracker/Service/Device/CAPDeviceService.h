@@ -29,7 +29,7 @@
 
 - (void)deleteDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
 
-- (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply;
+- (void)updateSetting:(CAPDevice *)setting reply:(CAPServiceReply)reply;
 
 - (void)getDeviceBindinfo:(CAPDevice *)device reply:(CAPServiceReply)reply;
 

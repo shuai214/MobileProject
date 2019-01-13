@@ -33,8 +33,7 @@
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    return scaledImage;   //返回的就是已经改变的图片
+    return scaledImage;
 }
 
 - (void)viewDidLoad {
@@ -160,7 +159,6 @@
     return _ywAlert;
 }
 - (void)didClickAlertView:(NSInteger)buttonIndex value:(id)value{
-    NSLog(@"委托代理=当前点击--%zi",buttonIndex);
     if (buttonIndex) {
         [gApp showHUD:@"正在处理，请稍后..."];
         CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
@@ -169,6 +167,7 @@
             if ([[data objectForKey:@"code"] integerValue] == 200) {
                 [gApp hideHUD];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+                [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{

@@ -91,7 +91,10 @@
     if (device) {
         NSDictionary *params = @{
                                  @"name": device.name,
-                                 @"mobile":device.mobile
+                                 @"mobile":device.mobile,
+                                 @"sos":device.sos,
+                                 @"avatarPath": @"",
+                                 @"avatarBaseUrl": @""
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
@@ -113,8 +116,18 @@
     
 }
 
-- (void)updateSetting:(CAPDeviceSetting *)setting reply:(CAPServiceReply)reply {
+- (void)updateSetting:(CAPDevice *)setting reply:(CAPServiceReply)reply {
     //TODO
+    if (setting) {
+        NSDictionary *params = @{
+                                 @"name": setting.name,
+                                 @"mobile":setting.mobile
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:setting.deviceID] method:@"PUT" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 
 - (void)shareDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {

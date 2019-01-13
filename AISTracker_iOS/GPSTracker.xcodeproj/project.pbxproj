@@ -16,8 +16,7 @@
 		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
 		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
 		2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2721E5DCD100EE6D02 /* UIViewExt.m */; };
-		2B5A526121E71CA700AB3A37 /* CAPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A526021E71CA700AB3A37 /* CAPAlertView.m */; };
-		2B5A526421E71D0000AB3A37 /* CAPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A526221E71CFF00AB3A37 /* CAPTimer.m */; };
+		2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */; };
 		2B6DDB9521E43C96004CAE09 /* CAPGuardianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */; };
 		2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */; };
 		2B6DDB9921E46F25004CAE09 /* CAPDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */; };
@@ -25,6 +24,8 @@
 		2B6DDB9E21E48961004CAE09 /* diallingcode.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9D21E48960004CAE09 /* diallingcode.json */; };
 		2B6DDBA121E489F7004CAE09 /* CAPMMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */; };
 		2B714CE121E4E83100AF7B82 /* CAPDeviceBindInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */; };
+		2B7BAB9621EA00CB006A42F8 /* CAPUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */; };
+		2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
@@ -227,10 +228,8 @@
 		2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSMobileViewController.m; sourceTree = "<group>"; };
 		2B527E2721E5DCD100EE6D02 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		2B527E2821E5DCD100EE6D02 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
-		2B5A525F21E71CA700AB3A37 /* CAPAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPAlertView.h; sourceTree = "<group>"; };
-		2B5A526021E71CA700AB3A37 /* CAPAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPAlertView.m; sourceTree = "<group>"; };
-		2B5A526221E71CFF00AB3A37 /* CAPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPTimer.m; sourceTree = "<group>"; };
-		2B5A526321E71CFF00AB3A37 /* CAPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPTimer.h; sourceTree = "<group>"; };
+		2B53C19F21EB1A0D00D645B4 /* CAPDeviceLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLocal.h; sourceTree = "<group>"; };
+		2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLocal.m; sourceTree = "<group>"; };
 		2B6DDB9221E43C96004CAE09 /* CAPGuardianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianTableViewCell.h; sourceTree = "<group>"; };
 		2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianTableViewCell.m; sourceTree = "<group>"; };
 		2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPGuardianTableViewCell.xib; sourceTree = "<group>"; };
@@ -243,6 +242,11 @@
 		2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMMCountry.m; sourceTree = "<group>"; };
 		2B714CDF21E4E83100AF7B82 /* CAPDeviceBindInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceBindInfo.h; sourceTree = "<group>"; };
 		2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceBindInfo.m; sourceTree = "<group>"; };
+		2B7BAB9421EA00CB006A42F8 /* CAPUserSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUserSettingViewController.h; sourceTree = "<group>"; };
+		2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUserSettingViewController.m; sourceTree = "<group>"; };
+		2B7BAB9B21EAEDFF006A42F8 /* LEEAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlertHelper.h; sourceTree = "<group>"; };
+		2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEAlert.m; sourceTree = "<group>"; };
+		2B7BAB9D21EAEDFF006A42F8 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
 		2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLists.m; sourceTree = "<group>"; };
 		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -617,6 +621,16 @@
 			path = NHHUDExtend;
 			sourceTree = "<group>";
 		};
+		2B7BAB9A21EAEDFF006A42F8 /* LEEAlert */ = {
+			isa = PBXGroup;
+			children = (
+				2B7BAB9D21EAEDFF006A42F8 /* LEEAlert.h */,
+				2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */,
+				2B7BAB9B21EAEDFF006A42F8 /* LEEAlertHelper.h */,
+			);
+			path = LEEAlert;
+			sourceTree = "<group>";
+		};
 		97D268F9824ED8AB9EADECD8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +762,8 @@
 				EFD0ACB5218C3F0100405FD8 /* CAPScanViewController.m */,
 				2B6DDB9721E46F25004CAE09 /* CAPDeviceSettingViewController.h */,
 				2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */,
+				2B7BAB9421EA00CB006A42F8 /* CAPUserSettingViewController.h */,
+				2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */,
 				EF12AE002193C596006A8AE1 /* CAPTabBarController.h */,
 				EF12AE012193C596006A8AE1 /* CAPTabBarController.m */,
 				EFD0ACB7218C41F100405FD8 /* CAPTrackerViewController.h */,
@@ -786,6 +802,7 @@
 		EF79BB4E218860FE000358FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B7BAB9A21EAEDFF006A42F8 /* LEEAlert */,
 				2B1C07E821DF2FBD00B258C1 /* week */,
 				EF358C0121918B6300EFB4BF /* CAPBatteryView.h */,
 				EF358C0221918B6300EFB4BF /* CAPBatteryView.m */,
@@ -878,10 +895,6 @@
 				EFD0ACD2218C46A300405FD8 /* CAPValidators.m */,
 				EFD0ACC1218C466F00405FD8 /* CAPViews.h */,
 				EFD0ACC5218C466F00405FD8 /* CAPViews.m */,
-				2B5A525F21E71CA700AB3A37 /* CAPAlertView.h */,
-				2B5A526021E71CA700AB3A37 /* CAPAlertView.m */,
-				2B5A526321E71CFF00AB3A37 /* CAPTimer.h */,
-				2B5A526221E71CFF00AB3A37 /* CAPTimer.m */,
 				2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */,
 			);
 			path = Util;
@@ -1140,6 +1153,8 @@
 				2BBBF8C421DE3E7A00AF1DD6 /* CAPFenceList.m */,
 				EF46F27321929080009A357C /* CAPFenceService.h */,
 				EF46F27421929080009A357C /* CAPFenceService.m */,
+				2B53C19F21EB1A0D00D645B4 /* CAPDeviceLocal.h */,
+				2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */,
 			);
 			path = Fence;
 			sourceTree = "<group>";
@@ -1449,6 +1464,7 @@
 				2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */,
 				2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */,
 				EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */,
+				2B7BAB9621EA00CB006A42F8 /* CAPUserSettingViewController.m in Sources */,
 				EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */,
 				EF6CA6A5218D84420014771E /* CAPMessagePresenter.m in Sources */,
 				2BCC774B21D4D96E00A63433 /* CAPMessageListTableViewCell.m in Sources */,
@@ -1473,7 +1489,6 @@
 				EFD0ACB3218C3EF800405FD8 /* CAPPhotoListViewController.m in Sources */,
 				EF6CA6AE218EA3620014771E /* CAPApplication.m in Sources */,
 				EFD0ACEA218C46A500405FD8 /* CAPPhones.m in Sources */,
-				2B5A526121E71CA700AB3A37 /* CAPAlertView.m in Sources */,
 				EFD0AD03218C47D900405FD8 /* CAPNetworkService.m in Sources */,
 				EFD0AD1E218C4F7200405FD8 /* UIColor+CAP.m in Sources */,
 				EFD0ACCE218C467000405FD8 /* CAPViews.m in Sources */,
@@ -1521,6 +1536,7 @@
 				EFD0AD29218C503200405FD8 /* CAPSession.m in Sources */,
 				EF46F28C21929BE1009A357C /* CAPMessageService.m in Sources */,
 				EF358C0621918B7500EFB4BF /* CAPDeviceListView.m in Sources */,
+				2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */,
 				EF6CA696218D83890014771E /* CAPUserPresenter.m in Sources */,
 				EFD0AC8C218C3E0F00405FD8 /* CAPAddTrackerViewController.m in Sources */,
 				EFD0ACD1218C467000405FD8 /* CAPFormats.m in Sources */,
@@ -1557,6 +1573,7 @@
 				EFD0ACAA218C3EC900405FD8 /* CAPMasterSettingViewController.m in Sources */,
 				EFD0AD1F218C4F7200405FD8 /* UIImage+CAP.m in Sources */,
 				EFD0AD04218C47D900405FD8 /* CAPBaseService.m in Sources */,
+				2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */,
 				EF46F2962192D24E009A357C /* CAPHUD.m in Sources */,
 				EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */,
 				EF79BB5B21886AD1000358FA /* MQTTCenter.m in Sources */,
@@ -1581,7 +1598,6 @@
 				EF6CA6A2218D84350014771E /* CAPMapPresenter.m in Sources */,
 				EF7BE560218845AB00562EE9 /* GPSTracker.xcdatamodeld in Sources */,
 				EF46F28421929AE0009A357C /* CAPGuardian.m in Sources */,
-				2B5A526421E71D0000AB3A37 /* CAPTimer.m in Sources */,
 				EF46F2992192D265009A357C /* CAPNetworks.m in Sources */,
 				EF46F29F2192E0F8009A357C /* CAPCrypto.m in Sources */,
 				EFD0ACD0218C467000405FD8 /* CAPGuards.m in Sources */,

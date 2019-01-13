@@ -50,6 +50,7 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, copy) NSString *role;
+@property (nonatomic, copy) NSString *isOwner;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) NSTimeInterval createdDate;
 @property (nonatomic, copy) NSString *sos;

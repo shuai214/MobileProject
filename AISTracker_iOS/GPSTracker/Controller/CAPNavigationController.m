@@ -27,6 +27,10 @@
     NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName]; //UITextAttributeTextColor
     self.navigationBar.titleTextAttributes = dict;
     self.navigationBar.tintColor=[UIColor whiteColor];
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = [UIImage imageNamed:@"common_naviBackBtn.png"];
+    
+    [UINavigationBar appearance].backIndicatorImage = [UIImage imageNamed:@"common_naviBackBtn"];
+                                                       
 
         CGRect rect=CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
         UIGraphicsBeginImageContext(rect.size);

@@ -87,6 +87,9 @@
             [self.scrollView addSubview:button];
         }
     } else {
+        for(UIView *view in self.scrollView.subviews) {
+            [view removeFromSuperview];
+        }
         self.scrollView.contentSize = CGSizeMake(0, 0);
     }
 }

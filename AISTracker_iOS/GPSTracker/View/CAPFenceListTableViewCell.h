@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPFenceListTableViewCell : UITableViewCell
 - (void)setListData:(List *)list;
+@property (nonatomic, copy) void (^switchIsBlock)(BOOL isOn,CAPFenceListTableViewCell *cell);
+
 @end
 
 NS_ASSUME_NONNULL_END

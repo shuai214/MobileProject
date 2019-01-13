@@ -39,7 +39,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nan Shan Dist. Taoyuan Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-xK-UjP">
-                    <rect key="frame" x="6" y="40.5" width="184" height="16"/>
+                    <rect key="frame" x="6" y="35.5" width="184" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gw-S0-hwO">
+                    <rect key="frame" x="6" y="54" width="36.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -103,7 +109,7 @@
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsB-KE-e0T" customClass="CAPBatteryView">
-                    <rect key="frame" x="311" y="40.5" width="90" height="28"/>
+                    <rect key="frame" x="311" y="35.5" width="90" height="28"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="bsB-KE-e0T" secondAttribute="height" multiplier="45:14" id="2M0-gM-uth"/>
@@ -143,9 +149,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="7Gw-S0-hwO" firstAttribute="top" secondItem="Gvk-xK-UjP" secondAttribute="bottom" constant="2.5" id="8Dm-zR-yb8"/>
                 <constraint firstItem="Gvk-xK-UjP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="CpC-ys-u6L"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="bottom" secondItem="84t-o2-rDI" secondAttribute="bottom" id="MAC-jZ-R4A"/>
-                <constraint firstItem="Gvk-xK-UjP" firstAttribute="top" secondItem="7BX-E9-mWS" secondAttribute="bottom" constant="10" id="Qmk-Ob-uxj"/>
+                <constraint firstItem="Gvk-xK-UjP" firstAttribute="top" secondItem="7BX-E9-mWS" secondAttribute="bottom" constant="5" id="Qmk-Ob-uxj"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Sud-6m-DqF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bsB-KE-e0T" secondAttribute="trailing" constant="5" id="TUd-Kt-1nY"/>
                 <constraint firstItem="7BX-E9-mWS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="aOU-zM-a8W"/>
@@ -153,6 +160,7 @@
                 <constraint firstItem="84t-o2-rDI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gbq-ae-LB9"/>
                 <constraint firstItem="84t-o2-rDI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jSC-ya-ypx"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="centerY" secondItem="84t-o2-rDI" secondAttribute="centerY" id="lmp-Rm-1qT"/>
+                <constraint firstItem="7Gw-S0-hwO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="np4-oK-kmC"/>
                 <constraint firstItem="7BX-E9-mWS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="omy-b7-GOe"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="top" secondItem="84t-o2-rDI" secondAttribute="top" id="ovI-qS-yhN"/>
                 <constraint firstItem="84t-o2-rDI" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="rNx-eZ-0vH"/>
