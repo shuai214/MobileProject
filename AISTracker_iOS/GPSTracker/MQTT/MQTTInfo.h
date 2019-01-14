@@ -102,6 +102,7 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 @property (nonatomic, assign) NSInteger online;
 
 @property (nonatomic, copy) NSString *deviceID;
+@property (nonatomic, copy) NSString *message;
 
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *userRole;

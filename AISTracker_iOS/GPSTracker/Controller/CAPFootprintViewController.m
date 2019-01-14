@@ -86,6 +86,7 @@
     sydneyMarker.position = position;
     sydneyMarker.map = self.gmsMapView;
     [self.markets addObject:sydneyMarker];
+    
 }
 
 - (void)rightClick {

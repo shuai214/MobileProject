@@ -11,9 +11,11 @@
 #import "CAPDeviceService.h"
 #import "CAPDeviceLogs.h"
 #import "MJRefresh.h"
+#import "CAPCoreData.h"
+#import "DeviceMessageInfo+CoreDataClass.h"
 @interface CAPMessageListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listData;
+@property (strong, nonatomic) NSMutableArray<DeviceMessageInfo *> *listData;
 @property (strong, nonatomic) UIView *editingView;
 @property (assign , nonatomic)CGFloat tableHeight;
 @property (strong, nonatomic) CAPDeviceLogs *deviceLogs;
@@ -45,7 +47,7 @@
     }
     
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.tableView.mj_footer = footer;
+//    self.tableView.mj_footer = footer;
     [footer setTitle:@"正在加载中" forState:MJRefreshStateRefreshing];
     [footer setTitle:@"" forState:MJRefreshStateIdle];
     footer.stateLabel.font = [UIFont systemFontOfSize:15.0f];
@@ -63,35 +65,43 @@
 }
 - (void)loadNewData{
     self.listData = [NSMutableArray array];
-    self.page = 0;
+//    self.page = 0;
     [self loadData:NO];
 }
-
-- (void)loadMoreData{
-    [self loadData:YES];
-}
+//
+//- (void)loadMoreData{
+//    [self loadData:YES];
+//}
 
 - (void)loadData:(BOOL)isLoadMore;
 {
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService getDeviceLogs:@"0" page:self.page reply:^(CAPHttpResponse *response) {
-        self.deviceLogs = [CAPDeviceLogs mj_objectWithKeyValues:response.data];
-        NSLog(@"%@",response);
-        [self.listData addObjectsFromArray:self.deviceLogs.result.list];
-        if (!isLoadMore) {
-            self.page = 1;
-            self.tableView.mj_footer.hidden = NO;
-        }else{
-            if (self.page == (self.deviceLogs.result.pages - 1)) {
-                self.tableView.mj_footer.hidden = YES;
-            }else{
-                self.page ++;
-            }
-        }
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-    }];
+//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    [deviceService getDeviceLogs:@"0" page:self.page reply:^(CAPHttpResponse *response) {
+//        self.deviceLogs = [CAPDeviceLogs mj_objectWithKeyValues:response.data];
+//        NSLog(@"%@",response);
+//        [self.listData addObjectsFromArray:self.deviceLogs.result.list];
+//        if (!isLoadMore) {
+//            self.page = 1;
+//            self.tableView.mj_footer.hidden = NO;
+//        }else{
+//            if (self.page == (self.deviceLogs.result.pages - 1)) {
+//                self.tableView.mj_footer.hidden = YES;
+//            }else{
+//                self.page ++;
+//            }
+//        }
+//        [self.tableView reloadData];
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];
+//    }];
+    CAPCoreData *coreData = [CAPCoreData coreData];
+    [coreData creatResource:@"MessageLogs"];
+    NSArray *array = [coreData readData:@"DeviceMessageInfo"];
+    self.listData = [NSMutableArray arrayWithArray:array];
+    [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
+//    [self.tableView.mj_footer endRefreshing];
+
 }
 - (void)layoutSubviews
 {
@@ -99,8 +109,7 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
 }
-- (void)rightBarItemClick:(UIBarButtonItem *)item
-{
+- (void)rightBarItemClick:(UIBarButtonItem *)item{
     if ([item.title isEqualToString:@"编辑"]) {
         if (self.listData.count == 0) {
             return;
@@ -136,7 +145,7 @@
     {
         cell = [[CAPMessageListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    ListLog *list = self.listData[indexPath.row];
+    DeviceMessageInfo *list = self.listData[indexPath.row];
 //    if (list.logContent.data) {
 //        NSData *_decodedImageData   = [[NSData alloc] initWithBase64Encoding:list.logContent.data];
 //        UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];
@@ -144,8 +153,8 @@
 //    }else{
 //        [cell.imageView setImage:nil];
 //    }
-    NSString *time = [NSString dateFormateWithTimeInterval:list.createdAt];
-    cell.detailTextLabel.text = list.logContent.deviceID;
+    NSString *time = [NSString dateFormateWithTimeInterval:list.deviceMessageTime];
+    cell.textLabel.text = list.deviceMessage;
     cell.textLabel.text = time;
 
     return cell;
@@ -196,6 +205,9 @@
         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [insets addIndex:obj.row];
         }];
+        CAPCoreData *coreData = [CAPCoreData coreData];
+        [coreData creatResource:@"MessageModel"];
+        [coreData deleteAllData];
         [self.listData removeObjectsAtIndexes:insets];
         [self.tableView deleteRowsAtIndexPaths:[self.tableView indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
         

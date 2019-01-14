@@ -11,6 +11,7 @@
 #import "CAPFenceService.h"
 #import "CAPFenceList.h"
 #import "CAPFenceListTableViewCell.h"
+#import "CAPFenceDetailViewController.h"
 @interface CAPFenceListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)CAPFenceList *fenceList;
 @property (weak, nonatomic) IBOutlet UITableView *fenceListTableView;
@@ -87,7 +88,10 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    List *cellList = self.fenceList.result.list[indexPath.row];
+    CAPFenceDetailViewController *fenceDetail = [[CAPFenceDetailViewController alloc] init];
+    fenceDetail.listItem = cellList;
+    [self.navigationController pushViewController:fenceDetail animated:YES];
 }
 - (void)refreshLocalizedString {
     

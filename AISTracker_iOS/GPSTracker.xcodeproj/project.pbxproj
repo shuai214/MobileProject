@@ -27,6 +27,10 @@
 		2B7BAB9621EA00CB006A42F8 /* CAPUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */; };
 		2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
+		2B97BCC121EC39BA0042D95D /* CAPFenceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97BCC021EC39BA0042D95D /* CAPFenceDetailViewController.m */; };
+		2B97BCCA21EC5AD70042D95D /* CAPCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97BCC921EC5AD70042D95D /* CAPCoreData.m */; };
+		2B97BCDA21EC90440042D95D /* DeviceMessageInfo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97BCD421EC90430042D95D /* DeviceMessageInfo+CoreDataClass.m */; };
+		2B97BCDB21EC90440042D95D /* DeviceMessageInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97BCD621EC90430042D95D /* DeviceMessageInfo+CoreDataProperties.m */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
 		2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBF8C421DE3E7A00AF1DD6 /* CAPFenceList.m */; };
@@ -119,7 +123,6 @@
 		EF7BE557218845AB00562EE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE556218845AB00562EE9 /* AppDelegate.m */; };
 		EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE559218845AB00562EE9 /* MainViewController.m */; };
 		EF7BE55D218845AB00562EE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE55B218845AB00562EE9 /* Main.storyboard */; };
-		EF7BE560218845AB00562EE9 /* GPSTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */; };
 		EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE561218845AC00562EE9 /* Assets.xcassets */; };
 		EF7BE565218845AC00562EE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */; };
 		EF7BE568218845AD00562EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE567218845AD00562EE9 /* main.m */; };
@@ -249,6 +252,15 @@
 		2B7BAB9D21EAEDFF006A42F8 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
 		2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLists.m; sourceTree = "<group>"; };
+		2B97BCBF21EC39BA0042D95D /* CAPFenceDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceDetailViewController.h; sourceTree = "<group>"; };
+		2B97BCC021EC39BA0042D95D /* CAPFenceDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFenceDetailViewController.m; sourceTree = "<group>"; };
+		2B97BCC821EC5AD70042D95D /* CAPCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCoreData.h; sourceTree = "<group>"; };
+		2B97BCC921EC5AD70042D95D /* CAPCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCoreData.m; sourceTree = "<group>"; };
+		2B97BCD221EC90030042D95D /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
+		2B97BCD421EC90430042D95D /* DeviceMessageInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataClass.m"; sourceTree = "<group>"; };
+		2B97BCD521EC90430042D95D /* DeviceMessageInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		2B97BCD621EC90430042D95D /* DeviceMessageInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		2B97BCD721EC90440042D95D /* DeviceMessageInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataClass.h"; sourceTree = "<group>"; };
 		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2BA9278621CE334C00CF0D48 /* CAPCodeScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeScanView.h; sourceTree = "<group>"; };
 		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
@@ -419,7 +431,6 @@
 		EF7BE558218845AB00562EE9 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		EF7BE559218845AB00562EE9 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		EF7BE55C218845AB00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
 		EF7BE561218845AC00562EE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF7BE564218845AC00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF7BE567218845AD00562EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -724,6 +735,8 @@
 				EFD0AC94218C3E6200405FD8 /* CAPFeedbackViewController.m */,
 				EFD0AC96218C3E6C00405FD8 /* CAPFenceListViewController.h */,
 				EFD0AC97218C3E6C00405FD8 /* CAPFenceListViewController.m */,
+				2B97BCBF21EC39BA0042D95D /* CAPFenceDetailViewController.h */,
+				2B97BCC021EC39BA0042D95D /* CAPFenceDetailViewController.m */,
 				EFD0AC87218C3DFF00405FD8 /* CAPAddFenceViewController.h */,
 				EFD0AC88218C3DFF00405FD8 /* CAPAddFenceViewController.m */,
 				EFD0AC99218C3E7800405FD8 /* CAPFootprintViewController.h */,
@@ -998,7 +1011,13 @@
 		EF79BB572188622D000358FA /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */,
+				2B97BCC821EC5AD70042D95D /* CAPCoreData.h */,
+				2B97BCC921EC5AD70042D95D /* CAPCoreData.m */,
+				2B97BCD721EC90440042D95D /* DeviceMessageInfo+CoreDataClass.h */,
+				2B97BCD421EC90430042D95D /* DeviceMessageInfo+CoreDataClass.m */,
+				2B97BCD521EC90430042D95D /* DeviceMessageInfo+CoreDataProperties.h */,
+				2B97BCD621EC90430042D95D /* DeviceMessageInfo+CoreDataProperties.m */,
+				2B97BCD121EC90030042D95D /* MessageLogs.xcdatamodeld */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -1499,6 +1518,7 @@
 				2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */,
 				EF46F27221928F68009A357C /* CAPFeedbackService.m in Sources */,
 				EFD0AD22218C4F7200405FD8 /* UITableView+CAP.m in Sources */,
+				2B97BCC121EC39BA0042D95D /* CAPFenceDetailViewController.m in Sources */,
 				EFD0AD1C218C4F7200405FD8 /* NSString+Size.m in Sources */,
 				EF46F29321929D17009A357C /* CAPFileItem.m in Sources */,
 				EF6CA647218D311E0014771E /* CAPUpdateUserInfoResponse.m in Sources */,
@@ -1508,7 +1528,10 @@
 				EF79BB6121888E07000358FA /* MQTTResult.m in Sources */,
 				EF6CA690218D836C0014771E /* CAPBasePresenter.m in Sources */,
 				EFD0AC98218C3E6C00405FD8 /* CAPFenceListViewController.m in Sources */,
+				2B97BCCA21EC5AD70042D95D /* CAPCoreData.m in Sources */,
 				EF6CA648218D311E0014771E /* CAPUpdateUserProfileResponse.m in Sources */,
+				2B97BCDB21EC90440042D95D /* DeviceMessageInfo+CoreDataProperties.m in Sources */,
+				2B97BCDA21EC90440042D95D /* DeviceMessageInfo+CoreDataClass.m in Sources */,
 				EF6CA699218D84180014771E /* CAPFencePresenter.m in Sources */,
 				EFD0AD02218C47D900405FD8 /* CAPDeviceService.m in Sources */,
 				EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */,
@@ -1596,7 +1619,6 @@
 				EF46F28921929BCA009A357C /* CAPPhotoService.m in Sources */,
 				EFD0ACB9218C41F100405FD8 /* CAPTrackerViewController.m in Sources */,
 				EF6CA6A2218D84350014771E /* CAPMapPresenter.m in Sources */,
-				EF7BE560218845AB00562EE9 /* GPSTracker.xcdatamodeld in Sources */,
 				EF46F28421929AE0009A357C /* CAPGuardian.m in Sources */,
 				EF46F2992192D265009A357C /* CAPNetworks.m in Sources */,
 				EF46F29F2192E0F8009A357C /* CAPCrypto.m in Sources */,
@@ -1975,13 +1997,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		EF7BE55E218845AB00562EE9 /* GPSTracker.xcdatamodeld */ = {
+		2B97BCD121EC90030042D95D /* MessageLogs.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */,
+				2B97BCD221EC90030042D95D /* GPSTracker.xcdatamodel */,
 			);
-			currentVersion = EF7BE55F218845AB00562EE9 /* GPSTracker.xcdatamodel */;
-			path = GPSTracker.xcdatamodeld;
+			currentVersion = 2B97BCD221EC90030042D95D /* GPSTracker.xcdatamodel */;
+			path = MessageLogs.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

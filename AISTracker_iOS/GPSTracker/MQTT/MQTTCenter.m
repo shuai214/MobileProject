@@ -10,6 +10,7 @@
 #import "MQTTClient.h"
 #import "MQTTResult.h"
 #import "CAPDeviceService.h"
+#import "CAPCoreData.h"
 @implementation MQTTConfig
 @end
 
@@ -239,6 +240,8 @@
 
 - (void)handleInfo:(MQTTInfo *)info {
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
+    CAPCoreData *coreData = [CAPCoreData coreData];
+    [coreData creatResource:@"MessageLogs"];
     if ([info.command isEqualToString:@"STATUS"]) {
         NSString *status = nil;
         UIColor *color = nil;
@@ -249,13 +252,21 @@
             status = @"上线";
             color = [UIColor greenColor];
         }
+        info.message = [NSString stringWithFormat:@"%@%@",info.deviceID,status];
         [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:color];
+        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
+        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
+        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"GPS"]){
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
+        info.message = [NSString stringWithFormat:@"%@进行了定位",info.deviceID];
+        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
+        info.message = [NSString stringWithFormat:@"%@更新了设置",info.deviceID];
+        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
@@ -264,6 +275,8 @@
         [alert setButtionTitleFontWithName:@"AmericanTypewriter" size:16 index:1];
         [alert setButtionTitleFontWithName:@"AmericanTypewriter-Bold" size:16 index:0];
         [alert show];
+        info.message = [NSString stringWithFormat:@"%@：%@想要绑定您的设备。",info.deviceID,info.userProfile.firstName];
+        [coreData insertData:info];
     }else if (!info.command){
         if ([info.status isEqualToString:@"00010000"]) {
             

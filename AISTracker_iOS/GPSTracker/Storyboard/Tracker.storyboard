@@ -211,6 +211,33 @@
             </objects>
             <point key="canvasLocation" x="-1324" y="1495.5022488755624"/>
         </scene>
+        <!--Fence Detail View Controller-->
+        <scene sceneID="zKv-hs-09n">
+            <objects>
+                <viewController storyboardIdentifier="FenceDetailViewController" id="q4Y-KE-J42" customClass="CAPFenceDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BJi-F0-87E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6I-zf-9tf" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="k6I-zf-9tf" firstAttribute="leading" secondItem="BJi-F0-87E" secondAttribute="leading" id="VRY-9x-vGx"/>
+                            <constraint firstItem="k6I-zf-9tf" firstAttribute="top" secondItem="BJi-F0-87E" secondAttribute="top" id="dR1-T3-yUg"/>
+                            <constraint firstItem="k6I-zf-9tf" firstAttribute="bottom" secondItem="xfR-0Y-iof" secondAttribute="bottom" id="hlT-S3-pFf"/>
+                            <constraint firstAttribute="trailing" secondItem="k6I-zf-9tf" secondAttribute="trailing" id="xEJ-w5-XNM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xfR-0Y-iof"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xum-cA-q5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2592.8000000000002" y="2183.658170914543"/>
+        </scene>
         <!--Photo List View Controller-->
         <scene sceneID="StA-7N-RW2">
             <objects>

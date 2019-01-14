@@ -13,7 +13,7 @@
 #import "CAPFenceService.h"
 #import "CAPDeviceLocal.h"
 
-@interface CAPAddFenceViewController ()<GMSMapViewDelegate,GMSAutocompleteViewControllerDelegate,UISearchBarDelegate>
+@interface CAPAddFenceViewController ()<GMSMapViewDelegate,UISearchBarDelegate>
 {
     GMSPlacesClient *_placesClient;
     UISearchBar * _searchBar;
