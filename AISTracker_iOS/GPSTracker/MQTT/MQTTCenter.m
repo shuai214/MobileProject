@@ -241,7 +241,7 @@
 - (void)handleInfo:(MQTTInfo *)info {
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
     CAPCoreData *coreData = [CAPCoreData coreData];
-    [coreData creatResource:@"MessageLogs"];
+    [coreData creatResource:@"GPSTracker"];
     if ([info.command isEqualToString:@"STATUS"]) {
         NSString *status = nil;
         UIColor *color = nil;

@@ -13,6 +13,7 @@
 {
     NSManagedObjectContext * _context;
     NSMutableArray * _dataSource;
+    NSManagedObjectModel * _managedObjectModel;
 }
 @property (nonatomic, strong)NSPersistentStoreCoordinator *store;
 
@@ -29,23 +30,23 @@
 }
 ////创建数据库
 - (void)creatResource:(NSString *)resourceName{
-    //1、创建模型对象
-    //获取模型路径/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Core Data/GPSTracker.xcdatamodeld
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"MessageLogs" withExtension:@"momd"];
-    if (!modelURL) {
-        return;
+    if (!_managedObjectModel) {
+        //1、创建模型对象
+        //获取模型路径
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@"momd"];
+        NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@"momd"];
+        if (!modelURL) {
+            return;
+        }
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
-    //根据模型文件创建模型对象
-    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    
-    
     //2、创建持久化存储助理：数据库
     //利用模型对象创建助理对象
-    self.store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+    self.store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
     
     //数据库的名称和路径
     NSString *docStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *sqlPath = [docStr stringByAppendingPathComponent:@"coreData.sqlite"];
+    NSString *sqlPath = [docStr stringByAppendingPathComponent:@"ModelInfo.sqlite"];
     NSLog(@"数据库 path = %@", sqlPath);
     NSURL *sqlUrl = [NSURL fileURLWithPath:sqlPath];
     
@@ -71,7 +72,9 @@
 
 - (void)insertData:(MQTTInfo *)mqttInfo{
     // 1.根据Entity名称和NSManagedObjectContext获取一个新的继承于NSManagedObject的子类Student
-    
+    if (!_context) {
+        return;
+    }
     DeviceMessageInfo * deviceMessageInfo = [NSEntityDescription
                          insertNewObjectForEntityForName:@"DeviceMessageInfo"
                          inManagedObjectContext:_context];
@@ -86,9 +89,11 @@
 }
 //删除
 - (void)deleteData:(NSString *)deviceMessageTime{
-    
+    if (!_context) {
+        return;
+    }
     //创建删除请求
-    NSFetchRequest *deleRequest = [NSFetchRequest fetchRequestWithEntityName:@"DeviceMessageInfo"];
+    NSFetchRequest *deleRequest = [NSFetchRequest fetchRequestWithEntityName:@"DeviceMessage"];
     
     //删除条件
     NSPredicate *pre = [NSPredicate predicateWithFormat:deviceMessageTime];
@@ -106,7 +111,10 @@
     [_context save:&error];
 }
 - (void)deleteAllData{
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"DeviceMessageInfo"];
+    if (!_context) {
+        return;
+    }
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"DeviceMessageDetail"];
     //2.创建删除请求  参数是：查询请求
     //NSBatchDeleteRequest是iOS9之后新增的API，不兼容iOS8及以前的系统
     NSBatchDeleteRequest *deletRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
@@ -120,6 +128,9 @@
 }
 //读取查询
 - (NSArray *)readData:(NSString *)resourceName{
+    if (!_context) {
+        return nil;
+    }
     //创建查询请求
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:resourceName];
     //发送查询请求,并返回结果

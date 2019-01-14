@@ -90,7 +90,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/CAPAddFenceViewController.m"
-                  timestampString = "569153361.224964"
+                  timestampString = "569167973.9291511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "73"
@@ -105,7 +105,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Controller/CAPAddFenceViewController.m"
-                  timestampString = "569153361.228974"
+                  timestampString = "569167973.931131"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -154,7 +154,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569153361.437614"
+                  timestampString = "569167973.939952"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -169,7 +169,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569153361.441126"
+                  timestampString = "569167973.9420069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -184,7 +184,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569153361.44452"
+                  timestampString = "569167973.944036"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -207,6 +207,22 @@
             startingLineNumber = "55"
             endingLineNumber = "55"
             landmarkName = "-editFence:reply:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GPSTracker/Core Data/CAPCoreData.m"
+            timestampString = "569167973.664077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-creatResource:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

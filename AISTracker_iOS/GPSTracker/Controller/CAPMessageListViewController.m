@@ -95,7 +95,7 @@
 //        [self.tableView.mj_footer endRefreshing];
 //    }];
     CAPCoreData *coreData = [CAPCoreData coreData];
-    [coreData creatResource:@"MessageLogs"];
+    [coreData creatResource:@"GPSTracker"];
     NSArray *array = [coreData readData:@"DeviceMessageInfo"];
     self.listData = [NSMutableArray arrayWithArray:array];
     [self.tableView reloadData];
