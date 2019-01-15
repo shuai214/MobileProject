@@ -2,7 +2,7 @@
 //  DeviceMessageInfo+CoreDataClass.h
 //  GPSTracker
 //
-//  Created by 曹帅 on 2019/1/14.
+//  Created by capaipai@sina.com on 2019/1/15.
 //  Copyright © 2019年 Capelabs. All rights reserved.
 //
 //

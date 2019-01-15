@@ -13,13 +13,14 @@
 #import "MJRefresh.h"
 #import "CAPCoreData.h"
 #import "DeviceMessageInfo+CoreDataClass.h"
+#import "CAPDeviceMessage.h"
 @interface CAPMessageListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray<DeviceMessageInfo *> *listData;
+@property (strong, nonatomic) NSMutableArray<CAPDeviceMessage *> *listData;
 @property (strong, nonatomic) UIView *editingView;
 @property (assign , nonatomic)CGFloat tableHeight;
 @property (strong, nonatomic) CAPDeviceLogs *deviceLogs;
-@property (assign , nonatomic)NSInteger page;
+@property (copy, nonatomic) NSString *selectAll;
 @end
 
 @implementation CAPMessageListViewController
@@ -39,20 +40,14 @@
     [self.view addSubview:self.editingView];
     
     self.listData = [NSMutableArray array];
-    self.page = 0;
     if (@available(iOS 11.0, *)) {
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
     }
     
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-//    self.tableView.mj_footer = footer;
-    [footer setTitle:@"正在加载中" forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"" forState:MJRefreshStateIdle];
-    footer.stateLabel.font = [UIFont systemFontOfSize:15.0f];
+   
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     header.automaticallyChangeAlpha = YES;
@@ -65,42 +60,24 @@
 }
 - (void)loadNewData{
     self.listData = [NSMutableArray array];
-//    self.page = 0;
     [self loadData:NO];
 }
-//
-//- (void)loadMoreData{
-//    [self loadData:YES];
-//}
+
 
 - (void)loadData:(BOOL)isLoadMore;
 {
-//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-//    [deviceService getDeviceLogs:@"0" page:self.page reply:^(CAPHttpResponse *response) {
-//        self.deviceLogs = [CAPDeviceLogs mj_objectWithKeyValues:response.data];
-//        NSLog(@"%@",response);
-//        [self.listData addObjectsFromArray:self.deviceLogs.result.list];
-//        if (!isLoadMore) {
-//            self.page = 1;
-//            self.tableView.mj_footer.hidden = NO;
-//        }else{
-//            if (self.page == (self.deviceLogs.result.pages - 1)) {
-//                self.tableView.mj_footer.hidden = YES;
-//            }else{
-//                self.page ++;
-//            }
-//        }
-//        [self.tableView reloadData];
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];
-//    }];
+    self.listData = [NSMutableArray array];
     CAPCoreData *coreData = [CAPCoreData coreData];
     [coreData creatResource:@"GPSTracker"];
     NSArray *array = [coreData readData:@"DeviceMessageInfo"];
-    self.listData = [NSMutableArray arrayWithArray:array];
+    for (DeviceMessageInfo *messageInfo in array) {
+        // 根据模型数据创建frame模型
+       CAPDeviceMessage *deviceMessage = [[CAPDeviceMessage alloc] init];
+        deviceMessage.messageInfo = messageInfo;
+        [self.listData addObject:deviceMessage];
+    }
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
-//    [self.tableView.mj_footer endRefreshing];
 
 }
 - (void)layoutSubviews
@@ -145,24 +122,15 @@
     {
         cell = [[CAPMessageListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    DeviceMessageInfo *list = self.listData[indexPath.row];
-//    if (list.logContent.data) {
-//        NSData *_decodedImageData   = [[NSData alloc] initWithBase64Encoding:list.logContent.data];
-//        UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];
-//        [cell.imageView setImage:_decodedImage];
-//    }else{
-//        [cell.imageView setImage:nil];
-//    }
-    NSString *time = [NSString dateFormateWithTimeInterval:list.deviceMessageTime];
-    cell.textLabel.text = list.deviceMessage;
-    cell.textLabel.text = time;
-
+    CAPDeviceMessage *deviceMessage  = self.listData[indexPath.row];
+    cell.deviceMessage = deviceMessage;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    CAPDeviceMessage *cellF = self.listData[indexPath.row];
+    return cellF.cellHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -178,6 +146,7 @@
 
 - (UIView *)editingView
 {
+    self.selectAll = @"NO";
     if (!_editingView) {
         _editingView = [[UIView alloc] initWithFrame:CGRectMake(0, Main_Screen_Height, Main_Screen_Width, 45)];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -202,12 +171,18 @@
 {
     if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
         NSMutableIndexSet *insets = [[NSMutableIndexSet alloc] init];
+        NSMutableArray *indexArray = [[NSMutableArray alloc] init];
         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [insets addIndex:obj.row];
+            [indexArray addObject:self.listData[obj.row].messageInfo.deviceMessageTime];
         }];
         CAPCoreData *coreData = [CAPCoreData coreData];
-        [coreData creatResource:@"MessageModel"];
-        [coreData deleteAllData];
+        [coreData creatResource:@"GPSTracker"];
+        if ([self.selectAll isEqualToString:@"NO"]) {
+            [coreData deleteData:indexArray];
+        }else{
+            [coreData deleteAllData];
+        }
         [self.listData removeObjectsAtIndexes:insets];
         [self.tableView deleteRowsAtIndexPaths:[self.tableView indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
         
@@ -221,14 +196,14 @@
         [self.listData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         }];
-        
+        self.selectAll = @"YES";
         [sender setTitle:@"全不选" forState:UIControlStateNormal];
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
         
         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView deselectRowAtIndexPath:obj animated:NO];
         }];
-        
+        self.selectAll = @"NO";
         [sender setTitle:@"全选" forState:UIControlStateNormal];
         
     }

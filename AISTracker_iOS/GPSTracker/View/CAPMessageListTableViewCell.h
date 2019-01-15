@@ -7,11 +7,13 @@
 //
 
 #import "CAPTableCell.h"
-
+#import "CAPDeviceMessage.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPMessageListTableViewCell : CAPTableCell
 
+@property (nonatomic, strong) CAPDeviceMessage *deviceMessage;
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 
 NS_ASSUME_NONNULL_END
