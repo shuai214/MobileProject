@@ -34,7 +34,6 @@
         //1、创建模型对象
         //获取模型路径
         NSURL *modelURL = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@"momd"];
-        NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@"momd"];
         if (!modelURL) {
             return;
         }
@@ -82,39 +81,41 @@
     //  2.根据表Student中的键值，给NSManagedObject对象赋值
     deviceMessageInfo.deviceId = mqttInfo.deviceID;
     deviceMessageInfo.deviceMessage = mqttInfo.message;
-    deviceMessageInfo.deviceMessageTime = mqttInfo.time;
+    deviceMessageInfo.deviceMessageTime = [self time_timestampToString:mqttInfo.time];
     //   3.保存插入的数据
     NSError *error = nil;
     [_context save:&error];
 }
 //删除
-- (void)deleteData:(NSString *)deviceMessageTime{
+- (void)deleteData:(NSMutableArray *)deviceMessageTimes{
     if (!_context) {
         return;
     }
     //创建删除请求
-    NSFetchRequest *deleRequest = [NSFetchRequest fetchRequestWithEntityName:@"DeviceMessage"];
+    NSFetchRequest *deleRequest = [NSFetchRequest fetchRequestWithEntityName:@"DeviceMessageInfo"];
     
-    //删除条件
-    NSPredicate *pre = [NSPredicate predicateWithFormat:deviceMessageTime];
-    deleRequest.predicate = pre;
-    
-    //返回需要删除的对象数组
-    NSArray *deleArray = [_context executeFetchRequest:deleRequest error:nil];
-    
-    //从数据库中删除
-    for (DeviceMessageInfo *deviceMessageInfo in deleArray) {
-        [_context deleteObject:deviceMessageInfo];
+    for (NSString *deviceMessageInfo in deviceMessageTimes) {
+        //删除条件
+        NSPredicate *pre = [NSPredicate predicateWithFormat:deviceMessageInfo];
+        deleRequest.predicate = pre;
+        
+        //返回需要删除的对象数组
+        NSArray *deleArray = [_context executeFetchRequest:deleRequest error:nil];
+        
+        //从数据库中删除
+        for (DeviceMessageInfo *deviceMessageInfo in deleArray) {
+            [_context deleteObject:deviceMessageInfo];
+        }
+        //保存--记住保存
+        NSError *error = nil;
+        [_context save:&error];
     }
-    //保存--记住保存
-    NSError *error = nil;
-    [_context save:&error];
 }
 - (void)deleteAllData{
     if (!_context) {
         return;
     }
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"DeviceMessageDetail"];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"DeviceMessageInfo"];
     //2.创建删除请求  参数是：查询请求
     //NSBatchDeleteRequest是iOS9之后新增的API，不兼容iOS8及以前的系统
     NSBatchDeleteRequest *deletRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
@@ -136,5 +137,20 @@
     //发送查询请求,并返回结果
     NSArray *resArray = [_context executeFetchRequest:request error:nil];
     return resArray;
+}
+///时间戳转化为字符转0000-00-00 00:00
+
+- (NSString *)time_timestampToString:(NSInteger)timestamp{
+    
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp/1000];
+    
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSString* string=[dateFormat stringFromDate:confromTimesp];
+    
+    return string;
+    
 }
 @end

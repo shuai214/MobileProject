@@ -2,7 +2,7 @@
 //  DeviceMessageInfo+CoreDataProperties.h
 //  GPSTracker
 //
-//  Created by 曹帅 on 2019/1/14.
+//  Created by capaipai@sina.com on 2019/1/15.
 //  Copyright © 2019年 Capelabs. All rights reserved.
 //
 //
@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<DeviceMessageInfo *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *deviceId;
-@property (nonatomic) float deviceMessageTime;
 @property (nullable, nonatomic, copy) NSString *deviceMessage;
+@property (nullable, nonatomic, copy) NSString *deviceMessageTime;
 
 @end
 

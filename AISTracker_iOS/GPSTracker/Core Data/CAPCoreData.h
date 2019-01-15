@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)coreData;
 - (void)creatResource:(NSString *)resourceName;
 - (void)insertData:(MQTTInfo *)mqttInfo;
-- (void)deleteData:(NSString *)deviceMessageTime;
+- (void)deleteData:(NSMutableArray *)deviceMessageTimes;
 - (void)deleteAllData;
 - (NSArray *)readData:(NSString *)resourceName;
 @end

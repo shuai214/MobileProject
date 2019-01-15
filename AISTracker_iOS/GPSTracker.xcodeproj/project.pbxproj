@@ -15,11 +15,11 @@
 		2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */; };
 		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
 		2B2BE48621ECCCBC006D728C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2BE48521ECCCBB006D728C /* CoreData.framework */; };
-		2B2BE48E21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BE48C21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.m */; };
-		2B2BE48F21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BE48D21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.m */; };
 		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
 		2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2721E5DCD100EE6D02 /* UIViewExt.m */; };
 		2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */; };
+		2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BE48721ECCD3D006D728C /* GPSTracker.xcdatamodeld */; };
+		2B6B667021EDD44A00C02A41 /* CAPDeviceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */; };
 		2B6DDB9521E43C96004CAE09 /* CAPGuardianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */; };
 		2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */; };
 		2B6DDB9921E46F25004CAE09 /* CAPDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */; };
@@ -229,10 +229,6 @@
 		2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceCommand.m; sourceTree = "<group>"; };
 		2B2BE48521ECCCBB006D728C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2B2BE48821ECCD3D006D728C /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
-		2B2BE48A21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		2B2BE48B21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataClass.h"; sourceTree = "<group>"; };
-		2B2BE48C21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataClass.m"; sourceTree = "<group>"; };
-		2B2BE48D21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
 		2B527E2421E5D32A00EE6D02 /* CAPSOSMobileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSOSMobileViewController.h; sourceTree = "<group>"; };
 		2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSMobileViewController.m; sourceTree = "<group>"; };
@@ -240,6 +236,12 @@
 		2B527E2821E5DCD100EE6D02 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		2B53C19F21EB1A0D00D645B4 /* CAPDeviceLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLocal.h; sourceTree = "<group>"; };
 		2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLocal.m; sourceTree = "<group>"; };
+		2B6B666E21EDD44A00C02A41 /* CAPDeviceMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceMessage.h; sourceTree = "<group>"; };
+		2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceMessage.m; sourceTree = "<group>"; };
+		2B6B667121EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		2B6B667221EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataClass.h"; sourceTree = "<group>"; };
+		2B6B667321EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataClass.m"; sourceTree = "<group>"; };
+		2B6B667421EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		2B6DDB9221E43C96004CAE09 /* CAPGuardianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianTableViewCell.h; sourceTree = "<group>"; };
 		2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianTableViewCell.m; sourceTree = "<group>"; };
 		2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPGuardianTableViewCell.xib; sourceTree = "<group>"; };
@@ -686,6 +688,8 @@
 			children = (
 				EF46F28A21929BE1009A357C /* CAPMessageService.h */,
 				EF46F28B21929BE1009A357C /* CAPMessageService.m */,
+				2B6B666E21EDD44A00C02A41 /* CAPDeviceMessage.h */,
+				2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1017,10 +1021,10 @@
 			children = (
 				2B97BCC821EC5AD70042D95D /* CAPCoreData.h */,
 				2B97BCC921EC5AD70042D95D /* CAPCoreData.m */,
-				2B2BE48B21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.h */,
-				2B2BE48C21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.m */,
-				2B2BE48A21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.h */,
-				2B2BE48D21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.m */,
+				2B6B667221EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.h */,
+				2B6B667321EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.m */,
+				2B6B667121EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.h */,
+				2B6B667421EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.m */,
 				2B2BE48721ECCD3D006D728C /* GPSTracker.xcdatamodeld */,
 			);
 			path = "Core Data";
@@ -1482,6 +1486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */,
 				EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */,
 				EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */,
 				2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */,
@@ -1534,8 +1539,6 @@
 				EFD0AC98218C3E6C00405FD8 /* CAPFenceListViewController.m in Sources */,
 				2B97BCCA21EC5AD70042D95D /* CAPCoreData.m in Sources */,
 				EF6CA648218D311E0014771E /* CAPUpdateUserProfileResponse.m in Sources */,
-				2B2BE48F21ECCDC6006D728C /* DeviceMessageInfo+CoreDataProperties.m in Sources */,
-				2B2BE48E21ECCDC6006D728C /* DeviceMessageInfo+CoreDataClass.m in Sources */,
 				EF6CA699218D84180014771E /* CAPFencePresenter.m in Sources */,
 				EFD0AD02218C47D900405FD8 /* CAPDeviceService.m in Sources */,
 				EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */,
@@ -1603,6 +1606,7 @@
 				2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */,
 				EF46F2962192D24E009A357C /* CAPHUD.m in Sources */,
 				EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */,
+				2B6B667021EDD44A00C02A41 /* CAPDeviceMessage.m in Sources */,
 				EF79BB5B21886AD1000358FA /* MQTTCenter.m in Sources */,
 				2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */,
 				EF46F29021929CD0009A357C /* CAPFileService.m in Sources */,

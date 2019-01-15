@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DeviceMessageInfo" representedClassName="DeviceMessageInfo" syncable="YES" codeGenerationType="class">
         <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceMessage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="deviceMessageTime" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="deviceMessageTime" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="DeviceMessageInfo" positionX="-54" positionY="-9" width="128" height="90"/>
