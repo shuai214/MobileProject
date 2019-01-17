@@ -34,10 +34,13 @@
         GMSCircle *circ = [GMSCircle circleWithPosition:self.marker.position
                                                  radius:radius];
         
-        
-         circ.fillColor = [UIColor colorWithRed:0.77  green:0.88  blue:0.94  alpha:0.2 * (i + 1)];
+         circ.fillColor = [UIColor colorWithRed:193.0f/255.0f green:43.0f/255.0f blue:30.0f/255.0f alpha:0.4 - i * 0.1];
         // 圆边的颜色
-        circ.strokeColor = [UIColor whiteColor];
+        if (i == 2) {
+            circ.strokeColor = [UIColor greenColor];
+        }else{
+            circ.strokeColor = [UIColor clearColor];
+        }
         // 圆边的宽度
         circ.strokeWidth = 5;
         circ.map = self.mapView;

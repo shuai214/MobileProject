@@ -96,7 +96,7 @@
     
     for (NSString *deviceMessageInfo in deviceMessageTimes) {
         //删除条件
-        NSPredicate *pre = [NSPredicate predicateWithFormat:deviceMessageInfo];
+        NSPredicate *pre = [NSPredicate predicateWithFormat:@"deviceMessageTime = %@",deviceMessageInfo];
         deleRequest.predicate = pre;
         
         //返回需要删除的对象数组

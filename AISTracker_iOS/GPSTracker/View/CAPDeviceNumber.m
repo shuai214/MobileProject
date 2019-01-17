@@ -53,6 +53,12 @@
     
     self.countryNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(verticalLine.frame.origin.x + 1, 0, self.frame.size.width / 4 * 2, self.frame.size.height / 2)];
     self.countryNameLabel.text = @"泰国";
+    
+    
+    self.buttonSend = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 * 3, 0, self.frame.size.width / 4, self.frame.size.height / 2)];
+    [self.buttonSend setImage:GetImage(@"downCountry") forState:UIControlStateNormal];
+    [self addSubview:self.buttonSend];
+    
     if (!self.isEdit) {
         self.countryNameLabel.textColor = [UIColor lightGrayColor];
     }else{
@@ -61,9 +67,7 @@
     self.countryNameLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.countryNameLabel];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 * 3, 0, self.frame.size.width / 4, self.frame.size.height / 2)];
-    [button setImage:GetImage(@"downCountry") forState:UIControlStateNormal];
-    [self addSubview:button];
+   
     
     self.telField = [[UITextField alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 , self.frame.size.height / 2, self.frame.size.width / 4 * 3, self.frame.size.height / 2 - 1)];
     self.telField.placeholder = @"Please input number";

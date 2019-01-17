@@ -277,6 +277,16 @@
         [alert show];
         info.message = [NSString stringWithFormat:@"%@：%@想要绑定您的设备。",info.deviceID,info.userProfile.firstName];
         [coreData insertData:info];
+    }else if ([info.command isEqualToString:@"BINDREP"]){
+        self.bindInfo = info;
+        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
+        [coreData insertData:info];
+        [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
+    }else if ([info.command isEqualToString:@"BINDREP"]){
+        self.bindInfo = info;
+        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
+        [coreData insertData:info];
+        [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if (!info.command){
         if ([info.status isEqualToString:@"00010000"]) {
             

@@ -125,7 +125,7 @@
 }
 
 - (IBAction)onCallButtonClicked:(id)sender {
-    [self performAction:CAPTrackerViewActionNavigation];
+    [self performAction:CAPTrackerViewActionCall];
 }
 
 - (IBAction)onSettingButtonClicked:(id)sender {

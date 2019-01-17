@@ -14,7 +14,7 @@
 #import "CAPGuardianListViewController.h"
 #import "CAPSOSMobileViewController.h"
 #import "CAPUploadFrequencyViewController.h"
-@interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate,YWAlertViewDelegate>
+@interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet CAPBatteryView *batteryView;
@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<NSString *> *titles;
 @property (strong, nonatomic) NSArray<NSString *> *details;
-@property (nonatomic,strong) id <YWAlertViewProtocol>ywAlert;
 
 @end
 
@@ -41,34 +40,33 @@
     self.title = @"设备详情";
     self.titles = @[@"名称", @"Device ID", @"Device IMEI",
                     @"Device Number", @"监护人",@"SOS号码",@"更新频率",@"解绑",@"固件版本"];
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.deviceID:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc]init];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIImage *avatar = GetImage(@"ic_default_avatar");
     
     [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
     self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
 }
-//- (void)loadDeviceInfo{
-//    [gApp showHUD:@"正在处理，请稍后..."];
-//
-//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-//    [deviceService getDevice:self.device reply:^(id response) {
-//
-//    }];
-//    //    [deviceService getDeviceBindinfo:self.device reply:^(CAPHttpResponse *response) {
-//    //        self.deviceBindInfo = [CAPDeviceBindInfo mj_objectWithKeyValues:response.data];
-//    //        if (self.deviceBindInfo.code == 200) {
-//    //            self.details = @[self.deviceBindInfo.result.bindinfo.name? self.deviceBindInfo.result.bindinfo.name:@"", self.deviceBindInfo.result.deviceID?self.deviceBindInfo.result.deviceID:@"", @"XXXX", self.deviceBindInfo.result.mobile?self.deviceBindInfo.result.mobile:@"", @"",@"",@"",@"",@""];
-//    //            [self.tableView reloadData];
-//    //            [gApp hideHUD];
-//    //        }
-//    //    }];
-//}
+- (void)loadDeviceInfo{
+    [gApp showHUD:@"正在处理，请稍后..."];
+
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService getDevice:self.device reply:^(id response) {
+
+    }];
+    //    [deviceService getDeviceBindinfo:self.device reply:^(CAPHttpResponse *response) {
+    //        self.deviceBindInfo = [CAPDeviceBindInfo mj_objectWithKeyValues:response.data];
+    //        if (self.deviceBindInfo.code == 200) {
+    //            self.details = @[self.deviceBindInfo.result.bindinfo.name? self.deviceBindInfo.result.bindinfo.name:@"", self.deviceBindInfo.result.deviceID?self.deviceBindInfo.result.deviceID:@"", @"XXXX", self.deviceBindInfo.result.mobile?self.deviceBindInfo.result.mobile:@"", @"",@"",@"",@"",@""];
+    //            [self.tableView reloadData];
+    //            [gApp hideHUD];
+    //        }
+    //    }];
+}
 
 - (void)refreshLocalizedString {
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
@@ -142,42 +140,32 @@
             break;
         case 7:
         {
-            id <YWAlertViewProtocol>alert = [YWAlertView alertViewWithTitle:nil message:[NSString stringWithFormat:@"确定要解绑这台设备吗？"] delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
-            [alert setButtionTitleFontWithName:@"AmericanTypewriter" size:16 index:1];
-            [alert setButtionTitleFontWithName:@"AmericanTypewriter-Bold" size:16 index:0];
-            [alert show];
+            [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{
+                
+            } okBlock:^{
+                [gApp showHUD:@"正在处理，请稍后..."];
+                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                [deviceService deleteDevice:self.device reply:^(CAPHttpResponse *response) {
+                    NSDictionary *data = response.data;
+                    if ([[data objectForKey:@"code"] integerValue] == 200) {
+                        [gApp hideHUD];
+                        [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+                        [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }else{
+                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                            
+                        }];
+                    }
+                    
+                }];
+            } alertType:AlertTypeCustom];
         }
             break;
         default:
             break;
     }
 }
-- (id<YWAlertViewProtocol>)ywAlert{
-    if (!_ywAlert) {
-        _ywAlert = [YWAlertView alertViewWithTitle:nil message:@"" delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
-    }
-    return _ywAlert;
-}
-- (void)didClickAlertView:(NSInteger)buttonIndex value:(id)value{
-    if (buttonIndex) {
-        [gApp showHUD:@"正在处理，请稍后..."];
-        CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-        [deviceService deleteDevice:self.device reply:^(CAPHttpResponse *response) {
-            NSDictionary *data = response.data;
-            if ([[data objectForKey:@"code"] integerValue] == 200) {
-                [gApp hideHUD];
-                [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
-                [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
-                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
-                    
-                }];
-            }
-            
-        }];
-    }
-    
-}
+
 @end
 

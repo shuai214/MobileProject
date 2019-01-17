@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UILabel *telAreaCodeLabel;
 @property(nonatomic,strong)UILabel *countryNameLabel;
 @property(nonatomic,strong)UITextField *telField;
+@property(nonatomic,strong)UIButton *buttonSend;
+
 @property(nonatomic,assign)BOOL isEdit;
 @end
 
