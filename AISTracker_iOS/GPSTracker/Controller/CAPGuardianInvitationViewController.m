@@ -30,8 +30,16 @@
     [deviceService shareDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         NSDictionary *dict = response.data;
-        [self creatCodeImage:[dict objectForKey:@"result"]];
-        [gApp hideHUD];
+        if ([[response.data objectForKey:@"code"] integerValue] == 200){
+            [self creatCodeImage:[dict objectForKey:@"result"]];
+            [gApp hideHUD];
+        }else{
+            [gApp hideHUD];
+            [CAPAlertView initAlertWithContent:[dict objectForKey:@"message"] okBlock:^{
+                
+            } alertType:AlertTypeNoClose];
+        }
+        
     }];
 }
 

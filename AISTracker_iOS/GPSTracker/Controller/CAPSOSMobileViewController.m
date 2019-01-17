@@ -9,8 +9,15 @@
 #import "CAPSOSMobileViewController.h"
 #import "CAPDeviceNumber.h"
 #import "CAPMMCountry.h"
+#import "CAPDeviceService.h"
+#import "CAPDevice.h"
+#import "CAPDeviceLists.h"
 @interface CAPSOSMobileViewController ()
 @property(nonatomic,strong)UIScrollView *bgscrollView;
+@property(nonatomic,strong)CAPDeviceLists *deviceLists;
+@property(nonatomic,strong)NSMutableArray *countryArray;
+@property(nonatomic,strong)NSMutableArray *telCodeArray;
+
 @end
 
 @implementation CAPSOSMobileViewController
@@ -19,6 +26,27 @@
     [super viewDidLoad];
     self.title = @"SOS Number";
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = gCfg.appBackgroundColor;
+    [self get:nil];
+    [self fetchDevice];
+}
+
+- (void)fetchDevice{
+    [gApp showHUD:@"正在处理，请稍后..."];
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:^(id response) {
+        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
+        [gApp hideHUD];
+        if ([[httpResponse.data objectForKey:@"code"] integerValue] == 200) {
+           self.deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
+            [self configSubView];
+        }else{
+            [gApp showNotifyInfo:[httpResponse.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+        }
+    }];
+}
+
+- (void)configSubView{
     self.bgscrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.bgscrollView.backgroundColor = gCfg.appBackgroundColor;
     [self.view addSubview:self.bgscrollView];
@@ -30,7 +58,11 @@
     NSMutableArray <UIView *>*mustViews = [NSMutableArray array];
     CGFloat numViewHeight = 80;
     NSInteger j = 1;
-    for (NSInteger i = 0; i<3; i++) {
+    NSInteger count = 3;
+    if (self.deviceLists.result.list.count >= 3) {
+        count = 3;
+    }
+    for (NSInteger i = 0; i<count; i++) {
         CGRect frame = CGRectMake(0, mustBeThreeNumber.bottom + (numViewHeight + 10 )* i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:NO index:j];
         [self.bgscrollView addSubview:view];
@@ -44,7 +76,7 @@
     [self.bgscrollView addSubview:mayBeTwoNumber];
     
     NSMutableArray <UIView *>*mayViews = [NSMutableArray array];
-
+    
     for (NSInteger i = 0; i< 2; i++) {
         j++;
         CGRect frame = CGRectMake(0, mayBeTwoNumber.bottom + (numViewHeight + 10 ) * i + 10, Main_Screen_Width, numViewHeight);
@@ -54,10 +86,6 @@
     }
     self.bgscrollView.contentSize = CGSizeMake(Main_Screen_Width, mayViews.lastObject.bottom + 40);
 }
-
-
-
-
 - (UIView *)setNumberView:(CGRect)frame isEdit:(BOOL)is index:(NSInteger)index{
     CGFloat width = frame.size.width;
     CGFloat height = frame.size.height;
@@ -76,6 +104,23 @@
     CAPDeviceNumber *deviceNumberView = [[CAPDeviceNumber alloc] initWithFrame:CGRectMake(imgView.right + 10, 0, width - imgView.right - 30, height) isEdit:is];
     deviceNumberView.countryNameLabel.tag = index + 99;
     deviceNumberView.countryNameLabel.userInteractionEnabled = is;
+    if (index <= 3) {
+        if (index <= self.deviceLists.result.list.count) {
+            CAPDevice *device = self.deviceLists.result.list[index - 1];
+            NSArray *array = [device.mobile componentsSeparatedByString:@" "];
+            if (array.count >=2) {
+                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
+            }else{
+                deviceNumberView.telAreaCodeLabel.text = @"+86";
+            }
+            deviceNumberView.telField.text = array.lastObject;
+            
+            NSArray *telCode = self.telCodeArray;
+            NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
+            NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
+            deviceNumberView.countryNameLabel.text = countryName;
+        }
+    }
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [deviceNumberView.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
     [bgView addSubview:deviceNumberView];
@@ -106,29 +151,32 @@
     //获取国家名
     NSLocale *locale = [NSLocale currentLocale];
     NSArray *countryArray = [NSLocale ISOCountryCodes];
-    NSMutableArray*countriesArray = [[NSMutableArray alloc] init];
-    NSMutableArray*countryCodeArray = [[NSMutableArray alloc] init];
+    self.countryArray = [[NSMutableArray alloc] init];
+    self.telCodeArray = [[NSMutableArray alloc] init];
     
     for (NSString *countryCode in countryArray) {
         if (dicCode[countryCode] ){
             CAPMMCountry *c = dicCode[countryCode];
             if ([c.code isEqualToString:@"CN"]) {
                 c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
-                [countriesArray insertObject:c.name atIndex:0];
-                [countryCodeArray insertObject:c.dial_code atIndex:0];
+                [self.countryArray insertObject:c.name atIndex:0];
+                [self.telCodeArray insertObject:c.dial_code atIndex:0];
             }
             c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
             if ( [c.name isEqualToString:@"台湾"] ){
                 c.name = @"中国台湾";
             }
-            [countriesArray addObject:c.name];
-            [countryCodeArray addObject:c.dial_code];
+            [self.countryArray addObject:c.name];
+            [self.telCodeArray addObject:c.dial_code];
         }
     }
-    NSArray *array = countriesArray;
+    NSArray *array = self.countryArray;
+    if (!deviceNumber) {
+        return;
+    }
     [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
         NSUInteger index = [array indexOfObject:selectValue];
-        NSString *telCode = [countryCodeArray objectAtIndex:(NSInteger)index];
+        NSString *telCode = [self.telCodeArray objectAtIndex:(NSInteger)index];
         deviceNumber.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
         deviceNumber.countryNameLabel.text = selectValue;
     }];

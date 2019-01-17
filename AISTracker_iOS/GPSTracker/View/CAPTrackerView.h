@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, CAPTrackerViewAction) {
     CCAPTrackerViewActionFootprint,
     CAPTrackerViewActionPhotograph,
     CAPTrackerViewActionNavigation,
-    CAPTrackerViewActionSetting
+    CAPTrackerViewActionSetting,
+    CAPTrackerViewActionCall
 };
 
 @protocol CAPTrackerViewDelegate

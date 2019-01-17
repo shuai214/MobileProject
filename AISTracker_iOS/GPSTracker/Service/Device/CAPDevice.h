@@ -43,6 +43,8 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *answerMode;
 @property (nonatomic, assign) NSInteger reportFrequency;
+@property (nonatomic, copy) NSString *mobile;
+
 @end
 
 @interface CAPDevice : CAPBaseJSON

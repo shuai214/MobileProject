@@ -38,8 +38,8 @@
 
 - (void)setDeviceInfo:(CAPDevice *)device{
     [self.imgView setImage:GetImage(@"ic_default_avatar")];
-    self.nameLabel.text = device.name;
-    self.telLabel.text = device.mobile ? device.mobile : @"";
+    self.nameLabel.text = device.setting.name;
+    self.telLabel.text = device.setting.mobile ? device.setting.mobile : @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

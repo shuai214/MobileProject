@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef NS_ENUM(NSUInteger, AlertType) {
+    AlertTypeCustom= 0,
+    AlertTypeNoClose,
+    AlertTypeTime,
+    AlertTypeTwoButton
+};
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPAlertCustomView : UIView
@@ -20,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic , copy ) void (^okBlock)(void);
 
-- (instancetype)initWithFrame:(CGRect)frame contentDesc:(NSString *)desc;
+- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title contentDesc:(NSString *)desc alertType:(AlertType)alertType;
 
 @end
 

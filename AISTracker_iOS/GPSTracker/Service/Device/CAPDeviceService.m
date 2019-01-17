@@ -74,8 +74,13 @@
     }
 }
 -(void)getDevice:(CAPDevice *)device reply:(CAPServiceReply)reply{
-    
-   
+    //TODO
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
 }
 - (void)getDeviceBindinfo:(CAPDevice *)device reply:(CAPServiceReply)reply{
     //TODO

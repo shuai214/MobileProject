@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="DeviceMessageInfo" representedClassName="DeviceMessageInfo" syncable="YES" codeGenerationType="class">
+    <entity name="DeviceMessageInfo" representedClassName="DeviceMessageInfo" syncable="YES">
         <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceMessageTime" optional="YES" attributeType="String" syncable="YES"/>

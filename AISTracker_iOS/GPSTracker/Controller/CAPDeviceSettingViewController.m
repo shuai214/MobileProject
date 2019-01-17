@@ -98,7 +98,7 @@
         return;
     }
     if ([CAPValidators validPhoneNumber:self.deviceNumber.telField.text]) {
-        self.device.mobile = self.deviceNumber.telField.text;
+        self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text];
     }else{
         [CAPToast toastError:@"输入的号码不正确"];
         return;

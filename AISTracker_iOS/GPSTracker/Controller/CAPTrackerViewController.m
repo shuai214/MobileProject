@@ -24,6 +24,7 @@
 #import "UIView+Frame.h"
 #import "CAPDeviceCommand.h"
 #import "CAPDeviceLocal.h"
+#import "CAPAlertView.h"
 @import GoogleMaps;
 
 #define VIEW_X 12
@@ -248,6 +249,13 @@
         {CAPMasterSettingViewController *masterSetting = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"MasterSettingViewController"];
             masterSetting.device = self.currentDevice;
             [self.navigationController pushViewController:masterSetting animated:YES];
+        }
+            break;
+        case CAPTrackerViewActionCall:
+        {
+            NSArray *array = [self.currentDevice.mobile componentsSeparatedByString:@" "];
+            NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",array.lastObject];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
             break;
         default:

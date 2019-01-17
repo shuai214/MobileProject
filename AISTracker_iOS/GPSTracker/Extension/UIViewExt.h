@@ -13,9 +13,11 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 @property CGPoint origin;
 @property CGSize size;
 
-@property (readonly) CGPoint bottomLeft;
-@property (readonly) CGPoint bottomRight;
-@property (readonly) CGPoint topRight;
+@property (readonly) CGPoint innerCenter;
+
+@property CGPoint bottomLeft;
+@property CGPoint bottomRight;
+@property CGPoint topRight;
 
 @property CGFloat height;
 @property CGFloat width;
@@ -26,7 +28,12 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 @property CGFloat bottom;
 @property CGFloat right;
 
-- (void) moveBy: (CGPoint) delta;
-- (void) scaleBy: (CGFloat) scaleFactor;
-- (void) fitInSize: (CGSize) aSize;
+@property CGFloat xCenter;
+@property CGFloat yCenter;
+
+- (void)moveBy:(CGPoint)delta;
+- (void)scaleBy:(CGFloat)scaleFactor;
+- (void)fitInSize:(CGSize)aSize;
+
 @end
+

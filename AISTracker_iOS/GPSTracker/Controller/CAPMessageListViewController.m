@@ -48,7 +48,7 @@
     
    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     header.automaticallyChangeAlpha = YES;
     // 隐藏时间
@@ -58,14 +58,9 @@
     // 设置header
     self.tableView.mj_header = header;
 }
-- (void)loadNewData{
-    self.listData = [NSMutableArray array];
-    [self loadData:NO];
-}
 
 
-- (void)loadData:(BOOL)isLoadMore;
-{
+- (void)loadData{
     self.listData = [NSMutableArray array];
     CAPCoreData *coreData = [CAPCoreData coreData];
     [coreData creatResource:@"GPSTracker"];
@@ -97,7 +92,6 @@
     }else{
         item.title = @"编辑";
         [self.tableView setEditing:NO animated:YES];
-        
         [self showEitingView:NO];
     }
 }
@@ -176,20 +170,28 @@
             [insets addIndex:obj.row];
             [indexArray addObject:self.listData[obj.row].messageInfo.deviceMessageTime];
         }];
-        CAPCoreData *coreData = [CAPCoreData coreData];
-        [coreData creatResource:@"GPSTracker"];
-        if ([self.selectAll isEqualToString:@"NO"]) {
-            [coreData deleteData:indexArray];
-        }else{
-            [coreData deleteAllData];
-        }
         [self.listData removeObjectsAtIndexes:insets];
         [self.tableView deleteRowsAtIndexPaths:[self.tableView indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
-        
         if (self.listData.count == 0) {
             self.navigationItem.rightBarButtonItem.title = @"编辑";
             [self.tableView setEditing:NO animated:YES];
             [self showEitingView:NO];
+        }
+        
+        CAPCoreData *coreData = [CAPCoreData coreData];
+        [coreData creatResource:@"GPSTracker"];
+        if ([self.selectAll isEqualToString:@"NO"]) {
+            [coreData deleteData:indexArray];
+            [self loadData];
+            [self.tableView setEditing:NO animated:YES];
+            [self showEitingView:NO];
+            self.navigationItem.rightBarButtonItem.title = @"编辑";
+        }else{
+            [coreData deleteAllData];
+            [self loadData];
+            [self.tableView setEditing:NO animated:YES];
+            [self showEitingView:NO];
+            self.navigationItem.rightBarButtonItem.title = @"编辑";
         }
         
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {

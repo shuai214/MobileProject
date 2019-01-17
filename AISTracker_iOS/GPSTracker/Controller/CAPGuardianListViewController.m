@@ -12,7 +12,7 @@
 #import "CAPGuardianInvitationViewController.h"
 @interface CAPGuardianListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong , nonatomic)NSMutableArray *dataArray;
 @end
 
 @implementation CAPGuardianListViewController
@@ -27,7 +27,8 @@
     self.tableView.rowHeight = 80;
     self.tableView.backgroundColor = [UIColor lightGrayColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadDeviceBindInfo];
+    self.dataArray = [NSMutableArray array];
+    [self loadDeviceBindUserInfo];
 }
 - (void)rightBarItemClick:(UIBarButtonItem *)item
 {
@@ -39,11 +40,22 @@
 //    }];
     [self.navigationController pushViewController:GuardianInvitationVC animated:YES];
 }
-- (void)loadDeviceBindInfo{
+- (void)loadDeviceBindUserInfo{
+    [gApp showHUD:@"正在加载，请稍后..."];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
     [deviceServer getDevice:self.device reply:^(CAPHttpResponse *response) {
-        self.device = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-         NSLog(@"%@",response);
+        [gApp hideHUD];
+        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+           NSArray *array = [response.data objectForKey:@"result"];
+            for (NSInteger i = 0 ;i < array.count ;i++) {
+                NSDictionary *dic = array[i];
+                self.device = [CAPDevice mj_objectWithKeyValues:dic];
+                [self.dataArray addObject:self.device];
+            }
+        }else{
+            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+        }
+        [self.tableView reloadData];
     }];
 }
 
@@ -58,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,7 +80,8 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CAPGuardianTableViewCell" owner:self options:nil] lastObject];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setDeviceInfo:self.device];
+    CAPDevice *device = self.dataArray[indexPath.row];
+    [cell setDeviceInfo:device];
     return cell;
 }
 
