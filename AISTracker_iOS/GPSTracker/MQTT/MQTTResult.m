@@ -6,7 +6,10 @@
 //  Copyright © 2018 Capelabs. All rights reserved.
 //
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 #import "MQTTResult.h"
 
 @implementation MQTTResult
