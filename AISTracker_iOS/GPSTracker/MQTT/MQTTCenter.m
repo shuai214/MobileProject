@@ -37,8 +37,6 @@
 @property (nonatomic, strong) NSMutableDictionary *infoDictionary;
 @property (nonatomic, copy) NSString *operatorCode;
 
-@property (nonatomic,strong) id <YWAlertViewProtocol>ywAlert;
-
 @end
 
 @implementation MQTTCenter
@@ -75,29 +73,7 @@
         [self.session connect];
     }
 }
-- (id<YWAlertViewProtocol>)ywAlert{
-    if (!_ywAlert) {
-        _ywAlert = [YWAlertView alertViewWithTitle:nil message:@"" delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
-    }
-    return _ywAlert;
-}
-- (void)didClickAlertView:(NSInteger)buttonIndex value:(id)value{
-    NSLog(@"委托代理=当前点击--%zi",buttonIndex);
-    if (buttonIndex) {
-        [gApp showHUD:@"正在处理，请稍后..."];
-        CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-        [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
-            NSLog(@"%@",response);
-            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-                [gApp hideHUD];
-                [gApp showHUD:@"设备绑定成功！" cancelTitle:@"确定" onCancelled:^{
-                    [gApp hideHUD];
-                }];
-            }
-        }];
-    }
-    
-}
+
 - (void)close {
     if(self.session) {
         [self.session close];
@@ -271,11 +247,27 @@
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
-        id <YWAlertViewProtocol>alert = [YWAlertView alertViewWithTitle:nil message:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] delegate:self preferredStyle:YWAlertViewStyleAlert footStyle:YWAlertPublicFootStyleDefalut bodyStyle:YWAlertPublicBodyStyleDefalut cancelButtonTitle:@"cancel" otherButtonTitles:@[@"Ok"]];
-        [alert setButtionTitleFontWithName:@"AmericanTypewriter" size:16 index:1];
-        [alert setButtionTitleFontWithName:@"AmericanTypewriter-Bold" size:16 index:0];
-        [alert show];
-        info.message = [NSString stringWithFormat:@"%@：%@想要绑定您的设备。",info.deviceID,info.userProfile.firstName];
+        [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] title:@"" closeBlock:^{
+            [gApp showHUD:@"正在处理，请稍后..."];
+            CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+            [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"0" reply:^(CAPHttpResponse *response) {
+                NSLog(@"%@",response);
+                if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                    [gApp hideHUD];
+                }
+            }];
+        } okBlock:^{
+            [gApp showHUD:@"正在处理，请稍后..."];
+            CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+            [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
+                NSLog(@"%@",response);
+                if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                    [gApp hideHUD];
+                    [CAPAlertView initAlertWithContent:[response.data objectForKey:@"message"] okBlock:^{
+                    } alertType:AlertTypeNoClose];
+                }
+            }];
+        } alertType:AlertTypeCustom];
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"BINDREP"]){
         self.bindInfo = info;

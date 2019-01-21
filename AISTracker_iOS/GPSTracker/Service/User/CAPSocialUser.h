@@ -23,4 +23,6 @@
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *mobile;
 @property (nonatomic, copy) NSString *verifyCode;
+@property (nonatomic, copy) NSString *email;
+
 @end

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 static NSString* _Nullable const kNotificationLogin = @"cap.notification.login";
+static NSString* _Nullable const kNotificationLoginDeviceCount = @"cap.notification.login.device";
+
 static NSString* _Nullable const kNotificationLogout = @"cap.notification.logout";
 static NSString* _Nullable const kNotificationAccountExpired = @"cap.notification.account.expired";
 static NSString* _Nullable const kNotificationWechatLogin = @"cap.notification.wechat.login";

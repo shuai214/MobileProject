@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppIdentifierPrefix</key>
+	<string>$(AppIdentifierPrefix)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,18 +32,61 @@
 				<string>wxc012f97d7d6f3c3f</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>aaa.library.sdk_v4</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>GPSTracker</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>GPSTracker</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.capelabs.gpstracker</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>181030</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>ascendmoney</string>
+		<string>true-trueid​</string>
+		<string>truetv</string>
+		<string>​truemusic</string>
+		<string>example</string>
+		<string>trueiservice</string>
+		<string>trueyou</string>
+		<string>truecloud.eggdigital.com/appp/</string>
+		<string>truecloud-stg.eggdigital.com/app/</string>
+		<string>true-int.fnbltest.com/ui/app/</string>
 		<string>weixin</string>
 		<string>wechat</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>允许访问摄像头</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>允许获取当前位置</string>
+	<key>TrueAppId</key>
+	<string>653</string>
+	<key>TrueRedirectUrl</key>
+	<string>https://www.google.co.th</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -57,7 +104,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>允许访问摄像头</string>
 </dict>
 </plist>

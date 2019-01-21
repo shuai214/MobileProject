@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
 		2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */; };
+		2B19B0A521F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */; };
+		2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */; };
+		2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0D621F47A64004DF9BE /* Localizable.strings */; };
+		2B19B0DD21F47DA6004DF9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0DC21F47DA5004DF9BE /* Main.storyboard */; };
+		2B19B0E021F56011004DF9BE /* CAPChooseFenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */; };
+		2B19B0E221F56196004DF9BE /* CAPChooseFenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */; };
+		2B19B0E521F5CBC8004DF9BE /* CAPEditAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0E421F5CBC8004DF9BE /* CAPEditAlertView.m */; };
 		2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */; };
 		2B1C07ED21DF2FBE00B258C1 /* HMWeeklySelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EB21DF2FBD00B258C1 /* HMWeeklySelectDateView.m */; };
 		2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C07EC21DF2FBD00B258C1 /* HMDateSelectCollectionViewCell.m */; };
@@ -20,6 +27,10 @@
 		2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */; };
 		2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BE48721ECCD3D006D728C /* GPSTracker.xcdatamodeld */; };
 		2B6B667021EDD44A00C02A41 /* CAPDeviceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */; };
+		2B6DD7CA21F1A80D0029190F /* FYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */; };
+		2B6DD7CC21F1A85E0029190F /* TrueIDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */; };
+		2B6DD89721F1ACEA0029190F /* TrueIDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */; };
+		2B6DD89821F1ACEA0029190F /* TrueIDFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B6DDB9521E43C96004CAE09 /* CAPGuardianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */; };
 		2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */; };
 		2B6DDB9921E46F25004CAE09 /* CAPDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */; };
@@ -91,7 +102,6 @@
 		EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA659218D58160014771E /* libWeChatSDK.a */; };
 		EF6CA65F218D58170014771E /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA65B218D58170014771E /* NullSafe.m */; };
 		EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA65D218D58170014771E /* TencentOpenAPI.framework */; };
-		EF6CA666218D778A0014771E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA668218D778A0014771E /* InfoPlist.strings */; };
 		EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA66E218D7A7B0014771E /* CAPSocialService.m */; };
 		EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA670218D7C7F0014771E /* libc++.tbd */; };
 		EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA672218D7CA90014771E /* CoreTelephony.framework */; };
@@ -128,9 +138,7 @@
 		EF79BB5E21888C3A000358FA /* MQTTInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EF79BB5D21888C3A000358FA /* MQTTInfo.m */; };
 		EF7BE557218845AB00562EE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE556218845AB00562EE9 /* AppDelegate.m */; };
 		EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE559218845AB00562EE9 /* MainViewController.m */; };
-		EF7BE55D218845AB00562EE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE55B218845AB00562EE9 /* Main.storyboard */; };
 		EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE561218845AC00562EE9 /* Assets.xcassets */; };
-		EF7BE565218845AC00562EE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */; };
 		EF7BE568218845AD00562EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE567218845AD00562EE9 /* main.m */; };
 		EF7BE572218845AD00562EE9 /* GPSTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE571218845AD00562EE9 /* GPSTrackerTests.m */; };
 		EF7BE57D218845AD00562EE9 /* GPSTrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7BE57C218845AD00562EE9 /* GPSTrackerUITests.m */; };
@@ -217,10 +225,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2B6DD89921F1ACEA0029190F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B6DD89821F1ACEA0029190F /* TrueIDFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2B066F3D21E623B80087A741 /* CAPUploadFrequencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUploadFrequencyViewController.h; sourceTree = "<group>"; };
 		2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUploadFrequencyViewController.m; sourceTree = "<group>"; };
+		2B19B0A321F21BED004DF9BE /* CAPChooseDeviceTypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPChooseDeviceTypeViewController.h; sourceTree = "<group>"; };
+		2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPChooseDeviceTypeViewController.m; sourceTree = "<group>"; };
+		2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseDevice.storyboard; sourceTree = "<group>"; };
+		2B19B0D721F47A64004DF9BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2B19B0D921F47A71004DF9BE /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B19B0DA21F47A88004DF9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B19B0DB21F47A8F004DF9BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B19B0DC21F47DA5004DF9BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2B19B0DE21F56011004DF9BE /* CAPChooseFenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPChooseFenceView.h; sourceTree = "<group>"; };
+		2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPChooseFenceView.m; sourceTree = "<group>"; };
+		2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPChooseFenceView.xib; sourceTree = "<group>"; };
+		2B19B0E321F5CBC8004DF9BE /* CAPEditAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPEditAlertView.h; sourceTree = "<group>"; };
+		2B19B0E421F5CBC8004DF9BE /* CAPEditAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPEditAlertView.m; sourceTree = "<group>"; };
 		2B1C07E521DF0B0700B258C1 /* CAPDeviceLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLogs.h; sourceTree = "<group>"; };
 		2B1C07E621DF0B0700B258C1 /* CAPDeviceLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLogs.m; sourceTree = "<group>"; };
 		2B1C07E921DF2FBD00B258C1 /* HMWeeklySelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWeeklySelectDateView.h; sourceTree = "<group>"; };
@@ -247,6 +282,10 @@
 		2B6B667221EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataClass.h"; sourceTree = "<group>"; };
 		2B6B667321EDD90400C02A41 /* DeviceMessageInfo+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataClass.m"; sourceTree = "<group>"; };
 		2B6B667421EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLoginViewController.m; sourceTree = "<group>"; };
+		2B6DD7C921F1A80D0029190F /* FYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYLoginViewController.h; sourceTree = "<group>"; };
+		2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TrueIDFramework.framework; sourceTree = "<group>"; };
+		2B6DD89A21F1BE5A0029190F /* GPSTracker.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GPSTracker.entitlements; sourceTree = "<group>"; };
 		2B6DDB9221E43C96004CAE09 /* CAPGuardianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianTableViewCell.h; sourceTree = "<group>"; };
 		2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianTableViewCell.m; sourceTree = "<group>"; };
 		2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPGuardianTableViewCell.xib; sourceTree = "<group>"; };
@@ -388,11 +427,6 @@
 		EF6CA659218D58160014771E /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		EF6CA65B218D58170014771E /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EF6CA65D218D58170014771E /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		EF6CA661218D77200014771E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
-		EF6CA667218D778A0014771E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EF6CA669218D77A60014771E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EF6CA66A218D78070014771E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		EF6CA66B218D781E0014771E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EF6CA66D218D7A7B0014771E /* CAPSocialService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSocialService.h; sourceTree = "<group>"; };
 		EF6CA66E218D7A7B0014771E /* CAPSocialService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSocialService.m; sourceTree = "<group>"; };
 		EF6CA670218D7C7F0014771E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -450,9 +484,7 @@
 		EF7BE556218845AB00562EE9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EF7BE558218845AB00562EE9 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		EF7BE559218845AB00562EE9 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		EF7BE55C218845AB00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF7BE561218845AC00562EE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EF7BE564218845AC00562EE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF7BE567218845AD00562EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EF7BE56D218845AD00562EE9 /* GPSTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF7BE571218845AD00562EE9 /* GPSTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSTrackerTests.m; sourceTree = "<group>"; };
@@ -606,7 +638,9 @@
 				EF6CA677218D7CBA0014771E /* SystemConfiguration.framework in Frameworks */,
 				EF6CA675218D7CB10014771E /* Security.framework in Frameworks */,
 				EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */,
+				2B6DD7CC21F1A85E0029190F /* TrueIDFramework.framework in Frameworks */,
 				EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */,
+				2B6DD89721F1ACEA0029190F /* TrueIDFramework.framework in Frameworks */,
 				EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */,
 				EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */,
 				02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */,
@@ -752,6 +786,10 @@
 		EF79BB4C218860C0000358FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2B6DD7C921F1A80D0029190F /* FYLoginViewController.h */,
+				2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */,
+				2B19B0A321F21BED004DF9BE /* CAPChooseDeviceTypeViewController.h */,
+				2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */,
 				EFD0AC8A218C3E0F00405FD8 /* CAPAddTrackerViewController.h */,
 				EFD0AC8B218C3E0F00405FD8 /* CAPAddTrackerViewController.m */,
 				EFD0AC81218C3CE500405FD8 /* CAPBaseViewController.h */,
@@ -890,8 +928,13 @@
 				2B98BAB321EE1AB3006B779B /* CAPAlertCustomView.m */,
 				2BDBD46F21EF16CC008DDB53 /* CAPFenceAddView.h */,
 				2BDBD47021EF16CC008DDB53 /* CAPFenceAddView.m */,
+				2B19B0E321F5CBC8004DF9BE /* CAPEditAlertView.h */,
+				2B19B0E421F5CBC8004DF9BE /* CAPEditAlertView.m */,
 				2B98BAC221EE2CBE006B779B /* CAPAlertView.h */,
 				2B98BAC321EE2CBE006B779B /* CAPAlertView.m */,
+				2B19B0DE21F56011004DF9BE /* CAPChooseFenceView.h */,
+				2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */,
+				2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -984,6 +1027,7 @@
 		EF79BB522188615C000358FA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */,
 				EF6CA6AD218EA3620014771E /* CAPApplication.h */,
 				EF6CA6AC218EA3610014771E /* CAPApplication.m */,
 				EFD0AD25218C4FB600405FD8 /* AppConfig.h */,
@@ -991,9 +1035,9 @@
 				EF7BE555218845AB00562EE9 /* AppDelegate.h */,
 				EF7BE556218845AB00562EE9 /* AppDelegate.m */,
 				EF7BE567218845AD00562EE9 /* main.m */,
-				EF6CA668218D778A0014771E /* InfoPlist.strings */,
 				2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */,
 				2B6DDB9D21E48960004CAE09 /* diallingcode.json */,
+				2B19B0D621F47A64004DF9BE /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1003,11 +1047,11 @@
 			children = (
 				EF358C072191D84100EFB4BF /* EditName.storyboard */,
 				EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */,
-				EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */,
 				EF358BE221913B0D00EFB4BF /* Login.storyboard */,
-				EF7BE55B218845AB00562EE9 /* Main.storyboard */,
+				2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */,
 				EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */,
 				EF6CA6B4218EC7DA0014771E /* Me.storyboard */,
+				2B19B0DC21F47DA5004DF9BE /* Main.storyboard */,
 				EF6CA6AF218EC35D0014771E /* Pair.storyboard */,
 				EF6CA6B6218EC90E0014771E /* Tracker.storyboard */,
 			);
@@ -1095,11 +1139,11 @@
 		EF7BE554218845AB00562EE9 /* GPSTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2B6DD89A21F1BE5A0029190F /* GPSTracker.entitlements */,
 				EF7BE561218845AC00562EE9 /* Assets.xcassets */,
 				EF79BB4C218860C0000358FA /* Controller */,
 				EF79BB572188622D000358FA /* Core Data */,
 				EFD0AD0B218C4F2A00405FD8 /* Extension */,
-				EF6CA662218D77200014771E /* Info.plist */,
 				EF79BB55218861A5000358FA /* Mock */,
 				EF79BB5421886180000358FA /* Model */,
 				EF79BB582188678C000358FA /* MQTT */,
@@ -1288,6 +1332,7 @@
 				EF7BE54F218845AB00562EE9 /* Frameworks */,
 				EF7BE550218845AB00562EE9 /* Resources */,
 				43AA8479DDE726CF022A23F0 /* [CP] Copy Pods Resources */,
+				2B6DD89921F1ACEA0029190F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1348,6 +1393,11 @@
 				TargetAttributes = {
 					EF7BE551218845AB00562EE9 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					EF7BE56C218845AD00562EE9 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -1364,9 +1414,9 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				"zh-Hans",
+				en,
 				th,
 			);
 			mainGroup = EF7BE549218845AB00562EE9;
@@ -1387,18 +1437,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BBBF8CA21DE42D000AF1DD6 /* CAPFenceListTableViewCell.xib in Resources */,
-				EF7BE565218845AC00562EE9 /* LaunchScreen.storyboard in Resources */,
+				2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */,
+				2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */,
 				EF358C082191D84100EFB4BF /* EditName.storyboard in Resources */,
 				EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */,
+				2B19B0E221F56196004DF9BE /* CAPChooseFenceView.xib in Resources */,
 				EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */,
-				EF6CA666218D778A0014771E /* InfoPlist.strings in Resources */,
 				EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */,
 				EF6CA6BE218ECA5A0014771E /* GuestSetting.storyboard in Resources */,
 				2B6DDB9E21E48961004CAE09 /* diallingcode.json in Resources */,
 				EF6CA6B0218EC35D0014771E /* Pair.storyboard in Resources */,
 				EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */,
+				2B19B0DD21F47DA6004DF9BE /* Main.storyboard in Resources */,
 				EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */,
-				EF7BE55D218845AB00562EE9 /* Main.storyboard in Resources */,
 				EF358BE321913B0D00EFB4BF /* Login.storyboard in Resources */,
 				EF6CA6BC218ECA240014771E /* MasterSetting.storyboard in Resources */,
 				2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */,
@@ -1580,6 +1631,7 @@
 				EF46F2812192991A009A357C /* CAPFootprint.m in Sources */,
 				2B78076121F0C35300DD31FB /* MQTTResult.m in Sources */,
 				EFD0ACB6218C3F0100405FD8 /* CAPScanViewController.m in Sources */,
+				2B19B0A521F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m in Sources */,
 				EFD0AD42218C550C00405FD8 /* CAPSocialLoginResponse.m in Sources */,
 				EFD0AC95218C3E6200405FD8 /* CAPFeedbackViewController.m in Sources */,
 				EF12AE072193C926006A8AE1 /* CAPWeekView.m in Sources */,
@@ -1622,6 +1674,7 @@
 				2B714CE121E4E83100AF7B82 /* CAPDeviceBindInfo.m in Sources */,
 				EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */,
 				EFD0ACB0218C3EEE00405FD8 /* CAPhotographViewController.m in Sources */,
+				2B6DD7CA21F1A80D0029190F /* FYLoginViewController.m in Sources */,
 				EF6CA68D218D833F0014771E /* CAPDeviceCenter.m in Sources */,
 				EF6CA693218D83800014771E /* CAPDevicePresenter.m in Sources */,
 				EFD0AD07218C483D00405FD8 /* CAPResponse.m in Sources */,
@@ -1646,6 +1699,7 @@
 				EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */,
 				2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */,
 				2B6DDB9C21E47126004CAE09 /* CAPDeviceNumber.m in Sources */,
+				2B19B0E521F5CBC8004DF9BE /* CAPEditAlertView.m in Sources */,
 				2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */,
 				EFD0ACCD218C467000405FD8 /* CAPToast.m in Sources */,
 				EFD0AC9B218C3E7800405FD8 /* CAPFootprintViewController.m in Sources */,
@@ -1665,6 +1719,7 @@
 				EFD0ACD0218C467000405FD8 /* CAPGuards.m in Sources */,
 				EF358BF32191443200EFB4BF /* CAPSelectableTableCell.m in Sources */,
 				EF6CA6AB218EA24C0014771E /* CAPNavigationController.m in Sources */,
+				2B19B0E021F56011004DF9BE /* CAPChooseFenceView.m in Sources */,
 				EFD0AD43218C550C00405FD8 /* CAPSignInResponse.m in Sources */,
 				EFD0ACEB218C46A500405FD8 /* CAPFiles.m in Sources */,
 				EFD0ACCC218C467000405FD8 /* CAPAlerts.m in Sources */,
@@ -1703,39 +1758,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EF6CA662218D77200014771E /* Info.plist */ = {
+		2B19B0D621F47A64004DF9BE /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EF6CA661218D77200014771E /* Base */,
+				2B19B0D721F47A64004DF9BE /* zh-Hans */,
+				2B19B0D921F47A71004DF9BE /* th */,
+				2B19B0DA21F47A88004DF9BE /* Base */,
+				2B19B0DB21F47A8F004DF9BE /* en */,
 			);
-			name = Info.plist;
-			sourceTree = "<group>";
-		};
-		EF6CA668218D778A0014771E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF6CA667218D778A0014771E /* en */,
-				EF6CA669218D77A60014771E /* Base */,
-				EF6CA66A218D78070014771E /* zh-Hans */,
-				EF6CA66B218D781E0014771E /* th */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EF7BE55B218845AB00562EE9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF7BE55C218845AB00562EE9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EF7BE563218845AC00562EE9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF7BE564218845AC00562EE9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1857,7 +1888,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F33ED978AA85B55879D3584C /* Pods-GPSTracker.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXL59BD977;
 				ENABLE_BITCODE = NO;
@@ -1865,6 +1898,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
@@ -1889,7 +1924,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXL59BD977;
 				ENABLE_BITCODE = NO;
@@ -1897,6 +1934,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;

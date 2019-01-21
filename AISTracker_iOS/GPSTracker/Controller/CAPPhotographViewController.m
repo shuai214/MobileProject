@@ -14,6 +14,7 @@
 #import "MQTTCenter.h"
 #import "CAPDeviceCommand.h"
 #import "CAPCollectionCell.h"
+#import "CAPPhotoListViewController.h"
 @interface CAPPhotographViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
@@ -32,12 +33,15 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.showPhotos = [NSMutableArray array];
     [self loadPhotoList];
 }
-
 - (void)loadPhotoList{
-    NSArray *array = [CAPUserDefaults objectForKey:@"takePhoto"];
+    NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
     [self.showPhotos addObjectsFromArray:array];
     [self.collectionView reloadData];
 }
@@ -59,8 +63,10 @@
     static NSString * CellIdentifier = @"CollectionCell";
     CAPCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     if (self.showPhotos) {
-        NSData *imgData = self.showPhotos[indexPath.row];
+        NSDictionary *dataDic = self.showPhotos[indexPath.row];
+        NSData *imgData = dataDic[@"image"];
         [cell.currentImageView setImage:[UIImage imageWithData:imgData]];
+        [cell.timeLabel setText:dataDic[@"time"]];
     }
     return cell;
 }
@@ -103,10 +109,17 @@
     // 将NSData转为UIImage
     UIImage *decodedImage = [UIImage imageWithData:decodeData];
     [self.showPhotoImage setImage:decodedImage];
-    NSArray *images = @[decodeData];
-    [self.showPhotos addObjectsFromArray:images];
-    [CAPUserDefaults setObject:self.showPhotos forKey:@"takePhoto"];
+    NSDictionary *dic = @{
+                          @"time":[NSString dateFormateWithTimeInterval:(self.mqttInfo.time / 1000)],
+                          @"image":decodeData
+                          };
+    [self.showPhotos addObject:dic];
+    [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
     [self.collectionView reloadData];
+}
+- (IBAction)pushPhotoListVC:(id)sender {
+    CAPPhotoListViewController *photoList = [[UIStoryboard storyboardWithName:@"Tracker" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotoListViewController"];
+    [self.navigationController pushViewController:photoList animated:YES];
 }
 
 @end

@@ -10,5 +10,6 @@
 
 @interface CAPCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *currentImageView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (nonatomic, copy) NSString *representedIdentifier;
 @end

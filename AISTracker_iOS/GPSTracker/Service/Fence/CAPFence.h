@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *deviceID;
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *content;
 
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;

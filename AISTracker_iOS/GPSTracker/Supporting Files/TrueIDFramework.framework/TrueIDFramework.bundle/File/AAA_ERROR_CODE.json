@@ -1,0 +1,1486 @@
+{
+    "1001" : {
+        "message_default" : "Invalid password",
+        "message_en" : "Password must be 4-16 digits and can't use Thai characters and comma (1104)",
+        "message_th" : "รหัสผ่านต้องมีความยาว 4-16 ตัวอักษร ไม่สามารถใช้ ภาษาไทย และคอมม่า (1104)",
+        "service" : "SSO",
+        "service_code" : 1001
+    },
+    "1002" : {
+        "message_default" : "Invalid Mobile Number.",
+        "message_en" : "Please input the correct mobile number.(1002)",
+        "message_th" : "กรุณาระบุหมายเลขโทรศัพท์มือถือให้ถูกต้อง (1002)",
+        "service" : "SSO",
+        "service_code" : 1002
+    },
+    "1003" : {
+        "message_default" : "Invalid truecardid",
+        "message_en" : "Please input the correct truecard member.(1003)",
+        "message_th" : "กรุณาระบุหมายเลขบัตรสมาชิกทรูการ์ดให้ถูกต้อง (1003)",
+        "service" : "SSO",
+        "service_code" : 1003
+    },
+    "1004" : {
+        "message_default" : "Invalid email.",
+        "message_en" : "Please input the correct email.(1004)",
+        "message_th" : "กรุณาระบุอีเมล์ให้ถูกต้อง (1004)",
+        "service" : "SSO",
+        "service_code" : 1004
+    },
+    "1005" : {
+        "message_default" : "Invalid Contact Email.",
+        "message_en" : "Please input the correct email for contact.(1005)",
+        "message_th" : "กรุณาระบุอีเมล์ที่ใช้ในการติดต่อให้ถูกต้อง (1005)",
+        "service" : "SSO",
+        "service_code" : 1005
+    },
+    "1006" : {
+        "message_default" : "Invalid Contact Mobile Number.",
+        "message_en" : "Please input the correct mobile number for contact.(1006)",
+        "message_th" : "กรุณาระบุหมายเลขโทรศัพท์มือถือที่ใช้ในการติดต่อให้ถูกต้อง (1006)",
+        "service" : "SSO",
+        "service_code" : 1006
+    },
+    "1007" : {
+        "message_default" : "Invalid thai id card.",
+        "message_en" : "Please input the correct thai ID.(1007)",
+        "message_th" : "กรุณาระบุหมายเลขบัตรประชาชนให้ถูกต้อง (1007)",
+        "service" : "SSO",
+        "service_code" : 1007
+    },
+    "1008" : {
+        "message_default" : "Invalid access token.",
+        "message_en" : "System cannot process , please try again.(1008)",
+        "message_th" : "ไม่สามารถทำรายการได้ กรุณาลองใหม่อีกครั้ง (1008)",
+        "service" : "SSO",
+        "service_code" : 1008
+    },
+    "1009" : {
+        "message_default" : "Password must be alphanumeric and 6-16 characters in length.",
+        "message_en" : "Password must be number and 6-16 digits only.(1009)",
+        "message_th" : "รหัสผ่านต้องเป็นตัวเลขเท่านั้น และมีความยาว 6-16 ตัวอักษร (1009)",
+        "service" : "SSO",
+        "service_code" : 1009
+    },
+    "1010" : {
+        "message_default" : "Password must be number and 4-16 characters in length.",
+        "message_en" : "Password must be number and 4-16 characters in length.(1010)",
+        "message_th" : "รหัสผ่านต้องเป็นตัวเลข และมีความยาว 4-16 ตัวอักษร(1010)",
+        "service" : "SSO",
+        "service_code" : 1010
+    },
+    "1011" : {
+        "message_default" : "Password must be numeric and 4 digit in length",
+        "message_en" : "Password must be number and 4 digits only.(1011)",
+        "message_th" : "รหัสผ่านต้องเป็นตัวเลข 4 หลักเท่านั้น (1011)",
+        "service" : "SSO",
+        "service_code" : 1011
+    },
+    "1012" : {
+        "message_default" : "Invalid Account Authentication",
+        "message_en" : "Invalid Account Authentication (1012)",
+        "message_th" : "ข้อมูลผู้ใช้งานไม่ถูกต้อง กรุณาระบุใหม่ (1012)",
+        "service" : "SSO",
+        "service_code" : 1012
+    },
+    "1013" : {
+        "message_default" : "Not found this account in system. Account deleted.",
+        "message_en" : "Not found this account in system.",
+        "message_th" : "ไม่พบ account นี้ในระบบ",
+        "service" : "SSO",
+        "service_code" : 1013
+    },
+    "1014" : {
+        "message_default" : "Password must be numeric and 4 digit in length",
+        "message_en" : "Password must be numeric and 4 digit in length",
+        "message_th" : "Password must be numeric and 4 digit in length",
+        "service" : "SSO",
+        "service_code" : 1014
+    },
+    "1015" : {
+        "message_default" : "Invalid Internet SIM",
+        "message_en" : "Invalid Internet SIM",
+        "message_th" : "Invalid Internet SIM",
+        "service" : "SSO",
+        "service_code" : 1015
+    },
+    "1016" : {
+        "message_default" : "Invalid emp_email parameter.",
+        "message_en" : "Invalid emp_email parameter.",
+        "message_th" : "Invalid emp_email parameter.",
+        "service" : "SSO",
+        "service_code" : 1016
+    },
+    "1017" : {
+        "message_default" : "Invalid emp_status parameter.",
+        "message_en" : "Invalid emp_status parameter.",
+        "message_th" : "Invalid emp_status parameter.",
+        "service" : "SSO",
+        "service_code" : 1017
+    },
+    "1018" : {
+        "message_default" : "Invalid emp_record_enable parameter.",
+        "message_en" : "Invalid emp_record_enable parameter.",
+        "message_th" : "Invalid emp_record_enable parameter.",
+        "service" : "SSO",
+        "service_code" : 1018
+    },
+    "1019" : {
+        "message_default" : "Invalid response_type.",
+        "message_en" : "Invalid response_type.",
+        "message_th" : "Invalid response_type.",
+        "service" : "SSO",
+        "service_code" : 1019
+    },
+    "1020" : {
+        "message_default" : "Invalid grant_type.",
+        "message_en" : "Invalid grant_type.",
+        "message_th" : "Invalid grant_type.",
+        "service" : "SSO",
+        "service_code" : 1020
+    },
+    "1021" : {
+        "message_default" : "Invalid client_id.",
+        "message_en" : "Invalid client_id.",
+        "message_th" : "Invalid client_id.",
+        "service" : "SSO",
+        "service_code" : 1021
+    },
+    "1022" : {
+        "message_default" : "Invalid client_secret.",
+        "message_en" : "Invalid client_secret.",
+        "message_th" : "Invalid client_secret.",
+        "service" : "SSO",
+        "service_code" : 1022
+    },
+    "1023" : {
+        "message_default" : "Invalid code.",
+        "message_en" : "Invalid code.",
+        "message_th" : "Invalid code.",
+        "service" : "SSO",
+        "service_code" : 1023
+    },
+    "1024" : {
+        "message_default" : "Invalid refresh_token.",
+        "message_en" : "Invalid refresh_token.",
+        "message_th" : "Invalid refresh_token.",
+        "service" : "SSO",
+        "service_code" : 1024
+    },
+    "1025" : {
+        "message_default" : "Invalid gender ('f' or 'm', 'female' or 'male')",
+        "message_en" : "Invalid gender ('f' or 'm', 'female' or 'male')",
+        "message_th" : "Invalid gender ('f' or 'm', 'female' or 'male')",
+        "service" : "SSO",
+        "service_code" : 1025
+    },
+    "1026" : {
+        "message_default" : "Invalid by.",
+        "message_en" : "Invalid by.",
+        "message_th" : "Invalid by.",
+        "service" : "SSO",
+        "service_code" : 1026
+    },
+    "3001" : {
+        "message_default" : "Access token time out.",
+        "message_en" : "Please login again.(3001)",
+        "message_th" : "กรุณาล็อกอินเพื่อใช้งานใหม่ (3001)",
+        "service" : "SSO",
+        "service_code" : 3001
+    },
+    "3002" : {
+        "message_default" : "There is an existing account associated with this true card.",
+        "message_en" : "This truecard number is already exists, please try again.(3002)",
+        "message_th" : "หมายเลขบัตรสมาชิกทรูการ์ดนี้ มีอยู่ในระบบแล้ว กรุณาระบุใหม่ (3002)",
+        "service" : "SSO",
+        "service_code" : 3002
+    },
+    "3003" : {
+        "message_default" : "There is an existing account associated with this email.",
+        "message_en" : "This email is already exists, please try again.(3003)",
+        "message_th" : "อีเมล์นี้มีอยู่ในระบบแล้ว กรุณาระบุใหม่ (3003)This email is already exists, please try again.(3003)",
+        "service" : "SSO",
+        "service_code" : 3003
+    },
+    "3004" : {
+        "message_default" : "There is an existing account associated with this mobile number.",
+        "message_en" : "Your number was created as a True ID. You can use your number to login. If you do not know the password or forget your password, you can click the 'Forgot Password' to get a new password of True ID. (3004)",
+        "message_th" : "หมายเลขของคุณถูกสร้างเป็นทรูไอดีแล้ว สามารถใช้หมายเลขของคุณเพื่อเข้าสู่ระบบได้ หากคุณไม่ทราบรหัสผ่านหรือลืมรหัสผ่าน สามารถกดที่ 'ลืมรหัสผ่าน' เพื่อทำการขอรหัสผ่านทรูไอดีใหม่ (3004)",
+        "service" : "SSO",
+        "service_code" : 3004
+    },
+    "3005" : {
+        "message_default" : "Please check uid (True Card uid is not match uid of True Card ).",
+        "message_en" : "Invalid truecard number , please contact system admin.(3005)",
+        "message_th" : "ข้อมูลหมายเลขบัตรสมาชิกทรูการ์ดไม่ถูกต้อง กรุณาติดต่อผู้ดูแลระบบ (3005)",
+        "service" : "SSO",
+        "service_code" : 3005
+    },
+    "3006" : {
+        "message_default" : "Please check uid (Mobile uid is not match uid of Mobile).",
+        "message_en" : "Invalid mobile number , please contact 1331.(3006)",
+        "message_th" : "ข้อมูลหมายเลขโทรศัพท์มือถือไม่ถูกต้อง กรุณาติดต่อ 1331 (3006)",
+        "service" : "SSO",
+        "service_code" : 3006
+    },
+    "3007" : {
+        "message_default" : "Please check uid (Email uid is not match uid of Email)",
+        "message_en" : "Invalid email , please contact 1331.(3007)",
+        "message_th" : "ข้อมูลอีเมล์ไม่ถูกต้อง กรุณาติดต่อ 1331 (3007)",
+        "service" : "SSO",
+        "service_code" : 3007
+    },
+    "3008" : {
+        "message_default" : "Please verify this uid.",
+        "message_en" : "Invalid data , please contact 1331.(3008)",
+        "message_th" : "ข้อมูลไม่ถูกต้อง กรุณาติดต่อ 1331 (3008)",
+        "service" : "SSO",
+        "service_code" : 3008
+    },
+    "3009" : {
+        "message_default" : "Can not found (user)",
+        "message_en" : "Not found this account in system.(3009)",
+        "message_th" : "ไม่พบ account นี้ในระบบ (3009)",
+        "service" : "SSO",
+        "service_code" : 3009
+    },
+    "3010" : {
+        "message_default" : "Can not found this mobile",
+        "message_en" : "Not found this mobile number in system.(3010)",
+        "message_th" : "ไม่พบหมายเลขโทรศัพท์มือถือนี้ในระบบ (3010)",
+        "service" : "SSO",
+        "service_code" : 3010
+    },
+    "3011" : {
+        "message_default" : "Can not found this true card./ไม่พบหมายเลขบัตรสมาชิกทรูการ์ดนี้ในระบบ",
+        "message_en" : "Not found this truecard number in system.(3011)",
+        "message_th" : "ไม่พบหมายเลขบัตรสมาชิกทรูการ์ดนี้ในระบบ (3011)",
+        "service" : "SSO",
+        "service_code" : 3011
+    },
+    "3012" : {
+        "message_default" : "Please check password./รหัสผ่านไม่ถูกต้อง กรุณาระบุใหม่อีกครั้ง",
+        "message_en" : "Invalid password , please try again.(3012)",
+        "message_th" : "รหัสผ่านไม่ถูกต้อง กรุณาระบุใหม่อีกครั้ง (3012)",
+        "service" : "SSO",
+        "service_code" : 3012
+    },
+    "3013" : {
+        "message_default" : "There is an existing account associated",
+        "message_en" : "There is an existing account associated",
+        "message_th" : "There is an existing account associated",
+        "service" : "SSO",
+        "service_code" : 3013
+    },
+    "3014" : {
+        "message_default" : "Invalid MSISDN",
+        "message_en" : "Invalid mobile number (3014)",
+        "message_th" : "หมายเลขโทรศัพท์มือถือไม่ถูกต้อง (3014)",
+        "service" : "SSO",
+        "service_code" : 3014
+    },
+    "3015" : {
+        "message_default" : "Can't found this application",
+        "message_en" : "Cannot process now.Please contact system admin (3015)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (3015)",
+        "service" : "SSO",
+        "service_code" : 3015
+    },
+    "3016" : {
+        "message_default" : "Invalid secret",
+        "message_en" : "Cannot process now.Please contact system admin (3016)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (3016)",
+        "service" : "SSO",
+        "service_code" : 3016
+    },
+    "3017" : {
+        "message_default" : "User is verify",
+        "message_en" : "User is verify",
+        "message_th" : "User is verify",
+        "service" : "SSO",
+        "service_code" : 3017
+    },
+    "3018" : {
+        "message_default" : "Please Check your E-Mail to create your new password",
+        "message_en" : "Please Check your E-Mail to create your new password",
+        "message_th" : "โปรดตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสร้างรหัสผ่านใหม่",
+        "service" : "SSO",
+        "service_code" : 3018
+    },
+    "3019" : {
+        "message_default" : "sc expires",
+        "message_en" : "We already received your request new True ID password. New password will be sent to your E-mail Address.",
+        "message_th" : "คุณได้ทำการยืนยันการขอรหัสผ่านใหม่ทรูไอดีแล้ว กรุณาตรวจสอบรหัสผ่านใหม่ทางอีเมล์",
+        "service" : "SSO",
+        "service_code" : 3019
+    },
+    "3020" : {
+        "message_default" : "Invalid sc",
+        "message_en" : "Invalid sc",
+        "message_th" : "Invalid sc",
+        "service" : "SSO",
+        "service_code" : 3020
+    },
+    "3021" : {
+        "message_default" : "Please check user status.",
+        "message_en" : "Please check user status.",
+        "message_th" : "Please check user status.",
+        "service" : "SSO",
+        "service_code" : 3021
+    },
+    "3022" : {
+        "message_default" : "Your balance more than 0.00",
+        "message_en" : "You have E-wallet in this True ID Account. For security, please contact 1331 for your new password.",
+        "message_th" : "เพื่อความปลอดภัย เนื่องจากคุณมีการใช้งานบัญชีทรูมันนี่ กรุณาติดต่อทรูมูฟแคร์ 1331 เพื่อขอรหัสผ่าน True ID ค่ะ",
+        "service" : "SSO",
+        "service_code" : 3022
+    },
+    "3023" : {
+        "message_default" : "Account Expired.",
+        "message_en" : "Account Expired.",
+        "message_th" : "Account Expired.",
+        "service" : "SSO",
+        "service_code" : 3023
+    },
+    "3024" : {
+        "message_default" : "Your Thai ID No. /Passport No. is different with your register.",
+        "message_en" : "Your Thai ID No. /Passport No. is different with your register.",
+        "message_th" : "หมายเลขบัตรประชาชน/หมายเลขพาสปอร์ต ไม่ตรงกับที่ลงทะเบียนไว้",
+        "service" : "SSO",
+        "service_code" : 3024
+    },
+    "3025" : {
+        "message_default" : "Invalid code.",
+        "message_en" : "Invalid code.",
+        "message_th" : "รหัสไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 3025
+    },
+    "3026" : {
+        "message_default" : "Please check account type",
+        "message_en" : "Please check account type",
+        "message_th" : "Please check account type",
+        "service" : "SSO",
+        "service_code" : 3026
+    },
+    "3027" : {
+        "message_default" : "Could not find this employee info.",
+        "message_en" : "Could not find this employee info.",
+        "message_th" : "ไม่พบข้อมูลของพนักงานนี้",
+        "service" : "SSO",
+        "service_code" : 3027
+    },
+    "3028" : {
+        "message_default" : "There is an existing employee associated with this id.",
+        "message_en" : "There is an existing employee associated with this id.",
+        "message_th" : "There is an existing employee associated with this id.",
+        "service" : "SSO",
+        "service_code" : 3028
+    },
+    "3029" : {
+        "message_default" : "This employee does not map to sso profile.",
+        "message_en" : "This employee does not map to sso profile.",
+        "message_th" : "พนักงานรหัสนี้ยังไม่ได้ผูกกับข้อมูลของ SSO",
+        "service" : "SSO",
+        "service_code" : 3029
+    },
+    "3030" : {
+        "message_default" : "Can't found this client_id.",
+        "message_en" : "Can't found this client_id.",
+        "message_th" : "Can't found this client_id.",
+        "service" : "SSO",
+        "service_code" : 3030
+    },
+    "3031" : {
+        "message_default" : "Permition redirect_uri.",
+        "message_en" : "Permition redirect_uri.",
+        "message_th" : "Permition redirect_uri.",
+        "service" : "SSO",
+        "service_code" : 3031
+    },
+    "3032" : {
+        "message_default" : "Can't found application group.",
+        "message_en" : "Can't found application group.",
+        "message_th" : "Can't found application group.",
+        "service" : "SSO",
+        "service_code" : 3032
+    },
+    "3033" : {
+        "message_default" : "This id(Group ID) is already.",
+        "message_en" : "This id(Group ID) is already.",
+        "message_th" : "This id(Group ID) is already.",
+        "service" : "SSO",
+        "service_code" : 3033
+    },
+    "3034" : {
+        "message_default" : "Please check user",
+        "message_en" : "Please check user",
+        "message_th" : "Please check user",
+        "service" : "SSO",
+        "service_code" : 3034
+    },
+    "3035" : {
+        "message_default" : "Already binding",
+        "message_en" : "Already binding",
+        "message_th" : "Already binding",
+        "service" : "SSO",
+        "service_code" : 3035
+    },
+    "4001" : {
+        "message_default" : "Missing app_id parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4001)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4001)",
+        "service" : "SSO",
+        "service_code" : 4001
+    },
+    "4002" : {
+        "message_default" : "Missing secret parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4002)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4002)",
+        "service" : "SSO",
+        "service_code" : 4002
+    },
+    "4003" : {
+        "message_default" : "Missing id parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4003)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4003)",
+        "service" : "SSO",
+        "service_code" : 4003
+    },
+    "4004" : {
+        "message_default" : "Missing uid parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4004)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4004)",
+        "service" : "SSO",
+        "service_code" : 4004
+    },
+    "4005" : {
+        "message_default" : "Missing email parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4005)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4005)",
+        "service" : "SSO",
+        "service_code" : 4005
+    },
+    "4006" : {
+        "message_default" : "Missing password parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4006)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4006)",
+        "service" : "SSO",
+        "service_code" : 4006
+    },
+    "4007" : {
+        "message_default" : "Missing old_password parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4007)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4007)",
+        "service" : "SSO",
+        "service_code" : 4007
+    },
+    "4008" : {
+        "message_default" : "Missing name parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4008)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4008)",
+        "service" : "SSO",
+        "service_code" : 4008
+    },
+    "4009" : {
+        "message_default" : "Missing type parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4009)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4009)",
+        "service" : "SSO",
+        "service_code" : 4009
+    },
+    "4010" : {
+        "message_default" : "Missing mobile_uid parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4010)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4010)",
+        "service" : "SSO",
+        "service_code" : 4010
+    },
+    "4011" : {
+        "message_default" : "Missing mobile_no parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4011)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4011)",
+        "service" : "SSO",
+        "service_code" : 4011
+    },
+    "4012" : {
+        "message_default" : "Missing display_name parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4012)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4012)",
+        "service" : "SSO",
+        "service_code" : 4012
+    },
+    "4013" : {
+        "message_default" : "Missing truecardid parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4013)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4013)",
+        "service" : "SSO",
+        "service_code" : 4013
+    },
+    "4014" : {
+        "message_default" : "Missing application name parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4014)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4014)",
+        "service" : "SSO",
+        "service_code" : 4014
+    },
+    "4015" : {
+        "message_default" : "Missing access_token parameter.",
+        "message_en" : "Missing access_token parameter.",
+        "message_th" : "ไม่มี Access Token",
+        "service" : "SSO",
+        "service_code" : 4015
+    },
+    "4016" : {
+        "message_default" : "Missing date_start parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4016)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4016)",
+        "service" : "SSO",
+        "service_code" : 4016
+    },
+    "4017" : {
+        "message_default" : "Missing date_end parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4017)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4017)",
+        "service" : "SSO",
+        "service_code" : 4017
+    },
+    "4018" : {
+        "message_default" : "Missing client_ip parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4018)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4018)",
+        "service" : "SSO",
+        "service_code" : 4018
+    },
+    "4019" : {
+        "message_default" : "Missing server_ip parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4019)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4019)",
+        "service" : "SSO",
+        "service_code" : 4019
+    },
+    "4020" : {
+        "message_default" : "Missing referer parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4020)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4020)",
+        "service" : "SSO",
+        "service_code" : 4020
+    },
+    "4021" : {
+        "message_default" : "Missing method parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4021)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4021)",
+        "service" : "SSO",
+        "service_code" : 4021
+    },
+    "4022" : {
+        "message_default" : "Missing port parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4022)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4022)",
+        "service" : "SSO",
+        "service_code" : 4022
+    },
+    "4023" : {
+        "message_default" : "Missing browser parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4023)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4023)",
+        "service" : "SSO",
+        "service_code" : 4023
+    },
+    "4024" : {
+        "message_default" : "Missing domain parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4024)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4024)",
+        "service" : "SSO",
+        "service_code" : 4024
+    },
+    "4025" : {
+        "message_default" : "Missing hostname parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4025)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4025)",
+        "service" : "SSO",
+        "service_code" : 4025
+    },
+    "4026" : {
+        "message_default" : "Missing datetime parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4026)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4026)",
+        "service" : "SSO",
+        "service_code" : 4026
+    },
+    "4027" : {
+        "message_default" : "Missing os parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4027)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4027)",
+        "service" : "SSO",
+        "service_code" : 4027
+    },
+    "4028" : {
+        "message_default" : "Missing logtype parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4028)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4028)",
+        "service" : "SSO",
+        "service_code" : 4028
+    },
+    "4029" : {
+        "message_default" : "Missing device parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4029)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4029)",
+        "service" : "SSO",
+        "service_code" : 4029
+    },
+    "4030" : {
+        "message_default" : "Missing type parameter.",
+        "message_en" : "Cannot process now.Please contact system admin.(4030)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4030)",
+        "service" : "SSO",
+        "service_code" : 4030
+    },
+    "4031" : {
+        "message_default" : "Missing pin parameter.(otp)",
+        "message_en" : "Cannot process now.Please contact system admin.(4031)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4031)",
+        "service" : "SSO",
+        "service_code" : 4031
+    },
+    "4032" : {
+        "message_default" : "Missing account parameter.(rootid)",
+        "message_en" : "Cannot process now.Please contact system admin.(4032)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อผู้ดูแลระบบ (4032)",
+        "service" : "SSO",
+        "service_code" : 4032
+    },
+    "4033" : {
+        "message_default" : "Missing cemail or cmobile parameter.",
+        "message_en" : "Cannot process now.Please contact 1331 .(4033)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (4033)",
+        "service" : "SSO",
+        "service_code" : 4033
+    },
+    "4034" : {
+        "message_default" : "Missing email or mobile_no or truecardid parameter.",
+        "message_en" : "Cannot process now.Please contact 1331.(4034)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (4034)",
+        "service" : "SSO",
+        "service_code" : 4034
+    },
+    "4035" : {
+        "message_default" : "Missing app parameter.",
+        "message_en" : "Missing app parameter.",
+        "message_th" : "Missing app parameter.",
+        "service" : "SSO",
+        "service_code" : 4035
+    },
+    "4036" : {
+        "message_default" : "Missing msisdn parameter.",
+        "message_en" : "Missing msisdn parameter.",
+        "message_th" : "Missing msisdn parameter.",
+        "service" : "SSO",
+        "service_code" : 4036
+    },
+    "4037" : {
+        "message_default" : "Missing thaiid parameter.",
+        "message_en" : "Missing thaiid parameter.",
+        "message_th" : "Missing thaiid parameter.",
+        "service" : "SSO",
+        "service_code" : 4037
+    },
+    "4038" : {
+        "message_default" : "Missing sc parameter",
+        "message_en" : "Missing sc parameter",
+        "message_th" : "Missing sc parameter",
+        "service" : "SSO",
+        "service_code" : 4038
+    },
+    "4039" : {
+        "message_default" : "Missing register_by parameter",
+        "message_en" : "Missing register_by parameter",
+        "message_th" : "Missing register_by parameter",
+        "service" : "SSO",
+        "service_code" : 4039
+    },
+    "4040" : {
+        "message_default" : "Missing status parameter.",
+        "message_en" : "Missing status parameter.",
+        "message_th" : "Missing status parameter.",
+        "service" : "SSO",
+        "service_code" : 4040
+    },
+    "4041" : {
+        "message_default" : "Missing code parameter.",
+        "message_en" : "Missing code parameter.",
+        "message_th" : "Missing code parameter.",
+        "service" : "SSO",
+        "service_code" : 4041
+    },
+    "4042" : {
+        "message_default" : "Missing emp_id parameter.",
+        "message_en" : "Missing emp_id parameter.",
+        "message_th" : "Missing emp_id parameter.",
+        "service" : "SSO",
+        "service_code" : 4042
+    },
+    "4043" : {
+        "message_default" : "Missing uid or account parameter",
+        "message_en" : "Missing uid or account parameter",
+        "message_th" : "Missing uid or account parameter",
+        "service" : "SSO",
+        "service_code" : 4043
+    },
+    "4044" : {
+        "message_default" : "Missing user_id parameter.",
+        "message_en" : "Missing user_id parameter.",
+        "message_th" : "Missing user_id parameter.",
+        "service" : "SSO",
+        "service_code" : 4044
+    },
+    "4045" : {
+        "message_default" : "Missing client_id parameter.",
+        "message_en" : "Missing client_id parameter.",
+        "message_th" : "Missing client_id parameter.",
+        "service" : "SSO",
+        "service_code" : 4045
+    },
+    "4046" : {
+        "message_default" : "Missing client_secret parameter.",
+        "message_en" : "Missing client_secret parameter.",
+        "message_th" : "Missing client_secret parameter.",
+        "service" : "SSO",
+        "service_code" : 4046
+    },
+    "4047" : {
+        "message_default" : "Missing redirect_uri parameter.",
+        "message_en" : "Missing redirect_uri parameter.",
+        "message_th" : "Missing redirect_uri parameter.",
+        "service" : "SSO",
+        "service_code" : 4047
+    },
+    "4048" : {
+        "message_default" : "Missing scrope parameter.",
+        "message_en" : "Missing scrope parameter.",
+        "message_th" : "Missing scrope parameter.",
+        "service" : "SSO",
+        "service_code" : 4048
+    },
+    "4049" : {
+        "message_default" : "Missing state parameter.",
+        "message_en" : "Missing state parameter.",
+        "message_th" : "Missing state parameter.",
+        "service" : "SSO",
+        "service_code" : 4049
+    },
+    "4050" : {
+        "message_default" : "Missing response_type parameter.",
+        "message_en" : "Missing response_type parameter.",
+        "message_th" : "Missing response_type parameter.",
+        "service" : "SSO",
+        "service_code" : 4050
+    },
+    "4051" : {
+        "message_default" : "Missing grant_type parameter.",
+        "message_en" : "Missing grant_type parameter.",
+        "message_th" : "Missing grant_type parameter.",
+        "service" : "SSO",
+        "service_code" : 4051
+    },
+    "4052" : {
+        "message_default" : "Missing username parameter.",
+        "message_en" : "Missing username parameter.",
+        "message_th" : "Missing username parameter.",
+        "service" : "SSO",
+        "service_code" : 4052
+    },
+    "4053" : {
+        "message_default" : "Missing refresh_token parameter.",
+        "message_en" : "Missing refresh_token parameter.",
+        "message_th" : "Missing refresh_token parameter.",
+        "service" : "SSO",
+        "service_code" : 4053
+    },
+    "4054" : {
+        "message_default" : "Missing id(Group ID) parameter.",
+        "message_en" : "Missing id(Group ID) parameter.",
+        "message_th" : "Missing id(Group ID) parameter.",
+        "service" : "SSO",
+        "service_code" : 4054
+    },
+    "4055" : {
+        "message_default" : "Missing name(Group Name) parameter",
+        "message_en" : "Missing name(Group Name) parameter",
+        "message_th" : "Missing name(Group Name) parameter",
+        "service" : "SSO",
+        "service_code" : 4055
+    },
+    "4056" : {
+        "message_default" : "Missing user_id parameter.",
+        "message_en" : "Missing user_id parameter.",
+        "message_th" : "Missing user_id parameter.",
+        "service" : "SSO",
+        "service_code" : 4056
+    },
+    "4057" : {
+        "message_default" : "Missing group_id parameter",
+        "message_en" : "Missing group_id parameter",
+        "message_th" : "Missing group_id parameter",
+        "service" : "SSO",
+        "service_code" : 4057
+    },
+    "4058" : {
+        "message_default" : "Missing by (OAUTH2.0) parameter.",
+        "message_en" : "Missing by (OAUTH2.0) parameter.",
+        "message_th" : "Missing by (OAUTH2.0) parameter.",
+        "service" : "SSO",
+        "service_code" : 4058
+    },
+    "5001" : {
+        "message_default" : "Can't connect oracle",
+        "message_en" : "Can't connect oracle",
+        "message_th" : "Can't connect oracle",
+        "service" : "SSO",
+        "service_code" : 5001
+    },
+    "5002" : {
+        "message_default" : "Oracle can not execute.",
+        "message_en" : "Oracle can not execute.",
+        "message_th" : "Oracle can not execute.",
+        "service" : "SSO",
+        "service_code" : 5002
+    },
+    "9020" : {
+        "message_default" : "No response from true money",
+        "message_en" : "Please try again (9020)",
+        "message_th" : "ไม่สามารถทำรายการได้ กรุณาลองใหม่อีกครั้ง (9020)",
+        "service" : "SSO",
+        "service_code" : 9020
+    },
+    "9021" : {
+        "message_default" : "True Money Internal Server Error",
+        "message_en" : "True Money Internal Server Error",
+        "message_th" : "True Money Internal Server Error",
+        "service" : "True Money",
+        "service_code" : 9021
+    },
+    "9022" : {
+        "message_default" : "Can't disable user Because user have current balance.",
+        "message_en" : "Can't disable user Because user have current balance.",
+        "message_th" : "Can't disable user Because user have current balance.",
+        "service" : "True Money",
+        "service_code" : 9022
+    },
+    "9023" : {
+        "message_default" : "Can't check balance.",
+        "message_en" : "Can't check balance.",
+        "message_th" : "Can't check balance.",
+        "service" : "True Money",
+        "service_code" : 9023
+    },
+    "9030" : {
+        "message_default" : "Can't access web service otp",
+        "message_en" : "Can't access web service otp",
+        "message_th" : "Can't access web service otp",
+        "service" : "OTP",
+        "service_code" : 9030
+    },
+    "9040" : {
+        "message_default" : "No response from sms service",
+        "message_en" : "No response from sms service",
+        "message_th" : "No response from sms service",
+        "service" : "SMS",
+        "service_code" : 9040
+    },
+    "9041" : {
+        "message_default" : "Invalid xml format from sms service",
+        "message_en" : "Invalid xml format from sms service",
+        "message_th" : "Invalid xml format from sms service",
+        "service" : "SMS",
+        "service_code" : 9041
+    },
+    "9042" : {
+        "message_default" : "Response xml format from sms service is change",
+        "message_en" : "Response xml format from sms service is change",
+        "message_th" : "Response xml format from sms service is change",
+        "service" : "SMS",
+        "service_code" : 9042
+    },
+    "9050" : {
+        "message_default" : "No response from email service",
+        "message_en" : "No response from email service",
+        "message_th" : "No response from email service",
+        "service" : "VSMTP",
+        "service_code" : 9050
+    },
+    "9061" : {
+        "message_default" : "Not Truemove or Truemove H",
+        "message_en" : "Service for Truemove or Truemove H only",
+        "message_th" : "บริการนี้สำหรับลูกค้าทรูมูฟ และ ทรูมูฟ เฮช เท่านั้น",
+        "service" : "Operator",
+        "service_code" : 9061
+    },
+    "9070" : {
+        "message_default" : "No response from hmessage service",
+        "message_en" : "No response from hmessage service",
+        "message_th" : "No response from hmessage service",
+        "service" : "HMessage",
+        "service_code" : 9070
+    },
+    "1400001" : {
+        "message_default" : "Missing client_id parameters.",
+        "message_en" : "Missing client_id parameters.",
+        "message_th" : "Missing client_id parameters.",
+        "service" : "SSO",
+        "service_code" : 1400001
+    },
+    "1400004" : {
+        "message_default" : "Missing password parameter.",
+        "message_en" : "Missing password parameter.",
+        "message_th" : "Missing password parameter.",
+        "service" : "SSO",
+        "service_code" : 1400004
+    },
+    "1400007" : {
+        "message_default" : "Missing display_name parameter.",
+        "message_en" : "Missing display_name parameter.",
+        "message_th" : "Missing display_name parameter.",
+        "service" : "SSO",
+        "service_code" : 1400007
+    },
+    "1400010" : {
+        "message_default" : "Invalid email.",
+        "message_en" : "Invalid email.",
+        "message_th" : "อีเมลไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 1400010
+    },
+    "1400011" : {
+        "message_default" : "Invalid mobile.",
+        "message_en" : "Invalid mobile.",
+        "message_th" : "เบอร์โทรศัพท์ไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 1400011
+    },
+    "1400012" : {
+        "message_default" : "Invalid thai id.",
+        "message_en" : "Invalid thai id.",
+        "message_th" : "รหัสบัตรประชาชนไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 1400012
+    },
+    "1400015" : {
+        "message_default" : "There is an existing account associated with this email.",
+        "message_en" : "There is an existing account associated with this email.",
+        "message_th" : "อีเมลนี้มีอยู่แล้วในระบบ",
+        "service" : "SSO",
+        "service_code" : 1400015
+    },
+    "1400017" : {
+        "message_default" : "Missing code parameter.",
+        "message_en" : "Missing code parameter.",
+        "message_th" : "Missing code parameter.",
+        "service" : "SSO",
+        "service_code" : 1400017
+    },
+    "1400018" : {
+        "message_default" : "Invalid verify code.",
+        "message_en" : "Invalid verify code.",
+        "message_th" : "รหัสผ่านชั่วคราวไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 1400018
+    },
+    "1400019" : {
+        "message_default" : "Can not found this user.",
+        "message_en" : "Can not found this user.",
+        "message_th" : "ไม่พบข้อมูลผู้ใช้.",
+        "service" : "SSO",
+        "service_code" : 1400019
+    },
+    "1400027" : {
+        "message_default" : "Permission denied.",
+        "message_en" : "Permission denied.",
+        "message_th" : "Permission denied.",
+        "service" : "SSO",
+        "service_code" : 1400027
+    },
+    "1400034" : {
+        "message_default" : "Invalid Account.",
+        "message_en" : "Invalid Account.",
+        "message_th" : "Invalid Account.",
+        "service" : "SSO",
+        "service_code" : 1400034
+    },
+    "1400038" : {
+        "message_default" : "Please check password.",
+        "message_en" : "Please check password.",
+        "message_th" : "กรุณาตรวจสอบรหัสผ่าน",
+        "service" : "SSO",
+        "service_code" : 1400038
+    },
+    "1400039" : {
+        "message_default" : "There is an existing account associated with this mobile.",
+        "message_en" : "There is an existing account associated with this mobile.",
+        "message_th" : "หมายเลขโทรศัพท์นี้มีแล้วในระบบ.",
+        "service" : "SSO",
+        "service_code" : 1400039
+    },
+    "1400041" : {
+        "message_default" : "Missing username parameter.",
+        "message_en" : "Missing username parameter.",
+        "message_th" : "Missing username parameter.",
+        "service" : "SSO",
+        "service_code" : 1400041
+    },
+    "1400043" : {
+        "message_default" : "Invalid password.",
+        "message_en" : "Invalid Password.",
+        "message_th" : "Invalid Password.",
+        "service" : "NativeAPI",
+        "service_code" : 1400043
+    },
+    "1400044" : {
+        "message_default" : "Invalid client_id not match.",
+        "message_en" : "Invalid client_id not match.",
+        "message_th" : "Invalid client_id not match.",
+        "service" : "SSO",
+        "service_code" : 1400044
+    },
+    "1400072" : {
+        "message_default" : "Invalid product_no",
+        "message_en" : "Invalid product_no",
+        "message_th" : "Invalid product_no",
+        "service" : "SSO",
+        "service_code" : 1400072
+    },
+    "1400073" : {
+        "message_default" : "หมายเลขบัตรประชาชนนี้ไม่ถูกต้อง กรุณาติดต่อ 02-900-9595 เพื่อทำเรื่องลงทะเบียนค่ะ",
+        "message_en" : "หมายเลขบัตรประชาชนนี้ไม่ถูกต้อง กรุณาติดต่อ 02-900-9595 เพื่อทำเรื่องลงทะเบียนค่ะ",
+        "message_th" : "หมายเลขบัตรประชาชนนี้ไม่ถูกต้อง กรุณาติดต่อ 02-900-9595 เพื่อทำเรื่องลงทะเบียนค่ะ",
+        "service" : "SSO",
+        "service_code" : 1400073
+    },
+    "1400074" : {
+        "message_default" : "ขออภัยค่ะหมายเลขบัตรประชาชนนี้ได้ใช้ลงทะเบียนแล้ว",
+        "message_en" : "ขออภัยค่ะหมายเลขบัตรประชาชนนี้ได้ใช้ลงทะเบียนแล้ว",
+        "message_th" : "ขออภัยค่ะหมายเลขบัตรประชาชนนี้ได้ใช้ลงทะเบียนแล้ว",
+        "service" : "SSO",
+        "service_code" : 1400074
+    },
+    "1400075" : {
+        "message_default" : "Missing map mcp parameter",
+        "message_en" : "Missing map mcp parameter",
+        "message_th" : "Missing map mcp parameter",
+        "service" : "SSO",
+        "service_code" : 1400075
+    },
+    "1400076" : {
+        "message_default" : "Missing register by app parameter",
+        "message_en" : "Missing register by app parameter",
+        "message_th" : "Missing register by app parameter",
+        "service" : "SSO",
+        "service_code" : 1400076
+    },
+    "1400077" : {
+        "message_default" : "Please check your mailbox to verify your email account",
+        "message_en" : "Please check your mailbox to verify your email account",
+        "message_th" : "กรุณาตรวจสอบอีเมล เพื่อยืนยันบัญชีอีเมลของคุณ",
+        "service" : "SSO",
+        "service_code" : 1400077
+    },
+    "1400078" : {
+        "message_default" : "Missing action parameter",
+        "message_en" : "Missing action parameter",
+        "message_th" : "Missing action parameter",
+        "service" : "SSO",
+        "service_code" : 1400078
+    },
+    "1400079" : {
+        "message_default" : "Missing trust level MCP parameter.",
+        "message_en" : "Missing trust level MCP parameter.",
+        "message_th" : "Missing trust level MCP parameter.",
+        "service" : "SSO",
+        "service_code" : 1400079
+    },
+    "1400080" : {
+        "message_default" : "Please set new password before",
+        "message_en" : "Please set new password before",
+        "message_th" : "Please set new password before",
+        "service" : "SSO",
+        "service_code" : 1400080
+    },
+    "1400081" : {
+        "message_default" : "Invalid email and mobile.",
+        "message_en" : "Invalid email and mobile.",
+        "message_th" : "Invalid email and mobile.",
+        "service" : "SSO",
+        "service_code" : 1400081
+    },
+    "1400082" : {
+        "message_default" : "หมายเลขบัตรประชาชนนี้มีการลงทะเบียนแล้วด้วยหมายเลขโทรศัพท์ {{MOBILE_OWNER_THAIID}}",
+        "message_en" : "หมายเลขบัตรประชาชนนี้มีการลงทะเบียนแล้วด้วยหมายเลขโทรศัพท์ {{MOBILE_OWNER_THAIID}}",
+        "message_th" : "หมายเลขบัตรประชาชนนี้มีการลงทะเบียนแล้วด้วยหมายเลขโทรศัพท์ {{MOBILE_OWNER_THAIID}}",
+        "service" : "SSO",
+        "service_code" : 1400082
+    },
+    "1400083" : {
+        "message_default" : "Code has expired",
+        "message_en" : "Code has expired",
+        "message_th" : "Code has expired",
+        "service" : "SSO",
+        "service_code" : 1400083
+    },
+    "1400084" : {
+        "message_default" : "Invalid scope.",
+        "message_en" : "Invalid scope.",
+        "message_th" : "Invalid scope.",
+        "service" : "SSO",
+        "service_code" : 1400084
+    },
+    "1400085" : {
+        "message_default" : "Missing domain or ip parameter.",
+        "message_en" : "Missing domain or ip parameter.",
+        "message_th" : "Missing domain or ip parameter.",
+        "service" : "SSO",
+        "service_code" : 1400085
+    },
+    "1400086" : {
+        "message_default" : "Missing facebook_id parameters.",
+        "message_en" : "Missing facebook_id parameters.",
+        "message_th" : "Missing facebook_id parameters.",
+        "service" : "SSO",
+        "service_code" : 1400086
+    },
+    "1400089" : {
+        "message_default" : "Missing thai id parameter.",
+        "message_en" : "Missing thai id parameter.",
+        "message_th" : "Missing thai id parameter.",
+        "service" : "SSO",
+        "service_code" : 1400089
+    },
+    "1400090" : {
+        "message_default" : "Missing birthday parameter.",
+        "message_en" : "Missing birthday parameter.",
+        "message_th" : "Missing birthday parameter.",
+        "service" : "SSO",
+        "service_code" : 1400090
+    },
+    "1400091" : {
+        "message_default" : "Invalid birthday.",
+        "message_en" : "Invalid birthday.",
+        "message_th" : "Invalid birthday.",
+        "service" : "SSO",
+        "service_code" : 1400091
+    },
+    "1400148" : {
+        "message_default" : "Invalid code parameter.",
+        "message_en" : "Invalid code parameter.",
+        "message_th" : "Invalid code parameter.",
+        "service" : "SSO",
+        "service_code" : 1400148
+    },
+    "1400169" : {
+        "message_default" : "Please enter the mobile number you used to create TrueID account.",
+        "message_en" : "Please enter the mobile number you used to create TrueID account.",
+        "message_th" : "กรุณาตรวจสอบชื่อผู้ใช้ หรือรหัสผ่านให้ถูกต้อง และลองใหม่อีกครั้ง",
+        "service" : "SSO",
+        "service_code" : 1400169
+    },
+    "1403001" : {
+        "message_default" : "Invalid refresh_token.",
+        "message_en" : "Invalid refresh_token.",
+        "message_th" : "Invalid refresh_token.",
+        "service" : "SSO",
+        "service_code" : 1403001
+    },
+    "1403002" : {
+        "message_default" : "Invalid access_token.",
+        "message_en" : "Invalid access_token.",
+        "message_th" : "access_token ไม่ถูกต้อง",
+        "service" : "SSO",
+        "service_code" : 1403002
+    },
+    "1403007" : {
+        "message_default" : "access_token has expired.",
+        "message_en" : "access_token has expired.",
+        "message_th" : "access_token หมดอายุ",
+        "service" : "SSO",
+        "service_code" : 1403007
+    },
+    "1403008" : {
+        "message_default" : "JWT is invalid.",
+        "message_en" : "JWT is invalid.",
+        "message_th" : "JWT ไม่ถูกต้อง.",
+        "service" : "SSO",
+        "service_code" : 1403008
+    },
+    "9021001" : {
+        "message_default" : "Insufficient funds",
+        "message_en" : "Insufficient funds. Please contact 1331. (1001)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1001)",
+        "service" : "True Money",
+        "service_code" : 1001
+    },
+    "9021002" : {
+        "message_default" : "Transaction Recovered",
+        "message_en" : "Transaction Recovered. Please contact 1331. (1002)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1002)",
+        "service" : "True Money",
+        "service_code" : 1002
+    },
+    "9021003" : {
+        "message_default" : "Wallet Balance Exceeded",
+        "message_en" : "Cannot process now. Please contact 1331. (1003)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1003)",
+        "service" : "True Money",
+        "service_code" : 1003
+    },
+    "9021004" : {
+        "message_default" : "Wallet Cap Exceeded",
+        "message_en" : "Cannot process now. Please contact 1331. (1004)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1004)",
+        "service" : "True Money",
+        "service_code" : 1004
+    },
+    "9021005" : {
+        "message_default" : "Request Expired",
+        "message_en" : "Cannot process now. Please contact 1331. (1005)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1005)",
+        "service" : "True Money",
+        "service_code" : 1005
+    },
+    "9021006" : {
+        "message_default" : "System Error",
+        "message_en" : "Cannot process now. Please contact 1331. (1006)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1006)",
+        "service" : "True Money",
+        "service_code" : 1006
+    },
+    "9021007" : {
+        "message_default" : "Database Error",
+        "message_en" : "Cannot process now. Please contact 1331. (1007)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1007)",
+        "service" : "True Money",
+        "service_code" : 1007
+    },
+    "9021008" : {
+        "message_default" : "Bad Request",
+        "message_en" : "Cannot process now. Please contact 1331. (1008)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1008)",
+        "service" : "True Money",
+        "service_code" : 1008
+    },
+    "9021009" : {
+        "message_default" : "Database Constraint Error",
+        "message_en" : "Cannot process now. Please contact 1331. (1009)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1009)",
+        "service" : "True Money",
+        "service_code" : 1009
+    },
+    "9021010" : {
+        "message_default" : "Record no found",
+        "message_en" : "Cannot process now. Please contact 1331. (1010)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1010)",
+        "service" : "True Money",
+        "service_code" : 1010
+    },
+    "9021011" : {
+        "message_default" : "Password/agent not found/invalid",
+        "message_en" : "Cannot process now. Please contact 1331. (1011)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1011)",
+        "service" : "True Money",
+        "service_code" : 1011
+    },
+    "9021012" : {
+        "message_default" : "Password error retry exceeded",
+        "message_en" : "Cannot process now. Please contact 1331. (1012)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1012)",
+        "service" : "True Money",
+        "service_code" : 1012
+    },
+    "9021013" : {
+        "message_default" : "Password expired",
+        "message_en" : "Password expired. Please contact 1331. (1013)",
+        "message_th" : "รหัสผ่านหมดอายุ กรุณาติดต่อ 1331 (1013)",
+        "service" : "True Money",
+        "service_code" : 1013
+    },
+    "9021014" : {
+        "message_default" : "Password invalid",
+        "message_en" : "Invalid password. Please contact 1331. (1014)",
+        "message_th" : "รหัสผ่านไม่ถูกต้อง กรุณาติดต่อ 1331 (1014)",
+        "service" : "True Money",
+        "service_code" : 1014
+    },
+    "9021015" : {
+        "message_default" : "Change Password – password is the same",
+        "message_en" : "Cannot process now. Please contact 1331. (1015)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1015)",
+        "service" : "True Money",
+        "service_code" : 1015
+    },
+    "9021016" : {
+        "message_default" : "Change Password – password has been used previously",
+        "message_en" : "Cannot process now. Please contact 1331. (1016)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1016)",
+        "service" : "True Money",
+        "service_code" : 1016
+    },
+    "9021020" : {
+        "message_default" : "Mandatory parameter not supplied",
+        "message_en" : "Cannot process now. Please contact 1331. (1020)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1020)",
+        "service" : "True Money",
+        "service_code" : 1020
+    },
+    "9021021" : {
+        "message_default" : "Parameter value too short",
+        "message_en" : "Cannot process now. Please contact 1331. (1021)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1021)",
+        "service" : "True Money",
+        "service_code" : 1021
+    },
+    "9021022" : {
+        "message_default" : "Parameter value too long",
+        "message_en" : "Cannot process now. Please contact 1331. (1022)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1022)",
+        "service" : "True Money",
+        "service_code" : 1022
+    },
+    "9021023" : {
+        "message_default" : "Parameter value does not match regular expression",
+        "message_en" : "Cannot process now. Please contact 1331. (1023)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (1023)",
+        "service" : "True Money",
+        "service_code" : 1023
+    },
+    "9022002" : {
+        "message_default" : "TARGET_REF_NOT_FOUND",
+        "message_en" : "Cannot process now.Please contact 1331",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 ",
+        "service" : "True Money",
+        "service_code" : 2002
+    },
+    "902190003" : {
+        "message_default" : "Duplicate Transaction ID common validate not pass 03",
+        "message_en" : "Please try again. (190003)",
+        "message_th" : "ไมสามารถทำรายการได้ กรุณาลองใหม่อีกครั้ง (190003)",
+        "service" : "True Money",
+        "service_code" : 190003
+    },
+    "902190200" : {
+        "message_default" : "Invalid token datadon't have existing token for reset EW pin!!!",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (190200)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (190200)",
+        "service" : "True Money",
+        "service_code" : 190200
+    },
+    "902350014" : {
+        "message_default" : "TARGET_NOT_FOUND",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (350014)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (350014)",
+        "service" : "True Money",
+        "service_code" : 350014
+    },
+    "902350015" : {
+        "message_default" : "TARGET_NOT_REGISTERED",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (350015)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (350015)",
+        "service" : "True Money",
+        "service_code" : 350015
+    },
+    "902350016" : {
+        "message_default" : "TARGET_INACTIVE",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (350016)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (350016)",
+        "service" : "True Money",
+        "service_code" : 350016
+    },
+    "902350017" : {
+        "message_default" : "TARGET_SUSPENDED",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (350017)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password ",
+        "service" : "True Money",
+        "service_code" : 350017
+    },
+    "902350029" : {
+        "message_default" : "INVALID_PASSWORD",
+        "message_en" : "Please set new password which must be 4-16 digits and can't use Thai characters and comma.(350029)",
+        "message_th" : "กรุณาตั้งรหัสผ่านใหม่ รหัสผ่านต้องมีความยาว 4-16 ตัวอักษร ไม่สามารถใช้ ภาษาไทย และคอมม่า (350029)",
+        "service" : "True Money",
+        "service_code" : 350029
+    },
+    "902350030" : {
+        "message_default" : "INVALID_PASSWORD",
+        "message_en" : "Please set new password which must have 4 digits. (350030)",
+        "message_th" : "กรุณาตั้งรหัสผ่านใหม่ รหัสผ่านต้องเป็นตัวเลข 4 หลักเท่านั้น (350030)",
+        "service" : "True Money",
+        "service_code" : 350030
+    },
+    "902351011" : {
+        "message_default" : "Password/agent not found/invalid",
+        "message_en" : "Cannot change the password , please contact 1331 press 6 for reset password. (350011)",
+        "message_th" : "ไม่สามารถเปลี่ยนรหัสผ่านได้ กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (350011)",
+        "service" : "True Money",
+        "service_code" : 351011
+    },
+    "902351012" : {
+        "message_default" : "Password error retry exceed",
+        "message_en" : "Invalid password and exceed quota , please contact 1331 press 6 for reset password. (351012)",
+        "message_th" : "รหัสผ่านไม่ถูกต้อง เกินจำนวนครั้งที่กำหนด กรุณาติดต่อ 1331 กด 6 เพื่อทำการ reset password (351012)",
+        "service" : "True Money",
+        "service_code" : 351012
+    },
+    "902351013" : {
+        "message_default" : "Password expired",
+        "message_en" : "Password expired, please request new password at forgot password menu. (351013)",
+        "message_th" : "รหัสผ่านหมดอายุ กรุณาขอรหัสผ่านใหม่ได้ที่ menu forgot password (351013)",
+        "service" : "True Money",
+        "service_code" : 351013
+    },
+    "902351014" : {
+        "message_default" : "Invalid password",
+        "message_en" : "Invalid password, please identify your password again. (351014)",
+        "message_th" : "รหัสผ่านเดิมไม่ถูกต้อง กรุณาใส่รหัสผ่านเดิมให้ถูกต้อง (351014)",
+        "service" : "True Money",
+        "service_code" : 351014
+    },
+    "902351015" : {
+        "message_default" : "Change password: password is the same previously.",
+        "message_en" : "Please set new password which must not be the same as your 3 latest settings (351015)",
+        "message_th" : "กรุณาตั้งรหัสผ่านใหม่ โดยไม่ให้ซ้ำกับรหัสที่เคยใช้แล้ว 3 ครั้งที่ผ่านมา (351015)",
+        "service" : "True Money",
+        "service_code" : 351015
+    },
+    "902351016" : {
+        "message_default" : "Change password: password is the same previously.",
+        "message_en" : "Please set new password which must not be the same as your 3 latest settings (351016)",
+        "message_th" : "กรุณาตั้งรหัสผ่านใหม่ โดยไม่ให้ซ้ำกับรหัสที่เคยใช้แล้ว 3 ครั้งที่ผ่านมา (351016)",
+        "service" : "True Money",
+        "service_code" : 351016
+    },
+    "902362002" : {
+        "message_default" : "TARGET_NOT_FOUND",
+        "message_en" : "Cannot process now.Please contact 1331 (362002)",
+        "message_th" : "ไม่สามารถทำรายการได้ในขณะนี้ กรุณาติดต่อ 1331 (362002)",
+        "service" : "True Money",
+        "service_code" : 362002
+    },
+    "902362018" : {
+        "message_default" : "Not allow to reset pin",
+        "message_en" : "Not allow to reset pin, Please contact 1331 press 6",
+        "message_th" : "เพื่อความปลอดภัย เนื่องจากคุณมีการใช้งานบัญชีทรูมันนี่ กรุณาติดต่อทรูมูฟแคร์ 1331 เพื่อขอรหัสผ่าน True ID ค่ะ",
+        "service" : "True Money",
+        "service_code" : 362018
+    },
+    "902362020" : {
+        "message_default" : "Not allow to reset pin (over limit)",
+        "message_en" : "Please contact 1331 for reset password.",
+        "message_th" : "คุณทำรายการเกินจำนวนครั้งที่กำหนด กรุณาติดต่อ 1331 เพื่อทำการ reset password",
+        "service" : "True Money",
+        "service_code" : 362020
+    },
+    "902999998" : {
+        "message_default" : "Axis Fault",
+        "message_en" : "Please try again. (999998)",
+        "message_th" : "ไม่สามารถทำรายการได้ กรุณาลองใหม่อีกครั้ง (999998)",
+        "service" : "True Money",
+        "service_code" : 999998
+    }
+}

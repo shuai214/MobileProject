@@ -1,0 +1,195 @@
+{
+    "Events" : {
+        "Account" : {
+            "Action" : {
+                "Forgot_Cancel" : {
+                    "name" : "Forgot Cancel",
+                    "reason" : "",
+                    "status_code" : ""
+                },
+                "Forgot_End" : {
+                    "name" : "Forgot End",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "forgot end success"
+                                     } ]
+                },
+                "Forgot_Start" : {
+                    "name" : "Forgot Start",
+                    "reason" : "",
+                    "status_code" : ""
+                },
+                "Get_Profile" : {
+                    "name" : "Get Profile",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "get profile success"
+                                     }, {
+                                     "code" : 404,
+                                     "msg" : "get profile invalid access token"
+                                     } ]
+                },
+                "Get_Profile_More" : {
+                    "name" : "Get Profile More",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "get profile success"
+                                     }, {
+                                     "code" : 404,
+                                     "msg" : "get profile invalid access token"
+                                     } ]
+                },
+                "Login_Cancel" : {
+                    "name" : "Login Cancel",
+                    "reason" : [ "User terminated app", "User cancelled login" ],
+                    "status_code" : ""
+                },
+                "Login_End" : {
+                    "name" : "Login End",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "login end success"
+                                     }, {
+                                     "code" : 401,
+                                     "msg" : "login end incorrect user or password"
+                                     } ]
+                },
+                "Login_Native_Cancel" : {
+                    "name" : "Login Native Cancel",
+                    "reason" : [ "User terminated app", "User cancelled login" ],
+                    "status_code" : ""
+                },
+                "Login_Native_End" : {
+                    "name" : "Login Native End",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "login native end success"
+                                     }, {
+                                     "code" : 401,
+                                     "msg" : "login native end incorrect user or password"
+                                     } ]
+                },
+                "Login_Native_Start" : {
+                    "name" : "Login Native Start",
+                    "reason" : "",
+                    "status_code" : ""
+                },
+                "Login_Start" : {
+                    "name" : "Login Start",
+                    "reason" : "",
+                    "status_code" : ""
+                },
+                "Logout" : {
+                    "name" : "Logout",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "logout success"
+                                     } ]
+                },
+                "QR_Login_Cancel": {
+                    "name": "QR Login Cancel",
+                    "reason": "",
+                    "status_code": ""
+                },
+                "QR_Login_End": {
+                    "name": "QR Login End",
+                    "reason": "",
+                    "status_code": ""
+                },
+                "QR_Login_Start": {
+                    "name": "QR Login Start",
+                    "reason": "",
+                    "status_code": ""
+                },
+                "Refresh_Token" : {
+                    "name" : "Refresh Token",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "refresh token success"
+                                     }, {
+                                     "code" : 404,
+                                     "msg" : "refresh token invalid refresh token"
+                                     } ]
+                },
+                "Signup_Cancel" : {
+                    "name" : "Signup Cancel",
+                    "reason" : [ "User terminated app", "User cancelled signup" ],
+                    "status_code" : ""
+                },
+                "Signup_End" : {
+                    "name" : "Signup End",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "signup end success"
+                                     }, {
+                                     "code" : 409,
+                                     "msg" : "signup end existing account"
+                                     } ]
+                },
+                "Signup_Start" : {
+                    "name" : "Signup Start",
+                    "reason" : "",
+                    "status_code" : ""
+                },
+                "Update_Profile" : {
+                    "name" : "Update Profile",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "update profile success"
+                                     } ]
+                },
+                "Verify_Cancel" : {
+                    "name" : "Verify Cancel",
+                    "reason" : [ "Verification cancelled by user" ],
+                    "status_code" : ""
+                },
+                "Verify_End" : {
+                    "name" : "Verify End",
+                    "reason" : "",
+                    "status_code" : [ {
+                                     "code" : 200,
+                                     "msg" : "verify end success"
+                                     } ]
+                },
+                "Verify_Start" : {
+                    "name" : "Verify Start",
+                    "reason" : "",
+                    "status_code" : ""
+                }
+            },
+            "Category" : "Account"
+        }
+    },
+    "Screens" : {
+        "FORGOT" : "Forgot",
+        "FORGOT_EMAIL_CODE" : "Forgot - EmailCode",
+        "FORGOT_OTP" : "Forgot - OTP",
+        "FORGOT_RESET_PASS" : "Forgot - ResetPassword",
+        "FORGOT_SUCCESS" : "Forgot - Success",
+        "FORGOT_VERIFY" : "Forgot - Verify",
+        "LOGIN" : "Login",
+        "LOGIN_NATIVE" : "Login - Native",
+        "SIGNUP" : "Signup",
+        "SIGNUP_FLOW_A" : "Signup - Flow A",
+        "SIGNUP_FLOW_D" : "Signup - Flow D",
+        "SIGNUP_OTP" : "Signup - OTP",
+        "SIGNUP_SUCCESS" : "Signup - Success",
+        "SIGN_UP_ALREADY" : "SignUp - Already",
+        "VERIFY" : "Verify",
+        "VERIFY_ALREADY" : "Verify - Already",
+        "VERIFY_OTP" : "Verify - OTP",
+        "VERIFY_SERVICE" : "Verify - Service",
+        "VERIFY_SUCCESS" : "Verify - Success",
+        "QR_LOGIN_CONFIRM": "QR Login Confirm",
+        "QR_LOGIN_SCAN": "QR Login Scan"
+    }
+}

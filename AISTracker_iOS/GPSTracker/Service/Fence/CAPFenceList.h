@@ -29,5 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *fid;
 @property(nonatomic,assign)NSTimeInterval createdAt;
 @property(nonatomic,copy)NSString *address;
+@property (nonatomic, copy) NSString *content;
+
 @end
 NS_ASSUME_NONNULL_END

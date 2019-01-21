@@ -35,4 +35,5 @@
 #import "UIViewExt.h"
 #import "YWAlertView.h"
 #import "CAPAlertView.h"
+#import "CAPToast.h"
 #endif /* PrefixHeader_pch */

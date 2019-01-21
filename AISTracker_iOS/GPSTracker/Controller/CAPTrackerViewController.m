@@ -81,7 +81,6 @@
     self.mapView.indoorEnabled = NO;
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
-    self.mapView.settings.myLocationButton = YES;
     self.mapView.myLocationEnabled = YES;
     
     _locationManager = [[CLLocationManager alloc] init];
@@ -93,7 +92,6 @@
     
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
-    
 }
 - (void)mqttConnect{
     MQTTCenter *mqttCenter = [MQTTCenter center];
@@ -124,6 +122,7 @@
                 [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
                 [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
             }];
+            [CAPUserDefaults setObject:@"add user info" forKey:@"userInfo"];
             [self performSegueWithIdentifier:@"pair.segue" sender:nil];
         }
         if ([self.currentDevice.role isEqualToString:@"user"]) {
@@ -195,6 +194,7 @@
         self.currentDevice.address = self.address;
         [self.trackerView refreshDeviceLocation:self.currentDevice location:self.address];
     }];
+
 }
 - (void)refreshLocalizedString {
     

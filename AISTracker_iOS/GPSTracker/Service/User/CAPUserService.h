@@ -12,8 +12,8 @@
 
 @interface CAPUserService : CAPBaseService
 //+ (instancetype)defaultService;
-- (void)socialLogin:(CAPSocialUser *)user reply:(CAPServiceReply)reply;
-
+//- (void)socialLogin:(CAPSocialUser *)user reply:(CAPServiceReply)reply;
+- (void)socialLogin:(NSDictionary *)user reply:(CAPServiceReply)reply;
 - (void)fetchProfile:(CAPServiceReply)reply;
 - (void)signOut:(CAPServiceResponse)reply;
 

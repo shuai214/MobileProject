@@ -23,7 +23,9 @@
 #import "IQKeyboardManager.h"
 #import <GooglePlaces/GooglePlaces.h>
 #import "CAPSocialService.h"
-
+#import <TrueIDFramework/TrueIDFramework-Swift.h>
+#import "FYLoginViewController.h"
+#import "CAPNavigationController.h"
 @import GoogleMaps;
 
 AppDelegate* gApp = nil;
@@ -48,16 +50,34 @@ AppDelegate* gApp = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     gCfg = [AppConfig new];
     
-    if ([CAPUserDefaults objectForKey:@"accessToken"]) {
-        NSLog(@"accessToken - == %@",[CAPUserDefaults objectForKey:@"accessToken"]);
-        [self showMainPage];
-    }else{
-        [self showLoginPage];
-    }
+    //    if ([CAPUserDefaults objectForKey:@"accessToken"]) {
+    //        NSLog(@"accessToken - == %@",[CAPUserDefaults objectForKey:@"accessToken"]);
+    //        [self showMainPage];
+    //    }else{
+    //        [self showLoginPage];
+    //    }
     
-//    [self showMainPage];
-//    [self.window makeKeyAndVisible];
-
+    //    [self showMainPage];
+    //    [self.window makeKeyAndVisible];
+    
+    TrueIdPlatformAuth *trueAuth = [TrueIdPlatformAuth shareInstance];
+    
+    [trueAuth setSDKforWithSdkFor:TrueSDKForProduction];
+    
+    [trueAuth setClientIDWithClientId:@"653"];
+    [trueAuth setReDirectUrlWithUrlStr:@"https://www.google.co.th"];
+    NSArray *scopes = @[@"public_profile",@"email",@"mobile",@"references"];
+    [trueAuth initWithScopes:scopes];
+    //    if (UIDevice.deviceLanguageType == UIDeviceLanguageThai) {
+    //        [trueAuth setLanguageWithLanguage:LANGUAGE_SDKTH];
+    //    }else{
+    [trueAuth setLanguageWithLanguage:LANGUAGE_SDKEN];
+    //    }
+    
+    //set automation login.CGD1901211107460002
+    trueAuth.isLoginAutoAfterForget = YES;
+    trueAuth.isLoginAutoAfterRegister = YES;
+    [self setupWindow];
     if(!gCfg.isDev) {
         [self redirectNSLog];
     }
@@ -82,8 +102,8 @@ AppDelegate* gApp = nil;
     [Bugly startWithAppId:(gCfg.isBuild ? @"7c5f7a10e5" : @"9ebc08e2a2")];
     [GMSServices provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
     [GMSPlacesClient provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
-//    [GMSServices provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
-//    [GMSPlacesClient provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
+    //    [GMSServices provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
+    //    [GMSPlacesClient provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
     
     [self startNetworkMonitor];
     
@@ -96,7 +116,17 @@ AppDelegate* gApp = nil;
     
     return YES;
 }
-
+- (void)setupWindow{
+    
+    //    FYLoginViewController *loginVc = [FYLoginViewController new];
+    //    CAPNavigationController *nav = [[CAPNavigationController alloc] initWithRootViewController:loginVc];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateInitialViewController];
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
+    
+}
 - (void)showLoginPage {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
@@ -148,6 +178,7 @@ AppDelegate* gApp = nil;
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     NSLog(@"== applicationDidBecomeActive ==");
+    [TrueIdPlatformAuth activeApp];
 }
 
 
@@ -180,7 +211,7 @@ AppDelegate* gApp = nil;
                      * The device is out of space.
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
-                    */
+                     */
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
@@ -365,7 +396,7 @@ void UncaughtExceptionHandler(NSException *exception) {
     [_progressHud hideAnimated:YES];
 }
 - (void)showNotifyInfo:(NSString *)info backGroundColor:(UIColor *)color{
-     MBProgressHUD *hud = [MBProgressHUD showTitleToView:self.window postion:NHHUDPostionBottom title:info];
+    MBProgressHUD *hud = [MBProgressHUD showTitleToView:self.window postion:NHHUDPostionBottom title:info];
     hud.bezelBackgroundColor(color);
 }
 - (BOOL)createHUD {
@@ -437,32 +468,36 @@ void UncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//    BOOL ok = NO;
-//    if ([url.scheme hasPrefix:@"wx"]) {
-//        ok = [WXApi handleOpenURL:url delegate:self];
-//    }
-//    else if ([url.scheme hasPrefix:@"tencent"]) {
-//        ok = [TencentOAuth HandleOpenURL:url];
-//    }
-//    else if ([url.scheme hasPrefix:@"wb"]) {
-//        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-//    }
+    //    BOOL ok = NO;
+    //    if ([url.scheme hasPrefix:@"wx"]) {
+    //        ok = [WXApi handleOpenURL:url delegate:self];
+    //    }
+    //    else if ([url.scheme hasPrefix:@"tencent"]) {
+    //        ok = [TencentOAuth HandleOpenURL:url];
+    //    }
+    //    else if ([url.scheme hasPrefix:@"wb"]) {
+    //        //ok = [WeiboSDK handleOpenURL:url delegate:self];
+    //    }
+    //    return  [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url sourceApplication:sourceApplication];
     return [WXAUTH handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    return [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url options:options];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-//    BOOL ok = NO;
-//
-//    if ([url.scheme hasPrefix:@"wx"]) {
-//        ok = [WXApi handleOpenURL:url delegate:self];
-//    }
-//    else if ([url.scheme hasPrefix:@"tencent"]) {
-//        ok = [TencentOAuth HandleOpenURL:url];
-//    }
-//    else if ([url.scheme hasPrefix:@"wb"]) {
-//        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-//    }
-//
+    //    BOOL ok = NO;
+    //
+    //    if ([url.scheme hasPrefix:@"wx"]) {
+    //        ok = [WXApi handleOpenURL:url delegate:self];
+    //    }
+    //    else if ([url.scheme hasPrefix:@"tencent"]) {
+    //        ok = [TencentOAuth HandleOpenURL:url];
+    //    }
+    //    else if ([url.scheme hasPrefix:@"wb"]) {
+    //        //ok = [WeiboSDK handleOpenURL:url delegate:self];
+    //    }
+    //
     return [WXAUTH handleOpenURL:url];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "CAPMeViewController.h"
+#import "CAPLanguageViewController.h"
 #import "CAPViews.h"
 #import "MQTTCenter.h"
 #import "CAPDeviceService.h"
@@ -24,8 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Me";
-    self.titles = @[@"名称", @"语言", @"版本"];
+    self.title = CAPLocalizedString(@"me");
+    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"language"), CAPLocalizedString(@"version")];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -68,6 +69,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 1) {
+        
+        [self performSegueWithIdentifier:@"language.segue" sender:nil];
+    }
+}
 
 - (IBAction)onFeedbackButtonClicked:(id)sender {
 //    [CAPViews pushFromViewController:self storyboarName:@"Me" withIdentifier:@"FeedbackViewController"];

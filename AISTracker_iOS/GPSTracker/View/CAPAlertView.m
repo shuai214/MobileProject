@@ -10,6 +10,7 @@
 #import "LEEAlert.h"
 #import "CAPAlertCustomView.h"
 #import "CAPFenceAddView.h"
+#import "CAPEditAlertView.h"
 @implementation CAPAlertView
 
 + (void)initAlertWithContent:(NSString *)content title:(nonnull NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
@@ -55,6 +56,27 @@
 
 +(void)initAddressAlertWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock{
     CAPFenceAddView *customView = [[CAPFenceAddView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
+    
+    [customView setOkAddressBlock:^(NSString * _Nonnull name) {
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            okBlock(name);
+        }];
+    }];
+    [customView setCloseAddressBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(customView)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
++ (void)initAddressEditWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock{
+    CAPEditAlertView *customView = [[CAPEditAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
     
     [customView setOkAddressBlock:^(NSString * _Nonnull name) {
         [LEEAlert closeWithCompletionBlock:^{

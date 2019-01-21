@@ -1,0 +1,11 @@
+framework module TrueIDFramework {
+  umbrella header "TrueIDFramework-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module TrueIDFramework.Swift {
+    header "TrueIDFramework-Swift.h"
+    requires objc
+}

@@ -40,7 +40,7 @@
             row = 3;
         }
     }
-    [pickerView selectRow:row inComponent:0 animated:YES];
+//    [pickerView selectRow:row inComponent:0 animated:YES];
 }
 
 - (void)changeNickname:(NSString *)nickname {
@@ -57,7 +57,7 @@
     if(selectedRow < languages.count) {
         NSString *language = languages[selectedRow];
         if(![language isEqualToString:[CAPUserCenter center].language]) {
-            //[[CAPUserCenter center] changeLanguage:language];
+//            [[CAPUserCenter center] changeLanguage:language];
         }
     }
 }
