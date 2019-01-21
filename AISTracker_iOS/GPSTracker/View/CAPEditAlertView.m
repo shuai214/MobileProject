@@ -62,9 +62,9 @@
 - (void)configTwoButtonAutoLayout{
     // 关闭按钮
     self.closeButton.sd_layout
-    .topSpaceToView(self , PADDING)
-    .rightSpaceToView(self , 40.0f)
-    .widthIs(60.0f)
+    .topSpaceToView(self , 0.0f)
+    .rightSpaceToView(self , 0.0f)
+    .widthIs(CLOSE_BUTTON_W_H)
     .heightIs(CLOSE_BUTTON_W_H);
     
     
@@ -77,9 +77,9 @@
     // 打开按钮
     self.okButton.sd_layout
     .topSpaceToView(self.inputField , PADDING)
-    .leftSpaceToView(self , 40.0f)
-    .widthIs(60.0f)
-    .heightIs(CLOSE_BUTTON_W_H);
+    .leftSpaceToView(self , 20.0f)
+    .rightSpaceToView(self , 20.0f)
+    .heightIs(40.0f);
     
     self.paddingView.sd_layout.topSpaceToView(self.okButton, 10).heightIs(15);
     [self setupAutoHeightWithBottomView:self.paddingView bottomMargin:0.0f];

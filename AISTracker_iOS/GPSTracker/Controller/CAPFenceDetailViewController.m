@@ -128,33 +128,38 @@
     button.backgroundColor = [CAPColors red];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:CAPLocalizedString(@"save") forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(editAction) forControlEvents:UIControlEventTouchUpInside];
     button.layer.cornerRadius = 5.0;
     [view addSubview:button];
 }
 - (void)fenceNameTouchUpInside:(UITapGestureRecognizer *)recognizer{
-    CAPFenceService *editFenceService =[[CAPFenceService alloc] init];
+    
     [CAPAlertView initAddressEditWithContent:self.listItem.name ocloseBlock:^{
         
     } okBlock:^(NSString * _Nonnull name) {
         self.listItem.name = name;
-        [editFenceService editFence:self.listItem reply:^(id response) {
-            
-        }];
     }];
 }
 - (void)fenceRangeTouchUpInside:(UITapGestureRecognizer *)recognizer{
-    CAPFenceService *editFenceService =[[CAPFenceService alloc] init];
-    [CAPAlertView initAddressEditWithContent:self.listItem.name ocloseBlock:^{
-        
-    } okBlock:^(NSString * _Nonnull name) {
-        self.listItem.range = [name integerValue];
-        [editFenceService editFence:self.listItem reply:^(id response) {
-            
-        }];
+    [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
+        self.listItem.range = [selectValue integerValue];
     }];
 }
 
-
+- (void)editAction{
+    CAPFenceService *editFenceService =[[CAPFenceService alloc] init];
+    [editFenceService editFence:self.listItem reply:^(CAPHttpResponse *response) {
+        NSDictionary *data = response.data;
+        if ([[data objectForKey:@"code"] integerValue] == 200) {
+            [gApp hideHUD];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                [gApp hideHUD];
+            }];
+        }
+    }];
+}
 
 /**
  *  计算文本的宽高
