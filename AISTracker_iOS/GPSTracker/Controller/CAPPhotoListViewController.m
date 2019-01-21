@@ -11,6 +11,12 @@
 
 @interface CAPPhotoListViewController () <UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CAPSelectableCollectionCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSMutableArray *showPhotos;
+@property (strong, nonatomic) NSMutableArray *selectPhotos;
+@property (strong, nonatomic) UIView *editingView;
+@property (assign , nonatomic)CGFloat tableHeight;
+@property (assign , nonatomic)BOOL edit;
+@property (assign , nonatomic)BOOL seleceAll;
 
 @end
 
@@ -18,26 +24,89 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableHeight = self.collectionView.frame.size.height;
+    self.selectPhotos = [NSMutableArray array];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
+    self.showPhotos = [NSMutableArray array];
+    NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
+    [self.showPhotos addObjectsFromArray:array];
+    [self.collectionView reloadData];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [self.view addSubview:self.editingView];
+    self.edit = NO;
+    self.seleceAll = NO;
+}
+- (void)rightBarItemClick:(UIBarButtonItem *)item{
+    if ([item.title isEqualToString:@"编辑"]) {
+        if (self.showPhotos.count == 0) {
+            return;
+        }
+        item.title = @"取消";
+        [self showEitingView:YES];
+        self.edit = YES;
+    }else{
+        item.title = @"编辑";
+        [self showEitingView:NO];
+        self.edit = NO;
+    }
+}
+- (void)showEitingView:(BOOL)isShow
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.editingView.frame = CGRectMake(0, isShow ? Main_Screen_Height - 45 : Main_Screen_Height, Main_Screen_Width, 45);
+        self.collectionView.frame = CGRectMake(0, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, isShow ? self.tableHeight - 45 : self.tableHeight);
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIView *)editingView
+{
+    if (!_editingView) {
+        _editingView = [[UIView alloc] initWithFrame:CGRectMake(0, Main_Screen_Height, Main_Screen_Width, 45)];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor redColor];
+        [button setTitle:@"删除" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(Main_Screen_Width / 2, 0, Main_Screen_Width / 2, 45);
+        [_editingView addSubview:button];
+        
+        button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor darkGrayColor];
+        [button setTitle:@"全选" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(0, 0, Main_Screen_Width / 2, 45);
+        [_editingView addSubview:button];
+    }
+    return _editingView;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)p__buttonClick:(UIButton *)sender
+{
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
+        if (self.seleceAll == YES) {
+            [self.showPhotos removeAllObjects];
+            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
+        }else{
+            [self.showPhotos removeObjectsInArray:self.selectPhotos];
+            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
+            NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
+            self.showPhotos = [NSMutableArray array];
+            [self.showPhotos addObjectsFromArray:array];
+            [self.collectionView reloadData];
+        }
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
+        self.seleceAll = NO;
+        [sender setTitle:@"全不选" forState:UIControlStateNormal];
+        [self.collectionView reloadData];
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
+        [sender setTitle:@"全选" forState:UIControlStateNormal];
+        self.seleceAll = YES;
+        [self.collectionView reloadData];
+    }
 }
-*/
 
 - (void)refreshLocalizedString {
     
@@ -50,25 +119,26 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+    return self.showPhotos.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * CellIdentifier = @"photo_cell";
     CAPCheckableCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-//    CAPMedia *media = self.group.allAssets[indexPath.row];
-//    cell.iconImageView.image = (self.isVideo ? gCfg.defaultVideoImage : gCfg.defaultPhotoImage);
-//    [self.category loadThumb:media cell:cell];
-//
-//    cell.checkButton.selected = [_selections[indexPath.row] boolValue];
-//    cell.nameLabel.textColor = [UIColor redColor];
-//    cell.nameLabel.text = s;
-    
-    //[cell.contentButton setTitle:(self.isVideo ? [CAPFormats formatDuration:((CAPVideo *)media).duration] : @"") forState:UIControlStateNormal];
-    
     cell.tag = indexPath.row;
     cell.delegate = self;
+    if (self.seleceAll) {
+        cell.checkImage.hidden = NO;
+        [cell.checkImage setImage:GetImage(@"end")];
+    }else{
+        cell.checkImage.hidden = YES;
+        [cell.checkImage setImage:GetImage(@"")];
+    }
+    NSDictionary *dataDic = self.showPhotos[indexPath.row];
+    NSData *imgData = dataDic[@"image"];
+    [cell.iconImageView setImage:[UIImage imageWithData:imgData]];
+    [cell.timeLabel setText:dataDic[@"time"]];
+    
     return cell;
 }
 
@@ -101,7 +171,27 @@
 }
 
 -(void)onCollectionCellSelectionChanged:(id)sender {
-    CAPCheckableCollectionCell *cell = sender;
-    NSLog(@"onCollectionCellSelectionChanged #%ld", (long)cell.tag);
+    if (self.edit) {
+        CAPCheckableCollectionCell *cell = sender;
+        cell.checkImage.hidden = NO;
+        [cell.checkImage setImage:GetImage(@"end")];
+        [self.selectPhotos addObject:[self.showPhotos objectAtIndex:cell.tag]];
+    }else{
+        CAPCheckableCollectionCell *cell = sender;
+        cell.checkImage.hidden = NO;
+        [cell.checkImage setImage:GetImage(@"end")];
+        NSLog(@"onCollectionCellSelectionChanged #%ld", (long)cell.tag);
+        [CAPAlertView initAlertWithContent:@"确定删除该照片吗？"title:@"" closeBlock:^{
+            cell.checkImage.hidden = YES;
+            [cell.checkImage setImage:GetImage(@"")];
+        } okBlock:^{
+            [self.showPhotos removeObjectAtIndex:cell.tag];
+            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
+            NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
+            self.showPhotos = [NSMutableArray array];
+            [self.showPhotos addObjectsFromArray:array];
+            [self.collectionView reloadData];
+        } alertType:AlertTypeCustom];
+    }
 }
 @end

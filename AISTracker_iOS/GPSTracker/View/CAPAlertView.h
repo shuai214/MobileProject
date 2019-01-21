@@ -17,6 +17,7 @@ typedef void (^okAddressBlock)(NSString *name);
 + (void)initAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock alertType:(AlertType)alertType;
 + (void)initAlertWithContent:(NSString *)content okBlock:(okBlock)okBlock alertType:(AlertType)alertType;
 + (void)initAddressAlertWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock;
++ (void)initAddressEditWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock;
 @end
 
 NS_ASSUME_NONNULL_END

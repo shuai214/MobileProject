@@ -2,22 +2,30 @@
 <Bucket
    type = "0"
    version = "2.0">
-<<<<<<< HEAD
-=======
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPUserSettingViewController.m"
-            timestampString = "569317913.590022"
+            filePath = "GPSTracker/Controller/FYLoginViewController.m"
+            timestampString = "569736462.506896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-back"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-onRegisterSuccessWithUserProfileData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -27,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPFenceListViewController.m"
-            timestampString = "569153360.616529"
+            filePath = "GPSTracker/Controller/FYLoginViewController.m"
+            timestampString = "569736462.507628"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-onRegisterErrorWithErrorMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -43,61 +51,24 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Service/Fence/CAPFenceService.m"
-            timestampString = "569318616.365002"
+            filePath = "GPSTracker/Presenter/CAPUserPresenter.m"
+            timestampString = "569758783.809781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-editFence:reply:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-getLanguages"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CAPFenceService editFence:reply:]"
-                  moduleName = "GPSTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569382325.828364"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "928">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[CAPFenceService editFence:reply:]_block_invoke"
-                  moduleName = "GPSTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569382325.830978"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.97"
-                  moduleName = "GPSTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Service/Fence/CAPFenceService.m"
-                  timestampString = "569382325.833107"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +77,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Service/Fence/CAPFenceService.m"
-            timestampString = "569318616.365067"
+            filePath = "GPSTracker/Controller/CAPLanguageViewController.m"
+            timestampString = "569758783.810131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-editFence:reply:"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-onOkButtonClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,32 +93,15 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPAddFenceViewController.m"
-            timestampString = "569382325.579748"
+            filePath = "GPSTracker/Controller/CAPLanguageViewController.m"
+            timestampString = "569758783.810406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-mapView:didTapPOIWithPlaceID:name:location:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPAddFenceViewController.m"
-            timestampString = "569382325.580186"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-mapView:didTapAtCoordinate:"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-pickerView:didSelectRow:inComponent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
->>>>>>> b93d9514a86bf05a3e3ddf641c076050a865171d
 </Bucket>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UBP-db-LrG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main-->
+        <scene sceneID="BvN-9l-gqe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="rwQ-F4-U37" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8If-5z-vKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="576" y="-348"/>
+        </scene>
+        <!--Pair-->
+        <scene sceneID="LDr-aP-nR2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Pair" id="A2m-1H-KeU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bkb-q1-vFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="594" y="-113"/>
+        </scene>
+        <!--Choose Device Type View Controller-->
+        <scene sceneID="bvk-GY-BS9">
+            <objects>
+                <viewController id="UBP-db-LrG" customClass="CAPChooseDeviceTypeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pkl-3c-67e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_input_app" translatesAutoresizingMaskIntoConstraints="NO" id="GeJ-gL-LkJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ws-WM-cqY">
+                                <rect key="frame" x="63" y="96" width="265" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8ws-WM-cqY" secondAttribute="height" multiplier="265:251" id="Am6-vR-1Je"/>
+                                    <constraint firstAttribute="height" constant="251" id="DdM-C1-64G"/>
+                                    <constraint firstAttribute="width" constant="265" id="wEl-oj-D3j"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-RR-wek">
+                                <rect key="frame" x="63" y="368" width="265" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="265" id="gQ1-UB-ttj"/>
+                                    <constraint firstAttribute="height" constant="251" id="hlR-vO-WGf"/>
+                                    <constraint firstAttribute="width" secondItem="Yfg-RR-wek" secondAttribute="height" multiplier="265:251" id="jEQ-i4-adE"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="trackerAction:" destination="UBP-db-LrG" eventType="touchUpInside" id="dq0-TJ-9yj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GeJ-gL-LkJ" firstAttribute="centerX" secondItem="qOC-Sk-nhf" secondAttribute="centerX" id="2cv-bn-Cur"/>
+                            <constraint firstItem="Yfg-RR-wek" firstAttribute="top" secondItem="GeJ-gL-LkJ" secondAttribute="bottom" constant="-319" id="6D4-Py-efv"/>
+                            <constraint firstItem="GeJ-gL-LkJ" firstAttribute="bottom" secondItem="qOC-Sk-nhf" secondAttribute="bottom" constant="20" id="BzM-U7-yf2"/>
+                            <constraint firstItem="Yfg-RR-wek" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-312" id="HbB-4t-5vJ"/>
+                            <constraint firstItem="8ws-WM-cqY" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-312" id="cBB-CB-377"/>
+                            <constraint firstItem="qOC-Sk-nhf" firstAttribute="trailing" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" id="eFe-NV-ODA"/>
+                            <constraint firstItem="GeJ-gL-LkJ" firstAttribute="top" secondItem="8ws-WM-cqY" secondAttribute="bottom" constant="-347" id="fgE-0s-bPz"/>
+                            <constraint firstItem="GeJ-gL-LkJ" firstAttribute="leading" secondItem="qOC-Sk-nhf" secondAttribute="leading" id="l52-t1-SDa"/>
+                            <constraint firstItem="qOC-Sk-nhf" firstAttribute="top" secondItem="GeJ-gL-LkJ" secondAttribute="top" constant="20" id="r69-bG-rfU"/>
+                            <constraint firstItem="GeJ-gL-LkJ" firstAttribute="centerY" secondItem="qOC-Sk-nhf" secondAttribute="centerY" id="yAH-hR-bwQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qOC-Sk-nhf"/>
+                    </view>
+                    <connections>
+                        <segue destination="rwQ-F4-U37" kind="show" identifier="main.segue" id="rJ2-oX-bp7"/>
+                        <segue destination="A2m-1H-KeU" kind="show" identifier="pair.segue" id="Sy1-c5-ZDG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rzm-7c-Ebg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-158" y="-178"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="select_input_app" width="270" height="480"/>
+    </resources>
+</document>

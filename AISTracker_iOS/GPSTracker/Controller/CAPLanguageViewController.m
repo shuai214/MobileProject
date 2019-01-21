@@ -15,16 +15,22 @@
 @property (weak, nonatomic) IBOutlet UIButton *okButton;
 @property (strong, nonatomic) NSArray *languages;
 @property (strong, nonatomic) CAPUserPresenter *userPresenter;
+@property (assign, nonatomic) NSInteger selectIndex;
+
 @end
 
 @implementation CAPLanguageViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+//    self.userPresenter.languages = self.languages;
     self.userPresenter = [[CAPUserPresenter alloc] init];
     self.languages = self.userPresenter.languages;
-    
+    self.languages = @[CAPLocalizedString(@"system"), CAPLocalizedString(@"chinese"), CAPLocalizedString(@"thai"),CAPLocalizedString(@"English")];
+
     self.maskView.layer.cornerRadius = self.view.bounds.size.width * 0.3;
     self.maskView.layer.masksToBounds = YES;
     
@@ -39,8 +45,9 @@
 }
 
 - (IBAction)onOkButtonClicked:(id)sender {
-    NSUInteger selectedRow = [self.pickerView selectedRowInComponent:0];
+    NSUInteger selectedRow = [self.pickerView selectedRowInComponent:self.selectIndex];
     [self.userPresenter changeLanguage:selectedRow];
+    [self performSegueWithIdentifier:@"main.segue" sender:nil];
 }
 
 #pragma mark - UIPickerView
@@ -85,6 +92,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"didSelectRow: %lu", (unsigned long)row);
+    self.selectIndex = row;
 }
 
 @end

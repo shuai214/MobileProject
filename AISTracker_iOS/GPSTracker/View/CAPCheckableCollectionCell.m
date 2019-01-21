@@ -15,14 +15,14 @@
 @implementation CAPCheckableCollectionCell
 - (IBAction)onContentButtonClicked:(id)sender {
     [self onCheckButtonClicked:sender];
+    if(self.delegate) {
+        [self.delegate onCollectionCellSelectionChanged:self];
+    }
 }
 
 - (IBAction)onCheckButtonClicked:(id)sender {
     NSLog(@"onCheckButtonClicked");
-    self.checkButton.selected = !self.checkButton.selected;
-    if(self.delegate) {
-        [self.delegate onCollectionCellSelectionChanged:self];
-    }
+    
 }
 
 @end

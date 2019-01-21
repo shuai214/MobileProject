@@ -14,6 +14,8 @@
 @interface CAPAlertCustomView ()
 @property(nonatomic,copy)NSString *contentDesc;
 @property(nonatomic,copy)NSString *title;
+@property(nonatomic,copy)NSString *deviceNum;
+
 @property(nonatomic,assign)AlertType alertType;
 @property(nonatomic,strong)UIButton *closeButton;
 @property(nonatomic,strong)UIButton *okButton;
@@ -21,7 +23,7 @@
 @property(nonatomic,strong)UILabel *contentLabel;
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIImageView *imgView;
-
+@property(nonatomic,strong)UILabel *deviceNumLabel;
 @end
 
 @implementation CAPAlertCustomView
@@ -34,16 +36,15 @@
         self.contentDesc = desc;
         self.title = title;
         self.alertType = alertType;
-//        [self initCustomSubview];
-
+        self.deviceNum = desc;
         switch (alertType) {
             case AlertTypeCustom:
                 [self initCustomSubview];
                 [self configCustomAutoLayout];
                 break;
             case AlertTypeNoClose:
-                [self initCustomSubview];
-                [self configCustomAutoLayout];
+                [self initTwoButtonSubview];
+                [self configTwoButtonAutoLayout];
                 break;
             case AlertTypeTwoButton:
                 [self initTwoButtonSubview];
@@ -52,7 +53,6 @@
             default:
                 break;
         }
-//        [self configAutoLayout];
 
     }
     return self;
@@ -140,22 +140,30 @@
 
 
 - (void)initTwoButtonSubview{
-    _contentLabel = [UILabel new];
-    _contentLabel.text = self.contentDesc;
-    _contentLabel.textColor = [UIColor lightGrayColor];
-    _contentLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    _contentLabel.textAlignment = NSTextAlignmentCenter;
-    _contentLabel.numberOfLines = 0;
-    [self addSubview:_contentLabel];
     
     _titleLabel = [UILabel new];
     _titleLabel.text = self.title;
     _titleLabel.textColor = [UIColor lightGrayColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    _titleLabel.textAlignment = NSTextAlignmentLeft;
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.numberOfLines = 0;
     [self addSubview:_titleLabel];
-
+    
+    
+    _deviceNumLabel = [UILabel new];
+    _deviceNumLabel.text = self.contentDesc;
+    _deviceNumLabel.textColor = [UIColor lightGrayColor];
+    _deviceNumLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _deviceNumLabel.textAlignment = NSTextAlignmentCenter;
+    _deviceNumLabel.numberOfLines = 0;
+    [self addSubview:_deviceNumLabel];
+    
+    _contentLabel = [UILabel new];
+    _contentLabel.textColor = [UIColor lightGrayColor];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _contentLabel.textAlignment = NSTextAlignmentCenter;
+    _contentLabel.numberOfLines = 0;
+    [self addSubview:_contentLabel];
       __block int timeout = 60; //倒计时时间
       dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
       dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -175,12 +183,16 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                self->_titleLabel.text = [NSString stringWithFormat:@"%@S",strTime];
+                self->_contentLabel.text = [NSString stringWithFormat:@"%@S",strTime];
             });
             timeout--;
         }
     });
-    dispatch_resume(_timer);
+    if(self.alertType == AlertTypeNoClose){
+        
+    }else if(self.alertType == AlertTypeTwoButton){
+        dispatch_resume(_timer);
+    }
     _imgView = [[UIImageView alloc] initWithImage:GetImage(@"sos_phone")];
     _imgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_imgView];
@@ -190,9 +202,14 @@
     [_okButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
     [_okButton setTitle:@"确定" forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_okButton setBackgroundColor:[CAPColors gray1]];
     [_okButton addTarget:self action:@selector(okButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    _okButton.enabled = NO;
+    if(self.alertType == AlertTypeNoClose){
+        _okButton.enabled = YES;
+        [_okButton setBackgroundColor:[CAPColors red]];
+    }else if(self.alertType == AlertTypeTwoButton){
+        _okButton.enabled = NO;
+        [_okButton setBackgroundColor:[CAPColors gray1]];
+    }
     [self addSubview:_okButton];
     
     _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];;
@@ -213,47 +230,65 @@
 - (void)configTwoButtonAutoLayout{
     
     CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
-    self.contentLabel.sd_layout
+    self.titleLabel.sd_layout
     .topSpaceToView(self, PADDING)
     .leftSpaceToView(self, 20.0f)
     .rightSpaceToView(self, 20.0f)
     .heightIs(Size.height);
     
-   
-    
-    CGSize titleSize = [self sizeWithString:self.title font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    CGSize titleSize = [self sizeWithString:self.deviceNum font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     CGFloat x = (CLOSE_BUTTON_W_H - titleSize.height) / 2;
     CGFloat y = self.width - (CLOSE_BUTTON_W_H + titleSize.width + PADDING);
     
     self.imgView.sd_layout
-    .topSpaceToView(self.contentLabel, PADDING)
+    .topSpaceToView(self.titleLabel, PADDING)
     .leftSpaceToView(self, y / 2)
     .widthIs(CLOSE_BUTTON_W_H)
     .heightIs(CLOSE_BUTTON_W_H);
     
-    self.titleLabel.sd_layout
-    .topSpaceToView(self.contentLabel,PADDING + x)
+    self.deviceNumLabel.sd_layout
+    .topSpaceToView(self.titleLabel,PADDING + x)
     .leftSpaceToView(self.imgView, PADDING)
     .widthIs(titleSize.width)
     .heightIs(titleSize.height);
     
-    // 关闭按钮
-    self.closeButton.sd_layout
-    .topSpaceToView(self.imgView , PADDING)
-    .rightSpaceToView(self , 40.0f)
-    .widthIs(60.0f)
-    .heightIs(CLOSE_BUTTON_W_H);
+    CGFloat timeHeight = 0;
+    if(self.alertType == AlertTypeNoClose){
+        timeHeight = 0;
+    }else if(self.alertType == AlertTypeTwoButton){
+        timeHeight = 20;
+    }
+    self.contentLabel.sd_layout
+    .topSpaceToView(self.deviceNumLabel,PADDING + x)
+    .leftSpaceToView(self, PADDING)
+    .rightSpaceToView(self,PADDING)
+    .heightIs(timeHeight);
     
-    // 打开按钮
-    self.okButton.sd_layout
-    .topSpaceToView(self.imgView , PADDING)
-    .leftSpaceToView(self , 40.0f)
-    .widthIs(60.0f)
-    .heightIs(CLOSE_BUTTON_W_H);
-    
+    if (self.alertType == AlertTypeNoClose) {
+        // 打开按钮
+        self.okButton.sd_layout
+        .topSpaceToView(self.contentLabel , PADDING)
+        .leftSpaceToView(self , CLOSE_BUTTON_W_H)
+        .rightSpaceToView(self , CLOSE_BUTTON_W_H)
+        .heightIs(CLOSE_BUTTON_W_H);
+    }else if(self.alertType == AlertTypeTwoButton){
+        // 关闭按钮
+        self.closeButton.sd_layout
+        .topSpaceToView(self.contentLabel , PADDING)
+        .rightSpaceToView(self , 40.0f)
+        .widthIs(60.0f)
+        .heightIs(CLOSE_BUTTON_W_H);
+        
+        // 打开按钮
+        self.okButton.sd_layout
+        .topSpaceToView(self.contentLabel , PADDING)
+        .leftSpaceToView(self , 40.0f)
+        .widthIs(60.0f)
+        .heightIs(CLOSE_BUTTON_W_H);
+    }
+   
     
     self.paddingView.sd_layout.topSpaceToView(self.okButton, 10).heightIs(15);
-    
     [self setupAutoHeightWithBottomView:self.paddingView bottomMargin:0.0f];
     
 }

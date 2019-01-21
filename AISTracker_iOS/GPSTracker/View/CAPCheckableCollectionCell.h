@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *contentButton;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIImageView *checkImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;

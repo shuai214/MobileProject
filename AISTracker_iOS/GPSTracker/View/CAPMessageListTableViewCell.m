@@ -85,7 +85,7 @@
     DeviceMessageInfo *messageInfo = self.deviceMessage.messageInfo;
     
     // 设置头像
-    self.iconView.image = GetImage(@"tracker_phone");
+    self.iconView.image = GetImage(@"ic_default_avatar_new");
     // 设置时间
     self.timeLabel.text = messageInfo.deviceMessageTime;
    

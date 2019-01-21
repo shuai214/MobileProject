@@ -69,26 +69,28 @@
                 [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",device.deviceID] title:@"绑定该设备吗？" closeBlock:^{
                     
                 } okBlock:^{
-                    
-                } alertType:AlertTypeTwoButton];
+                    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",device.deviceID] title:@"绑定该设备吗？" closeBlock:^{
+                        
+                    } okBlock:^{
+                        
+                    } alertType:AlertTypeTwoButton];
+                } alertType:AlertTypeNoClose];
             }];
             [self.navigationController pushViewController:deviceSettingVC animated:YES];
             
-        } alertType:AlertTypeNoClose];
+        } alertType:AlertTypeCustom];
     }];
     [self.navigationController pushViewController:ScanVC animated:YES];
 }
 
 - (IBAction)onNumberButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"number.segue" sender:nil];
     CAPAddTrackerViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"AddTrackerViewController"];
     CAPWeakSelf(self);
     [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
         [weakself addDeviceService:successStr owner:YES];
     }];
     [self.navigationController pushViewController:AddTrackerVC animated:YES];
-//    CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
-//    [self.navigationController pushViewController:AddTrackerVC animated:YES];
+
 }
 
 
@@ -118,8 +120,5 @@
             }
         }];
     } alertType:AlertTypeCustom];
-//    [CAPAlerts showSuccess:@"绑定该设备吗？" subTitle:[NSString stringWithFormat:@"GPS ID is : %@",deviceNum] buttonTitle:@"确定"cancleButtonTitle:@"不绑定" actionBlock:^{
-//        
-//    }];
 }
 @end

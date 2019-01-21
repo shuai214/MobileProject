@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"手动输入";
 }
 - (IBAction)addDevice:(UIButton *)sender {
     if (self.numField.text.length != 0) {

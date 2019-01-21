@@ -82,7 +82,7 @@
             button.layer.masksToBounds = YES;
             button.tag = i;
             CAPDevice *device = self.devices[i];
-            [button sd_setImageWithURL:[NSURL URLWithString:device.setting.avatar.url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"tracker_phone"]];
+            [button sd_setImageWithURL:[NSURL URLWithString:device.setting.avatar.url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"ic_default_avatar_new"]];
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
         }

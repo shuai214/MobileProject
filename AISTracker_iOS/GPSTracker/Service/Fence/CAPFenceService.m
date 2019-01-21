@@ -30,14 +30,14 @@
                              @"lng":lng,
                              @"range":range,
                              @"status":@"1",
-                             @"content":@""
+                             @"content":fence.content
                              };
+    NSLog(@"%@",params);
     CAPHttpRequest *request = [self buildRequest:[@"Fence/Fence/" stringByAppendingString:fence.deviceID] method:@"POST" parameters:params];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {
         reply(response);
     }];
 }
-
 - (void)editFence:(List *)fenceItem reply:(CAPServiceReply)reply{
     if(fenceItem) {
         NSString *lat = [NSString stringWithFormat:@"%lf",fenceItem.lat];
@@ -57,10 +57,39 @@
             reply(response);
         }];
     }
+}
+- (void)editAddFence:(CAPFence *)fenceItem reply:(CAPServiceReply)reply{
+    if(fenceItem) {
+        NSString *lat = [NSString stringWithFormat:@"%lf",fenceItem.latitude];
+        NSString *lng = [NSString stringWithFormat:@"%lf",fenceItem.longitude];
+        NSString *range = [NSString stringWithFormat:@"%ld",(long)fenceItem.range];
+        NSDictionary *params = @{
+                                 @"name":fenceItem.name,
+                                 @"address": fenceItem.address,
+                                 @"lat":lat,
+                                 @"lng":lng,
+                                 @"range":range,
+                                 @"status":[NSString stringWithFormat:@"%ld",fenceItem.status],
+                                 @"content":fenceItem.content
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Fence/Fence/" stringByAppendingString:fenceItem.fenceID] method:@"PUT" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
     
 }
 
 - (void)deleteFence:(NSString *)fenceID reply:(CAPServiceReply)reply {
+    if (!kStringIsEmpty(fenceID)) {
+        NSDictionary *params = @{
+                                 @"fenceid":fenceID
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Fence/Fence/" stringByAppendingString:fenceID] method:@"DELETE" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
     
 }
 @end

@@ -29,6 +29,7 @@
 
 //获取图片资源
 #define GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+#define CAPLocalizedString(key)     NSLocalizedString(key, nil)
 
 //状态栏的高度
 #define Application_StatusBar_Height [UIApplication sharedApplication].statusBarFrame.size.height
