@@ -11,6 +11,7 @@
 #import "CAPAlertCustomView.h"
 #import "CAPFenceAddView.h"
 #import "CAPEditAlertView.h"
+#import "CAPSOSAlertView.h"
 @implementation CAPAlertView
 
 + (void)initAlertWithContent:(NSString *)content title:(nonnull NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
@@ -92,6 +93,30 @@
     }];
     [LEEAlert alert].config
     .LeeCustomView(customView)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
+
++ (void)initSOSAlertViewWithContent:(MQTTInfo *)contentInfo ocloseBlock:(closeBlock)closeBlock okBlock:(okMQTTInfoBlock)okMQTTInfoBlock{
+    CAPSOSAlertView *view = [CAPSOSAlertView instance];
+    [view fillData:contentInfo];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setOkAddressBlock:^(MQTTInfo * _Nonnull info) {
+            [LEEAlert closeWithCompletionBlock:^{
+                // 打开XXX
+                okMQTTInfoBlock(info);
+            }];
+    }];
+    [view setCloseAddressBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow();

@@ -281,7 +281,11 @@
         [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if (!info.command){
         if ([info.status isEqualToString:@"00010000"]) {
-            
+            [CAPAlertView initSOSAlertViewWithContent:info ocloseBlock:^{
+                
+            } okBlock:^(MQTTInfo * _Nonnull info) {
+                
+            }];
         }
     }
     [self.infoDictionary setObject:info forKey:info.deviceID];

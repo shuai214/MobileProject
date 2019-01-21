@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
 		2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */; };
+		2B18E13D21F60AB5002E884D /* CAPSOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */; };
+		2B18E13F21F60AD9002E884D /* CAPSOSAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */; };
 		2B19B0A521F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */; };
 		2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */; };
 		2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0D621F47A64004DF9BE /* Localizable.strings */; };
@@ -243,6 +245,9 @@
 		1D2A310B58A3A1A043C45096 /* Pods-GPSTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2B066F3D21E623B80087A741 /* CAPUploadFrequencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUploadFrequencyViewController.h; sourceTree = "<group>"; };
 		2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUploadFrequencyViewController.m; sourceTree = "<group>"; };
+		2B18E13B21F60AB5002E884D /* CAPSOSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSOSAlertView.h; sourceTree = "<group>"; };
+		2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSAlertView.m; sourceTree = "<group>"; };
+		2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPSOSAlertView.xib; sourceTree = "<group>"; };
 		2B19B0A321F21BED004DF9BE /* CAPChooseDeviceTypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPChooseDeviceTypeViewController.h; sourceTree = "<group>"; };
 		2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPChooseDeviceTypeViewController.m; sourceTree = "<group>"; };
 		2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseDevice.storyboard; sourceTree = "<group>"; };
@@ -932,6 +937,9 @@
 				2B19B0E421F5CBC8004DF9BE /* CAPEditAlertView.m */,
 				2B98BAC221EE2CBE006B779B /* CAPAlertView.h */,
 				2B98BAC321EE2CBE006B779B /* CAPAlertView.m */,
+				2B18E13B21F60AB5002E884D /* CAPSOSAlertView.h */,
+				2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */,
+				2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */,
 				2B19B0DE21F56011004DF9BE /* CAPChooseFenceView.h */,
 				2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */,
 				2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */,
@@ -1436,6 +1444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B18E13F21F60AD9002E884D /* CAPSOSAlertView.xib in Resources */,
 				2BBBF8CA21DE42D000AF1DD6 /* CAPFenceListTableViewCell.xib in Resources */,
 				2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */,
 				2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */,
@@ -1668,6 +1677,7 @@
 				EF358BE9219143A700EFB4BF /* CAPSelectableCollectionCell.m in Sources */,
 				EFD0AC8F218C3E4400405FD8 /* CAPEditNameViewController.m in Sources */,
 				2B1C07EE21DF2FBE00B258C1 /* HMDateSelectCollectionViewCell.m in Sources */,
+				2B18E13D21F60AB5002E884D /* CAPSOSAlertView.m in Sources */,
 				EF46F27E219294BE009A357C /* CAPFeedback.m in Sources */,
 				EF46F29C2192DD05009A357C /* CAPUserDefaults.m in Sources */,
 				EF6CA63F218D30FF0014771E /* CAPReadUserInfoResponse.m in Sources */,
