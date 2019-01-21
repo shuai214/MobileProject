@@ -14,6 +14,9 @@
 @interface CAPFenceDetailViewController ()
 @property (strong, nonatomic) GMSMapView *mapView;
 @property (strong, nonatomic) GMSMarker *marker;
+@property (strong, nonatomic) UILabel *label1;
+@property (strong, nonatomic) UILabel *label2;
+
 @end
 
 @implementation CAPFenceDetailViewController
@@ -92,16 +95,16 @@
     alertLabel1.textColor = [UIColor whiteColor];
     [view addSubview:alertLabel1];
     
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel1.right, alertLabel1.top, Main_Screen_Width - 15 - alertLabel1.right, alertLabel1.height)];
-    label1.textAlignment = NSTextAlignmentRight;
-    label1.text = fenceName;
-    label1.textColor = [UIColor whiteColor];
-    label1.userInteractionEnabled = YES;
+    self.label1 = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel1.right, alertLabel1.top, Main_Screen_Width - 15 - alertLabel1.right, alertLabel1.height)];
+    self.label1 .textAlignment = NSTextAlignmentRight;
+    self.label1 .text = fenceName;
+    self.label1 .textColor = [UIColor whiteColor];
+    self.label1 .userInteractionEnabled = YES;
     UITapGestureRecognizer *fenceNameTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fenceNameTouchUpInside:)];
-    [label1 addGestureRecognizer:fenceNameTapGestureRecognizer];
-    [view addSubview:label1];
+    [self.label1  addGestureRecognizer:fenceNameTapGestureRecognizer];
+    [view addSubview:self.label1 ];
     
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(10, label1.bottom + 5, Main_Screen_Width - 20, 0.5)];
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(10, self.label1.bottom + 5, Main_Screen_Width - 20, 0.5)];
     line2.backgroundColor = [UIColor whiteColor];
     [view addSubview:line2];
     
@@ -111,16 +114,16 @@
     alertLabel2.textColor = [UIColor whiteColor];
     [view addSubview:alertLabel2];
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel2.right, alertLabel2.top, Main_Screen_Width - 15 - alertLabel2.right, alertLabel2.height)];
-    label2.textAlignment = NSTextAlignmentRight;
-    label2.textColor = [UIColor whiteColor];
-    label2.text = [NSString stringWithFormat:@"%ld%@",range,CAPLocalizedString(@"m")];
-    label2.userInteractionEnabled = YES;
+   self.label2 = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel2.right, alertLabel2.top, Main_Screen_Width - 15 - alertLabel2.right, alertLabel2.height)];
+    self.label2.textAlignment = NSTextAlignmentRight;
+    self.label2.textColor = [UIColor whiteColor];
+    self.label2.text = [NSString stringWithFormat:@"%ld%@",range,CAPLocalizedString(@"m")];
+    self.label2.userInteractionEnabled = YES;
     UITapGestureRecognizer *fenceRangeTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fenceRangeTouchUpInside:)];
-    [label2 addGestureRecognizer:fenceRangeTapGestureRecognizer];
-    [view addSubview:label2];
+    [self.label2 addGestureRecognizer:fenceRangeTapGestureRecognizer];
+    [view addSubview:self.label2];
     
-    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(10, label2.bottom + 5, Main_Screen_Width - 20, 0.5)];
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(10, self.label2.bottom + 5, Main_Screen_Width - 20, 0.5)];
     line3.backgroundColor = [UIColor whiteColor];
     [view addSubview:line3];
     
@@ -138,11 +141,13 @@
         
     } okBlock:^(NSString * _Nonnull name) {
         self.listItem.name = name;
+        self.label1.text = name;
     }];
 }
 - (void)fenceRangeTouchUpInside:(UITapGestureRecognizer *)recognizer{
     [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
         self.listItem.range = [selectValue integerValue];
+        self.label2.text = [NSString stringWithFormat:@"%ld",[selectValue integerValue]];
     }];
 }
 
