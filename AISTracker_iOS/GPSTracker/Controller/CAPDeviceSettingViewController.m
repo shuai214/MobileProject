@@ -140,6 +140,10 @@
                     [gApp hideHUD];
                     [self.navigationController popViewControllerAnimated:YES];
                     !self->_inputDeviceBlock ? : self->_inputDeviceBlock(self.device);
+                }else{
+                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                        [gApp hideHUD];
+                    }];
                 }
             }];
         }

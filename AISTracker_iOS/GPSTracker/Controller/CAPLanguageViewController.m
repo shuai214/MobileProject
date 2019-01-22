@@ -46,7 +46,7 @@
 
 - (IBAction)onOkButtonClicked:(id)sender {
     NSUInteger selectedRow = [self.pickerView selectedRowInComponent:self.selectIndex];
-    [self.userPresenter changeLanguage:selectedRow];
+//    [self.userPresenter changeLanguage:selectedRow];
     [self performSegueWithIdentifier:@"main.segue" sender:nil];
 }
 

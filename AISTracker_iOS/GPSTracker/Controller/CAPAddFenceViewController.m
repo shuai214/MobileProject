@@ -54,9 +54,11 @@
     [self.view addSubview:_searchBar];
     
     GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:nil];
+    
     _placePickerViewController = [[GMSPlacePickerViewController alloc] initWithConfig:config];
     _placePickerViewController.delegate = self;
-   
+    _placePickerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:_placePickerViewController animated:YES completion:nil];
 }
 
 #pragma  mark - Mapview Delegate
@@ -139,8 +141,15 @@ didAutocompleteWithPlace:(GMSPlace *)place {
 #pragma mark ---- GMSPlacePickerViewController delegate
 - (void)placePicker:(GMSPlacePickerViewController *)viewController didPickPlace:(GMSPlace *)place {
     NSLog(@"%f ----- %f",place.coordinate.latitude,place.coordinate.longitude);
-    self.curLocation = CLLocationCoordinate2DMake(place.coordinate.latitude,place.coordinate.longitude);
-    self.choosePlace = place;
+    self.curLocation = place.coordinate;
+    
+    if (place.formattedAddress == nil) {
+        [_placesClient lookUpPlaceID:place.placeID callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
+            NSLog(@"%@",result);
+        }];
+    }else{
+        self.choosePlace = place;
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
     [self drawCenter:1000];
     CAPWeakSelf(self);

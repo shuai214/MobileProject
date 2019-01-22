@@ -37,7 +37,22 @@
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow();
 }
-
++ (void)initCloseAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock alertType:(AlertType)alertType{
+    CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content contentDesc:title alertType:alertType];
+    
+    [customView setCloseBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    
+    [LEEAlert alert].config
+    .LeeCustomView(customView)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
 + (void)initAlertWithContent:(NSString *)content okBlock:(okBlock)okBlock alertType:(AlertType)alertType{
     CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:@"" contentDesc:content alertType:alertType];
     

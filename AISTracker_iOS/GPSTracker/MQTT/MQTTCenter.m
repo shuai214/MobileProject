@@ -245,6 +245,11 @@
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
+        [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@",CAPLocalizedString(@"message_type_master_quit")] title:info.deviceID closeBlock:^{
+            
+        } alertType:AlertTypeButton];
+    }else if ([info.command isEqualToString:@"REMOVED"]){
+        [CAPNotifications notify:kNotificationREMOVEDCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
         [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] title:@"" closeBlock:^{
@@ -269,11 +274,6 @@
             }];
         } alertType:AlertTypeCustom];
         [coreData insertData:info];
-    }else if ([info.command isEqualToString:@"BINDREP"]){
-        self.bindInfo = info;
-        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
-        [coreData insertData:info];
-        [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREP"]){
         self.bindInfo = info;
         info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
@@ -342,5 +342,4 @@
 //        message data = {"cmd":"STATUS","deviceID":"356199060459401","status":200,"result":{"online":1}}
     [self handleMessage:topic data:data];
 }
-
 @end

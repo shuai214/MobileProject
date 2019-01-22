@@ -50,6 +50,16 @@
     }];
 }
 
+- (void)getDeviceInfo:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Device/" stringByAppendingString:device.deviceID] method:@"GET" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+
 - (void)bindDevice:(NSString *)shareid param:(NSDictionary *)param reply:(CAPServiceReply)reply{
     //TODO
     if (shareid) {
@@ -193,7 +203,29 @@
         }];
     }
 }
-
+- (void)setDeviceParameter:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/Parameter/" stringByAppendingString:device.deviceID] method:@"POST" parameters:nil];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+- (void)setSOSMobile:(CAPDevice *)device sosMobiles:(NSArray *)array reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+        NSString *arrayJson = [array mj_JSONString];
+        NSDictionary *params = @{
+                                 @"uuid":device.deviceID,
+                                 @"body":arrayJson
+                                 };
+        CAPHttpRequest *request = [self buildRequest:[@"Device/SOS/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
 //+ (instancetype)defaultService {
 //    static id instance = NULL;
 //    static dispatch_once_t onceToken;

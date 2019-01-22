@@ -40,6 +40,7 @@
 @property (strong, nonatomic)  CAPDeviceListView *deviceListView;
 
 @property (strong, nonatomic)  CAPTrackerView *trackerView;
+@property (strong, nonatomic)  MQTTInfo *mqttInfo;
 
 @property (assign,nonatomic)CGRect rectTrackerView;
 @property (assign,nonatomic)CGRect rectDeviceListView;
@@ -81,7 +82,7 @@
     self.mapView.indoorEnabled = NO;
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
-    self.mapView.myLocationEnabled = YES;
+//    self.mapView.myLocationEnabled = YES;
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate  = self;
@@ -145,6 +146,7 @@
 //通过MQTT获取设备的位置。
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
+    self.mqttInfo = info;
     if ([info.command isEqualToString:@"GPS"]) {
         CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
         [self refreshDeviceLocalized:coords];
@@ -248,6 +250,7 @@
         case CAPTrackerViewActionSetting:
         {CAPMasterSettingViewController *masterSetting = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"MasterSettingViewController"];
             masterSetting.device = self.currentDevice;
+            masterSetting.battery = self.mqttInfo.batlevel;
             [self.navigationController pushViewController:masterSetting animated:YES];
         }
             break;

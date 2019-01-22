@@ -27,14 +27,30 @@
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"tether", nil)];
     [CAPNotifications addObserver:self selector:@selector(registBindUserDevice:) name:kNotificationBINDREPCountChange object:nil];
+    [self mqttConnect];
 }
-
+- (void)mqttConnect{
+    MQTTCenter *mqttCenter = [MQTTCenter center];
+    MQTTConfig *config = [[MQTTConfig alloc] init];
+    config.host = @"mqtt.kvtel.com";
+    config.port = 1883;
+    config.username = @"demo_app";
+    config.password = @"demo_890_123_654";
+    config.userID = [CAPUserDefaults objectForKey:@"userID"];
+    config.keepAliveInterval = 20;
+    config.deviceType = MQTTDeviceTypeApp;
+    config.platformID = @"KVTELIOT";
+    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+    [mqttCenter open:config];
+}
 - (void)registBindUserDevice:(NSNotification *)notifi{
     [CAPAlertView initAlertWithContent:@"绑定成功！" title:@"" closeBlock:^{
         
     } okBlock:^{
         [CAPNotifications notify:kNotificationDeviceCountChange];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self performSegueWithIdentifier:@"main.segue" sender:nil];
+
+//        [self.navigationController popToRootViewControllerAnimated:YES];
     } alertType:AlertTypeNoClose];
 }
 

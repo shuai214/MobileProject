@@ -11,7 +11,8 @@ typedef NS_ENUM(NSUInteger, AlertType) {
     AlertTypeCustom= 0,
     AlertTypeNoClose,
     AlertTypeTime,
-    AlertTypeTwoButton
+    AlertTypeTwoButton,
+    AlertTypeButton
 };
 NS_ASSUME_NONNULL_BEGIN
 

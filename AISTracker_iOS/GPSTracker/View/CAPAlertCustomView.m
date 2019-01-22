@@ -50,6 +50,10 @@
                 [self initTwoButtonSubview];
                 [self configTwoButtonAutoLayout];
                 break;
+            case AlertTypeButton:
+                [self initButtonSubview];
+                [self configButtonAutoLayout];
+                break;
             default:
                 break;
         }
@@ -75,7 +79,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.text = self.title;
     _titleLabel.textColor = [UIColor lightGrayColor];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.numberOfLines = 0;
     [self addSubview:_titleLabel];
@@ -83,14 +87,14 @@
     _contentLabel = [UILabel new];
     _contentLabel.text = self.contentDesc;
     _contentLabel.textColor = [UIColor lightGrayColor];
-    _contentLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _contentLabel.textAlignment = NSTextAlignmentCenter;
     _contentLabel.numberOfLines = 0;
     [self addSubview:_contentLabel];
     
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
-    [_okButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    [_okButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
     [_okButton setTitle:@"确定" forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton setBackgroundColor:[CAPColors red]];
@@ -110,14 +114,14 @@
     .widthIs(CLOSE_BUTTON_W_H)
     .heightIs((self.alertType == AlertTypeNoClose) ? 0 : CLOSE_BUTTON_W_H);
     
-    CGSize titleSize = [self sizeWithString:self.title font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    CGSize titleSize = [self sizeWithString:self.title font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     self.titleLabel.sd_layout
     .topSpaceToView(self.closeButton,(titleSize.height == 0) ? 0 : PADDING)
     .leftSpaceToView(self, 20.0f)
     .rightSpaceToView(self, 20.0f)
     .heightIs(titleSize.height);
     
-   CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+   CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     
     self.contentLabel.sd_layout
     .topSpaceToView(self.titleLabel, PADDING)
@@ -144,7 +148,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.text = self.title;
     _titleLabel.textColor = [UIColor lightGrayColor];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.numberOfLines = 0;
     [self addSubview:_titleLabel];
@@ -153,14 +157,14 @@
     _deviceNumLabel = [UILabel new];
     _deviceNumLabel.text = self.contentDesc;
     _deviceNumLabel.textColor = [UIColor lightGrayColor];
-    _deviceNumLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _deviceNumLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _deviceNumLabel.textAlignment = NSTextAlignmentCenter;
     _deviceNumLabel.numberOfLines = 0;
     [self addSubview:_deviceNumLabel];
     
     _contentLabel = [UILabel new];
     _contentLabel.textColor = [UIColor lightGrayColor];
-    _contentLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _contentLabel.textAlignment = NSTextAlignmentCenter;
     _contentLabel.numberOfLines = 0;
     [self addSubview:_contentLabel];
@@ -193,13 +197,13 @@
     }else if(self.alertType == AlertTypeTwoButton){
         dispatch_resume(_timer);
     }
-    _imgView = [[UIImageView alloc] initWithImage:GetImage(@"sos_phone")];
+    _imgView = [[UIImageView alloc] initWithImage:GetImage(@"ic_default_avatar_new")];
     _imgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_imgView];
     
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
-    [_okButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    [_okButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
     [_okButton setTitle:@"确定" forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton addTarget:self action:@selector(okButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -215,7 +219,7 @@
     _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];;
     [_closeButton addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     _closeButton.sd_cornerRadius = @5.0f;
-    [_closeButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    [_closeButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
     [_closeButton setTitle:@"取消" forState:UIControlStateNormal];
     [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_closeButton setBackgroundColor:[CAPColors gray1]];
@@ -229,14 +233,14 @@
 
 - (void)configTwoButtonAutoLayout{
     
-    CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     self.titleLabel.sd_layout
     .topSpaceToView(self, PADDING)
     .leftSpaceToView(self, 20.0f)
     .rightSpaceToView(self, 20.0f)
     .heightIs(Size.height);
     
-    CGSize titleSize = [self sizeWithString:self.deviceNum font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    CGSize titleSize = [self sizeWithString:self.deviceNum font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     CGFloat x = (CLOSE_BUTTON_W_H - titleSize.height) / 2;
     CGFloat y = self.width - (CLOSE_BUTTON_W_H + titleSize.width + PADDING);
     
@@ -294,9 +298,74 @@
 }
 
 
+- (void)initButtonSubview{
+    _titleLabel = [UILabel new];
+    _titleLabel.text = self.title;
+    _titleLabel.textColor = [UIColor lightGrayColor];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.numberOfLines = 0;
+    [self addSubview:_titleLabel];
+    
+    
+    _deviceNumLabel = [UILabel new];
+    _deviceNumLabel.text = self.deviceNum;
+    _deviceNumLabel.textColor = [UIColor lightGrayColor];
+    _deviceNumLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+    _deviceNumLabel.textAlignment = NSTextAlignmentCenter;
+    _deviceNumLabel.numberOfLines = 0;
+    [self addSubview:_deviceNumLabel];
+    
+    _imgView = [[UIImageView alloc] initWithImage:GetImage(@"ic_default_avatar_new")];
+    _imgView.backgroundColor = [UIColor clearColor];
+    [self addSubview:_imgView];
+    
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];;
+    [_closeButton setBackgroundImage:GetImage(@"dialog_close_red") forState:UIControlStateNormal];
+    [_closeButton addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
+    [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self addSubview:_closeButton];
 
+    
+    _paddingView = [UIView new];
+    _paddingView.backgroundColor = [UIColor clearColor];
+    [self addSubview:_paddingView];
+}
 
-
+- (void)configButtonAutoLayout{
+    
+    // 关闭按钮
+    self.closeButton.sd_layout
+    .topSpaceToView(self , 0.0f)
+    .rightSpaceToView(self , 0.0f)
+    .widthIs(CLOSE_BUTTON_W_H)
+    .heightIs(CLOSE_BUTTON_W_H);
+    
+    CGSize titleSize = [self sizeWithString:self.title font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    self.titleLabel.sd_layout
+    .topSpaceToView(self.closeButton,(titleSize.height == 0) ? 0 : PADDING)
+    .leftSpaceToView(self, 20.0f)
+    .rightSpaceToView(self, 20.0f)
+    .heightIs(titleSize.height);
+    
+    CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:13.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
+    
+    self.deviceNumLabel.sd_layout
+    .topSpaceToView(self.titleLabel, PADDING)
+    .leftSpaceToView(self, 20.0f)
+    .rightSpaceToView(self, 20.0f)
+    .heightIs(Size.height);
+    
+    self.imgView.sd_layout
+    .topSpaceToView(self.deviceNumLabel, PADDING)
+    .centerXEqualToView(self)
+    .heightIs(CLOSE_BUTTON_W_H)
+    .widthIs(CLOSE_BUTTON_W_H);
+    
+    self.paddingView.sd_layout.topSpaceToView(self.imgView, 10).heightIs(15);
+    [self setupAutoHeightWithBottomView:self.paddingView bottomMargin:0.0f];
+    
+}
 
 
 

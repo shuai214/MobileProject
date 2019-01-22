@@ -17,6 +17,7 @@
 @property(nonatomic,strong)CAPDeviceLists *deviceLists;
 @property(nonatomic,strong)NSMutableArray *countryArray;
 @property(nonatomic,strong)NSMutableArray *telCodeArray;
+@property(nonatomic,strong)NSMutableArray *inputTelArray;
 
 @end
 
@@ -26,23 +27,19 @@
     [super viewDidLoad];
     self.title = @"SOS Number";
     // Do any additional setup after loading the view.
+    [self setRightBarImageButton:@"save_sos" action:@selector(saveButtonClicked)];
+
     self.view.backgroundColor = gCfg.appBackgroundColor;
     [self get:nil];
+    self.inputTelArray = [NSMutableArray array];
     [self fetchDevice];
 }
 
 - (void)fetchDevice{
     [gApp showHUD:@"正在处理，请稍后..."];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService fetchDevice:^(id response) {
-        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
-        [gApp hideHUD];
-        if ([[httpResponse.data objectForKey:@"code"] integerValue] == 200) {
-           self.deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
-            [self configSubView];
-        }else{
-            [gApp showNotifyInfo:[httpResponse.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
-        }
+    [deviceService getDeviceInfo:self.device reply:^(id response) {
+        NSLog(@"%@",response);
     }];
 }
 
@@ -188,4 +185,12 @@
         deviceNumber.countryNameLabel.text = selectValue;
     }];
 }
+
+- (void)saveButtonClicked{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    deviceService setSOSMobile:self.deviceLists sosMobiles:<#(NSArray *)#> reply:<#^(id response)reply#>
+}
+
+
+
 @end

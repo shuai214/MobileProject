@@ -24,6 +24,8 @@
 		2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */; };
 		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
 		2B2BE48621ECCCBC006D728C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2BE48521ECCCBB006D728C /* CoreData.framework */; };
+		2B4B2BE321F6BFAA007A928D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B2BDF21F6BFAA007A928D /* LaunchScreen.storyboard */; };
+		2B4B2BE721F6F3E5007A928D /* CAPGetCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B2BE621F6F3E5007A928D /* CAPGetCurrentViewController.m */; };
 		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
 		2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2721E5DCD100EE6D02 /* UIViewExt.m */; };
 		2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */; };
@@ -275,6 +277,9 @@
 		2B2BE48521ECCCBB006D728C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2B2BE48821ECCD3D006D728C /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
+		2B4B2BE021F6BFAA007A928D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B4B2BE521F6F3E5007A928D /* CAPGetCurrentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGetCurrentViewController.h; sourceTree = "<group>"; };
+		2B4B2BE621F6F3E5007A928D /* CAPGetCurrentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGetCurrentViewController.m; sourceTree = "<group>"; };
 		2B527E2421E5D32A00EE6D02 /* CAPSOSMobileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSOSMobileViewController.h; sourceTree = "<group>"; };
 		2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSMobileViewController.m; sourceTree = "<group>"; };
 		2B527E2721E5DCD100EE6D02 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
@@ -692,6 +697,14 @@
 			path = NHHUDExtend;
 			sourceTree = "<group>";
 		};
+		2B4B2BDE21F6BFAA007A928D /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				2B4B2BDF21F6BFAA007A928D /* LaunchScreen.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
 		2B7BAB9A21EAEDFF006A42F8 /* LEEAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -994,6 +1007,8 @@
 				EFD0ACD2218C46A300405FD8 /* CAPValidators.m */,
 				EFD0ACC1218C466F00405FD8 /* CAPViews.h */,
 				EFD0ACC5218C466F00405FD8 /* CAPViews.m */,
+				2B4B2BE521F6F3E5007A928D /* CAPGetCurrentViewController.h */,
+				2B4B2BE621F6F3E5007A928D /* CAPGetCurrentViewController.m */,
 				2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */,
 			);
 			path = Util;
@@ -1053,6 +1068,7 @@
 		EF79BB5321886175000358FA /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				2B4B2BDE21F6BFAA007A928D /* Base.lproj */,
 				EF358C072191D84100EFB4BF /* EditName.storyboard */,
 				EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */,
 				EF358BE221913B0D00EFB4BF /* Login.storyboard */,
@@ -1450,6 +1466,7 @@
 				2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */,
 				EF358C082191D84100EFB4BF /* EditName.storyboard in Resources */,
 				EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */,
+				2B4B2BE321F6BFAA007A928D /* LaunchScreen.storyboard in Resources */,
 				2B19B0E221F56196004DF9BE /* CAPChooseFenceView.xib in Resources */,
 				EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */,
 				EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */,
@@ -1656,6 +1673,7 @@
 				EFD0AD38218C536700405FD8 /* CAPCloudItemButton.m in Sources */,
 				EFD0AD2F218C507A00405FD8 /* CAPDevice.m in Sources */,
 				EF46F27B21929285009A357C /* CAPFence.m in Sources */,
+				2B4B2BE721F6F3E5007A928D /* CAPGetCurrentViewController.m in Sources */,
 				EFD0AD29218C503200405FD8 /* CAPSession.m in Sources */,
 				EF46F28C21929BE1009A357C /* CAPMessageService.m in Sources */,
 				EF358C0621918B7500EFB4BF /* CAPDeviceListView.m in Sources */,
@@ -1777,6 +1795,14 @@
 				2B19B0DB21F47A8F004DF9BE /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		2B4B2BDF21F6BFAA007A928D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B4B2BE021F6BFAA007A928D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

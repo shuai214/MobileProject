@@ -77,13 +77,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPLanguageViewController.m"
-            timestampString = "569758783.810131"
+            filePath = "GPSTracker/Controller/CAPAddFenceViewController.m"
+            timestampString = "569844322.055977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-onOkButtonClicked:"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-placePicker:didPickPlace:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -93,13 +93,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPLanguageViewController.m"
-            timestampString = "569758783.810406"
+            filePath = "GPSTracker/Controller/CAPSOSMobileViewController.m"
+            timestampString = "569844322.056046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-pickerView:didSelectRow:inComponent:"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-labelTouchUpInside:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GPSTracker/Controller/CAPSOSMobileViewController.m"
+            timestampString = "569844322.056415"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-fetchDevice"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

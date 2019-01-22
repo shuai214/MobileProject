@@ -122,7 +122,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="rNp-ou-H0a" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMF-Vw-xn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-567" y="-154"/>
+            <point key="canvasLocation" x="400" y="-238"/>
         </scene>
         <!--Tracker-->
         <scene sceneID="iIj-g8-zZ3">
@@ -130,7 +130,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="Tracker" storyboardName="Tracker" id="PF4-gp-CGa" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEI-e7-Rqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-299" y="-164"/>
+            <point key="canvasLocation" x="-214" y="51"/>
         </scene>
         <!--Add Tracker View Controller-->
         <scene sceneID="xog-Vc-a1S">
@@ -220,7 +220,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Llw-au-FSy">
                                 <rect key="frame" x="16" y="88" width="343" height="120"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tracker_phone" translatesAutoresizingMaskIntoConstraints="NO" id="sP0-8P-fsH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar_new" translatesAutoresizingMaskIntoConstraints="NO" id="sP0-8P-fsH">
                                         <rect key="frame" x="126.5" y="15" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="mbt-hG-lbf"/>
@@ -330,7 +330,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3e-3S-jpK">
                                 <rect key="frame" x="16" y="88" width="343" height="120"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t0K-iv-uLG">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="t0K-iv-uLG">
                                         <rect key="frame" x="126.5" y="15" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="elD-aY-Qjg"/>
@@ -383,6 +383,12 @@
                                 <state key="normal" title="确定">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="okAction:" destination="e0S-jw-gs8" eventType="touchUpInside" id="p5U-xa-Y61"/>
                                 </connections>
@@ -424,10 +430,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_default_avatar_new" width="112" height="112"/>
         <image name="login_screen_bg" width="540" height="960"/>
-        <image name="tracker_phone" width="85" height="85"/>
+        <image name="user_default_avatar" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d57-ZL-dHn"/>
+        <segue reference="GA2-vB-YOs"/>
     </inferredMetricsTieBreakers>
 </document>
