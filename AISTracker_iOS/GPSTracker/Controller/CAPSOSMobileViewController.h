@@ -7,10 +7,11 @@
 //
 
 #import "CAPBaseViewController.h"
-
+#import "CAPDevice.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPSOSMobileViewController : CAPBaseViewController
+@property(nonatomic,strong)CAPDevice *device;
 
 @end
 

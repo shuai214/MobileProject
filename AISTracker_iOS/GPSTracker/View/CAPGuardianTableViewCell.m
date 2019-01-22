@@ -37,7 +37,7 @@
 }
 
 - (void)setDeviceInfo:(CAPDevice *)device{
-    [self.imgView setImage:GetImage(@"ic_default_avatar")];
+    [self.imgView setImage:GetImage(@"user_default_avatar")];
     self.nameLabel.text = device.setting.name;
     self.telLabel.text = device.setting.mobile ? device.setting.mobile : @"";
 }

@@ -17,6 +17,7 @@
 - (void)fetchDevice:(CAPServiceReply)reply;
 //添加主设备
 - (void)addDevice:(CAPDevice *)device reply:(CAPServiceReply)reply;
+- (void)getDeviceInfo:(CAPDevice *)device reply:(CAPServiceReply)reply;
 
 //绑定副设备
 - (void)bindDevice:(NSString *)shareid param:(NSDictionary *)param reply:(CAPServiceReply)reply;
@@ -40,4 +41,8 @@
 - (void)fetchFootprint:(NSString *)deviceID starttime:(NSString *)starttime endtime:(NSString *)endtime reply:(CAPServiceReply)reply;
 - (void)getDeviceLogs:(NSString *)deviceID page:(NSInteger)page reply:(CAPServiceReply)reply;
 - (void)deviceSendCommand:(NSString *)deviceID cmd:(NSString *)cmd param:(NSString *)param reply:(CAPServiceReply)reply;
+- (void)setDeviceParameter:(CAPDevice *)device reply:(CAPServiceReply)reply;
+
+- (void)setSOSMobile:(CAPDevice *)device sosMobiles:(NSArray *)array reply:(CAPServiceReply)reply;
+
 @end

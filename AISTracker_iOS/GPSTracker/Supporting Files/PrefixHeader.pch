@@ -36,4 +36,5 @@
 #import "YWAlertView.h"
 #import "CAPAlertView.h"
 #import "CAPToast.h"
+#import "CAPGetCurrentViewController.h"
 #endif /* PrefixHeader_pch */

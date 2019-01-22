@@ -51,9 +51,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alp-om-r2m" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-1y-W8f" userLabel="Avatar Image View">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar_new" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-1y-W8f" userLabel="Avatar Image View">
                                         <rect key="frame" x="25" y="12" width="80" height="80"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" secondItem="r1J-1y-W8f" secondAttribute="height" multiplier="1:1" id="2BG-Jj-dqY"/>
                                             <constraint firstAttribute="width" constant="80" id="TXm-ZY-Rle"/>
                                         </constraints>
                                     </imageView>
@@ -102,6 +103,7 @@
                         <outlet property="avatarImageView" destination="r1J-1y-W8f" id="seN-fC-D3u"/>
                         <outlet property="batteryView" destination="mqR-23-3T9" id="iET-Ql-xT7"/>
                         <outlet property="headerView" destination="alp-om-r2m" id="9v3-Kf-ZTM"/>
+                        <outlet property="nextDeviceImage" destination="f1m-Pb-3gU" id="Pa0-HE-UMF"/>
                         <outlet property="tableView" destination="iVI-Ml-gGn" id="HId-cE-eTT"/>
                         <segue destination="SBJ-g3-iMi" kind="show" identifier="guardian.list.segue" id="LRu-4A-Gn1"/>
                         <segue destination="mAA-oK-H6o" kind="show" identifier="edit.name.segue" id="3T6-ZH-eWd"/>
@@ -163,25 +165,33 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="94U-up-AjZ" userLabel="Avatar Image View">
                                         <rect key="frame" x="88.5" y="12" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="94U-up-AjZ" secondAttribute="height" multiplier="1:1" id="1EH-od-T16"/>
+                                            <constraint firstAttribute="width" constant="150" id="2Lt-dd-hdy"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device ID: 5652156422313" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xj-we-r4p">
-                                        <rect key="frame" x="12" y="174" width="303" height="21"/>
+                                        <rect key="frame" x="12" y="182" width="303" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="l84-YB-3Qk" userLabel="QR Image View">
-                                        <rect key="frame" x="88.5" y="284" width="150" height="150"/>
+                                        <rect key="frame" x="88.5" y="213" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="l84-YB-3Qk" secondAttribute="height" multiplier="1:1" id="DSS-x5-8Py"/>
+                                            <constraint firstAttribute="width" constant="150" id="sIN-ql-tA9"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="l84-YB-3Qk" firstAttribute="centerX" secondItem="7OW-sh-kF3" secondAttribute="centerX" id="1Si-LB-afX"/>
                                     <constraint firstItem="94U-up-AjZ" firstAttribute="top" secondItem="7OW-sh-kF3" secondAttribute="top" constant="12" id="HSF-SR-4vg"/>
-                                    <constraint firstItem="9Xj-we-r4p" firstAttribute="bottom" secondItem="l84-YB-3Qk" secondAttribute="top" constant="-89" id="Sqv-82-HYj"/>
+                                    <constraint firstItem="l84-YB-3Qk" firstAttribute="top" secondItem="9Xj-we-r4p" secondAttribute="bottom" constant="10" id="Qwl-Yz-Gm7"/>
                                     <constraint firstItem="94U-up-AjZ" firstAttribute="centerX" secondItem="7OW-sh-kF3" secondAttribute="centerX" id="Zm3-Hv-Y3w"/>
                                     <constraint firstAttribute="trailing" secondItem="9Xj-we-r4p" secondAttribute="trailing" constant="12" id="hxf-X2-gg7"/>
-                                    <constraint firstItem="9Xj-we-r4p" firstAttribute="top" secondItem="94U-up-AjZ" secondAttribute="bottom" constant="12" id="kn3-wt-XRD"/>
+                                    <constraint firstItem="9Xj-we-r4p" firstAttribute="top" secondItem="94U-up-AjZ" secondAttribute="bottom" constant="20" id="kn3-wt-XRD"/>
                                     <constraint firstItem="9Xj-we-r4p" firstAttribute="leading" secondItem="7OW-sh-kF3" secondAttribute="leading" constant="12" id="nXg-0I-BGl"/>
                                 </constraints>
                             </view>
@@ -226,6 +236,7 @@
     </scenes>
     <resources>
         <image name="ic_default_avatar" width="150" height="150"/>
+        <image name="ic_default_avatar_new" width="112" height="112"/>
         <image name="next_gray" width="35" height="35"/>
     </resources>
 </document>

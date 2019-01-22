@@ -17,6 +17,7 @@
 @property(nonatomic,strong)CAPDeviceLists *deviceLists;
 @property(nonatomic,strong)NSMutableArray *countryArray;
 @property(nonatomic,strong)NSMutableArray *telCodeArray;
+@property(nonatomic,strong)NSMutableArray *inputTelArray;
 
 @end
 
@@ -26,23 +27,23 @@
     [super viewDidLoad];
     self.title = @"SOS Number";
     // Do any additional setup after loading the view.
+    [self setRightBarImageButton:@"save_sos" action:@selector(saveButtonClicked)];
+
     self.view.backgroundColor = gCfg.appBackgroundColor;
     [self get:nil];
+    self.inputTelArray = [NSMutableArray array];
     [self fetchDevice];
 }
 
 - (void)fetchDevice{
     [gApp showHUD:@"正在处理，请稍后..."];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService fetchDevice:^(id response) {
-        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
-        [gApp hideHUD];
-        if ([[httpResponse.data objectForKey:@"code"] integerValue] == 200) {
-           self.deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
-            [self configSubView];
-        }else{
-            [gApp showNotifyInfo:[httpResponse.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+    [deviceService getDeviceInfo:self.device reply:^(CAPHttpResponse *response) {
+        NSDictionary *data = response.data;
+        if ([[data objectForKey:@"code"] integerValue] == 200) {
+            self.device = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
         }
+
     }];
 }
 
@@ -59,9 +60,9 @@
     CGFloat numViewHeight = 80;
     NSInteger j = 1;
     NSInteger count = 3;
-    if (self.deviceLists.result.list.count >= 3) {
-        count = 3;
-    }
+//    if (self.deviceLists.result.list.count >= 3) {
+//        count = 3;
+//    }
     for (NSInteger i = 0; i<count; i++) {
         CGRect frame = CGRectMake(0, mustBeThreeNumber.bottom + (numViewHeight + 10 )* i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:NO index:j];
@@ -105,14 +106,14 @@
     deviceNumberView.countryNameLabel.tag = index + 99;
     deviceNumberView.countryNameLabel.userInteractionEnabled = is;
     if (index <= 3) {
-        if (index <= self.deviceLists.result.list.count) {
-            CAPDevice *device = self.deviceLists.result.list[index - 1];
+        if (index == 0) {
+            CAPDevice *device = self.device;
             NSArray *array = [device.mobile componentsSeparatedByString:@" "];
-            if (array.count >=2) {
-                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
-            }else{
+//            if (array.count >=2) {
+//                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
+//            }else{
                 deviceNumberView.telAreaCodeLabel.text = @"+86";
-            }
+//            }
             deviceNumberView.telField.text = array.lastObject;
             
             NSArray *telCode = self.telCodeArray;
@@ -188,4 +189,12 @@
         deviceNumber.countryNameLabel.text = selectValue;
     }];
 }
+
+- (void)saveButtonClicked{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    deviceService setSOSMobile:self.deviceLists sosMobiles:<#(NSArray *)#> reply:<#^(id response)reply#>
+}
+
+
+
 @end

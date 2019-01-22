@@ -12,5 +12,6 @@
 @interface CAPMasterSettingViewController : CAPBaseViewController
 
 @property(nonatomic,strong)CAPDevice *device;
+@property(nonatomic,assign)CGFloat battery;
 
 @end

@@ -88,22 +88,21 @@
     if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
         if (self.seleceAll == YES) {
             [self.showPhotos removeAllObjects];
-            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
         }else{
             [self.showPhotos removeObjectsInArray:self.selectPhotos];
-            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
-            NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
-            self.showPhotos = [NSMutableArray array];
-            [self.showPhotos addObjectsFromArray:array];
-            [self.collectionView reloadData];
         }
+        [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
+        NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
+        self.showPhotos = [NSMutableArray array];
+        [self.showPhotos addObjectsFromArray:array];
+        [self.collectionView reloadData];
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
-        self.seleceAll = NO;
+        self.seleceAll = YES;
         [sender setTitle:@"全不选" forState:UIControlStateNormal];
         [self.collectionView reloadData];
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
         [sender setTitle:@"全选" forState:UIControlStateNormal];
-        self.seleceAll = YES;
+        self.seleceAll = NO;
         [self.collectionView reloadData];
     }
 }

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet CAPBatteryView *batteryView;
 @property (weak, nonatomic) IBOutlet UILabel *deviceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *nextDeviceImage;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<NSString *> *titles;
 @property (strong, nonatomic) NSArray<NSString *> *details;
@@ -50,6 +51,7 @@
     
     [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
     self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
+    [self.batteryView reloadBattery:self.battery];
 }
 - (void)loadDeviceInfo{
     [gApp showHUD:@"正在处理，请稍后..."];
@@ -128,6 +130,7 @@
         case 5:
         {
             CAPSOSMobileViewController *sosVC = [[CAPSOSMobileViewController alloc] init];
+            sosVC.device = self.device;
             [self.navigationController pushViewController:sosVC animated:YES];
         }
             break;

@@ -157,17 +157,6 @@
                                     <constraint firstAttribute="width" constant="375" id="ogN-uV-ZlF"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="TakingPhoto" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-he-eUh">
-                                <rect key="frame" x="138" y="400.5" width="81" height="85"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Gzy-he-eUh" secondAttribute="height" multiplier="1:1" constant="-4" id="NFP-tp-Ibl"/>
-                                    <constraint firstAttribute="height" constant="85" id="bqa-ZN-aSr"/>
-                                </constraints>
-                                <state key="normal" image="camera"/>
-                                <connections>
-                                    <action selector="onCameraButtonClicked:" destination="C02-rF-3Bd" eventType="touchUpInside" id="za8-Ad-Lwt"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhB-HJ-z4J">
                                 <rect key="frame" x="0.0" y="489.5" width="375" height="30"/>
                                 <subviews>
@@ -246,6 +235,17 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="TakingPhoto" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-he-eUh">
+                                <rect key="frame" x="147" y="400" width="81" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gzy-he-eUh" secondAttribute="height" multiplier="1:1" constant="-4" id="NFP-tp-Ibl"/>
+                                    <constraint firstAttribute="height" constant="85" id="bqa-ZN-aSr"/>
+                                </constraints>
+                                <state key="normal" image="camera"/>
+                                <connections>
+                                    <action selector="onCameraButtonClicked:" destination="C02-rF-3Bd" eventType="touchUpInside" id="za8-Ad-Lwt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -253,9 +253,9 @@
                             <constraint firstItem="zNo-cr-1be" firstAttribute="top" secondItem="LhB-HJ-z4J" secondAttribute="bottom" constant="5" id="5Kj-no-pCH"/>
                             <constraint firstItem="LhB-HJ-z4J" firstAttribute="leading" secondItem="991-ld-kqX" secondAttribute="leading" id="DYA-FT-efY"/>
                             <constraint firstItem="zNo-cr-1be" firstAttribute="bottom" secondItem="991-ld-kqX" secondAttribute="bottom" id="EVh-KU-3og"/>
-                            <constraint firstItem="Gzy-he-eUh" firstAttribute="centerX" secondItem="bD3-AB-g16" secondAttribute="centerX" constant="-9" id="PMS-MO-qMt"/>
+                            <constraint firstItem="Gzy-he-eUh" firstAttribute="centerX" secondItem="bD3-AB-g16" secondAttribute="centerX" id="PMS-MO-qMt"/>
                             <constraint firstItem="g7Z-C9-vzh" firstAttribute="leading" secondItem="991-ld-kqX" secondAttribute="leading" id="T92-8P-sre"/>
-                            <constraint firstItem="LhB-HJ-z4J" firstAttribute="leading" secondItem="Gzy-he-eUh" secondAttribute="trailing" constant="-219" id="UWB-cs-9Tz"/>
+                            <constraint firstItem="LhB-HJ-z4J" firstAttribute="leading" secondItem="Gzy-he-eUh" secondAttribute="trailing" constant="-228" id="UWB-cs-9Tz"/>
                             <constraint firstItem="Gzy-he-eUh" firstAttribute="top" secondItem="g7Z-C9-vzh" secondAttribute="bottom" constant="8" symbolic="YES" id="XSS-ce-Q9x"/>
                             <constraint firstItem="991-ld-kqX" firstAttribute="trailing" secondItem="LhB-HJ-z4J" secondAttribute="trailing" id="Ybp-FA-Jib"/>
                             <constraint firstItem="LhB-HJ-z4J" firstAttribute="top" secondItem="Gzy-he-eUh" secondAttribute="bottom" constant="4" id="iFA-Dy-88g"/>
