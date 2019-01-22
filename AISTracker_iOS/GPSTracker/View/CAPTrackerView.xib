@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,19 +108,6 @@
                         <constraint firstAttribute="width" secondItem="84t-o2-rDI" secondAttribute="height" multiplier="6:1" id="l5i-0d-mh9"/>
                     </constraints>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsB-KE-e0T" customClass="CAPBatteryView">
-                    <rect key="frame" x="311" y="35.5" width="90" height="28"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="bsB-KE-e0T" secondAttribute="height" multiplier="45:14" id="2M0-gM-uth"/>
-                        <constraint firstAttribute="height" constant="28" id="BTz-cD-Bfd"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="battery">
-                            <real key="value" value="32"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-tu-8UR">
                     <rect key="frame" x="91" y="62.5" width="224" height="67.5"/>
                     <subviews>
@@ -146,6 +133,19 @@
                         </button>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsB-KE-e0T" customClass="CAPBatteryView">
+                    <rect key="frame" x="310" y="6" width="90" height="28"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bsB-KE-e0T" secondAttribute="height" multiplier="45:14" id="2M0-gM-uth"/>
+                        <constraint firstAttribute="height" constant="28" id="BTz-cD-Bfd"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="battery">
+                            <real key="value" value="32"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -154,9 +154,9 @@
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="bottom" secondItem="84t-o2-rDI" secondAttribute="bottom" id="MAC-jZ-R4A"/>
                 <constraint firstItem="Gvk-xK-UjP" firstAttribute="top" secondItem="7BX-E9-mWS" secondAttribute="bottom" constant="5" id="Qmk-Ob-uxj"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Sud-6m-DqF"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bsB-KE-e0T" secondAttribute="trailing" constant="5" id="TUd-Kt-1nY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bsB-KE-e0T" secondAttribute="trailing" constant="6" id="TUd-Kt-1nY"/>
                 <constraint firstItem="7BX-E9-mWS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="aOU-zM-a8W"/>
-                <constraint firstItem="bsB-KE-e0T" firstAttribute="top" secondItem="Gvk-xK-UjP" secondAttribute="top" id="bTb-ol-gVz"/>
+                <constraint firstItem="bsB-KE-e0T" firstAttribute="top" secondItem="Gvk-xK-UjP" secondAttribute="top" constant="-29.5" id="bTb-ol-gVz"/>
                 <constraint firstItem="84t-o2-rDI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gbq-ae-LB9"/>
                 <constraint firstItem="84t-o2-rDI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jSC-ya-ypx"/>
                 <constraint firstItem="kLM-tu-8UR" firstAttribute="centerY" secondItem="84t-o2-rDI" secondAttribute="centerY" id="lmp-Rm-1qT"/>

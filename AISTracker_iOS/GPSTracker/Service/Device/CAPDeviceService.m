@@ -215,10 +215,8 @@
 - (void)setSOSMobile:(CAPDevice *)device sosMobiles:(NSArray *)array reply:(CAPServiceReply)reply{
     //TODO
     if (device) {
-        NSString *arrayJson = [array mj_JSONString];
         NSDictionary *params = @{
-                                 @"uuid":device.deviceID,
-                                 @"body":arrayJson
+                                 @"body":array
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/SOS/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {

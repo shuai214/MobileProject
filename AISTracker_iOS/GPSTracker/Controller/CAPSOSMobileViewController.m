@@ -12,6 +12,8 @@
 #import "CAPDeviceService.h"
 #import "CAPDevice.h"
 #import "CAPDeviceLists.h"
+#import "CAPValidators.h"
+
 @interface CAPSOSMobileViewController ()
 @property(nonatomic,strong)UIScrollView *bgscrollView;
 @property(nonatomic,strong)CAPDeviceLists *deviceLists;
@@ -42,7 +44,9 @@
         NSDictionary *data = response.data;
         if ([[data objectForKey:@"code"] integerValue] == 200) {
             self.device = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+            [self configSubView];
         }
+        [gApp hideHUD];
 
     }];
 }
@@ -103,12 +107,13 @@
     [bgView addSubview:imgView];
     
     CAPDeviceNumber *deviceNumberView = [[CAPDeviceNumber alloc] initWithFrame:CGRectMake(imgView.right + 10, 0, width - imgView.right - 30, height) isEdit:is];
+    deviceNumberView.tag = index + 999;
     deviceNumberView.countryNameLabel.tag = index + 99;
     deviceNumberView.countryNameLabel.userInteractionEnabled = is;
     if (index <= 3) {
-        if (index == 0) {
+        if (index == 1) {
             CAPDevice *device = self.device;
-            NSArray *array = [device.mobile componentsSeparatedByString:@" "];
+            NSArray *array = [device.setting.mobile componentsSeparatedByString:@" "];
 //            if (array.count >=2) {
 //                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
 //            }else{
@@ -191,8 +196,28 @@
 }
 
 - (void)saveButtonClicked{
+    CAPDeviceNumber *deviceNumber3 = (CAPDeviceNumber *)[self.view viewWithTag:1003];
+    CAPDeviceNumber *deviceNumber4 = (CAPDeviceNumber *)[self.view viewWithTag:1004];
+    if (deviceNumber3.telField.text.length != 0) {
+        if ([CAPValidators validPhoneNumber:deviceNumber3.telField.text]) {
+            [self.inputTelArray addObject:[NSString stringWithFormat:@"%@ %@",deviceNumber3.telAreaCodeLabel.text,deviceNumber3.telField.text]];
+        }
+    }
+    if (deviceNumber4.telField.text.length != 0) {
+        if ([CAPValidators validPhoneNumber:deviceNumber4.telField.text]) {
+            [self.inputTelArray addObject:[NSString stringWithFormat:@"%@ %@",deviceNumber4.telAreaCodeLabel.text,deviceNumber4.telField.text]];
+        }
+    }
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-//    deviceService setSOSMobile:self.deviceLists sosMobiles:<#(NSArray *)#> reply:<#^(id response)reply#>
+    [deviceService setSOSMobile:self.device sosMobiles:self.inputTelArray reply:^(CAPHttpResponse *response) {
+        [gApp hideHUD];
+        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+        }else{
+            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+        }
+    }];
 }
 
 

@@ -86,6 +86,7 @@
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate  = self;
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [_locationManager requestWhenInUseAuthorization];
     
     [self fetchDevice];
@@ -192,9 +193,8 @@
     [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@",response);
         GMSAddress *placemark = response.firstResult;
-        self.address = [NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare];
-        self.currentDevice.address = self.address;
-        [self.trackerView refreshDeviceLocation:self.currentDevice location:self.address];
+        self.currentDevice.address = placemark.lines.firstObject;
+        [self.trackerView refreshDeviceLocation:self.currentDevice location:placemark.lines.firstObject];
     }];
 
 }

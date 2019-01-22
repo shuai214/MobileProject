@@ -93,13 +93,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPSOSMobileViewController.m"
-            timestampString = "569844322.056046"
+            filePath = "GPSTracker/MQTT/MQTTCenter.m"
+            timestampString = "569863537.199634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-setNumberView:isEdit:index:"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "-handleInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -109,14 +109,62 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPSOSMobileViewController.m"
-            timestampString = "569844322.056415"
+            filePath = "GPSTracker/MQTT/MQTTCenter.m"
+            timestampString = "569863553.215759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-fetchDevice"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "-navThirdMapWithLocation:andTitle:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GPSTracker/MQTT/MQTTCenter.m"
+            timestampString = "569863603.809276"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
+            landmarkName = "-navThirdMapWithLocation:andTitle:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MQTTCenter navThirdMapWithLocation:andTitle:]"
+                  moduleName = "GPSTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/MQTT/MQTTCenter.m"
+                  timestampString = "569863603.817744"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "413"
+                  endingLineNumber = "413"
+                  offsetFromSymbolStart = "3012">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[MQTTCenter navThirdMapWithLocation:andTitle:]_block_invoke_2"
+                  moduleName = "GPSTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/MQTT/MQTTCenter.m"
+                  timestampString = "569863603.8207721"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "415"
+                  endingLineNumber = "415"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

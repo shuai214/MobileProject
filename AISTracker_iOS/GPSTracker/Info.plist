@@ -71,6 +71,10 @@
 		<string>true-int.fnbltest.com/ui/app/</string>
 		<string>weixin</string>
 		<string>wechat</string>
+		<string>baidumap</string>
+		<string>iosamap</string>
+		<string>comgooglemaps</string>
+		<string>qqmap</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

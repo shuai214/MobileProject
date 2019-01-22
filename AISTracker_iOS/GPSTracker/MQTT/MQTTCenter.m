@@ -11,6 +11,8 @@
 #import "MQTTResult.h"
 #import "CAPDeviceService.h"
 #import "CAPCoreData.h"
+#import <CoreLocation/CoreLocation.h>
+#import "CAPGetCurrentViewController.h"
 @implementation MQTTConfig
 @end
 
@@ -284,7 +286,8 @@
             [CAPAlertView initSOSAlertViewWithContent:info ocloseBlock:^{
                 
             } okBlock:^(MQTTInfo * _Nonnull info) {
-                
+                NSLog(@"%@",info);
+                [self navThirdMapWithLocation:CLLocationCoordinate2DMake(info.latitude, info.longitude) andTitle:@"SOS address"];
             }];
         }
     }
@@ -341,5 +344,88 @@
 //        +++++++newMessageArrived: SUB/TRUEIOT/THA/APP/52/ResultInfo
 //        message data = {"cmd":"STATUS","deviceID":"356199060459401","status":200,"result":{"online":1}}
     [self handleMessage:topic data:data];
+}
+
+-(void)navThirdMapWithLocation:(CLLocationCoordinate2D)endLocation andTitle:(NSString *)titleStr{
+    CAPGetCurrentViewController *currentVC = [[CAPGetCurrentViewController alloc] init];
+
+    NSMutableArray *mapsA = [NSMutableArray array];
+    //苹果原生地图方法和其他不一样
+    NSMutableDictionary *iosMapDic = [NSMutableDictionary dictionary];
+    iosMapDic[@"title"] = @"苹果地图";
+    [mapsA addObject:iosMapDic];
+    //高德地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        NSMutableDictionary *gaodeMapDic = [NSMutableDictionary dictionary];
+        gaodeMapDic[@"title"] = @"高德地图";
+        NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=ios.blackfish.XHY&dlat=%f&dlon=%f&dname=%@&style=2",endLocation.latitude,endLocation.longitude,titleStr] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        gaodeMapDic[@"url"] = urlString;
+        [mapsA addObject:gaodeMapDic];
+    }
+    //百度地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        NSMutableDictionary *baiduMapDic = [NSMutableDictionary dictionary];
+        baiduMapDic[@"title"] = @"百度地图";
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name:%@&coord_type=gcj02&mode=driving&src=ios.blackfish.XHY",endLocation.latitude,endLocation.longitude,titleStr] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        baiduMapDic[@"url"] = urlString;
+        [mapsA addObject:baiduMapDic];
+        
+        //腾讯地图
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
+            NSMutableDictionary *qqMapDic = [NSMutableDictionary dictionary];
+            qqMapDic[@"title"] = @"腾讯地图";
+            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?from=我的位置&type=drive&to=%@&tocoord=%f,%f&coord_type=1&referer={ios.blackfish.XHY}",titleStr,endLocation.latitude,endLocation.longitude] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            qqMapDic[@"url"] = urlString;
+            [mapsA addObject:qqMapDic];
+        }
+        
+    }
+    
+    //手机地图个数判断
+    if (mapsA.count > 0) {
+        //选择
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"使用导航" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        NSInteger index = mapsA.count;
+        
+        for (int i = 0; i < index; i++) {
+            
+            NSString *title = mapsA[i][@"title"];
+            NSString *urlString = mapsA[i][@"url"];
+            if (i == 0) {
+                
+                UIAlertAction *iosAntion = [UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                    [self appleNaiWithCoordinate:endLocation andWithMapTitle:titleStr];
+                }];
+                [alertVC addAction:iosAntion];
+                continue;
+            }
+            
+            UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            }];
+            
+            [alertVC addAction:action];
+        }
+        
+        UIAlertAction *cancleAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alertVC addAction:cancleAct];
+        [currentVC.getCurrentViewController presentViewController:alertVC animated:YES completion:^{
+            
+        }];
+    }else{
+        NSLog(@"未检测到地图应用");
+    }
+}
+
+
+////唤醒苹果自带导航
+- (void)appleNaiWithCoordinate:(CLLocationCoordinate2D)coordinate andWithMapTitle:(NSString *)map_title{
+//
+//    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+//    MKMapItem *tolocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil]];
+//    tolocation.name = map_title;
+//    [MKMapItem openMapsWithItems:@[currentLocation,tolocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+//                                                                               MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
 }
 @end
