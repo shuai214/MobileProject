@@ -106,6 +106,14 @@
 //            [self performSegueWithIdentifier:@"edit.name.segue" sender:nil];
         {UIStoryboard *story = [UIStoryboard storyboardWithName:@"EditName" bundle:nil];
             CAPEditNameViewController *EditNameVC = [story instantiateViewControllerWithIdentifier:@"EditNameViewController"];
+            EditNameVC.isUser = NO;
+            EditNameVC.capDevice = self.device;
+            CAPWeakSelf(self);
+            [EditNameVC setUpdateSuccessBlock:^(id cap) {
+                CAPDevice *device = (CAPDevice*)cap;
+                weakself.details = @[device? device:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
+                [weakself.tableView reloadData];
+            }];
         [self.navigationController pushViewController:EditNameVC animated:YES];
         }
             break;
@@ -129,7 +137,7 @@
             break;
         case 5:
         {
-            CAPSOSMobileViewController *sosVC = [[CAPSOSMobileViewController alloc] init];
+            CAPSOSMobileViewController *sosVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"SOSMobileViewController"];
             sosVC.device = self.device;
             [self.navigationController pushViewController:sosVC animated:YES];
         }

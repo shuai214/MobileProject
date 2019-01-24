@@ -54,13 +54,13 @@
         }
         [self.batteryImageView setImage:[UIImage imageNamed:imageName]];
         self.batteryLabel.textColor = textColor;
-        self.batteryLabel.text = [NSString stringWithFormat:@"%.1f%%", self.battery];
+        self.batteryLabel.text = [NSString stringWithFormat:@"%ld%%", (long)self.battery];
         [self addSubview:self.batteryImageView];
         [self addSubview:self.batteryLabel];
         
     }
 }
-- (void)reloadBattery:(CGFloat)battery{
+- (void)reloadBattery:(NSInteger)battery{
     if(battery <= 0.0) {
         imageName = @"battery_gray";
         textColor = [UIColor grayColor];
@@ -73,9 +73,9 @@
     }
     [self.batteryImageView setImage:[UIImage imageNamed:imageName]];
     self.batteryLabel.textColor = textColor;
-    self.batteryLabel.text = [NSString stringWithFormat:@"%.1f%%", battery];
+    self.batteryLabel.text = [NSString stringWithFormat:@"%ld%%", (long)battery];
 }
-- (void)setBattery:(CGFloat)battery{
+- (void)setBattery:(NSInteger)battery{
     
 }
 @end

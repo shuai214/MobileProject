@@ -10,9 +10,10 @@
 #import "CAPGuardianTableViewCell.h"
 #import "CAPDeviceService.h"
 #import "CAPGuardianInvitationViewController.h"
+#import "CAPDeviceBindList.h"
 @interface CAPGuardianListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong , nonatomic)NSMutableArray *dataArray;
+@property (strong , nonatomic)NSMutableArray<USERS *> *dataArray;
 @end
 
 @implementation CAPGuardianListViewController
@@ -43,19 +44,18 @@
 - (void)loadDeviceBindUserInfo{
     [gApp showHUD:@"正在加载，请稍后..."];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
-    [deviceServer getDevice:self.device reply:^(CAPHttpResponse *response) {
-        [gApp hideHUD];
-        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-           NSArray *array = [response.data objectForKey:@"result"];
-            for (NSInteger i = 0 ;i < array.count ;i++) {
-                NSDictionary *dic = array[i];
-                self.device = [CAPDevice mj_objectWithKeyValues:dic];
-                [self.dataArray addObject:self.device];
+    [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
+        NSLog(@"%@",response.data);
+        NSDictionary *dic =(NSDictionary *)response.data;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            CAPDeviceBindList *bindList = [CAPDeviceBindList mj_objectWithKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"%ld",bindList.users.count);
+            for (USERS *user in bindList.users) {
+                [self.dataArray addObject:user];
             }
-        }else{
-            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
+        [gApp hideHUD];
     }];
 }
 
@@ -80,7 +80,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CAPGuardianTableViewCell" owner:self options:nil] lastObject];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    CAPDevice *device = self.dataArray[indexPath.row];
+    USERS *device = self.dataArray[indexPath.row];
     [cell setDeviceInfo:device];
     return cell;
 }

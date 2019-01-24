@@ -46,7 +46,7 @@
 @property (assign,nonatomic)CGRect rectDeviceListView;
 @property (strong,nonatomic)CAPDevice *currentDevice;
 @property (strong,nonatomic)NSString *address;
-
+@property (nonatomic ,strong)dispatch_source_t timer;//  注意:此处应该使用强引用 strong
 @end
 
 @implementation CAPTrackerViewController
@@ -82,7 +82,6 @@
     self.mapView.indoorEnabled = NO;
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
-//    self.mapView.myLocationEnabled = YES;
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate  = self;
@@ -94,6 +93,17 @@
     
     [CAPNotifications addObserver:self selector:@selector(fetchDevice) name:kNotificationDeviceCountChange object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceRefreshLocation:) name:kNotificationGPSCountChange object:nil];
+    
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 30.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        if (self.currentDevice) {
+            [self getDeviceLocation:self.currentDevice];
+        }
+    });
+    dispatch_resume(timer);
+    self.timer = timer;
 }
 - (void)mqttConnect{
     MQTTCenter *mqttCenter = [MQTTCenter center];
@@ -113,27 +123,31 @@
 - (void)fetchDevice{
     
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    CAPWeakSelf(self);
     [deviceService fetchDevice:^(id response) {
         CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
         NSLog(@"%@",deviceLists);
-        self.deviceListView.devices = deviceLists.result.list;
-        self.currentDevice = self.deviceListView.devices.firstObject;
+        weakself.deviceListView.devices = deviceLists.result.list;
         if (deviceLists.result.list.count == 0) {
             [UIView animateWithDuration:0.37 animations:^{
-                [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
-                [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+                [weakself.trackerView setY:weakself.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+                [weakself.deviceListView setY:Main_Screen_Height - TabBarHeight - weakself.rectDeviceListView.size.height - 10];
             }];
             [CAPUserDefaults setObject:@"add user info" forKey:@"userInfo"];
-            [self performSegueWithIdentifier:@"pair.segue" sender:nil];
-        }
-        if ([self.currentDevice.role isEqualToString:@"user"]) {
-            [self.trackerView userOrowner:YES];
+            [weakself performSegueWithIdentifier:@"pair.segue" sender:nil];
         }else{
-            [self.trackerView userOrowner:NO];
+            weakself.currentDevice = weakself.deviceListView.devices.firstObject;
+            [weakself getDeviceLocation:weakself.currentDevice];
+
         }
-        [self.marker.map clear];
-        self.marker.map = nil;
+        if ([weakself.currentDevice.role isEqualToString:@"user"]) {
+            [weakself.trackerView userOrowner:YES];
+        }else{
+            [weakself.trackerView userOrowner:NO];
+        }
+        [weakself.marker.map clear];
+        weakself.marker.map = nil;
     }];
 }
 //向设备发送GPS信号。
@@ -150,7 +164,7 @@
     self.mqttInfo = info;
     if ([info.command isEqualToString:@"GPS"]) {
         CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
-        [self refreshDeviceLocalized:coords];
+        [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000]];
         CAPDeviceLocal *local = [CAPDeviceLocal local];
         [local setLocal:coords];
         [self.trackerView.batteryView reloadBattery:info.batlevel];
@@ -178,7 +192,7 @@
     [self.locationManager stopUpdatingLocation];//定位成功后停止定位
 }
 //重新定位
-- (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate{
+- (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate time:(NSString *)time{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
     CLLocationCoordinate2D position2D = coordinate;
     self.mapView.camera = camera;
@@ -194,7 +208,7 @@
         NSLog(@"%@",response);
         GMSAddress *placemark = response.firstResult;
         self.currentDevice.address = placemark.lines.firstObject;
-        [self.trackerView refreshDeviceLocation:self.currentDevice location:placemark.lines.firstObject];
+        [self.trackerView refreshDeviceLocation:self.currentDevice location:placemark.lines.firstObject time:time];
     }];
 
 }
@@ -215,7 +229,7 @@
         self.deviceListView.frame = self.rectDeviceListView;
     }];
     self.currentDevice = device;
-    [self.trackerView refreshDeviceLocation:device location:self.currentDevice.address];
+    [self.trackerView refreshDeviceLocation:device location:self.currentDevice.address time:[NSString dateFormateWithTimeInterval:device.createdDate/1000]];
 
     if ([device.role isEqualToString:@"user"]) {
         [self.trackerView userOrowner:YES];
@@ -260,10 +274,33 @@
             NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",array.lastObject];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
+        case CAPTrackerViewActionUnbinding:
+        {
+            [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{
+                
+            } okBlock:^{
+                [gApp showHUD:@"正在处理，请稍后..."];
+                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                [deviceService deleteDevice:self.currentDevice reply:^(CAPHttpResponse *response) {
+                    NSDictionary *data = response.data;
+                    if ([[data objectForKey:@"code"] integerValue] == 200) {
+                        [gApp hideHUD];
+                        [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+                    }else{
+                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                            
+                        }];
+                    }
+                }];
+            } alertType:AlertTypeCustom];
+        }
             break;
         default:
             break;
     }
+}
+- (IBAction)getCurrentDeviceLocal:(id)sender {
+    [self getDeviceLocation:self.currentDevice];
 }
 
 @end

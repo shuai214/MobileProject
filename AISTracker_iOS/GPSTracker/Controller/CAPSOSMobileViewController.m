@@ -64,9 +64,7 @@
     CGFloat numViewHeight = 80;
     NSInteger j = 1;
     NSInteger count = 3;
-//    if (self.deviceLists.result.list.count >= 3) {
-//        count = 3;
-//    }
+
     for (NSInteger i = 0; i<count; i++) {
         CGRect frame = CGRectMake(0, mustBeThreeNumber.bottom + (numViewHeight + 10 )* i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:NO index:j];

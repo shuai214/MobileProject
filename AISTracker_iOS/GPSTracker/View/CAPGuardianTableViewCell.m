@@ -34,12 +34,14 @@
     frame.size.height -= margin;
     
     [super setFrame:frame];
+    self.imgView.layer.cornerRadius =  self.imgView.width/2.0;
+    self.imgView.layer.masksToBounds = YES;
 }
 
-- (void)setDeviceInfo:(CAPDevice *)device{
-    [self.imgView setImage:GetImage(@"user_default_avatar")];
-    self.nameLabel.text = device.setting.name;
-    self.telLabel.text = device.setting.mobile ? device.setting.mobile : @"";
+- (void)setDeviceInfo:(USERS *)user{
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",user.profile.avatarBaseUrl,user.profile.avatarPath]] placeholderImage:GetImage(@"user_default_avatar")];
+    self.nameLabel.text = user.profile.firstName;
+    self.telLabel.text = user.device.sos ? user.device.sos : @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

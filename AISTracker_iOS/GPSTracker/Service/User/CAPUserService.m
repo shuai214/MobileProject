@@ -67,7 +67,24 @@
         reply([CAPFetchUserProfileResponse responseWithHttpResponse:response]);
     }];
 }
-
+- (void)putProfile:(CAPUser *)user reply:(CAPServiceReply)reply{
+    if (user) {
+        NSDictionary *params = @{
+                                 @"firstName": (user.profile.firstName ? user.profile.firstName:@""),
+                                 @"mobile": (user.info.mobile ? user.info.mobile:@""),
+                                 @"avatarPath": (user.profile.avatarPath ? user.profile.avatarPath:@""),
+                                 @"avatarBaseUrl": (user.profile.avatarBaseUrl ? user.profile.avatarBaseUrl:@""),
+                                 @"locale":(user.profile.locale ? user.profile.locale : @"")
+                                 };
+        CAPHttpRequest *request = [self buildRequest:@"Account/Profile" method:@"PUT" parameters:params];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply([CAPFetchUserProfileResponse responseWithHttpResponse:response]);
+        }];
+    }else{
+        [gApp hideHUD];
+    }
+    
+}
 - (void)checkRemoteSetting:(CAPServiceReply)reply {
     CAPHttpRequest *request = [self buildRequest:@"Account/RemoteSetting"];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {

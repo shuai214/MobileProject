@@ -37,7 +37,8 @@
     self.deviceNumber.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.deviceNumber.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+    [ self.deviceNumber.buttonSend addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
     
 }
 -(void)back{
@@ -150,9 +151,11 @@
     }
 }
 
--(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+-(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     [self get];
 }
-
+- (void)buttonAction:(UIButton *)button{
+    [self get];
+}
 
 @end

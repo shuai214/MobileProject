@@ -31,13 +31,14 @@
 }
 @end
 
-@interface MQTTCenter () <MQTTSessionDelegate,YWAlertViewDelegate>
+@interface MQTTCenter () <MQTTSessionDelegate,UIActionSheetDelegate>
 @property (nonatomic, strong) MQTTConfig *config;
 @property (nonatomic, strong) MQTTInfo *bindInfo;
 
 @property (nonatomic, strong) MQTTSession *session;
 @property (nonatomic, strong) NSMutableDictionary *infoDictionary;
 @property (nonatomic, copy) NSString *operatorCode;
+@property (nonatomic, strong) NSArray *maps;
 
 @end
 
@@ -220,6 +221,9 @@
     NSLog(@"[%@ handleInfo: %@]", [self class], [ self infoTypeDescription:info.infoType]);
     CAPCoreData *coreData = [CAPCoreData coreData];
     [coreData creatResource:@"GPSTracker"];
+    if (![info.command isEqualToString:@"STATUS"]){
+        info.online = 1;
+    }
     if ([info.command isEqualToString:@"STATUS"]) {
         NSString *status = nil;
         UIColor *color = nil;
@@ -247,14 +251,19 @@
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
-        [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@",CAPLocalizedString(@"message_type_master_quit")] title:info.deviceID closeBlock:^{
-            
-        } alertType:AlertTypeButton];
+        if ([info.userRole isEqualToString:@"user"]) {
+            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@%@%@%@",info.userProfile.firstName,CAPLocalizedString(@"message_type_guest_quit1"),info.deviceID,CAPLocalizedString(@"message_type_guest_quit2")] title:info.deviceID closeBlock:^{
+            } alertType:AlertTypeButton];
+        }else{
+            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@",CAPLocalizedString(@"message_type_master_quit")] title:info.deviceID closeBlock:^{
+                
+            } alertType:AlertTypeButton];
+        }
     }else if ([info.command isEqualToString:@"REMOVED"]){
         [CAPNotifications notify:kNotificationREMOVEDCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
-        [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] title:@"" closeBlock:^{
+        [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] ocloseBlock:^{
             [gApp showHUD:@"正在处理，请稍后..."];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"0" reply:^(CAPHttpResponse *response) {
@@ -264,7 +273,7 @@
                 }
             }];
         } okBlock:^{
-            [gApp showHUD:@"正在处理，请稍后..."];
+            [gApp showHUD:CAPLocalizedString(@"loading")];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
                 NSLog(@"%@",response);
@@ -274,7 +283,7 @@
                     } alertType:AlertTypeNoClose];
                 }
             }];
-        } alertType:AlertTypeCustom];
+        }];
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"BINDREP"]){
         self.bindInfo = info;
@@ -282,15 +291,36 @@
         [coreData insertData:info];
         [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if (!info.command){
-        if ([info.status isEqualToString:@"00010000"]) {
+        if ([self getDecimalByBinary:info.status] == 16) {
             [CAPAlertView initSOSAlertViewWithContent:info ocloseBlock:^{
                 
             } okBlock:^(MQTTInfo * _Nonnull info) {
                 NSLog(@"%@",info);
-                [self navThirdMapWithLocation:CLLocationCoordinate2DMake(info.latitude, info.longitude) andTitle:@"SOS address"];
+                self.maps = [NSArray array];
+                self.maps = [self getInstalledMapAppWithEndLocation:CLLocationCoordinate2DMake(info.latitude, info.longitude)];
+                [self showMaps];
             }];
+        }else if ([self getDecimalByBinary:info.status] == 0) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 1) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 2) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 3) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 17) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 18) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 19) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 20) {
+            
+        }else if ([self getDecimalByBinary:info.status] == 21) {
+            
         }
     }
+    [CAPNotifications notify:kNotificationDeviceOnlineChange object:info];
     [self.infoDictionary setObject:info forKey:info.deviceID];
 }
 
@@ -346,86 +376,96 @@
     [self handleMessage:topic data:data];
 }
 
--(void)navThirdMapWithLocation:(CLLocationCoordinate2D)endLocation andTitle:(NSString *)titleStr{
-    CAPGetCurrentViewController *currentVC = [[CAPGetCurrentViewController alloc] init];
-
-    NSMutableArray *mapsA = [NSMutableArray array];
-    //苹果原生地图方法和其他不一样
-    NSMutableDictionary *iosMapDic = [NSMutableDictionary dictionary];
-    iosMapDic[@"title"] = @"苹果地图";
-    [mapsA addObject:iosMapDic];
-    //高德地图
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
-        NSMutableDictionary *gaodeMapDic = [NSMutableDictionary dictionary];
-        gaodeMapDic[@"title"] = @"高德地图";
-        NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=ios.blackfish.XHY&dlat=%f&dlon=%f&dname=%@&style=2",endLocation.latitude,endLocation.longitude,titleStr] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        gaodeMapDic[@"url"] = urlString;
-        [mapsA addObject:gaodeMapDic];
-    }
+- (NSArray*)getInstalledMapAppWithEndLocation:(CLLocationCoordinate2D)endLocation{
+    NSMutableArray*maps = [NSMutableArray array];
+//    //苹果地图
+//    NSMutableDictionary*iosMapDic = [NSMutableDictionary dictionary];
+//    iosMapDic[@"title"] =@"苹果地图";
+//    [maps addObject:iosMapDic];
     //百度地图
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
-        NSMutableDictionary *baiduMapDic = [NSMutableDictionary dictionary];
-        baiduMapDic[@"title"] = @"百度地图";
-        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name:%@&coord_type=gcj02&mode=driving&src=ios.blackfish.XHY",endLocation.latitude,endLocation.longitude,titleStr] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        NSMutableDictionary*baiduMapDic = [NSMutableDictionary dictionary];
+        baiduMapDic[@"title"] =@"百度地图";
+        NSString*urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=北京&mode=driving&coord_type=gcj02",endLocation.latitude,endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         baiduMapDic[@"url"] = urlString;
-        [mapsA addObject:baiduMapDic];
-        
-        //腾讯地图
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
-            NSMutableDictionary *qqMapDic = [NSMutableDictionary dictionary];
-            qqMapDic[@"title"] = @"腾讯地图";
-            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?from=我的位置&type=drive&to=%@&tocoord=%f,%f&coord_type=1&referer={ios.blackfish.XHY}",titleStr,endLocation.latitude,endLocation.longitude] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-            qqMapDic[@"url"] = urlString;
-            [mapsA addObject:qqMapDic];
-        }
-        
+        [maps addObject:baiduMapDic];
     }
+    //高德地图
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        NSMutableDictionary*gaodeMapDic = [NSMutableDictionary dictionary];
+        gaodeMapDic[@"title"] =@"高德地图";
+        NSString*urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",@"导航功能",@"nav123456",endLocation.latitude,endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        gaodeMapDic[@"url"] = urlString;
+        [maps addObject:gaodeMapDic];
+    }
+    //谷歌地图
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+        NSMutableDictionary*googleMapDic = [NSMutableDictionary dictionary];
+        googleMapDic[@"title"] =@"谷歌地图";
+        NSString*urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",@"导航测试",@"nav123456",endLocation.latitude, endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        googleMapDic[@"url"] = urlString;
+        [maps addObject:googleMapDic];
+    }
+    //腾讯地图
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
+        NSMutableDictionary*qqMapDic = [NSMutableDictionary dictionary];
+        qqMapDic[@"title"] =@"腾讯地图";
+        NSString*urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?from=我的位置&type=drive&tocoord=%f,%f&to=终点&coord_type=1&policy=0",endLocation.latitude, endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        qqMapDic[@"url"] = urlString;
+        [maps addObject:qqMapDic];
+    }
+    return maps;
+}
+
+- (void)showMaps{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSDictionary *dic in self.maps) {
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:dic[@"title"] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSString *urlString = dic[@"url"];
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString:urlString]];
+        }];
+        [alertController addAction:otherAction];
+    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:CAPLocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    [alertController addAction:cancelAction];
     
-    //手机地图个数判断
-    if (mapsA.count > 0) {
-        //选择
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"使用导航" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        NSInteger index = mapsA.count;
-        
-        for (int i = 0; i < index; i++) {
-            
-            NSString *title = mapsA[i][@"title"];
-            NSString *urlString = mapsA[i][@"url"];
-            if (i == 0) {
-                
-                UIAlertAction *iosAntion = [UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                    [self appleNaiWithCoordinate:endLocation andWithMapTitle:titleStr];
-                }];
-                [alertVC addAction:iosAntion];
-                continue;
-            }
-            
-            UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-            }];
-            
-            [alertVC addAction:action];
-        }
-        
-        UIAlertAction *cancleAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        }];
-        [alertVC addAction:cancleAct];
-        [currentVC.getCurrentViewController presentViewController:alertVC animated:YES completion:^{
-            
-        }];
-    }else{
-        NSLog(@"未检测到地图应用");
-    }
+    [[CAPGetCurrentViewController findCurrentViewController] presentViewController:alertController animated:YES completion:nil];
 }
-
-
-////唤醒苹果自带导航
-- (void)appleNaiWithCoordinate:(CLLocationCoordinate2D)coordinate andWithMapTitle:(NSString *)map_title{
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+        if(buttonIndex != -1) {
+            
+//            if(buttonIndex ==0) {
 //
-//    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-//    MKMapItem *tolocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil]];
-//    tolocation.name = map_title;
-//    [MKMapItem openMapsWithItems:@[currentLocation,tolocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-//                                                                               MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+//                [self navAppleMap];
+//
+//                return;
+//
+//            }
+            NSDictionary*dic =self.maps[buttonIndex];
+            NSString *urlString = dic[@"url"];
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString:urlString]];
+        }
 }
+/**
+ 二进制转换为十进制
+ 
+ @param binary 二进制数
+ @return 十进制数
+ */
+- (NSInteger)getDecimalByBinary:(NSString *)binary {
+    
+    NSInteger decimal = 0;
+    for (int i=0; i<binary.length; i++) {
+        
+        NSString *number = [binary substringWithRange:NSMakeRange(binary.length - i - 1, 1)];
+        if ([number isEqualToString:@"1"]) {
+            
+            decimal += pow(2, i);
+        }
+    }
+    return decimal;
+}
+
 @end

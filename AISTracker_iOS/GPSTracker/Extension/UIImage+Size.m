@@ -13,4 +13,5 @@
 - (UIImage *)resizeImage {
     return [self resizableImageWithCapInsets:UIEdgeInsetsMake(self.size.height / 2 , self.size.width / 2, self.size.height / 2, self.size.width / 2)];
 }
+
 @end

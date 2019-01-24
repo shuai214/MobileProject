@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 @property (nonatomic, assign) CGFloat direction;
 @property (nonatomic, assign) CGFloat gpsnum;
 @property (nonatomic, assign) CGFloat gpsmss;
-@property (nonatomic, assign) CGFloat batlevel;
+@property (nonatomic, assign) NSInteger batlevel;
 @property (nonatomic, assign) NSInteger steps;
 @property (nonatomic, assign) NSInteger rolls;
 @property (nonatomic, copy) NSString *status;

@@ -224,6 +224,15 @@
         }];
     }
 }
+- (void)getDeviceBindList:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/BoundList/" stringByAppendingString:device.deviceID] method:@"GET"];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
 //+ (instancetype)defaultService {
 //    static id instance = NULL;
 //    static dispatch_once_t onceToken;

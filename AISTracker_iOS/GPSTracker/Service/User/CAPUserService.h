@@ -15,6 +15,7 @@
 //- (void)socialLogin:(CAPSocialUser *)user reply:(CAPServiceReply)reply;
 - (void)socialLogin:(NSDictionary *)user reply:(CAPServiceReply)reply;
 - (void)fetchProfile:(CAPServiceReply)reply;
+- (void)putProfile:(CAPUser *)user reply:(CAPServiceReply)reply;
 - (void)signOut:(CAPServiceResponse)reply;
 
 - (void)checkRemoteSetting:(CAPServiceReply)reply;

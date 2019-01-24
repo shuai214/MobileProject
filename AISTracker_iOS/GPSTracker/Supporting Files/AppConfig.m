@@ -60,6 +60,7 @@ AppConfig* gCfg = nil;
 //    _rootURLString = (_isBuild ? @"https://GPSTracker.capelabs.net/GPSTracker/v1/" : @"https://GPSTracker.capelabs.cn/GPSTracker/v1/");
     _rootURLString = @"https://api.kvtel.com/smartiot/v1/";
 //    _rootURLString = @"https://iot.capelabs.net/trueiot/v1/";
+    _avatarBaseUrl = @"https://cloud.kvtel.com/source";
 }
 
 - (void)setBurnAfterBackup:(BOOL)isBurn {

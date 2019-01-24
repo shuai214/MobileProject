@@ -44,5 +44,5 @@
 - (void)setDeviceParameter:(CAPDevice *)device reply:(CAPServiceReply)reply;
 
 - (void)setSOSMobile:(CAPDevice *)device sosMobiles:(NSArray *)array reply:(CAPServiceReply)reply;
-
+- (void)getDeviceBindList:(CAPDevice *)device reply:(CAPServiceReply)reply;
 @end

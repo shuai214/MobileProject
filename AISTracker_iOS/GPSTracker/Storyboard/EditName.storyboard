@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qUe-Nb-YFH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qUe-Nb-YFH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,18 +30,9 @@
                                     <constraint firstItem="IC6-16-fRN" firstAttribute="centerX" secondItem="fCU-0I-7sg" secondAttribute="centerX" id="TzB-M4-vS5"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="azf-7R-vQK" userLabel="Name Text Field">
-                                <rect key="frame" x="30" y="311" width="315" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Wes-Lp-OLp"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biN-4T-X1P" userLabel="Ok Button">
                                 <rect key="frame" x="30" y="597" width="315" height="50"/>
-                                <color key="backgroundColor" red="0.31372549020000001" green="0.83921568629999999" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3KZ-y1-bas"/>
                                 </constraints>
@@ -52,6 +43,15 @@
                                     <action selector="onOkButtonClicked:" destination="qUe-Nb-YFH" eventType="touchUpInside" id="mdK-OP-HPP"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="azf-7R-vQK" userLabel="Name Text Field">
+                                <rect key="frame" x="30" y="360" width="315" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Wes-Lp-OLp"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -59,9 +59,9 @@
                             <constraint firstAttribute="trailing" secondItem="fCU-0I-7sg" secondAttribute="trailing" id="I9I-lu-Int"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="trailing" secondItem="azf-7R-vQK" secondAttribute="trailing" id="IjH-cQ-WSn"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="leading" secondItem="azf-7R-vQK" secondAttribute="leading" id="Irr-EP-wdQ"/>
-                            <constraint firstItem="azf-7R-vQK" firstAttribute="centerY" secondItem="kSu-vM-zFW" secondAttribute="centerY" id="RvH-FV-JXp"/>
+                            <constraint firstItem="azf-7R-vQK" firstAttribute="centerY" secondItem="kSu-vM-zFW" secondAttribute="centerY" constant="49" id="RvH-FV-JXp"/>
                             <constraint firstItem="fCU-0I-7sg" firstAttribute="leading" secondItem="kSu-vM-zFW" secondAttribute="leading" id="XYE-h4-a3g"/>
-                            <constraint firstItem="azf-7R-vQK" firstAttribute="top" secondItem="fCU-0I-7sg" secondAttribute="bottom" id="f8f-ki-o0z"/>
+                            <constraint firstItem="azf-7R-vQK" firstAttribute="top" secondItem="fCU-0I-7sg" secondAttribute="bottom" constant="49" id="f8f-ki-o0z"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="centerX" secondItem="kSu-vM-zFW" secondAttribute="centerX" id="fuk-UZ-n9d"/>
                             <constraint firstItem="fCU-0I-7sg" firstAttribute="top" secondItem="d8y-th-RVE" secondAttribute="top" id="iE8-bH-dfm"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="width" secondItem="kSu-vM-zFW" secondAttribute="width" multiplier="0.84" id="szX-fl-YA1"/>

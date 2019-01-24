@@ -144,8 +144,10 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     self.curLocation = place.coordinate;
     
     if (place.formattedAddress == nil) {
-        [_placesClient lookUpPlaceID:place.placeID callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
-            NSLog(@"%@",result);
+        GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+        [geoCoder reverseGeocodeCoordinate:place.coordinate completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@",response);
+            self.gmsAddress = response.firstResult;
         }];
     }else{
         self.choosePlace = place;
@@ -153,18 +155,18 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self drawCenter:1000];
     CAPWeakSelf(self);
-    [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500",@"1000",@"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
         [weakself drawCenter:[selectValue integerValue]];
-        [CAPAlertView initAddressAlertWithContent:[NSString stringWithFormat:@"%@\n%@",weakself.choosePlace.name,weakself.choosePlace.formattedAddress] ocloseBlock:^{
+        [CAPAlertView initAddressAlertWithContent:place.formattedAddress ? [NSString stringWithFormat:@"%@\n%@",weakself.choosePlace.name,weakself.choosePlace.formattedAddress] : weakself.gmsAddress.lines.firstObject ocloseBlock:^{
             [weakself.navigationController popViewControllerAnimated:YES];
         } okBlock:^(NSString * _Nonnull name) {
             CAPFence *fence = [[CAPFence alloc] init];
-            fence.address = weakself.choosePlace.formattedAddress;
+            fence.address = weakself.choosePlace.formattedAddress ? weakself.choosePlace.formattedAddress : weakself.gmsAddress.lines.firstObject;
             fence.longitude = weakself.curLocation.longitude;
             fence.latitude = weakself.curLocation.latitude;
             fence.range = [selectValue integerValue];
             fence.deviceID = weakself.device.deviceID;
-            fence.content = weakself.choosePlace.name;
+            fence.content = weakself.choosePlace.name ? weakself.choosePlace.name : weakself.gmsAddress.thoroughfare;
             if (name.length != 0) {
                 fence.name = name;
             }else{

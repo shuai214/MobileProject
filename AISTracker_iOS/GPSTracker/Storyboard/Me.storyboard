@@ -23,33 +23,37 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="AtO-9E-4fo" userLabel="Avatar Image View">
                                         <rect key="frame" x="131.5" y="19" width="112" height="112"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="112" id="498-p4-lSg"/>
+                                            <constraint firstAttribute="height" constant="112" id="4qM-TW-AwL"/>
+                                            <constraint firstAttribute="width" secondItem="AtO-9E-4fo" secondAttribute="height" multiplier="1:1" id="pLM-3N-Prw"/>
+                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_gray" translatesAutoresizingMaskIntoConstraints="NO" id="bra-F8-oxM">
-                                        <rect key="frame" x="328" y="57.5" width="35" height="35"/>
-                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aar-oz-ril">
+                                        <rect key="frame" x="321" y="57.5" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Aar-oz-ril" secondAttribute="height" multiplier="1:1" id="O9M-NC-kPq"/>
+                                            <constraint firstAttribute="height" constant="35" id="eDt-1w-alK"/>
+                                            <constraint firstAttribute="width" constant="35" id="kIs-dX-De5"/>
+                                        </constraints>
+                                        <state key="normal" image="next_gray"/>
+                                        <connections>
+                                            <action selector="takingPhoto:" destination="5ae-SS-GeB" eventType="touchUpInside" id="Z8c-Jm-ZXp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="AtO-9E-4fo" firstAttribute="centerX" secondItem="dhN-qm-QO4" secondAttribute="centerX" id="OuB-aL-qqB"/>
                                     <constraint firstAttribute="width" secondItem="dhN-qm-QO4" secondAttribute="height" multiplier="5:2" id="TqN-wc-y7H"/>
                                     <constraint firstItem="AtO-9E-4fo" firstAttribute="centerY" secondItem="dhN-qm-QO4" secondAttribute="centerY" id="ZVR-40-aqt"/>
-                                    <constraint firstItem="bra-F8-oxM" firstAttribute="centerY" secondItem="dhN-qm-QO4" secondAttribute="centerY" id="wcV-L8-qjA"/>
-                                    <constraint firstAttribute="trailing" secondItem="bra-F8-oxM" secondAttribute="trailing" constant="12" id="yLQ-ei-66d"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aar-oz-ril" secondAttribute="trailing" constant="19" id="egy-ze-KyC"/>
+                                    <constraint firstItem="Aar-oz-ril" firstAttribute="centerY" secondItem="dhN-qm-QO4" secondAttribute="centerY" id="vDR-Ez-ndt"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FFc-83-NrB">
                                 <rect key="frame" x="0.0" y="214" width="375" height="347"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detail_cell" id="stE-h0-Tf9">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stE-h0-Tf9" id="lQx-Xj-kYm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2E-J9-e8j" userLabel="Logout Button">
                                 <rect key="frame" x="30" y="597" width="315" height="50"/>
@@ -98,13 +102,14 @@
                     <connections>
                         <outlet property="logoutButton" destination="B2E-J9-e8j" id="1FK-vh-taO"/>
                         <outlet property="tableView" destination="FFc-83-NrB" id="iOP-bF-F6e"/>
+                        <outlet property="userImageView" destination="AtO-9E-4fo" id="kvi-zL-oeh"/>
                         <segue destination="acX-ev-emz" kind="show" identifier="feedback.segue" id="0Ps-GD-p2U"/>
                         <segue destination="IEo-KY-wzq" kind="show" identifier="language.segue" id="N10-0P-mP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDn-w4-ITH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-412" y="750"/>
+            <point key="canvasLocation" x="-412" y="749.7751124437782"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qwA-wz-4Je">
@@ -261,7 +266,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHD-rU-S79" userLabel="Save Button">
                                 <rect key="frame" x="30" y="597" width="315" height="50"/>
-                                <color key="backgroundColor" red="0.31372549020000001" green="0.83921568629999999" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KMF-zd-wRq"/>
                                 </constraints>
@@ -269,6 +274,12 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onLogoutButtonClicked:" destination="5ae-SS-GeB" eventType="touchUpInside" id="arq-hb-XEF"/>
                                     <action selector="onOkButtonClicked:" destination="IEo-KY-wzq" eventType="touchUpInside" id="rbU-lD-GsZ"/>
@@ -304,8 +315,8 @@
         <!--Main-->
         <scene sceneID="Rap-Rt-uyx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CoB-s4-QEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Main" id="Ien-Qk-TV4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CoB-s4-QEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1107" y="962"/>
         </scene>

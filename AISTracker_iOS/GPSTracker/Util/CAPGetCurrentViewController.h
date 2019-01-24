@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPGetCurrentViewController : NSObject
-- (UIViewController *)getCurrentViewController;
++ (UIViewController *)getCurrentViewController;
++ (UIViewController *)findCurrentViewController;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -45,6 +45,8 @@ typedef NS_ENUM(NSUInteger, CAPUserType) {
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *avatarPath;
 @property (nonatomic, copy) NSString *avatarBaseUrl;
+@property (nonatomic, copy) NSString *locale;
+
 @end
 
 @interface CAPUserSetting : CAPBaseJSON

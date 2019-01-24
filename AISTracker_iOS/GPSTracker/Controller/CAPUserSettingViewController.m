@@ -8,13 +8,16 @@
 
 #import "CAPUserSettingViewController.h"
 #import "CAPDeviceNumber.h"
-#import "CAPDeviceService.h"
+#import "CAPUserService.h"
 #import "CAPToast.h"
 #import "CAPMMCountry.h"
 #import "CAPValidators.h"
+#import "CAPUser.h"
+#import "CAPFetchUserProfileResponse.h"
 @interface CAPUserSettingViewController ()
 @property (weak, nonatomic) IBOutlet CAPDeviceNumber *number;
 @property (weak, nonatomic) IBOutlet UITextField *userField;
+@property (strong, nonatomic)  CAPUser *capUser;
 
 @end
 
@@ -25,16 +28,20 @@
     // Do any additional setup after loading the view.
     self.title = @"填写用户信息";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
     self.number.countryNameLabel.userInteractionEnabled = YES;
     self.number.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.number.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
+    [ self.number.buttonSend addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
--(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+-(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     [self get];
 }
--(void)get {
+- (void)buttonAction:(UIButton *)button{
+    [self get];
+}
+-(void)get{
     NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"diallingcode" ofType:@"json"]];
     NSError *error = nil;
     NSArray *arrayCode = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -85,16 +92,16 @@
     
 }
 - (IBAction)okAction:(UIButton *)sender {
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    self.capUser = (CAPUser *)[NSKeyedUnarchiver unarchiveObjectWithData:[CAPUserDefaults objectForKey:@"CAP_User"]];//setObject:data forKey:@"CAP_User"];
     if (self.userField.text.length != 0) {
-        self.device.name = self.userField.text;
+        self.capUser.profile.firstName = self.userField.text;
     }else{
         [CAPToast toastError:@"请输入设备名称"];
         return;
     }
     if (self.number.telField.text.length != 0) {
         if ([CAPValidators validPhoneNumber:self.number.telField.text]) {
-            self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.number.telAreaCodeLabel.text,self.number.telField.text];
+            self.capUser.info.mobile = [NSString stringWithFormat:@"%@ %@",self.number.telAreaCodeLabel.text,self.number.telField.text];
         }else{
             [CAPToast toastError:@"输入的号码不正确"];
             return;
@@ -108,13 +115,15 @@
         if (self.device.isOwner.length != 0) {
             
         }
-        [deviceService updateSetting:self.device reply:^(CAPHttpResponse *response) {
-            NSDictionary *data = response.data;
-            if ([[data objectForKey:@"code"] integerValue] == 200) {
+        CAPUserService *userService = [[CAPUserService alloc] init];
+        [gApp showHUD:CAPLocalizedString(@"loading")];
+        [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
+            if (response.code == 200) {
                 [CAPUserDefaults setObject:@"YES" forKey:@"userSetting"];
                 [gApp hideHUD];
                 [self performSegueWithIdentifier:@"Main" sender:nil];
             }
+            [gApp hideHUD];
         }];
     }
 }
