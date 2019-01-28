@@ -114,7 +114,7 @@
 
         if (profileDic != nil) {
             
-            NSString *appid = profileDic[@"sub"];
+            NSString *appid = userInfo[@"aud"];
             NSString *nickName = profileDic[@"display_name"];
             NSString *openId = profileDic[@"uid"];
             NSString *phone = profileDic[@"account_mobile"];

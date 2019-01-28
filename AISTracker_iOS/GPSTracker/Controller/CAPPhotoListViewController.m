@@ -36,7 +36,10 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     [self.view addSubview:self.editingView];
-    self.edit = NO;
+    
+   
+    
+//    self.edit = NO;
     self.seleceAll = NO;
 }
 - (void)rightBarItemClick:(UIBarButtonItem *)item{
@@ -50,7 +53,11 @@
     }else{
         item.title = @"编辑";
         [self showEitingView:NO];
+        UIButton *button = (UIButton *)[_editingView viewWithTag:10000];
+        [button setTitle:@"全选" forState:UIControlStateNormal];
         self.edit = NO;
+        self.seleceAll = NO;
+        [self.collectionView reloadData];
     }
 }
 - (void)showEitingView:(BOOL)isShow
@@ -78,6 +85,7 @@
         [button setTitle:@"全选" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 10000;
         button.frame = CGRectMake(0, 0, Main_Screen_Width / 2, 45);
         [_editingView addSubview:button];
     }
@@ -136,7 +144,7 @@
     NSDictionary *dataDic = self.showPhotos[indexPath.row];
     NSData *imgData = dataDic[@"image"];
     [cell.iconImageView setImage:[UIImage imageWithData:imgData]];
-    [cell.timeLabel setText:dataDic[@"time"]];
+    [cell.nameLabel setText:dataDic[@"time"]];
     
     return cell;
 }
@@ -172,25 +180,32 @@
 -(void)onCollectionCellSelectionChanged:(id)sender {
     if (self.edit) {
         CAPCheckableCollectionCell *cell = sender;
-        cell.checkImage.hidden = NO;
-        [cell.checkImage setImage:GetImage(@"end")];
-        [self.selectPhotos addObject:[self.showPhotos objectAtIndex:cell.tag]];
-    }else{
-        CAPCheckableCollectionCell *cell = sender;
-        cell.checkImage.hidden = NO;
-        [cell.checkImage setImage:GetImage(@"end")];
-        NSLog(@"onCollectionCellSelectionChanged #%ld", (long)cell.tag);
-        [CAPAlertView initAlertWithContent:@"确定删除该照片吗？"title:@"" closeBlock:^{
+        if ([self.selectPhotos containsObject:[self.showPhotos objectAtIndex:cell.tag]]) {
             cell.checkImage.hidden = YES;
             [cell.checkImage setImage:GetImage(@"")];
-        } okBlock:^{
-            [self.showPhotos removeObjectAtIndex:cell.tag];
-            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
-            NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
-            self.showPhotos = [NSMutableArray array];
-            [self.showPhotos addObjectsFromArray:array];
-            [self.collectionView reloadData];
-        } alertType:AlertTypeCustom];
+            [self.selectPhotos removeObject:[self.showPhotos objectAtIndex:cell.tag]];//addObject:[self.showPhotos objectAtIndex:cell.tag]];
+        }else{
+            cell.checkImage.hidden = NO;
+            [cell.checkImage setImage:GetImage(@"end")];
+            [self.selectPhotos addObject:[self.showPhotos objectAtIndex:cell.tag]];
+        }
     }
+//    else{
+//        CAPCheckableCollectionCell *cell = sender;
+//        cell.checkImage.hidden = NO;
+//        [cell.checkImage setImage:GetImage(@"end")];
+//        NSLog(@"onCollectionCellSelectionChanged #%ld", (long)cell.tag);
+//        [CAPAlertView initAlertWithContent:@"确定删除该照片吗？"title:@"" closeBlock:^{
+//            cell.checkImage.hidden = YES;
+//            [cell.checkImage setImage:GetImage(@"")];
+//        } okBlock:^{
+//            [self.showPhotos removeObjectAtIndex:cell.tag];
+//            [CAPUserDefaults setObject:self.showPhotos forKey:kNotificationPhotoCountChange];
+//            NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
+//            self.showPhotos = [NSMutableArray array];
+//            [self.showPhotos addObjectsFromArray:array];
+//            [self.collectionView reloadData];
+//        } alertType:AlertTypeCustom];
+//    }
 }
 @end

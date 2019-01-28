@@ -73,6 +73,7 @@
     self.telField.placeholder = @"Please input number";
     self.telField.textAlignment = NSTextAlignmentCenter;
     self.telField.delegate = self;
+    self.telField.keyboardType = UIKeyboardTypePhonePad;
     [self addSubview:self.telField];
     
     UIView *crossLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 0.5, self.frame.size.width, 1)];

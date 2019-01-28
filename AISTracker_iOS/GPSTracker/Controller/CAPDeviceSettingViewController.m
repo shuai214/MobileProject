@@ -13,10 +13,14 @@
 #import "CAPValidators.h"
 #import "CAPToast.h"
 #import "CAPUserSettingViewController.h"
-@interface CAPDeviceSettingViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *deviceImage;
+#import "CAPFileUpload.h"
+#import "CAPUser.h"
+@interface CAPDeviceSettingViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *deviceName;
 @property (weak, nonatomic) IBOutlet CAPDeviceNumber *deviceNumber;
+@property (weak, nonatomic) IBOutlet UIImageView *deviceImageView;
+@property (copy, nonatomic) NSString *avatarBaseUrl;
+@property (copy, nonatomic) NSString *avatarPath;
 
 @end
 
@@ -37,11 +41,27 @@
     self.deviceNumber.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.deviceNumber.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
-    
+    [ self.deviceNumber.buttonSend addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+    self.deviceImageView.userInteractionEnabled = YES;
+    self.deviceImageView.layer.cornerRadius =  self.deviceImageView.width/2.0;
+    self.deviceImageView.layer.masksToBounds = YES;
+    UITapGestureRecognizer *imageViewTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewTouchUpInside)];
+    [self.deviceImageView addGestureRecognizer:imageViewTapGestureRecognizer];
 }
--(void)back{
-    
+-(void)imageViewTouchUpInside{
+    UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
+    imagePickerVc.delegate = self;
+    imagePickerVc.allowsEditing = YES;
+    [CAPAlertView initTakingPhotoBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } albumBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } closeBlock:^{
+        
+    }];
 }
 -(void)get {
     NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"diallingcode" ofType:@"json"]];
@@ -90,6 +110,12 @@
     }];
 }
 - (IBAction)nextAction:(UIButton *)sender {
+    CAPUser *capUser = (CAPUser *)[NSKeyedUnarchiver unarchiveObjectWithData:[CAPUserDefaults objectForKey:@"CAP_User"]];
+    if (capUser) {
+        if (capUser.info.mobile.length != 0) {
+            self.device.sos = capUser.info.mobile;
+        }
+    }
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     if (self.deviceName.text.length != 0) {
         self.device.name = self.deviceName.text;
@@ -131,7 +157,9 @@
             [gApp showHUD:@"正在处理，请稍后..."];
             NSDictionary *param = @{
                                     @"name":self.deviceName.text,
-                                    @"sos":self.deviceNumber.telField.text
+                                    @"sos":self.deviceNumber.telField.text,
+                                    @"avatarPath":self.avatarPath,
+                                    @"avatarBaseUrl":self.avatarBaseUrl
                                     };
             [deviceService bindDevice:self.deviceStr param:param reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
@@ -150,9 +178,50 @@
     }
 }
 
--(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+-(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     [self get];
 }
-
-
+- (void)buttonAction:(UIButton *)button{
+    [self get];
+}
+//选择图片后,更换头像,并保存到沙盒,上传到服务器
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *iconImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *newIconImage = [self newSizeImage:CGSizeMake(self.deviceImageView.width, self.deviceImageView.height) image:iconImage];
+    [self.deviceImageView setImage:newIconImage];
+    
+    CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+    [fileUpload uploadRecording:newIconImage withImageIndex:arc4random() % 100];
+    [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+        NSLog(@"%@",object);
+        NSDictionary *dic = (NSDictionary *)object;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            NSDictionary *resultDic = [dic objectForKey:@"result"];
+            self.avatarBaseUrl = resultDic[@"base_url"];
+            self.avatarPath = resultDic[@"path"];
+            self.device.avatarPath = self.avatarPath;
+            self.device.avatarBaseUrl = self.avatarBaseUrl;
+        }
+    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark 调整图片分辨率/尺寸（等比例缩放）
+- (UIImage *)newSizeImage:(CGSize)size image:(UIImage *)sourceImage {
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    
+    CGFloat tempHeight = newSize.height / size.height;
+    CGFloat tempWidth = newSize.width / size.width;
+    
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    
+    UIGraphicsBeginImageContext(newSize);
+    [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end

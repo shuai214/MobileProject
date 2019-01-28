@@ -12,6 +12,8 @@
 #import "CAPFenceAddView.h"
 #import "CAPEditAlertView.h"
 #import "CAPSOSAlertView.h"
+#import "CAPModifyAvatar.h"
+#import "CAPBindAlertView.h"
 @implementation CAPAlertView
 
 + (void)initAlertWithContent:(NSString *)content title:(nonnull NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
@@ -136,5 +138,56 @@
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow();
 }
-
++ (void)initTakingPhotoBlock:(takingPhotoBlock)takingBlock albumBlock:(albumBlock)albumBlock closeBlock:(closeBlock)closeBlock{
+     CAPModifyAvatar *view = [CAPModifyAvatar instance];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setTabkingPhotoBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            takingBlock();
+        }];
+    }];
+    [view setAlbumBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            albumBlock();
+        }];
+    }];
+    [view setCloseBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
++ (void)initBindAlertViewWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
+    CAPBindAlertView *view = [CAPBindAlertView instance];
+    [view fillData:content];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setOkBindUserBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            okBlock();
+        }];
+    }];
+   
+    [view setCloseUserBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
 @end

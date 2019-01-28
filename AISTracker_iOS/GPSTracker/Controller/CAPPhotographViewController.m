@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPhotoImage;
 @property (strong, nonatomic) NSMutableArray *showPhotos;
 @property (strong, nonatomic) MQTTInfo *mqttInfo;
+@property (strong, nonatomic) UIImageView *imgView;
 
 @end
 
@@ -35,10 +36,19 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.imgView removeFromSuperview];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     self.showPhotos = [NSMutableArray array];
     [self loadPhotoList];
+    self.imgView = [[UIImageView alloc] initWithImage:GetImage(@"ic_default_avatar_new")];
+    self.imgView.frame = CGRectMake(Main_Screen_Width - 70, TabBarHeight - 35, 40, 40);
+    [self.navigationController.navigationBar addSubview:self.imgView];
 }
 - (void)loadPhotoList{
     NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
@@ -71,7 +81,8 @@
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSData *imgData = self.showPhotos[indexPath.row];
+    NSDictionary *dataDic = self.showPhotos[indexPath.row];
+    NSData *imgData = dataDic[@"image"];
     [self.showPhotoImage setImage:[UIImage imageWithData:imgData]];
 }
 - (void)setDevice:(CAPDevice *)device{

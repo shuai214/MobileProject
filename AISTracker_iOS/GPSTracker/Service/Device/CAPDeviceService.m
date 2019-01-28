@@ -107,9 +107,9 @@
         NSDictionary *params = @{
                                  @"name": device.name,
                                  @"mobile":device.mobile,
-                                 @"sos":device.sos,
-                                 @"avatarPath": @"",
-                                 @"avatarBaseUrl": @""
+                                 @"sos":device.sos ? device.sos : @"",
+                                 @"avatarPath": device.avatarPath ? device.avatarPath : @"",
+                                 @"avatarBaseUrl": device.avatarBaseUrl ? device.avatarBaseUrl : @""
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
@@ -216,7 +216,7 @@
     //TODO
     if (device) {
         NSDictionary *params = @{
-                                 @"body":array
+                                 @"sos":array
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/SOS/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
@@ -224,6 +224,26 @@
         }];
     }
 }
+- (void)getSOSMobile:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+       
+        CAPHttpRequest *request = [self buildRequest:[@"Device/SOS/" stringByAppendingString:device.deviceID] method:@"GET"];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+- (void)getDeviceBindList:(CAPDevice *)device reply:(CAPServiceReply)reply{
+    //TODO
+    if (device) {
+        CAPHttpRequest *request = [self buildRequest:[@"Device/BoundList/" stringByAppendingString:device.deviceID] method:@"GET"];
+        [self sendRequest:request reply:^(CAPHttpResponse *response) {
+            reply(response);
+        }];
+    }
+}
+
 //+ (instancetype)defaultService {
 //    static id instance = NULL;
 //    static dispatch_once_t onceToken;

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *creatDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *fenSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *rangeLabel;
 
 @end
 
@@ -26,12 +27,13 @@
 - (void)setListData:(List *)list{
     self.nameLabel.text = list.name;
     self.creatDateLabel.text = [NSString dateFormateWithTimeInterval:list.createdAt];
-    self.addressLabel.text = list.address;
+    self.addressLabel.text = [NSString stringWithFormat:@"%@ %@",list.address,list.content];
     if ([list.status integerValue] == 1) {
         [self.fenSwitch setOn:YES animated:YES];
     }else{
         [self.fenSwitch setOn:NO animated:YES];
     }
+    self.rangeLabel.text = [NSString stringWithFormat:@"%ld%@",list.range,CAPLocalizedString(@"m")];
     [self.fenSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];   // 开关事件切换通知
 
 }

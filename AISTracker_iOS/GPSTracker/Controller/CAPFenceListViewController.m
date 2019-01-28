@@ -35,7 +35,7 @@
 }
 
 - (void)getFenceList{
-    [gApp showHUD:@"正在加载，请稍后..."];
+    [gApp showHUD:@"loading"];
     CAPFenceService *fenceService = [[CAPFenceService alloc] init];
     [fenceService fetchFence:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
@@ -43,7 +43,7 @@
         [self.fenceListTableView reloadData];
         [gApp hideHUD];
         if (self.fenceList.result.list.count == 0) {
-            [gApp showNotifyInfo:@"您还没有设置围栏！" backGroundColor:[UIColor orangeColor]];
+            [gApp showNotifyInfo:CAPLocalizedString(@"tips_no_fence") backGroundColor:[UIColor orangeColor]];
         }
     }];
 

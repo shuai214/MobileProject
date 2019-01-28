@@ -7,7 +7,7 @@
 //
 
 #import "CAPTrackerView.h"
-
+#import "MQTTInfo.h"
 @interface CAPTrackerView ()
 @property (weak, nonatomic) IBOutlet UIButton *fenceButton;
 @property (weak, nonatomic) IBOutlet UIButton *footprintButton;
@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *userCall;
 @property (weak, nonatomic) IBOutlet UIButton *userFootprint;
 @property (weak, nonatomic) IBOutlet UIButton *userSetting;
+@property (weak, nonatomic) IBOutlet UILabel *onlineLabel;
+@property (weak, nonatomic) IBOutlet UIButton *unbindung;
+@property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
 
 @end
 
@@ -40,11 +43,22 @@
         [self initButton:self.userCall];
         [self initButton:self.userFootprint];
         [self initButton:self.userSetting];
+        [self initButton:self.unbindung];
         [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
+        [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
     }
     return self;
 }
-
+- (void)deviceOnline:(NSNotification *)notifi{
+    MQTTInfo *info = (MQTTInfo *)notifi.object;
+    if (info.online ? 0 : 1) {
+        self.onlineLabel.text = @"offline";
+//        self.onlineLabel.textColor = [UIColor lightGrayColor];
+    }else{
+        self.onlineLabel.text = @"online";
+//        self.onlineLabel.textColor = [CAPColors green1];
+    }
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     [[NSBundle mainBundle] loadNibNamed:@"CAPTrackerView" owner:self options:nil];
@@ -58,6 +72,7 @@
     [self initButton:self.userCall];
     [self initButton:self.userFootprint];
     [self initButton:self.userSetting];
+    [self initButton:self.unbindung];
     [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -78,9 +93,10 @@
     [super setFrame:frame];
     self.contentView.frame = self.bounds;
 }
-- (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location{
+- (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location time:(NSString *)time{
     self.DeviceName.text = device.name;
     self.DeviceLocation.text = location;
+    self.updateTimeLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"last_updated"),time];
 }
 //- (void)layoutSubviews {
 //    [super layoutSubviews];
@@ -130,6 +146,9 @@
 
 - (IBAction)onSettingButtonClicked:(id)sender {
     [self performAction:CAPTrackerViewActionSetting];
+}
+- (IBAction)unbindingAction:(id)sender {
+    [self performAction:CAPTrackerViewActionUnbinding];
 }
 
 -(void)initButton:(UIButton*)button {

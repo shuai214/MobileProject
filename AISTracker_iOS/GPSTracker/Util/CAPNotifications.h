@@ -18,6 +18,8 @@ static NSString* _Nullable const kNotificationWechatLogin = @"cap.notification.w
 static NSString* _Nullable const kNotificationUserProfileChange = @"cap.notification.user.profile.change";
 static NSString* _Nullable const kNotificationLanguageChange = @"cap.notification.language.change";
 
+static NSString* _Nullable const kNotificationDeviceOnlineChange = @"cap.notification.device.line.change";
+
 static NSString* _Nullable const kNotificationDeviceCountChange = @"cap.notification.device.count.change";
 static NSString* _Nullable const kNotificationDeviceInfoChange = @"cap.notification.device.info.change";
 static NSString* _Nullable const kNotificationDeviceSettingChange = @"cap.notification.device.setting.change";
@@ -29,6 +31,8 @@ static NSString* _Nullable const kNotificationBINDREQCountChange = @"cap.notific
 static NSString* _Nullable const kNotificationBINDREPCountChange = @"cap.notification.bindrep.count.change";
 static NSString* _Nullable const kNotificationMessageCountChange = @"cap.notification.message.count.change";
 static NSString* _Nullable const kNotificationREMOVEDCountChange = @"cap.notification.REMOVED.count.change";//owner删除用户绑定通知 result：cmdResult，解绑用户ID和role，以及profile:
+static NSString* _Nullable const kNotificationChangeNickName = @"cap.notification.nickName";
+
 //static NSString* _Nullable const kNotificationSOS = @"cap.notification.sos";REMOVED
 //static NSString* _Nullable const kNotificationGPSChange = @"cap.notification.gps.change";
 

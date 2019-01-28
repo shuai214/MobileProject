@@ -10,6 +10,6 @@
 
 IB_DESIGNABLE
 @interface CAPBatteryView : UIView
-@property (nonatomic, assign) IBInspectable CGFloat battery;
-- (void)reloadBattery:(CGFloat)battery;
+@property (nonatomic, assign) IBInspectable NSInteger battery;
+- (void)reloadBattery:(NSInteger)battery;
 @end

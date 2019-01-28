@@ -14,7 +14,9 @@
 #import "CAPGuardianListViewController.h"
 #import "CAPSOSMobileViewController.h"
 #import "CAPUploadFrequencyViewController.h"
-@interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "CAPFileUpload.h"
+#import "CAPDeviceBindInfo.h"
+@interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet CAPBatteryView *batteryView;
@@ -47,11 +49,33 @@
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc]init];
-    UIImage *avatar = GetImage(@"ic_default_avatar");
+    UIImage *avatar = GetImage(@"ic_default_avatar_new");
     
-    [self.avatarImageView setImage:[self OriginImage:avatar scaleToSize:CGSizeMake(self.avatarImageView.frame.size.width, self.avatarImageView.frame.size.width)]];
+    [self.avatarImageView setImage:avatar];
+    self.avatarImageView.layer.cornerRadius =  self.avatarImageView.width/2.0;
+    self.avatarImageView.layer.masksToBounds = YES;
+    
     self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
     [self.batteryView reloadBattery:self.battery];
+    
+    self.nextDeviceImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+//    [self.nextDeviceImage addGestureRecognizer:labelTapGestureRecognizer];
+    [self refreshLocalizedString];
+}
+- (void)labelTouchUpInside:(NSNotification *)notifi{
+    UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
+    imagePickerVc.delegate = self;
+    imagePickerVc.allowsEditing = YES;
+    [CAPAlertView initTakingPhotoBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } albumBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } closeBlock:^{
+        
+    }];
 }
 - (void)loadDeviceInfo{
     [gApp showHUD:@"正在处理，请稍后..."];
@@ -72,8 +96,9 @@
 
 - (void)refreshLocalizedString {
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService fetchDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
-         CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+    [deviceService getDeviceBindinfo:self.device reply:^(CAPHttpResponse *response) {
+         CAPDeviceBindInfo *getDevice = [CAPDeviceBindInfo mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+        NSLog(@"%@",getDevice);
     }];
 }
 
@@ -106,6 +131,14 @@
 //            [self performSegueWithIdentifier:@"edit.name.segue" sender:nil];
         {UIStoryboard *story = [UIStoryboard storyboardWithName:@"EditName" bundle:nil];
             CAPEditNameViewController *EditNameVC = [story instantiateViewControllerWithIdentifier:@"EditNameViewController"];
+            EditNameVC.isUser = NO;
+            EditNameVC.capDevice = self.device;
+            CAPWeakSelf(self);
+            [EditNameVC setUpdateSuccessBlock:^(id cap) {
+                CAPDevice *device = (CAPDevice*)cap;
+                weakself.details = @[device? device:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
+                [weakself.tableView reloadData];
+            }];
         [self.navigationController pushViewController:EditNameVC animated:YES];
         }
             break;
@@ -129,7 +162,7 @@
             break;
         case 5:
         {
-            CAPSOSMobileViewController *sosVC = [[CAPSOSMobileViewController alloc] init];
+            CAPSOSMobileViewController *sosVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"SOSMobileViewController"];
             sosVC.device = self.device;
             [self.navigationController pushViewController:sosVC animated:YES];
         }
@@ -169,6 +202,49 @@
             break;
     }
 }
-
+#pragma mark -----imagePickerController delegate
+//选择图片后,更换头像,并保存到沙盒,上传到服务器
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *iconImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *newIconImage = [self newSizeImage:CGSizeMake(self.avatarImageView.width, self.avatarImageView.height) image:iconImage];
+    [self.avatarImageView setImage:newIconImage];
+    
+    CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+    [fileUpload uploadRecording:newIconImage withImageIndex:arc4random() % 100];
+    [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+        NSLog(@"%@",object);
+        NSDictionary *dic = (NSDictionary *)object;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            NSDictionary *resultDic = [dic objectForKey:@"result"];
+//            self.capUser.profile.avatarBaseUrl = resultDic[@"base_url"];
+//            self.capUser.profile.avatarPath = resultDic[@"path"];
+//            CAPUserService *userService = [[CAPUserService alloc] init];
+//            [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
+//                NSLog(@"%@",response);
+//                [gApp hideHUD];
+//            }];
+        }
+    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark 调整图片分辨率/尺寸（等比例缩放）
+- (UIImage *)newSizeImage:(CGSize)size image:(UIImage *)sourceImage {
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    
+    CGFloat tempHeight = newSize.height / size.height;
+    CGFloat tempWidth = newSize.width / size.width;
+    
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    
+    UIGraphicsBeginImageContext(newSize);
+    [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end
 

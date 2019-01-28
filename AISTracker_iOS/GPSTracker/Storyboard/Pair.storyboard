@@ -309,7 +309,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="deviceImage" destination="sP0-8P-fsH" id="MkS-Xg-OT2"/>
+                        <outlet property="deviceImageView" destination="sP0-8P-fsH" id="SIe-Qb-64T"/>
                         <outlet property="deviceName" destination="Q3X-xq-dDV" id="eZF-oe-AAp"/>
                         <outlet property="deviceNumber" destination="gwY-92-Qkp" id="TdX-F1-D7R"/>
                         <segue destination="rNp-ou-H0a" kind="presentation" identifier="Main" id="d57-ZL-dHn"/>
@@ -345,8 +345,8 @@
                                     <constraint firstAttribute="height" constant="120" id="f5v-Y7-9kz"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the device name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnc-R3-2LL">
-                                <rect key="frame" x="16" y="228" width="225.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnc-R3-2LL">
+                                <rect key="frame" x="16" y="228" width="208.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -360,8 +360,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the device name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWy-vU-gaU">
-                                <rect key="frame" x="16" y="334" width="225.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWy-vU-gaU">
+                                <rect key="frame" x="16" y="334" width="208.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -421,6 +421,7 @@
                     <connections>
                         <outlet property="number" destination="tRx-BJ-Z6v" id="8nx-NO-Ia3"/>
                         <outlet property="userField" destination="wJH-N5-h1v" id="OMf-dE-Py3"/>
+                        <outlet property="userImageView" destination="t0K-iv-uLG" id="kv7-fn-GqK"/>
                         <segue destination="rNp-ou-H0a" kind="presentation" identifier="Main" id="gS4-cj-YEy"/>
                     </connections>
                 </viewController>
@@ -435,6 +436,6 @@
         <image name="user_default_avatar" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GA2-vB-YOs"/>
+        <segue reference="d57-ZL-dHn"/>
     </inferredMetricsTieBreakers>
 </document>

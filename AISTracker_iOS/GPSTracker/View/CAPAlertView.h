@@ -14,6 +14,8 @@ typedef void (^closeBlock)(void);
 typedef void (^okBlock)(void);
 typedef void (^okAddressBlock)(NSString *name);
 typedef void (^okMQTTInfoBlock)(MQTTInfo *info);
+typedef void (^takingPhotoBlock)(void);
+typedef void (^albumBlock)(void);
 
 @interface CAPAlertView : NSObject
 + (void)initAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock alertType:(AlertType)alertType;
@@ -22,6 +24,8 @@ typedef void (^okMQTTInfoBlock)(MQTTInfo *info);
 + (void)initAddressAlertWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock;
 + (void)initAddressEditWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock;
 + (void)initSOSAlertViewWithContent:(MQTTInfo *)contentInfo ocloseBlock:(closeBlock)closeBlock okBlock:(okMQTTInfoBlock)okMQTTInfoBlock;
++ (void)initTakingPhotoBlock:(takingPhotoBlock)takingBlock albumBlock:(albumBlock)albumBlock closeBlock:(closeBlock)closeBlock;
++ (void)initBindAlertViewWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
 @end
 
 NS_ASSUME_NONNULL_END

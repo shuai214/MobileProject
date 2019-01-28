@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CAPDevice.h"
+#import "CAPDeviceBindList.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPGuardianTableViewCell : UITableViewCell
-- (void)setDeviceInfo:(CAPDevice *)device;
+- (void)setDeviceInfo:(USERS *)user;
 @end
 
 NS_ASSUME_NONNULL_END

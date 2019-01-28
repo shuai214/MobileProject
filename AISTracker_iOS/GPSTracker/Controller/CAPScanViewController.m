@@ -48,7 +48,7 @@
     [self.view addSubview:qrcodeBackgroundView];
     
     //灯光和相册
-    NSArray *arr = @[@"闪灯光",@"相册"];
+    NSArray *arr = @[CAPLocalizedString(@"flashlight"),CAPLocalizedString(@"photo_album")];
     for (int i = 0; i < 2; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:arr[i] forState:UIControlStateNormal];
