@@ -7,13 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "CAPDevice.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPFileUpload : NSObject
-@property(nonatomic,strong)void (^failureBlock)();
+@property(nonatomic,strong)void (^failureBlock)(void);
 @property(nonatomic,strong)void (^successBlockObject)(id object);
 - (void)uploadRecording:(id)recordingFile withImageIndex:(NSInteger)index;
+- (void)getDeviceLoacl:(NSString *)latlng;
+- (void)getDeviceDetailLoacl:(NSDictionary *)parameter;
+- (void)setSOSMobile:(CAPDevice *)device array:(NSArray *)array;
+
 @end
 
 NS_ASSUME_NONNULL_END

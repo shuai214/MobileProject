@@ -13,14 +13,17 @@
 #import "CAPDevice.h"
 #import "CAPDeviceLists.h"
 #import "CAPValidators.h"
-
+#import "CAPDeviceBindList.h"
 @interface CAPSOSMobileViewController ()
 @property(nonatomic,strong)UIScrollView *bgscrollView;
 @property(nonatomic,strong)CAPDeviceLists *deviceLists;
 @property(nonatomic,strong)NSMutableArray *countryArray;
 @property(nonatomic,strong)NSMutableArray *telCodeArray;
 @property(nonatomic,strong)NSMutableArray *inputTelArray;
-
+@property (strong , nonatomic)NSMutableArray<USERS *> *dataArray;
+@property (strong , nonatomic)NSMutableArray<NSString *> *sosArray;
+@property (strong , nonatomic)NSMutableArray <UIView *>*firstViewArray;
+@property (strong , nonatomic)NSMutableArray <UIView *>*twoViewArray;
 @end
 
 @implementation CAPSOSMobileViewController
@@ -31,61 +34,93 @@
     // Do any additional setup after loading the view.
     [self setRightBarImageButton:@"save_sos" action:@selector(saveButtonClicked)];
 
+   
     self.view.backgroundColor = gCfg.appBackgroundColor;
     [self get:nil];
-    self.inputTelArray = [NSMutableArray array];
+    self.dataArray = [NSMutableArray array];
+    self.sosArray = [NSMutableArray array];
+    [self configSubView];
     [self fetchDevice];
 }
 
 - (void)fetchDevice{
-    [gApp showHUD:@"正在处理，请稍后..."];
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService getDeviceInfo:self.device reply:^(CAPHttpResponse *response) {
-        NSDictionary *data = response.data;
-        if ([[data objectForKey:@"code"] integerValue] == 200) {
-            self.device = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-            [self configSubView];
+    [gApp showHUD:@"正在加载，请稍后..."];
+    CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
+    [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
+        NSLog(@"%@",response.data);
+        NSDictionary *dic =(NSDictionary *)response.data;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            CAPDeviceBindList *bindList = [CAPDeviceBindList mj_objectWithKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"%ld",bindList.users.count);
+            for (USERS *user in bindList.users) {
+                [self.dataArray addObject:user];
+            }
         }
+        [self initFirstView];
         [gApp hideHUD];
-
+    }];
+    [deviceServer getSOSMobile:self.device reply:^(CAPHttpResponse *response) {
+        NSLog(@"%@",response.data);
+        NSDictionary *dic =(NSDictionary *)response.data;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            NSArray *result = dic[@"result"];
+            NSDictionary *dicSos = result.firstObject;
+            NSDictionary *sosDic= dicSos[@"sos"];
+            NSArray *sosArr = sosDic[@"sos"];
+            [self.sosArray addObjectsFromArray:sosArr];
+        }
+        [self initTwoView];
+        [gApp hideHUD];
     }];
 }
 
 - (void)configSubView{
-    self.bgscrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    self.bgscrollView.backgroundColor = gCfg.appBackgroundColor;
-    [self.view addSubview:self.bgscrollView];
-    
+    if (!self.bgscrollView) {
+        self.bgscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TopHeight, Main_Screen_Width, Main_Screen_Height - TopHeight)];
+        self.bgscrollView.backgroundColor = gCfg.appBackgroundColor;
+        if (@available(iOS 11.0, *)) {
+            self.bgscrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            NSLog(@"11.0f");
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+            NSLog(@"10f");
+        }
+        [self.view addSubview:self.bgscrollView];
+    }
+}
+- (void)initFirstView{
+    self.firstViewArray = [NSMutableArray array];
     UILabel *mustBeThreeNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, TopHeight / 2, Main_Screen_Width, 20)];
     mustBeThreeNumber.text = @"There three numbers are from APP";
     mustBeThreeNumber.textAlignment = NSTextAlignmentCenter;
     [self.bgscrollView addSubview:mustBeThreeNumber];
-    NSMutableArray <UIView *>*mustViews = [NSMutableArray array];
     CGFloat numViewHeight = 80;
-    NSInteger j = 1;
+    NSInteger j = 0;
     NSInteger count = 3;
-
-    for (NSInteger i = 0; i<count; i++) {
+    
+    for (NSInteger i = 0; i< count; i++) {
         CGRect frame = CGRectMake(0, mustBeThreeNumber.bottom + (numViewHeight + 10 )* i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:NO index:j];
         [self.bgscrollView addSubview:view];
-        [mustViews addObject:view];
+        [self.firstViewArray addObject:view];
         j++;
     }
-    
-    UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, mustViews.lastObject.bottom + 20, Main_Screen_Width, 20)];
+}
+- (void)initTwoView{
+    CGFloat numViewHeight = 80;
+    UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, self.firstViewArray.lastObject.bottom + 20, Main_Screen_Width, 20)];
     mayBeTwoNumber.text = @"You can set these two numbers freely";
     mayBeTwoNumber.textAlignment = NSTextAlignmentCenter;
     [self.bgscrollView addSubview:mayBeTwoNumber];
     
     NSMutableArray <UIView *>*mayViews = [NSMutableArray array];
-    
+    NSInteger j = 3;
     for (NSInteger i = 0; i< 2; i++) {
-        j++;
         CGRect frame = CGRectMake(0, mayBeTwoNumber.bottom + (numViewHeight + 10 ) * i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:YES index:j];
         [self.bgscrollView addSubview:view];
         [mayViews addObject:view];
+        j++;
     }
     self.bgscrollView.contentSize = CGSizeMake(Main_Screen_Width, mayViews.lastObject.bottom + 40);
 }
@@ -108,21 +143,30 @@
     deviceNumberView.tag = index + 999;
     deviceNumberView.countryNameLabel.tag = index + 99;
     deviceNumberView.countryNameLabel.userInteractionEnabled = is;
-    if (index <= 3) {
-        if (index == 1) {
-            CAPDevice *device = self.device;
-            NSArray *array = [device.setting.mobile componentsSeparatedByString:@" "];
-//            if (array.count >=2) {
-//                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
-//            }else{
-                deviceNumberView.telAreaCodeLabel.text = @"+86";
-//            }
-            deviceNumberView.telField.text = array.lastObject;
-            
-            NSArray *telCode = self.telCodeArray;
-            NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
-            NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
-            deviceNumberView.countryNameLabel.text = countryName;
+    if (index < 3) {
+        if (self.dataArray.count != 0) {
+            if (index < self.dataArray.count) {
+                USERS *user = self.dataArray[index];
+                NSArray *array = [user.device.sos componentsSeparatedByString:@" "];
+                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
+                deviceNumberView.telField.text = array.lastObject;
+                NSArray *telCode = self.telCodeArray;
+                NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
+                NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
+                deviceNumberView.countryNameLabel.text = countryName;
+            }
+        }
+    }else{
+        if (self.sosArray.count != 0) {
+            if ((index - 3) < self.sosArray.count) {
+                NSArray *array = [self.sosArray[index - 3] componentsSeparatedByString:@" "];
+                deviceNumberView.telAreaCodeLabel.text = array.firstObject;
+                deviceNumberView.telField.text = array.lastObject;
+                NSArray *telCode = self.telCodeArray;
+                NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
+                NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
+                deviceNumberView.countryNameLabel.text = countryName;
+            }
         }
     }
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
@@ -194,8 +238,9 @@
 }
 
 - (void)saveButtonClicked{
-    CAPDeviceNumber *deviceNumber3 = (CAPDeviceNumber *)[self.view viewWithTag:1003];
-    CAPDeviceNumber *deviceNumber4 = (CAPDeviceNumber *)[self.view viewWithTag:1004];
+    self.inputTelArray = [NSMutableArray array];
+    CAPDeviceNumber *deviceNumber3 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1004];
+    CAPDeviceNumber *deviceNumber4 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1005];
     if (deviceNumber3.telField.text.length != 0) {
         if ([CAPValidators validPhoneNumber:deviceNumber3.telField.text]) {
             [self.inputTelArray addObject:[NSString stringWithFormat:@"%@ %@",deviceNumber3.telAreaCodeLabel.text,deviceNumber3.telField.text]];

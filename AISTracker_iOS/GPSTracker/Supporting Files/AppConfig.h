@@ -26,7 +26,7 @@
 @property (nonatomic, readonly, copy) NSString *appStoreLink;
 @property (nonatomic, readonly, copy) NSString *rootURLString;
 @property (nonatomic, readonly, copy) NSString *avatarBaseUrl;
-
+@property (nonatomic, readonly, copy) NSString *google_api_key;
 @property (nonatomic, readonly, assign) BOOL isBuild;
 @property (nonatomic, readonly, assign) BOOL isRelease;
 @property (nonatomic, readonly, assign) BOOL isDebug;

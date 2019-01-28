@@ -40,14 +40,22 @@
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVK-0f-HnU">
                         <rect key="frame" x="257" y="35" width="51" height="31"/>
                     </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4B-pz-dOw">
+                        <rect key="frame" x="161" y="6" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="aVK-0f-HnU" firstAttribute="leading" secondItem="6Ws-Eg-Oet" secondAttribute="trailing" constant="27" id="5pS-Pg-9p7"/>
                     <constraint firstItem="6Ws-Eg-Oet" firstAttribute="top" secondItem="t7X-GK-4l8" secondAttribute="bottom" constant="10" id="GWt-zx-5nR"/>
+                    <constraint firstItem="d4B-pz-dOw" firstAttribute="top" secondItem="9NZ-J6-PNF" secondAttribute="top" id="KxK-Vg-VE0"/>
                     <constraint firstItem="9NZ-J6-PNF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="XEj-0D-G0Q"/>
                     <constraint firstItem="t7X-GK-4l8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Yec-8s-mXW"/>
                     <constraint firstAttribute="trailing" secondItem="6Ws-Eg-Oet" secondAttribute="trailing" constant="90" id="aiY-cK-71V"/>
                     <constraint firstItem="aVK-0f-HnU" firstAttribute="top" secondItem="6Ws-Eg-Oet" secondAttribute="top" id="gDW-Dp-hgu"/>
+                    <constraint firstItem="d4B-pz-dOw" firstAttribute="leading" secondItem="9NZ-J6-PNF" secondAttribute="trailing" constant="22.5" id="kdg-Cg-Eqk"/>
                     <constraint firstItem="9NZ-J6-PNF" firstAttribute="leading" secondItem="t7X-GK-4l8" secondAttribute="trailing" constant="23" id="m8S-Zw-yEc"/>
                     <constraint firstItem="t7X-GK-4l8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="o7q-zZ-2oE"/>
                     <constraint firstAttribute="trailing" secondItem="aVK-0f-HnU" secondAttribute="trailing" constant="14" id="u2S-oD-moT"/>
@@ -60,8 +68,9 @@
                 <outlet property="creatDateLabel" destination="9NZ-J6-PNF" id="846-9B-KlH"/>
                 <outlet property="fenSwitch" destination="aVK-0f-HnU" id="qbe-53-ETj"/>
                 <outlet property="nameLabel" destination="t7X-GK-4l8" id="r29-E0-Goe"/>
+                <outlet property="rangeLabel" destination="d4B-pz-dOw" id="dOx-Cc-qVE"/>
             </connections>
-            <point key="canvasLocation" x="-296" y="142"/>
+            <point key="canvasLocation" x="-152" y="166"/>
         </tableViewCell>
     </objects>
 </document>

@@ -33,7 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = CAPLocalizedString(@"me");
-    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"language"), CAPLocalizedString(@"version")];
+    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"language"),CAPLocalizedString(@"mobile"), CAPLocalizedString(@"version")];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -74,6 +74,8 @@
     cell.textLabel.text = self.titles[indexPath.row];
     if (indexPath.row == 0) {
         cell.detailTextLabel.text = self.capUser.info.name;
+    }else if(indexPath.row == 2){
+        cell.detailTextLabel.text = self.capUser.info.mobile;
     }
     return cell;
 }

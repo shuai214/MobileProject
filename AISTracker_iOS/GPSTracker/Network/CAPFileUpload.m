@@ -13,7 +13,7 @@
 @end
 @implementation CAPFileUpload
 - (AFHTTPSessionManager *)ManagerSetHearderandToken:(NSString *)access_token{
-    self.session = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:gCfg.rootURLString]];
+    self.session = [[AFHTTPSessionManager alloc] init];
     self.session.securityPolicy.allowInvalidCertificates = YES;
     self.session.securityPolicy.validatesDomainName = NO;
     
@@ -37,7 +37,7 @@
     AFJSONResponseSerializer* responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:0];
     responseSerializer.removesKeysWithNullValues = YES;
     responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", nil];
-     [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", access_token] forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", access_token] forHTTPHeaderField:@"Authorization"];
     self.session.responseSerializer = responseSerializer;
     return self.session;
 }
@@ -70,8 +70,50 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure");
         if (self.failureBlock) {
-            self.failureBlock(error);
+            self.failureBlock();
         }
     }];
+}
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
+
+- (void)getDeviceLoacl:(NSString *)latlng{//key=AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4
+    NSString *URLString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@&radius=1500&key=AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4",latlng];
+    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    [manager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        self.successBlockObject(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)getDeviceDetailLoacl:(NSDictionary *)parameter{
+    NSString *URLString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/detail/json?reference=%@key=AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4",[parameter mj_JSONString]];
+    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    [manager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        self.successBlockObject(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)setSOSMobile:(CAPDevice *)device array:(id)array{
+    NSString *URLString = [NSString stringWithFormat:@"%@%@%@",gCfg.rootURLString,@"Device/SOS/",device.deviceID];
+    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:nil error:nil];
+    [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array
+                                                       options:kNilOptions
+                                                         error:nil];
+    [request setHTTPBody:jsonData];
+    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
+        self.successBlockObject(responseObject);
+    }] resume];
 }
 @end

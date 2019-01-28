@@ -53,10 +53,10 @@
     MQTTInfo *info = (MQTTInfo *)notifi.object;
     if (info.online ? 0 : 1) {
         self.onlineLabel.text = @"offline";
-        self.onlineLabel.textColor = [UIColor lightGrayColor];
+//        self.onlineLabel.textColor = [UIColor lightGrayColor];
     }else{
         self.onlineLabel.text = @"online";
-        self.onlineLabel.textColor = [CAPColors green1];
+//        self.onlineLabel.textColor = [CAPColors green1];
     }
 }
 - (void)awakeFromNib {

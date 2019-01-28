@@ -16,6 +16,8 @@
 @property(nonatomic,strong)UIButton *okButton;
 @property(nonatomic,strong)UILabel *contentLabel;
 @property(nonatomic,copy)NSString *contentDesc;
+@property(nonatomic,strong)UIView *line1;
+@property(nonatomic,strong)UIView *line2;
 @property(nonatomic,strong)UIView *paddingView;
 @property(nonatomic,strong)UITextField *inputField;
 
@@ -31,6 +33,7 @@
             self.contentDesc = title;
             [self initCustomSubview];
             [self configTwoButtonAutoLayout];
+            [self.inputField becomeFirstResponder];
         }
     return self;
 }
@@ -63,6 +66,13 @@
     [_closeButton setBackgroundColor:[CAPColors gray1]];
     [self addSubview:_closeButton];
     
+    _line1 = [UIView new];
+    _line1.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:_line1];
+    _line2 = [UIView new];
+    _line2.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:_line2];
+    
     _inputField = [UITextField new];
     _inputField.placeholder = @"请输入围栏名称";
     [self addSubview:_inputField];
@@ -85,12 +95,24 @@
     .widthIs(60.0f)
     .heightIs(CLOSE_BUTTON_W_H);
     
+    self.line1.sd_layout
+    .topSpaceToView(self.okButton, PADDING / 2)
+    .heightIs(0.5)
+    .leftEqualToView(self)
+    .rightEqualToView(self);
+    
     CGSize Size = [self sizeWithString:self.contentDesc font: [UIFont boldSystemFontOfSize:18.0f] maxSize:CGSizeMake(self.width - CLOSE_BUTTON_W_H, MAXFLOAT)];
     self.contentLabel.sd_layout
     .topSpaceToView(self.closeButton, PADDING)
     .leftSpaceToView(self, 20.0f)
     .rightSpaceToView(self, 20.0f)
     .heightIs(Size.height);
+    
+    self.line2.sd_layout
+    .topSpaceToView(self.contentLabel, PADDING / 2)
+    .heightIs(0.5)
+    .leftEqualToView(self)
+    .rightEqualToView(self);
     
     self.inputField.sd_layout
     .topSpaceToView(self.contentLabel, PADDING)

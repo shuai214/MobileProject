@@ -93,8 +93,8 @@
 - (void)chooseTimeAction{
     [self.sdImageView setImage:GetImage(@"check_off")];
     [self.customImageView setImage:GetImage(@"check_on")];
-    NSArray *times = @[@"实时", @"1小时", @"4小时",@"8小时",@"12小时"];
-    [BRStringPickerView showStringPickerWithTitle:@"更新频率" dataSource:times defaultSelValue:@"" resultBlock:^(id selectValue) {
+    NSArray *times = @[CAPLocalizedString(@"real_time"), [NSString stringWithFormat:@"5%@",CAPLocalizedString(@"minutes")], [NSString stringWithFormat:@"15%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"30%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_1")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_4")]];
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"update_frequency") dataSource:times defaultSelValue:@"" resultBlock:^(id selectValue) {
         [self.customButton setTitle:[NSString stringWithFormat:@"%@",selectValue] forState:UIControlStateNormal];
         [CAPUserDefaults setObject:selectValue forKey:@"uploadTime"];
         NSInteger index = [times indexOfObject:selectValue];
@@ -103,46 +103,44 @@
                 self.time = @"0";
                 break;
             case 1:{
-                NSInteger timeInterval = 60 * 60;
+                NSInteger timeInterval = 5 * 60;
                 self.time = [NSString stringWithFormat:@"%ld",timeInterval];
             }
                 break;
             case 2:{
-                NSInteger timeInterval = 60 * 60 * 4;
+                NSInteger timeInterval = 15 * 60;
                 self.time = [NSString stringWithFormat:@"%ld",timeInterval];
             }
                 break;
             case 3:{
-                NSInteger timeInterval = 60 * 60 *8;
+                NSInteger timeInterval = 30 * 60;
                 self.time = [NSString stringWithFormat:@"%ld",timeInterval];
             }
                 break;
             case 4:{
-                NSInteger timeInterval = 60 * 60 * 12;
+                NSInteger timeInterval = 60 * 60;
+                self.time = [NSString stringWithFormat:@"%ld",timeInterval];
+            }
+            case 5:{
+                NSInteger timeInterval = 60 * 60 * 4;
                 self.time = [NSString stringWithFormat:@"%ld",timeInterval];
             }
                 break;
             default:
                 break;
         }
+        [CAPUserDefaults setObject:self.time forKey:@"uploadTimeInter"];
     }];
 }
 - (void)okAction{
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPLOAD" param:self.time reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command.code == 200) {
-            [gApp showHUD:command.message];
+            [gApp hideHUD];
             [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationUPLOADCountChange object:nil];
-            //GCD延迟
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (!self.mqttInfo) {
-                    [gApp hideHUD];
-                    [gApp showNotifyInfo:@"请求错误❌" backGroundColor:[UIColor grayColor]];
-                }
-            });
-           
         }
     }];
 }

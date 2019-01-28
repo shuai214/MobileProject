@@ -25,6 +25,8 @@
 #import "CAPDeviceCommand.h"
 #import "CAPDeviceLocal.h"
 #import "CAPAlertView.h"
+#import "CAPFileUpload.h"
+#import "CAPFencePresenter.h"
 @import GoogleMaps;
 
 #define VIEW_X 12
@@ -99,12 +101,32 @@
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 30.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
         if (self.currentDevice) {
+            [self reloadDevice];
+        }
+    });
+    dispatch_resume(timer);
+    self.timer = timer;
+
+}
+
+- (void)reloadDevice{
+    NSInteger integerTimes = 30;
+    if([CAPUserDefaults objectForKey:@"uploadTimeInter"]){
+        NSString *times = [CAPUserDefaults objectForKey:@"uploadTimeInter"];
+        integerTimes = [times integerValue];
+    }
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, integerTimes * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        if (self.currentDevice) {
             [self getDeviceLocation:self.currentDevice];
         }
     });
     dispatch_resume(timer);
     self.timer = timer;
 }
+
 - (void)mqttConnect{
     MQTTCenter *mqttCenter = [MQTTCenter center];
     MQTTConfig *config = [[MQTTConfig alloc] init];
@@ -193,12 +215,19 @@
 }
 //重新定位
 - (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate time:(NSString *)time{
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:3.f];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
     CLLocationCoordinate2D position2D = coordinate;
     self.mapView.camera = camera;
+    [CATransaction commit];
     [self.marker.map clear];
-    self.marker.map = nil;
-    
+//    self.marker.map = nil;
+//    CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
+//    [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",coordinate.latitude,coordinate.longitude]];
+//    [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
+//        NSLog(@"%@",object);
+//    }];
     //大头针
     self.marker = [GMSMarker markerWithPosition:position2D];
     [self.marker setIcon:[UIImage imageNamed:@"map_drop_blue"]];
@@ -207,10 +236,13 @@
     [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@",response);
         GMSAddress *placemark = response.firstResult;
-        self.currentDevice.address = placemark.lines.firstObject;
-        [self.trackerView refreshDeviceLocation:self.currentDevice location:placemark.lines.firstObject time:time];
-    }];
+        self.currentDevice.address = [NSString stringWithFormat:@"%@%@%@",placemark.locality,placemark.subLocality,placemark.thoroughfare];
 
+//        self.currentDevice.address = placemark.lines.firstObject;
+        [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time];
+    }];
+    CAPFencePresenter *fencePresenter = [CAPFencePresenter sharedCheckFence];
+    [fencePresenter getFenceList:self.currentDevice deviceLocal:coordinate];
 }
 - (void)refreshLocalizedString {
     
@@ -274,6 +306,7 @@
             NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",array.lastObject];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
+            break;
         case CAPTrackerViewActionUnbinding:
         {
             [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{

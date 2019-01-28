@@ -31,7 +31,7 @@
 - (instancetype)initWithStartDate:(NSDate *)startDate {
     if (self = [super init]) {
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        gradientLayer.colors = @[(__bridge id)[[self colorWithHexString:@"3cd395" alpha:1] CGColor], (__bridge id)[[self colorWithHexString:@"31c9ba" alpha:1] CGColor]];
+        gradientLayer.colors = @[(__bridge id)[[CAPColors red] CGColor], (__bridge id)[[CAPColors red] CGColor]];
         gradientLayer.locations = @[@0.4, @1.0];
         gradientLayer.startPoint = CGPointMake(0, 1.0);
         gradientLayer.endPoint = CGPointMake(1.0, 0);

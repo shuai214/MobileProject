@@ -14,10 +14,18 @@
 #import "CAPValidators.h"
 #import "CAPUser.h"
 #import "CAPFetchUserProfileResponse.h"
-@interface CAPUserSettingViewController ()
+#import "CAPFileUpload.h"
+#import "CAPDeviceService.h"
+@interface CAPUserSettingViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet CAPDeviceNumber *number;
 @property (weak, nonatomic) IBOutlet UITextField *userField;
 @property (strong, nonatomic)  CAPUser *capUser;
+@property (strong, nonatomic)  NSArray *countryArrays;
+@property (strong, nonatomic)  NSArray *countryCodeArrays;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (copy, nonatomic) NSString *avatarBaseUrl;
+@property (copy, nonatomic) NSString *avatarPath;
+@property (copy, nonatomic) NSString *sos;
 
 @end
 
@@ -28,18 +36,72 @@
     // Do any additional setup after loading the view.
     self.title = @"填写用户信息";
     self.view.backgroundColor = [UIColor whiteColor];
+
+    self.countryArrays = [[NSArray alloc] init];
+    self.countryCodeArrays = [[NSArray alloc] init];
+    [self get];
+    self.capUser = (CAPUser *)[NSKeyedUnarchiver unarchiveObjectWithData:[CAPUserDefaults objectForKey:@"CAP_User"]];
+    if (self.capUser) {
+        if (self.capUser.info.mobile.length != 0) {
+            self.userField.text = self.capUser.profile.firstName;
+            NSArray *array = [self.capUser.info.mobile componentsSeparatedByString:@" "];
+            NSUInteger index = [self.countryCodeArrays indexOfObject:array.firstObject];
+            NSString *country = [self.countryArrays objectAtIndex:(NSInteger)index];
+            self.number.telField.text = array.lastObject;
+            self.number.telAreaCodeLabel.text = array.firstObject;
+            self.number.countryNameLabel.text = country;
+        }else{
+            self.sos = @"sos";
+        }
+    }
+   
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
     self.number.countryNameLabel.userInteractionEnabled = YES;
     self.number.isEdit = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
     [self.number.countryNameLabel addGestureRecognizer:labelTapGestureRecognizer];
     [ self.number.buttonSend addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.userImageView.userInteractionEnabled = YES;
+    self.userImageView.layer.cornerRadius =  self.userImageView.width/2.0;
+    self.userImageView.layer.masksToBounds = YES;
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.capUser.profile.avatarBaseUrl,self.capUser.profile.avatarPath]] placeholderImage:GetImage(@"user_default_avatar")];
+    UITapGestureRecognizer *imageViewTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewTouchUpInside)];
+    [self.userImageView addGestureRecognizer:imageViewTapGestureRecognizer];
+    
 }
+- (void)imageViewTouchUpInside{
+    UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
+    imagePickerVc.delegate = self;
+    imagePickerVc.allowsEditing = YES;
+    [CAPAlertView initTakingPhotoBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } albumBlock:^{
+        imagePickerVc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+    } closeBlock:^{
+        
+    }];
+}
+
 -(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
-    [self get];
+    
+    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
+        NSUInteger index = [self.countryArrays indexOfObject:selectValue];
+        NSString *telCode = [self.countryCodeArrays objectAtIndex:(NSInteger)index];
+        self.number.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
+        self.number.countryNameLabel.text = selectValue;
+    }];
 }
 - (void)buttonAction:(UIButton *)button{
-    [self get];
+    
+    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
+        NSUInteger index = [self.countryArrays indexOfObject:selectValue];
+        NSString *telCode = [self.countryCodeArrays objectAtIndex:(NSInteger)index];
+        self.number.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
+        self.number.countryNameLabel.text = selectValue;
+    }];
 }
 -(void)get{
     NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"diallingcode" ofType:@"json"]];
@@ -79,20 +141,13 @@
             [countryCodeArray addObject:c.dial_code];
         }
     }
-    NSArray *array = countriesArray;
-    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
-        NSUInteger index = [array indexOfObject:selectValue];
-        NSString *telCode = [countryCodeArray objectAtIndex:(NSInteger)index];
-        self.number.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
-        self.number.countryNameLabel.text = selectValue;
-    }];
+    self.countryArrays = countriesArray;
+    self.countryCodeArrays = countryCodeArray;
+   
 }
--(void)back
-{
-    
-}
+
 - (IBAction)okAction:(UIButton *)sender {
-    self.capUser = (CAPUser *)[NSKeyedUnarchiver unarchiveObjectWithData:[CAPUserDefaults objectForKey:@"CAP_User"]];//setObject:data forKey:@"CAP_User"];
+    
     if (self.userField.text.length != 0) {
         self.capUser.profile.firstName = self.userField.text;
     }else{
@@ -111,10 +166,13 @@
         return;
     }
     if (self.device) {
-        [gApp showHUD:@"正在处理，请稍后..."];
         if (self.device.isOwner.length != 0) {
-            
+            self.device.sos = self.capUser.info.mobile;
         }
+        CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
+            
+        }];
         CAPUserService *userService = [[CAPUserService alloc] init];
         [gApp showHUD:CAPLocalizedString(@"loading")];
         [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
@@ -125,8 +183,47 @@
             }
             [gApp hideHUD];
         }];
+        
     }
 }
 
-
+//选择图片后,更换头像,并保存到沙盒,上传到服务器
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *iconImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *newIconImage = [self newSizeImage:CGSizeMake(self.userImageView.width, self.userImageView.height) image:iconImage];
+    [self.userImageView setImage:newIconImage];
+    
+    CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+    [fileUpload uploadRecording:newIconImage withImageIndex:arc4random() % 100];
+    [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+        NSDictionary *dic = (NSDictionary *)object;
+        if ([[dic objectForKey:@"code"] integerValue] == 200) {
+            NSDictionary *resultDic = [dic objectForKey:@"result"];
+            self.avatarBaseUrl = resultDic[@"base_url"];
+            self.avatarPath = resultDic[@"path"];
+            self.capUser.profile.avatarPath = self.avatarPath;
+            self.capUser.profile.avatarBaseUrl = self.avatarBaseUrl;
+        }
+    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark 调整图片分辨率/尺寸（等比例缩放）
+- (UIImage *)newSizeImage:(CGSize)size image:(UIImage *)sourceImage {
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    
+    CGFloat tempHeight = newSize.height / size.height;
+    CGFloat tempWidth = newSize.width / size.width;
+    
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    
+    UIGraphicsBeginImageContext(newSize);
+    [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end

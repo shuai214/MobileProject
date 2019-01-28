@@ -126,6 +126,7 @@
 "hour_4"="4小时";
 "hour_8"="8小时";
 "hour_12"="12小时";
+"minutes"="分钟";
 "pick_range"="选择半径";
 "version"="版本";
 "searching"="搜索";
@@ -184,3 +185,4 @@
 "sos_number"="SOS号码";
 "company"="公司";
 "no_country"="国家";
+"mobile"="电话";
