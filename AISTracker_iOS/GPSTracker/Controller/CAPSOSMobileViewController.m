@@ -44,7 +44,7 @@
 }
 
 - (void)fetchDevice{
-    [gApp showHUD:@"正在加载，请稍后..."];
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
     [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
@@ -239,8 +239,8 @@
 
 - (void)saveButtonClicked{
     self.inputTelArray = [NSMutableArray array];
-    CAPDeviceNumber *deviceNumber3 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1004];
-    CAPDeviceNumber *deviceNumber4 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1005];
+    CAPDeviceNumber *deviceNumber3 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1002];
+    CAPDeviceNumber *deviceNumber4 = (CAPDeviceNumber *)[self.bgscrollView viewWithTag:1003];
     if (deviceNumber3.telField.text.length != 0) {
         if ([CAPValidators validPhoneNumber:deviceNumber3.telField.text]) {
             [self.inputTelArray addObject:[NSString stringWithFormat:@"%@ %@",deviceNumber3.telAreaCodeLabel.text,deviceNumber3.telField.text]];

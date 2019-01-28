@@ -117,18 +117,18 @@
 //5
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //删除
-    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        [CAPAlertView initAlertWithContent:@"确定删除该围栏？" title:@"" closeBlock:^{
+    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:CAPLocalizedString(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [CAPAlertView initAlertWithContent:CAPLocalizedString(@"confirm_delete_fence") title:@"" closeBlock:^{
             
         } okBlock:^{
             List *cellList = self.fenceList.result.list[indexPath.row];
             CAPFenceService *fenceService = [[CAPFenceService alloc] init];
-            [gApp showHUD:@"正在更新设置，请稍后..."];
+            [gApp showHUD:@"loading"];
             [fenceService deleteFence:cellList.fid reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {
                     [gApp hideHUD];
-                    [gApp showNotifyInfo:@"删除成功" backGroundColor:[CAPColors red1]];
+                    [gApp showNotifyInfo:CAPLocalizedString(@"delete_fence_success") backGroundColor:[CAPColors red1]];
                     [self getFenceList];
                 }
             }];

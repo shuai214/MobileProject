@@ -393,7 +393,7 @@
     //高德地图
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
         NSMutableDictionary*gaodeMapDic = [NSMutableDictionary dictionary];
-        gaodeMapDic[@"title"] =@"高德地图";
+        gaodeMapDic[@"title"] =CAPLocalizedString(@"amap_map");
         NSString*urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",@"导航功能",@"nav123456",endLocation.latitude,endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         gaodeMapDic[@"url"] = urlString;
         [maps addObject:gaodeMapDic];
@@ -401,7 +401,7 @@
     //谷歌地图
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
         NSMutableDictionary*googleMapDic = [NSMutableDictionary dictionary];
-        googleMapDic[@"title"] =@"谷歌地图";
+        googleMapDic[@"title"] =CAPLocalizedString(@"google_map");
         NSString*urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",@"导航测试",@"nav123456",endLocation.latitude, endLocation.longitude]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         googleMapDic[@"url"] = urlString;
         [maps addObject:googleMapDic];

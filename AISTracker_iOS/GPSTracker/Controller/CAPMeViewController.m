@@ -45,7 +45,7 @@
 }
 
 - (void)getDeviceUser{
-    [gApp showHUD:@"正在加载，请稍后..."];
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPUserService *userServer = [[CAPUserService alloc] init];
     [userServer fetchProfile:^(CAPFetchUserProfileResponse *response) {
         NSLog(@"%@",response.result);

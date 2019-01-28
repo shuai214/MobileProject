@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"定位模式";
+    self.title = CAPLocalizedString(@"positioning_mode");
     self.view.backgroundColor = gCfg.appBackgroundColor;
     
     UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(10,10 + TopHeight,Main_Screen_Width - 20,120)];
@@ -37,14 +37,14 @@
     
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, buttonView.width / 2 - 15, buttonView.height / 2)];
-    label.text = @"省电模式";
+    label.text = CAPLocalizedString(@"power_saving_mode");
     label.font = [UIFont systemFontOfSize:14];
     label.textAlignment = NSTextAlignmentLeft;
     [buttonView addSubview:label];
     
     
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, lineView.bottom, buttonView.width / 2 - 15, buttonView.height / 2)];
-    label1.text = @"普通模式";
+    label1.text = CAPLocalizedString(@"common_pattern");
     label1.font = [UIFont systemFontOfSize:14];
     label1.textAlignment = NSTextAlignmentLeft;
     [buttonView addSubview:label1];
@@ -74,7 +74,7 @@
     
     UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(15, Main_Screen_Height - TabBarHeight - IMAGE_W_H, Main_Screen_Width - 30, IMAGE_W_H)];
     okButton.backgroundColor = [CAPColors red];
-    [okButton setTitle:@"完成" forState:UIControlStateNormal];
+    [okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
     [okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     okButton.layer.cornerRadius = 4.0;
     [okButton addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
@@ -88,6 +88,7 @@
     [self.customImageView setImage:GetImage(@"check_off")];
     self.time = @"-1";
     [CAPUserDefaults removeObjectForKey:@"uploadTime"];
+    [CAPUserDefaults setObject:@"43200" forKey:@"uploadTimeInter"];
 }
 
 - (void)chooseTimeAction{

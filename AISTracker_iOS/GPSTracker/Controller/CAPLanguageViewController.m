@@ -8,7 +8,7 @@
 
 #import "CAPLanguageViewController.h"
 #import "CAPUserPresenter.h"
-
+#import "DAConfig.h"
 @interface CAPLanguageViewController () <UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
@@ -92,6 +92,22 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"didSelectRow: %lu", (unsigned long)row);
+    switch (row) {
+        case 0:
+             [DAConfig setUserLanguage:@""];
+            break;
+        case 1:
+             [DAConfig setUserLanguage:@"zh-Hans"];
+            break;
+        case 2:
+            [DAConfig setUserLanguage:@"th"];
+            break;
+        case 3:
+            [DAConfig setUserLanguage:@"en"];
+            break;
+        default:
+            break;
+    }
     self.selectIndex = row;
 }
 

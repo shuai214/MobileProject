@@ -42,7 +42,7 @@
     [self.navigationController pushViewController:GuardianInvitationVC animated:YES];
 }
 - (void)loadDeviceBindUserInfo{
-    [gApp showHUD:@"正在加载，请稍后..."];
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
     [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);

@@ -40,9 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设备详情";
-    self.titles = @[@"名称", @"Device ID", @"Device IMEI",
-                    @"Device Number", @"监护人",@"SOS号码",@"更新频率",@"解绑",@"固件版本"];
+    self.title = CAPLocalizedString(@"profile");
+    self.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
+                    @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"tethering"),CAPLocalizedString(@"firmware_version")];
     self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
     
     self.tableView.dataSource = self;
@@ -78,7 +78,7 @@
     }];
 }
 - (void)loadDeviceInfo{
-    [gApp showHUD:@"正在处理，请稍后..."];
+    [gApp showHUD:@"loading"];
 
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService getDevice:self.device reply:^(id response) {

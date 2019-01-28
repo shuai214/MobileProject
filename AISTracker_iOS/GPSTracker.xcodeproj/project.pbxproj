@@ -26,6 +26,8 @@
 		2B2BE48621ECCCBC006D728C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2BE48521ECCCBB006D728C /* CoreData.framework */; };
 		2B4165E421FB4D6E00562EE7 /* CAPGooglePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4165E321FB4D6E00562EE7 /* CAPGooglePlace.m */; };
 		2B4165E721FB61D500562EE7 /* CAPAddFenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4165E621FB61D500562EE7 /* CAPAddFenceTableViewCell.m */; };
+		2B45228A21FF483C001BD5DC /* NSBundle+DAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45228821FF483B001BD5DC /* NSBundle+DAUtils.m */; };
+		2B45228B21FF483C001BD5DC /* DAConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45228921FF483B001BD5DC /* DAConfig.m */; };
 		2B4B2BE321F6BFAA007A928D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B2BDF21F6BFAA007A928D /* LaunchScreen.storyboard */; };
 		2B4B2BE721F6F3E5007A928D /* CAPGetCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B2BE621F6F3E5007A928D /* CAPGetCurrentViewController.m */; };
 		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
@@ -287,6 +289,10 @@
 		2B4165E321FB4D6E00562EE7 /* CAPGooglePlace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGooglePlace.m; sourceTree = "<group>"; };
 		2B4165E521FB61D500562EE7 /* CAPAddFenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAddFenceTableViewCell.h; sourceTree = "<group>"; };
 		2B4165E621FB61D500562EE7 /* CAPAddFenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAddFenceTableViewCell.m; sourceTree = "<group>"; };
+		2B45228621FF483B001BD5DC /* NSBundle+DAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DAUtils.h"; sourceTree = "<group>"; };
+		2B45228721FF483B001BD5DC /* DAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAConfig.h; sourceTree = "<group>"; };
+		2B45228821FF483B001BD5DC /* NSBundle+DAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+DAUtils.m"; sourceTree = "<group>"; };
+		2B45228921FF483B001BD5DC /* DAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAConfig.m; sourceTree = "<group>"; };
 		2B46F6AF21CCEEAE00A76224 /* CAPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPMacros.h; sourceTree = "<group>"; };
 		2B4B2BE021F6BFAA007A928D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B4B2BE521F6F3E5007A928D /* CAPGetCurrentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGetCurrentViewController.h; sourceTree = "<group>"; };
@@ -1063,6 +1069,10 @@
 		EF79BB5121886149000358FA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2B45228721FF483B001BD5DC /* DAConfig.h */,
+				2B45228921FF483B001BD5DC /* DAConfig.m */,
+				2B45228621FF483B001BD5DC /* NSBundle+DAUtils.h */,
+				2B45228821FF483B001BD5DC /* NSBundle+DAUtils.m */,
 				2B1C080721E0A03400B258C1 /* NHHUDExtend */,
 				EF6CA65A218D58170014771E /* NullSafe */,
 				EF6CA65C218D58170014771E /* QQ */,
@@ -1687,11 +1697,13 @@
 				EFD0ACE9218C46A500405FD8 /* CAPStrings.m in Sources */,
 				2B1C07ED21DF2FBE00B258C1 /* HMWeeklySelectDateView.m in Sources */,
 				EF46F27521929080009A357C /* CAPFenceService.m in Sources */,
+				2B45228B21FF483C001BD5DC /* DAConfig.m in Sources */,
 				EFD0ACE6218C46A500405FD8 /* CAPValidators.m in Sources */,
 				2BF3EA3A21F867D700B5BB63 /* CAPDeviceBindList.m in Sources */,
 				EF358BEC2191441600EFB4BF /* CAPCollectionCell.m in Sources */,
 				EF46F2812192991A009A357C /* CAPFootprint.m in Sources */,
 				2B78076121F0C35300DD31FB /* MQTTResult.m in Sources */,
+				2B45228A21FF483C001BD5DC /* NSBundle+DAUtils.m in Sources */,
 				EFD0ACB6218C3F0100405FD8 /* CAPScanViewController.m in Sources */,
 				2B19B0A521F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m in Sources */,
 				EFD0AD42218C550C00405FD8 /* CAPSocialLoginResponse.m in Sources */,

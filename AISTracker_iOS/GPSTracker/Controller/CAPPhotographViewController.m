@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"拍照";
+    self.title = CAPLocalizedString(@"take_photo");
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -103,7 +103,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (!self.mqttInfo) {
                     [gApp hideHUD];
-                    [gApp showNotifyInfo:@"请求错误❌" backGroundColor:[CAPColors gray1]];
+                    [gApp showNotifyInfo:CAPLocalizedString(@"take_photo_error") backGroundColor:[CAPColors gray1]];
                 }
             });
         }

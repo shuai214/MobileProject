@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"添加围栏";
+    self.title = CAPLocalizedString(@"add fence");
 //    [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
     self.view.backgroundColor = [UIColor whiteColor];
    
@@ -152,7 +152,7 @@
 
 - (void)addFence:(CAPGooglePlace *)place{
     CAPWeakSelf(self);
-    [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500",@"1000",@"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"information_of_the_fence") dataSource:@[@"50",@"100",@"500",@"1000",@"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
         [weakself drawCenter:[selectValue integerValue]];
         [CAPAlertView initAddressAlertWithContent:[NSString stringWithFormat:@"%@\n%@",place.name,place.vicinity] ocloseBlock:^{
             [weakself.navigationController popViewControllerAnimated:YES];
@@ -169,9 +169,9 @@
             if (name.length != 0) {
                 fence.name = name;
             }else{
-                fence.name = @"围栏";
+                fence.name = CAPLocalizedString(@"gps_fencing");
             }
-            [gApp showHUD:@"正在加载，请稍后..."];
+            [gApp showHUD:CAPLocalizedString(@"loading")];
             CAPFenceService *fenceService =[[CAPFenceService alloc] init];
             [fenceService addFence:fence reply:^(CAPHttpResponse  *response) {
                 NSDictionary *data = response.data;
@@ -187,7 +187,7 @@
                             if (name.length != 0) {
                                 resultFence.name = name;
                             }else{
-                                resultFence.name = @"围栏";
+                                fence.name = CAPLocalizedString(@"gps_fencing");
                             }
                             [gApp showHUD:CAPLocalizedString(@"loading")];
                             [editFenceService editAddFence:resultFence reply:^(id response) {
@@ -200,7 +200,7 @@
                         }];
                     }];
                     [weakself.backView setEditRangeBlock:^(CAPChooseFenceView *view){
-                        [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
+                        [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"information_of_the_fence") dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
                             [weakself drawCenter:[selectValue integerValue]];
                             resultFence.range = [selectValue integerValue];
                             [gApp showHUD:CAPLocalizedString(@"loading")];
@@ -230,7 +230,7 @@
                     [weakself.view bringSubviewToFront:weakself.tableContentView];
 
                 }else{
-                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
                         [gApp hideHUD];
                     }];
                 }

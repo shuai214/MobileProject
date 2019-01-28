@@ -24,7 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *locals;
 @property (nonatomic, strong) UIView *showAddressView;
 @property (nonatomic, strong) UILabel *showAddressLabel;
-
+@property (nonatomic, strong) UILabel *showAddressTimeLabel;
+@property (nonatomic, strong) UIImageView *showAddressImageView;
 @end
 
 @implementation CAPFootprintViewController
@@ -119,12 +120,12 @@
     [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
         [gApp hideHUD];
         GMSAddress *placemark = response.firstResult;
-        [self showAddress:placemark];
+        [self showAddress:placemark footPrintList:list];
     }];
     return YES;
 }
 
-- (void)showAddress:(GMSAddress *)address{
+- (void)showAddress:(GMSAddress *)address footPrintList:(ResultFootprintList *)list{
     if (!_showAddressView) {
         _showAddressView = [[UIView alloc] initWithFrame:CGRectMake(10, Main_Screen_Height - 80, Main_Screen_Width - 20, 60)];
         _showAddressView.backgroundColor = [UIColor whiteColor];
@@ -132,12 +133,31 @@
         _showAddressView.layer.masksToBounds = YES;
         [self.view addSubview:_showAddressView];
         
-        _showAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _showAddressView.width, _showAddressView.height)];
+        _showAddressTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, _showAddressView.height)];
+        _showAddressTimeLabel.textColor = [UIColor lightGrayColor];
+        _showAddressTimeLabel.textAlignment = NSTextAlignmentCenter;
+        [_showAddressView addSubview:_showAddressTimeLabel];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake( 70 - 0.75, 0, 0.5, _showAddressView.height)];
+        line.backgroundColor = [UIColor lightGrayColor];
+        [_showAddressView addSubview:line];
+        
+        _showAddressImageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, (60 - 20) / 2, 20, 20)];
+        [_showAddressImageView setImage:GetImage(@"number_red0")];
+        [_showAddressView addSubview:_showAddressImageView];
+        
+        _showAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, _showAddressView.width - 120, _showAddressView.height)];
         _showAddressLabel.textColor = [UIColor lightGrayColor];
         _showAddressLabel.textAlignment = NSTextAlignmentCenter;
         [_showAddressView addSubview:_showAddressLabel];
     }
     _showAddressLabel.text = [NSString stringWithFormat:@"%@%@%@",address.locality,address.subLocality,address.thoroughfare];
+    if (list.createdAt) {
+        NSString *time = [NSString dateFormateWithTimeInterval:[list.createdAt integerValue]];
+        NSArray *array = [time componentsSeparatedByString:@" "];
+        NSString *hours = array.lastObject;
+        _showAddressTimeLabel.text = [NSString stringWithFormat:@"%@",[hours substringWithRange:NSMakeRange(0,5)]];
+    }
 }
 
 
