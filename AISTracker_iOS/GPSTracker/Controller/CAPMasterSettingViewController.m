@@ -40,10 +40,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *time = @"";
+    if (self.device.setting.reportFrequency) {
+        if (self.device.setting.reportFrequency / 60 < 60) {
+            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+        }
+        if (self.device.setting.reportFrequency / 60 > 60) {
+            
+            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+        }
+    }
     self.title = CAPLocalizedString(@"profile");
     self.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
-                    @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"tethering"),CAPLocalizedString(@"firmware_version")];
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
+                    @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",time,@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -136,7 +146,7 @@
             CAPWeakSelf(self);
             [EditNameVC setUpdateSuccessBlock:^(id cap) {
                 CAPDevice *device = (CAPDevice*)cap;
-                weakself.details = @[device? device:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",[CAPUserDefaults objectForKey:@"uploadTime"] ? [CAPUserDefaults objectForKey:@"uploadTime"] : @"",@"",@""];
+                weakself.details = @[device? device:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",device.setting,@"",@""];
                 [weakself.tableView reloadData];
             }];
         [self.navigationController pushViewController:EditNameVC animated:YES];
@@ -179,7 +189,7 @@
             [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{
                 
             } okBlock:^{
-                [gApp showHUD:@"正在处理，请稍后..."];
+                [gApp showHUD:CAPLocalizedString(@"loading")];
                 CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
                 [deviceService deleteDevice:self.device reply:^(CAPHttpResponse *response) {
                     NSDictionary *data = response.data;

@@ -23,16 +23,16 @@
                      kCRToastTextKey : @"",
                      kCRToastFontKey: [UIFont systemFontOfSize:15],
                      kCRToastTimeIntervalKey : @(1.5),
-                     kCRToastTextAlignmentKey : @(NSTextAlignmentLeft),
-                     kCRToastBackgroundColorKey : [CAPColors blue3],
+                     kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                     kCRToastBackgroundColorKey : [CAPColors red],
                      kCRToastNotificationTypeKey :  @(CRToastTypeNavigationBar),
                      kCRToastNotificationPresentationTypeKey :  @(CRToastPresentationTypeCover),
                      kCRToastAnimationInTypeKey : @(CRToastAnimationTypeLinear),
                      kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
                      kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
                      kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
-                     kCRToastImageKey : [UIImage imageNamed:@"alert_icon.png"],
-                     kCRToastImageAlignmentKey : @(CRToastAccessoryViewAlignmentLeft)
+//                     kCRToastImageKey : [UIImage imageNamed:@"end.png"],
+                     kCRToastImageAlignmentKey : @(CRToastAccessoryViewAlignmentCenter)
                      } mutableCopy];
     });
     [options setObject:message forKey:kCRToastTextKey];

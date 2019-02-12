@@ -116,4 +116,67 @@
         self.successBlockObject(responseObject);
     }] resume];
 }
+- (void)loadDeviceParameter:(id)parameter device:(CAPDevice *)device{
+    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/geolocation/v1/geolocate?key=%@",gCfg.google_web_api_key];
+//    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+//    manager.requestSerializer.timeoutInterval = 15.0;
+//    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:URLString parameters:nil error:nil];
+//    [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameter
+//                                                       options:kNilOptions
+//                                                         error:nil];
+//    [request setHTTPBody:jsonData];
+//    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
+//        self.successBlockObject(responseObject);
+//    }] resume];
+    
+    NSLog(@"%@",parameter);
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameter options:0 error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:URLString parameters:nil error:nil];
+    req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Reply JSON: %@", responseObject);
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                self.successBlockObject(responseObject);
+            }
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    }] resume];
+}
+
+- (void)updateDeviceInfo:(NSDictionary *)dic deviceID:(NSString *)deviceId{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSString *URLString = [NSString stringWithFormat:@"%@%@%@",gCfg.rootURLString,@"Device/BindInfo/",deviceId];
+    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:nil error:nil];
+    [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSLog(@"Reply JSON: %@", responseObject);
+            
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                //blah blah
+            }
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    }] resume];
+}
+
 @end

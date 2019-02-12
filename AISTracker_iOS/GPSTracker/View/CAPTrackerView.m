@@ -47,6 +47,7 @@
         [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
         [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
     }
+//    https://www.googleapis.com/geolocation/v1/geolocate?key=
     return self;
 }
 - (void)deviceOnline:(NSNotification *)notifi{
@@ -58,6 +59,7 @@
         self.onlineLabel.text = @"online";
 //        self.onlineLabel.textColor = [CAPColors green1];
     }
+    [self.batteryView reloadBattery:info.batlevel];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -96,7 +98,7 @@
 - (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location time:(NSString *)time{
     self.DeviceName.text = device.name;
     self.DeviceLocation.text = location;
-    self.updateTimeLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"last_updated"),time];
+    time ? self.updateTimeLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"last_updated"),time] : @"";
 }
 //- (void)layoutSubviews {
 //    [super layoutSubviews];

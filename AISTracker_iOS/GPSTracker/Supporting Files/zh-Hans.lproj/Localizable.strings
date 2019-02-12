@@ -113,6 +113,7 @@
 "update_frequency"="更新频率";
 "firmware_version"="固件版本";
 "tethering"="绑定";
+"no_tethering"="解除绑定";
 "tether_tracker_to_your_smartphone"="请绑定您的GPS Tracker设备到您的手机";
 "scan"="扫描";
 "tap_to_capture"="点击拍摄";
@@ -122,6 +123,7 @@
 "google_map"="谷歌地图";
 "amap_map"="高德地图";
 "real_time"="实时";
+"hour"="小时";
 "hour_1"="1小时";
 "hour_4"="4小时";
 "hour_8"="8小时";

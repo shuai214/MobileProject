@@ -30,18 +30,20 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 @end
 
 @interface StationInfo : CAPBaseJSON
-    @property (nonatomic, copy) NSString *TA;
-    @property (nonatomic, copy) NSString *MCC;
-    @property (nonatomic, copy) NSString *MNC;
-    @property (nonatomic, copy) NSString *AC;
-    //@property (nonatomic, copy) NSString *NO;
-    @property (nonatomic, copy) NSString *SS;
+    @property (nonatomic, copy) NSString *ta;
+    @property (nonatomic, copy) NSString *mcc;
+    @property (nonatomic, copy) NSString *mnc;
+    @property (nonatomic, copy) NSString *ac;
+    @property (nonatomic, copy) NSString *no;
+    @property (nonatomic, copy) NSString *ss;
 @end
 
 @interface WifiInfo : CAPBaseJSON
-    @property (nonatomic, copy) NSString *name;
-    @property (nonatomic, copy) NSString *mac;
-    @property (nonatomic, assign) NSInteger ss;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *mac;
+@property (nonatomic, assign) NSInteger dBm;
+@property (nonatomic, copy) NSString *channel;
+@property (nonatomic, assign) NSInteger ss;
 @end
 @interface UserProfile : CAPBaseJSON
 @property (nonatomic, copy) NSString *firstName;
@@ -66,7 +68,7 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 @property (nonatomic, assign) NSInteger steps;
 @property (nonatomic, assign) NSInteger rolls;
 @property (nonatomic, copy) NSString *status;
-@property (nonatomic, strong) StationInfo *station;
+@property (nonatomic, strong) NSArray<StationInfo *> *station;
 @property (nonatomic, strong) UserProfile *userProfile;
 
 @property (nonatomic, strong) NSArray<NeighborInfo *>  *neighbors;

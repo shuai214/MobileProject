@@ -132,11 +132,17 @@
 }
 
 - (void)updateSetting:(CAPDevice *)setting reply:(CAPServiceReply)reply {
-    //TODO
+    //TODO@property (nonatomic, strong) CAPFileItem *avatar;
+//    @property (nonatomic, copy) NSString *name;
+//    @property (nonatomic, copy) NSString *answerMode;
+//    @property (nonatomic, assign) NSInteger reportFrequency;
+//    @property (nonatomic, copy) NSString *mobile;
     if (setting) {
         NSDictionary *params = @{
                                  @"name": setting.name,
-                                 @"mobile":setting.mobile
+                                 @"mobile":setting.mobile,
+                                 @"answerMode":setting.setting.answerMode ? setting.setting.answerMode:@"",
+                                 @"reportFrequency":[NSString stringWithFormat:@"%ld",setting.setting.reportFrequency ? setting.setting.reportFrequency:0]
                                  };
         CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:setting.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {

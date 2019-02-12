@@ -60,7 +60,6 @@
         reply([CAPSocialLoginResponse responseWithHttpResponse:response]);
     }];
 }
-
 - (void)fetchProfile:(CAPServiceReply)reply {
     CAPHttpRequest *request = [self buildRequest:@"Account/Profile" method:@"GET"];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {

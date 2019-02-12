@@ -74,17 +74,20 @@
             if (i == 0) {
                 [button.layer setBorderColor:[CAPColors red].CGColor];//边框颜色
                 button.selected = YES;
+                button.tag = i + 99;
                 self.selectedBtn = button;
             }else{
+                button.tag = i + 99;
                 [button.layer setBorderColor:[CAPColors gray1].CGColor];//边框颜色
             }
             button.layer.cornerRadius = width / 2;
             button.layer.masksToBounds = YES;
-            button.tag = i;
+            
             CAPDevice *device = self.devices[i];
             [button sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.avatarBaseUrl,device.avatarPath]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"ic_default_avatar_new"]];
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
+            NSLog(@"1111111111---------%@",button);
         }
     } else {
         for(UIView *view in self.scrollView.subviews) {
@@ -94,10 +97,15 @@
     }
 }
 
+- (void)reloadButton:(NSInteger)index{
+    UIButton *button = [self.scrollView viewWithTag:index + 99];
+    
+    [self onDeviceClicked:button];
+}
 
 - (void)onDeviceClicked:(UIButton *)button {
     if(self.delegate) {
-        [self.delegate didSelectDeviceAtIndex:button.tag];
+        [self.delegate didSelectDeviceAtIndex:button.tag - 99];
     }
 
     if (!button.isSelected) {

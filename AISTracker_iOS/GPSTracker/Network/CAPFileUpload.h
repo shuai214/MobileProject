@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getDeviceLoacl:(NSString *)latlng;
 - (void)getDeviceDetailLoacl:(NSDictionary *)parameter;
 - (void)setSOSMobile:(CAPDevice *)device array:(NSArray *)array;
-
+- (void)loadDeviceParameter:(id)parameter device:(CAPDevice *)device;
+- (void)updateDeviceInfo:(NSDictionary *)dic deviceID:(NSString *)deviceId;
 @end
 
 NS_ASSUME_NONNULL_END

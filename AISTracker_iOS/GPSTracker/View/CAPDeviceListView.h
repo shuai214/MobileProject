@@ -16,4 +16,5 @@
 @interface CAPDeviceListView : UIView
 @property (nonatomic, strong) NSArray *devices;
 @property (nonatomic, weak) id<CAPDeviceListViewDelegate> delegate;
+- (void)reloadButton:(NSInteger)index;
 @end

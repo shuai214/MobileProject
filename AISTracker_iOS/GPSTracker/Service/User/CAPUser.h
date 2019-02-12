@@ -15,7 +15,6 @@ typedef NS_ENUM(NSUInteger, CAPUserType) {
     CAPUserTypeWechat,
     CAPUserTypeMobile,
     CAPUserTypeFacebook,
-    CAPUserTypeLine,
     CAPUserTypeTrue
 };
 

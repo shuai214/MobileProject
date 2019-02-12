@@ -119,13 +119,13 @@
     
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:1.0f];
-    GMSCameraPosition *camera =
-    [GMSCameraPosition cameraWithTarget:marker.position
-                                         zoom:20];
-    [mapView animateToCameraPosition:camera];
-    [CATransaction commit];
+//    [CATransaction begin];
+//    [CATransaction setAnimationDuration:1.0f];
+//    GMSCameraPosition *camera =
+//    [GMSCameraPosition cameraWithTarget:marker.position
+//                                         zoom:20];
+//    [mapView animateToCameraPosition:camera];
+//    [CATransaction commit];
     if (marker == self.tapMarker) {
         [self addFence:self.poiArrays.firstObject];
     }else{

@@ -113,6 +113,7 @@
 "update_frequency"="ความถี่ในการปรับปรุง";
 "firmware_version"="เฟิร์มแวรุ่น";
 "tethering"="ผูกพัน";
+"no_tethering"="การรวม";
 "tether_tracker_to_your_smartphone"="โปรดผูกพันGPS Trackerอุปกรณ์ไปยังโทรศัพท์ของคุณ";
 "scan"="การสแกน";
 "tap_to_capture"="คลิกเพื่อถ่ายรูป";
@@ -122,6 +123,7 @@
 "google_map"="แผนที่ กูเก้น";
 "amap_map"="แผนที่ เกาดึ๋";
 "real_time"="ในเวลาจริง";
+"hour"="ชั่วโมง";
 "hour_1"="1ชั่วโมง";
 "hour_4"="4ชั่วโมง";
 "hour_8"="8ชั่วโมง";

@@ -62,7 +62,7 @@
     
     self.sdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.sdButton.width - IMAGE_W_H - 10, (self.sdButton.height - IMAGE_W_H) / 2, IMAGE_W_H, IMAGE_W_H)];
     [self.sdButton addSubview:self.sdImageView];
-    self.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.customButton.width - IMAGE_W_H - 10, (self.customButton.height - IMAGE_W_H) / 2, IMAGE_W_H, IMAGE_W_H)];
+    self.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.customButton.width - IMAGE_W_H - 5, (self.customButton.height - IMAGE_W_H) / 2, IMAGE_W_H, IMAGE_W_H)];
     [self.customButton addSubview:self.customImageView];
     
     [self.sdImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_off"):GetImage(@"check_on")];
@@ -141,7 +141,18 @@
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command.code == 200) {
             [gApp hideHUD];
+            [CAPToast toastSuccess:CAPLocalizedString(@"update_success")];
             [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationUPLOADCountChange object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    CAPDevice *device = self.device;
+    device.setting.reportFrequency = [self.time integerValue];
+    [deviceService updateSetting:device reply:^(CAPHttpResponse *response) {
+        NSLog(@"%@",response);
+        NSDictionary *data = response.data;
+        if ([[data objectForKey:@"code"] integerValue] == 200) {
+            [CAPNotifications notify:kNotificationDeviceCountChange];
         }
     }];
 }

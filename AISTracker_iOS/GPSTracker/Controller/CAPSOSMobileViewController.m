@@ -108,13 +108,15 @@
 }
 - (void)initTwoView{
     CGFloat numViewHeight = 80;
-    UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, self.firstViewArray.lastObject.bottom + 20, Main_Screen_Width, 20)];
+    NSInteger j = 3;
+    CGRect frame = CGRectMake(0, TopHeight / 2 + 20 + (numViewHeight + 10 )* j + 10, Main_Screen_Width, numViewHeight);
+    UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height + frame.origin.y + 20, Main_Screen_Width, 20)];
     mayBeTwoNumber.text = @"You can set these two numbers freely";
     mayBeTwoNumber.textAlignment = NSTextAlignmentCenter;
     [self.bgscrollView addSubview:mayBeTwoNumber];
     
     NSMutableArray <UIView *>*mayViews = [NSMutableArray array];
-    NSInteger j = 3;
+    
     for (NSInteger i = 0; i< 2; i++) {
         CGRect frame = CGRectMake(0, mayBeTwoNumber.bottom + (numViewHeight + 10 ) * i + 10, Main_Screen_Width, numViewHeight);
         UIView *view = [self setNumberView:frame isEdit:YES index:j];

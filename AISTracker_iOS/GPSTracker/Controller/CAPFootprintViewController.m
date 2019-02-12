@@ -86,7 +86,7 @@
                     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:footPrint.lat longitude:footPrint.lng zoom:15];
                     self.gmsMapView.camera = camera;
                 }
-                [self creatMarkerWithPosition:CLLocationCoordinate2DMake(footPrint.lat,footPrint.lng) title:[NSString stringWithFormat:@"%ld",i]];
+                [self creatMarkerWithPosition:CLLocationCoordinate2DMake(footPrint.lat,footPrint.lng) title:[NSString stringWithFormat:@"%ld",(i + 1)]];
 //                CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
 //                [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",footPrint.lat,footPrint.lng]];
 //                [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
@@ -102,7 +102,7 @@
 - (void)creatMarkerWithPosition:(CLLocationCoordinate2D)position title:(NSString *)title{
     GMSMarker *sydneyMarker = [[GMSMarker alloc] init];
     sydneyMarker.title = title;
-    sydneyMarker.icon = [UIImage imageNamed:@"number_blue0"];
+    sydneyMarker.icon = [self addText:[UIImage imageNamed:@"number_blue0"] text:title];
     sydneyMarker.position = position;
     sydneyMarker.map = self.gmsMapView;
     [self.markets addObject:sydneyMarker];
@@ -110,10 +110,12 @@
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
     for (GMSMarker *oldMarker in self.markets) {
-        oldMarker.icon = [UIImage imageNamed:@"number_blue0"];
+        oldMarker.icon = [self addText:[UIImage imageNamed:@"number_blue0"] text:oldMarker.title];
     }
     NSInteger index = [self.markets indexOfObject:marker];
-    marker.icon = [UIImage imageNamed:@"number_red0"];
+//    marker.icon = [UIImage imageNamed:@"number_red0"];
+    marker.icon = [self addText:[UIImage imageNamed:@"number_red0"] text:marker.title];
+
     ResultFootprintList *list = self.locals[index];
     GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
     [gApp showHUD:@""];
@@ -180,4 +182,24 @@
     return [ZeroDate timeIntervalSince1970];
 }
 
+-(UIImage *)addText:(UIImage *)image text:(NSString *)string{
+    UIImage *sourceImage = image;
+    CGSize imageSize; //画的背景 大小
+    imageSize = [sourceImage size];
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+    [sourceImage drawAtPoint:CGPointMake(0, 0)];
+    //获得 图形上下文
+    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextDrawPath(context, kCGPathStroke);
+    CGFloat nameFont = 16.f;
+    //画 自己想要画的内容
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:nameFont]};
+    CGRect sizeToFit = [string boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, nameFont) options:NSStringDrawingUsesDeviceMetrics attributes:attributes context:nil];
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    [string drawAtPoint:CGPointMake((imageSize.width - sizeToFit.size.width) / 2,imageSize.height/4) withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:nameFont]}];
+    //返回绘制的新图形
+    UIImage *newImage=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end

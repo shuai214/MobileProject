@@ -67,11 +67,8 @@
     Boolean isLogin = [[TrueIdPlatformAuth shareInstance] getAccessToken] != NULL;
     NSLog(@"%@",[[TrueIdPlatformAuth shareInstance] getAccessToken]);
     if (isLogin == TRUE){
-        
         [self loginAction];
-        
     }
-    
 }
 
 
@@ -113,23 +110,20 @@
         NSDictionary *profileDic = userInfo[@"profile"];
 
         if (profileDic != nil) {
-            
             NSString *appid = userInfo[@"aud"];
-            NSString *nickName = profileDic[@"display_name"];
-            NSString *openId = profileDic[@"uid"];
-            NSString *phone = profileDic[@"account_mobile"];
-            NSString *expirationDate = profileDic[@"iat"];
+            NSString *uid = weakself.openID;
             NSString *email = profileDic[@"account_email"];
+            NSString *expirationDate = [NSString stringWithFormat:@"%ld",([profileDic[@"exp"] integerValue] - [profileDic[@"iat"] integerValue])];
+            NSString *accessToken = profileDic[@"account_email"];
+            NSString *name = profileDic[@"display_name"];
 
-            if (nickName) userInfoDic[@"name"] = nickName;
-            if (openId)   userInfoDic[@"uid"] = openId;
+            if (name) userInfoDic[@"name"] = name;
+            if (uid)   userInfoDic[@"uid"] = uid;
             if (appid)   userInfoDic[@"appid"] = appid;
-            if (phone)    userInfoDic[@"mobile"] = phone;
-            if (email)    userInfoDic[@"email"] = email;
+            if (email)    userInfoDic[@"email"] = uid;
+            if (accessToken)    userInfoDic[@"accessToken"] = accessToken;
+            if (expirationDate)  userInfoDic[@"expiration"] = expirationDate;
             userInfoDic[@"type"] = [NSString stringWithFormat:@"%ld",CAPUserTypeTrue];
-            userInfoDic[@"accessToken"] = openId;
-
-         
         }
         
         self.profileDic = userInfoDic;
@@ -162,24 +156,31 @@
 - (void)userInfoDownloadWithOpenID:(NSString *)openID
 {
 
-    [gApp showHUD:@"正在加载，请稍候..."];
+    [gApp showHUD:@"loading"];
     CAPUserService *userService = [[CAPUserService alloc] init];
     [userService socialLogin:self.profileDic reply:^(id response) {
         NSLog(@"%@",response);
         if ([response isKindOfClass:[CAPSocialLoginResponse class]]) {
             CAPSocialLoginResponse *loginResponse = response;
-            if(loginResponse.isSucceed) {
+            if(loginResponse.code == 200){
+                if(loginResponse.isSucceed) {
+                    [gApp hideHUD];
+                    CAPUser *user = loginResponse.result;
+
+                    [self showMainPage];
+
+                    [CAPNotifications notify:kNotificationLoginDeviceCount object:user];
+                    [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
+                    [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];
+                    [CAPUserDefaults setObject:user.account.userID forKey:@"userID"];
+                    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+                    [CAPUserDefaults setObject:data forKey:@"CAP_User"];
+                }
+            }else{
                 [gApp hideHUD];
-                CAPUser *user = loginResponse.result;
-
-                [self showMainPage];
-
-                [CAPNotifications notify:kNotificationLoginDeviceCount object:user];
-                [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
-                [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];
-                [CAPUserDefaults setObject:user.account.userID forKey:@"userID"];
-                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-                [CAPUserDefaults setObject:data forKey:@"CAP_User"];
+                [CAPAlertView initAlertWithContent:loginResponse.message okBlock:^{
+                    
+                } alertType:AlertTypeNoClose];
             }
         }
     }];

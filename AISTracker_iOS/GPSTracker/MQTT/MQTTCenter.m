@@ -225,7 +225,7 @@
         info.online = 1;
     }
     if ([info.command isEqualToString:@"STATUS"]) {
-        NSString *status = nil;
+        NSString *status = @"未知状态";
         UIColor *color = nil;
         if (info.online ? 0 : 1) {
             status = @"离线";
@@ -239,15 +239,15 @@
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
-        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
+//        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"GPS"]){
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
-        info.message = [NSString stringWithFormat:@"%@进行了定位",info.deviceID];
+//        info.message = [NSString stringWithFormat:@"%@进行了定位",info.deviceID];
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
-        info.message = [NSString stringWithFormat:@"%@更新了设置",info.deviceID];
+//        info.message = [NSString stringWithFormat:@"%@更新了设置",info.deviceID];
         [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
@@ -284,11 +284,10 @@
                 }
             }];
         }];
-        [coreData insertData:info];
+//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"BINDREP"]){
         self.bindInfo = info;
-        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
-        [coreData insertData:info];
+//        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
         [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if (!info.command){
         if ([self getDecimalByBinary:info.status] == 16) {
@@ -299,6 +298,8 @@
                 self.maps = [NSArray array];
                 self.maps = [self getInstalledMapAppWithEndLocation:CLLocationCoordinate2DMake(info.latitude, info.longitude)];
                 [self showMaps];
+                info.message = [NSString stringWithFormat:@"%@",CAPLocalizedString(@"message_type_sos")];
+                [coreData insertData:info];
             }];
         }else if ([self getDecimalByBinary:info.status] == 0) {
             

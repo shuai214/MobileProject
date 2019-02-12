@@ -478,8 +478,8 @@ void UncaughtExceptionHandler(NSException *exception) {
     //    else if ([url.scheme hasPrefix:@"wb"]) {
     //        //ok = [WeiboSDK handleOpenURL:url delegate:self];
     //    }
-    //    return  [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url sourceApplication:sourceApplication];
-    return [WXAUTH handleOpenURL:url];
+    return  [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url sourceApplication:sourceApplication];
+//    return [WXAUTH handleOpenURL:url];
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
     return [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url options:options];

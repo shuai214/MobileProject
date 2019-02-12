@@ -113,6 +113,7 @@
 "update_frequency"="Update Frequency";
 "firmware_version"="Firmware version";
 "tethering"="Tethering";
+"no_tethering"="Unbind";
 "tether_tracker_to_your_smartphone"="Please tether the GPS Tracker to your smartphone.";
 "scan"="Scan";
 "tap_to_capture"="Tap to capture";
@@ -122,6 +123,7 @@
 "google_map"="Google map";
 "amap_map"="AMAP Map";
 "real_time"="Real time";
+"hour"="Hour";
 "hour_1"="1 Hour";
 "hour_4"="4 Hour";
 "hour_12"="12 Hour";
