@@ -44,6 +44,8 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *answerMode;
 @property (nonatomic, assign) NSInteger reportFrequency;
 @property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *sos;
+@property (nonatomic, copy) NSString *trackerNumber;
 
 @end
 

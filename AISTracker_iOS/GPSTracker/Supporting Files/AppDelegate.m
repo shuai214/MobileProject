@@ -93,7 +93,7 @@ AppDelegate* gApp = nil;
     NSLog(@"PhoneModel: %@, PhoneName: %@, PhoneType: %@, SystemName: %@, SystemVersion: %@ UUID: %@", [CAPPhones phoneModel], [CAPPhones phoneName], [CAPPhones phoneType], [CAPPhones systemName], [CAPPhones systemVersion],[CAPPhones getUUIDString]);
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    
+    [[UITabBar appearance] setTranslucent:NO];
     gApp = self;
     
     BOOL hud = [self createHUD];

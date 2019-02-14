@@ -240,15 +240,15 @@
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
 //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
-        [coreData insertData:info];
+//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"GPS"]){
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
 //        info.message = [NSString stringWithFormat:@"%@进行了定位",info.deviceID];
-        [coreData insertData:info];
+//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
 //        info.message = [NSString stringWithFormat:@"%@更新了设置",info.deviceID];
-        [coreData insertData:info];
+//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
         if ([info.userRole isEqualToString:@"user"]) {

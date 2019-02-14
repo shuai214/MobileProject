@@ -7,6 +7,7 @@
 //
 
 #import "CAPDeviceService.h"
+#import "CAPFileUpload.h"
 @implementation CAPDeviceService
 
 - (void)fetchDevice:(NSString *)deviceID reply:(CAPServiceReply)reply {
@@ -132,11 +133,6 @@
 }
 
 - (void)updateSetting:(CAPDevice *)setting reply:(CAPServiceReply)reply {
-    //TODO@property (nonatomic, strong) CAPFileItem *avatar;
-//    @property (nonatomic, copy) NSString *name;
-//    @property (nonatomic, copy) NSString *answerMode;
-//    @property (nonatomic, assign) NSInteger reportFrequency;
-//    @property (nonatomic, copy) NSString *mobile;
     if (setting) {
         NSDictionary *params = @{
                                  @"name": setting.name,
@@ -144,6 +140,12 @@
                                  @"answerMode":setting.setting.answerMode ? setting.setting.answerMode:@"",
                                  @"reportFrequency":[NSString stringWithFormat:@"%ld",setting.setting.reportFrequency ? setting.setting.reportFrequency:0]
                                  };
+//        CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
+//        [fileUplod updateDeviceInfo:params deviceID:setting.deviceID];
+//        [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
+//            NSLog(@"%@",object);
+//        }];
+        
         CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:setting.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);

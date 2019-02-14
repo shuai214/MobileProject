@@ -87,7 +87,7 @@
 
 -(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     
-    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"no_country") dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
         NSUInteger index = [self.countryArrays indexOfObject:selectValue];
         NSString *telCode = [self.countryCodeArrays objectAtIndex:(NSInteger)index];
         self.number.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
@@ -96,7 +96,7 @@
 }
 - (void)buttonAction:(UIButton *)button{
     
-    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"no_country") dataSource:self.countryArrays defaultSelValue:@"" resultBlock:^(id selectValue) {
         NSUInteger index = [self.countryArrays indexOfObject:selectValue];
         NSString *telCode = [self.countryCodeArrays objectAtIndex:(NSInteger)index];
         self.number.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
@@ -134,9 +134,9 @@
                 [countryCodeArray insertObject:c.dial_code atIndex:0];
             }
             c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
-            if ( [c.name isEqualToString:@"台湾"] ){
-                c.name = @"中国台湾";
-            }
+//            if ( [c.name isEqualToString:@"台湾"] ){
+//                c.name = @"中国台湾";
+//            }
             [countriesArray addObject:c.name];
             [countryCodeArray addObject:c.dial_code];
         }

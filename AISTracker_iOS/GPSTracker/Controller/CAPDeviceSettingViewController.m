@@ -94,15 +94,15 @@
                 [countryCodeArray insertObject:c.dial_code atIndex:0];
             }
             c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
-            if ( [c.name isEqualToString:@"台湾"] ){
-                c.name = @"中国台湾";
-            }
+//            if ( [c.name isEqualToString:@"台湾"] ){
+//                c.name = @"中国台湾";
+//            }
             [countriesArray addObject:c.name];
             [countryCodeArray addObject:c.dial_code];
         }
     }
     NSArray *array = countriesArray;
-    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"no_country") dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
         NSUInteger index = [array indexOfObject:selectValue];
         NSString *telCode = [countryCodeArray objectAtIndex:(NSInteger)index];
         self.deviceNumber.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];
@@ -130,7 +130,7 @@
         return;
     }
     if (self.device) {
-        [gApp showHUD:@"正在处理，请稍后..."];
+        [gApp showHUD:CAPLocalizedString(@"loading")];
         [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
             NSDictionary *data = response.data;
             if ([[data objectForKey:@"code"] integerValue] == 200) {
@@ -154,7 +154,7 @@
         
     }else{
         if (self.deviceStr) {
-            [gApp showHUD:@"正在处理，请稍后..."];
+            [gApp showHUD:CAPLocalizedString(@"loading")];
             NSDictionary *param = @{
                                     @"name":self.deviceName.text,
                                     @"sos":self.deviceNumber.telField.text,

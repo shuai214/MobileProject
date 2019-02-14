@@ -137,7 +137,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:10];
-    label.text = [NSString stringWithFormat:@"%ld",(long)index];
+    label.text = [NSString stringWithFormat:@"%ld",((long)index + 1)];
     [imgView addSubview:label];
     [bgView addSubview:imgView];
     
@@ -154,8 +154,10 @@
                 deviceNumberView.telField.text = array.lastObject;
                 NSArray *telCode = self.telCodeArray;
                 NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
-                NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
-                deviceNumberView.countryNameLabel.text = countryName;
+                if (!(index > telCode.count)) {
+                    NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
+                    deviceNumberView.countryNameLabel.text = countryName;
+                }
             }
         }
     }else{
@@ -220,9 +222,9 @@
                 [self.telCodeArray insertObject:c.dial_code atIndex:0];
             }
             c.name = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
-            if ( [c.name isEqualToString:@"台湾"] ){
-                c.name = @"中国台湾";
-            }
+//            if ( [c.name isEqualToString:@"台湾"] ){
+//                c.name = @"中国台湾";
+//            }
             [self.countryArray addObject:c.name];
             [self.telCodeArray addObject:c.dial_code];
         }
@@ -231,7 +233,7 @@
     if (!deviceNumber) {
         return;
     }
-    [BRStringPickerView showStringPickerWithTitle:@"选择国家" dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"no_country") dataSource:array defaultSelValue:@"" resultBlock:^(id selectValue) {
         NSUInteger index = [array indexOfObject:selectValue];
         NSString *telCode = [self.telCodeArray objectAtIndex:(NSInteger)index];
         deviceNumber.telAreaCodeLabel.text = [NSString stringWithFormat:@"%@",telCode];

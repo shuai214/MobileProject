@@ -67,7 +67,7 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
                       resultBlock:(BRStringResultBlock)resultBlock
                       cancelBlock:(BRStringCancelBlock)cancelBlock {
     BRStringPickerView *strPickerView = [[BRStringPickerView alloc]initWithTitle:title dataSource:dataSource defaultSelValue:defaultSelValue isAutoSelect:isAutoSelect themeColor:themeColor resultBlock:resultBlock cancelBlock:cancelBlock];
-    NSAssert(strPickerView->isDataSourceValid, @"数据源不合法！请检查字符串选择器数据源的格式");
+//    NSAssert(strPickerView->isDataSourceValid, @"数据源不合法！请检查字符串选择器数据源的格式");
     if (strPickerView->isDataSourceValid) {
         [strPickerView showWithAnimation:YES];
     }
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
         Class itemClass = [[dataArr firstObject] class];
         for (id obj in dataArr) {
             if (![obj isKindOfClass:itemClass]) {
-                isDataSourceValid = NO;
+//                isDataSourceValid = NO;
                 break;
             }
         }

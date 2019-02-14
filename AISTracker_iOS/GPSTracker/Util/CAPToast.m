@@ -24,7 +24,7 @@
                      kCRToastFontKey: [UIFont systemFontOfSize:15],
                      kCRToastTimeIntervalKey : @(1.5),
                      kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
-                     kCRToastBackgroundColorKey : [CAPColors red],
+                     kCRToastBackgroundColorKey : [CAPColors green1],
                      kCRToastNotificationTypeKey :  @(CRToastTypeNavigationBar),
                      kCRToastNotificationPresentationTypeKey :  @(CRToastPresentationTypeCover),
                      kCRToastAnimationInTypeKey : @(CRToastAnimationTypeLinear),
