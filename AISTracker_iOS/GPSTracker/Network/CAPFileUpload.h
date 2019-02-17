@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadDeviceParameter:(id)parameter device:(CAPDevice *)device;
 - (void)updateDeviceInfo:(NSDictionary *)dic deviceID:(NSString *)deviceId;
 - (void)putProfile:(NSDictionary *)dic;
+- (void)putDeviceProfile:(NSString *)url dic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,9 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CAPEditNameViewController.h"
 #import "CAPFileUpload.h"
+#import "CAPChangeUserTelViewController.h"
+#import "CAPDeviceLocal.h"
+#import "CAPDeviceService.h"
 @interface CAPMeViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,7 +27,7 @@
 @property (strong, nonatomic) NSArray<NSString *> *details;
 @property (strong, nonatomic) CAPUser *capUser;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-
+@property (copy, nonatomic)NSString *deviceVer;
 @end
 
 @implementation CAPMeViewController
@@ -33,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = CAPLocalizedString(@"me");
-    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"language"),CAPLocalizedString(@"mobile"), CAPLocalizedString(@"version")];
+    self.titles = @[CAPLocalizedString(@"name"),CAPLocalizedString(@"mobile"), CAPLocalizedString(@"language"),CAPLocalizedString(@"version")];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -42,8 +45,30 @@
     self.userImageView.layer.masksToBounds = YES;
     [self getDeviceUser];
     [CAPNotifications addObserver:self selector:@selector(getDeviceUser) name:kNotificationChangeNickName object:nil];
+    [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
+    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
+    [self checkDevice];
 }
 
+- (void)checkDevice{
+    CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"VERNO" param:nil reply:^(id response) {
+        NSLog(@"%@",response);
+    }];
+}
+- (void)getDeviceVerno:(NSNotification *)notifi{
+    MQTTInfo *info = notifi.object;
+    NSLog(@"%@",info);
+    self.deviceVer = info.ver;
+    [self.tableView reloadData];
+}
+- (void)updateDeviceVerno:(NSNotification *)notifi{
+    MQTTInfo *info = notifi.object;
+    NSLog(@"%@",info);
+    self.deviceVer = info.ver;
+    [self.tableView reloadData];
+}
 - (void)getDeviceUser{
     [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPUserService *userServer = [[CAPUserService alloc] init];
@@ -74,8 +99,11 @@
     cell.textLabel.text = self.titles[indexPath.row];
     if (indexPath.row == 0) {
         cell.detailTextLabel.text = self.capUser.info.name;
-    }else if(indexPath.row == 2){
+    }else if(indexPath.row == 1){
         cell.detailTextLabel.text = self.capUser.info.mobile;
+    }
+    if (indexPath.row == 3) {
+        cell.detailTextLabel.text = self.deviceVer;
     }
     return cell;
 }
@@ -93,7 +121,33 @@
     }
     if (indexPath.row == 1) {
         
+        CAPChangeUserTelViewController *editName = [[CAPChangeUserTelViewController alloc] init];
+        editName.user = self.capUser;
+        CAPWeakSelf(self);
+        [editName setUpdateSuccessBlock:^(id cap) {
+            [weakself getDeviceUser];
+        }];
+        [self.navigationController pushViewController:editName animated:YES];
+    }
+    if (indexPath.row == 2) {
+        
         [self performSegueWithIdentifier:@"language.segue" sender:nil];
+    }
+    if (indexPath.row == 3) {
+        if (kStringIsEmpty(self.deviceVer)) {
+            [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
+            [self checkDevice];
+        }else{
+            [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") closeBlock:^{
+                
+            } okBlock:^{
+                CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
+                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"UPGRADECHK" param:nil reply:^(id response) {
+                    NSLog(@"%@",response);
+                }];
+            }];
+        }
     }
 }
 

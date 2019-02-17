@@ -237,6 +237,15 @@
         info.message = [NSString stringWithFormat:@"%@%@",info.deviceID,status];
         [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:color];
         [coreData insertData:info];
+        
+    }else if ([info.command isEqualToString:@"UPGRADEREQ"]){
+        [CAPNotifications notify:kNotificationUPGRADEREQName object:info];
+        //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
+        //        [coreData insertData:info];
+    }else if ([info.command isEqualToString:@"VERNO"]){
+        [CAPNotifications notify:kNotificationVernoName object:info];
+        //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
+        //        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
 //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];

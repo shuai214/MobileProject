@@ -32,6 +32,8 @@ static NSString* _Nullable const kNotificationBINDREPCountChange = @"cap.notific
 static NSString* _Nullable const kNotificationMessageCountChange = @"cap.notification.message.count.change";
 static NSString* _Nullable const kNotificationREMOVEDCountChange = @"cap.notification.REMOVED.count.change";//owner删除用户绑定通知 result：cmdResult，解绑用户ID和role，以及profile:
 static NSString* _Nullable const kNotificationChangeNickName = @"cap.notification.nickName";
+static NSString* _Nullable const kNotificationVernoName = @"cap.notification.VERNO";
+static NSString* _Nullable const kNotificationUPGRADEREQName = @"cap.notification.UPGRADEREQ";
 
 //static NSString* _Nullable const kNotificationSOS = @"cap.notification.sos";REMOVED
 //static NSString* _Nullable const kNotificationGPSChange = @"cap.notification.gps.change";

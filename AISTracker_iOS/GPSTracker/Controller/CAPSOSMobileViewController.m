@@ -109,7 +109,7 @@
 - (void)initTwoView{
     CGFloat numViewHeight = 80;
     NSInteger j = 3;
-    CGRect frame = CGRectMake(0, TopHeight / 2 + 20 + (numViewHeight + 10 )* j + 10, Main_Screen_Width, numViewHeight);
+    CGRect frame = CGRectMake(0, TopHeight / 2 + 20 + (numViewHeight + 10 )* (j - 1) + 10, Main_Screen_Width, numViewHeight);
     UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height + frame.origin.y + 20, Main_Screen_Width, 20)];
     mayBeTwoNumber.text = @"You can set these two numbers freely";
     mayBeTwoNumber.textAlignment = NSTextAlignmentCenter;

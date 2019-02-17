@@ -164,25 +164,6 @@
             [weakself.marker.map clear];
         }else{
             weakself.currentDevice = weakself.deviceListView.devices.firstObject;
-////            [weakself getDeviceLocation:weakself.currentDevice];
-//            [weakself.marker.map clear];
-//
-//            for (NSInteger i = 0; i < weakself.deviceListView.devices.count; i++) {
-//                CAPDevice *device = weakself.deviceListView.devices[i];
-//                self.marker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(i, i)];
-//                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 48)];
-//                [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guest_bubble%ld",i + 1]]];
-//                [self.marker setIconView:imgView];
-//                self.marker.map = self.mapView;
-//                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//                [dic setObject:self.marker forKey:device.deviceID];
-//                [self.markerArray addObject:dic];
-//            }
-//            NSDictionary *dic = self.markerArray.firstObject;
-//            CAPDevice *device = weakself.deviceListView.devices.firstObject;
-//            self.chooseMarker = [dic objectForKey:device.deviceID];
-//            GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:self.chooseMarker.position zoom:15 bearing:0 viewingAngle:0];
-//            self.mapView.camera = camera;
         }
         if ([weakself.currentDevice.role isEqualToString:@"user"]) {
             [weakself.trackerView userOrowner:YES];
@@ -214,7 +195,7 @@
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 47.4)];
             [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"master_bubble%ld",i + 1]]];
             UIImageView *deviceImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-            [deviceImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ic_default_avatar_new"]]];
+            [deviceImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.avatarBaseUrl,device.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
             [imgView addSubview:deviceImgView];
             
             [self.marker setIconView:imgView];
@@ -237,6 +218,7 @@
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
     self.mqttInfo = info;
+    [gApp hideHUD];
     for (NSInteger i = 0; i < self.markerArray.count; i++) {
         NSDictionary *dic = self.markerArray[i];
         if([info.deviceID isEqualToString:dic.allKeys.firstObject]){
@@ -391,6 +373,7 @@
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
 -(void)didSelectDeviceAtIndex:(NSInteger)index {
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDevice *device = self.deviceListView.devices[index];
     [UIView animateWithDuration:0.37 animations:^{
         self.trackerView.frame = self.rectTrackerView;
@@ -404,6 +387,9 @@
     }else{
         [self.trackerView userOrowner:NO];
     }
+    if (self.markerArray.count == 0) {
+        return;
+    }
     NSDictionary *dic = self.markerArray[index];
     self.marker = [dic objectForKey:device.deviceID];
     [CATransaction begin];
@@ -413,6 +399,7 @@
     self.mapView.camera = camera;
     CAPDeviceLocal *local = [CAPDeviceLocal local];
     [local setLocal:self.marker.position];
+    [local setDeviceId:device.deviceID];
     [CATransaction commit];
     [self getDeviceLocation:device];
 }

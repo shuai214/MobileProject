@@ -161,7 +161,10 @@
                                     @"avatarPath":self.avatarPath,
                                     @"avatarBaseUrl":self.avatarBaseUrl
                                     };
-            [deviceService bindDevice:self.deviceStr param:param reply:^(CAPHttpResponse *response) {
+            NSString *strJson= [self dictionaryToJson:param];
+            NSMutableDictionary *json = [NSMutableDictionary dictionary];
+            [json setObject:strJson forKey:@"json"];
+            [deviceService bindDevice:self.deviceStr param:json reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {
                     self.device = [CAPDevice mj_objectWithKeyValues:[data objectForKey:@"result"]];
@@ -223,5 +226,10 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end

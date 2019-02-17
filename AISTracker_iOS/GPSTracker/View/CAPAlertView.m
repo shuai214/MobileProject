@@ -14,6 +14,7 @@
 #import "CAPSOSAlertView.h"
 #import "CAPModifyAvatar.h"
 #import "CAPBindAlertView.h"
+#import "CAPDeviceVerAlertView.h"
 @implementation CAPAlertView
 
 + (void)initAlertWithContent:(NSString *)content title:(nonnull NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
@@ -186,6 +187,29 @@
     }];
     [LEEAlert alert].config
     .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow();
+}
++ (void)initDeviceVerWithContent:(NSString *)content closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
+    CAPDeviceVerAlertView *customView = [[CAPDeviceVerAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
+    
+    [customView setCloseBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    
+    [customView setOkBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            okBlock();
+        }];
+    }];
+    
+    [LEEAlert alert].config
+    .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow();

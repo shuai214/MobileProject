@@ -32,20 +32,19 @@
     [requestSerializer setValue:@"143565456" forHTTPHeaderField:@"App-Update-Time"];
     [requestSerializer setValue:[CAPPhones getUUIDString] forHTTPHeaderField:@"App-UDID"];
     [requestSerializer setValue:([CAPPhones isChineseLanguage] ? @"zh-CN" : @"en-US") forHTTPHeaderField:@"App-Language"];
-    //    [_session.requestSerializer setValue:session.sdnAuthData.authToken forHTTPHeaderField:@"auth-token"];
+    [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", access_token] forHTTPHeaderField:@"Authorization"];
     self.session.requestSerializer = requestSerializer;
     
     AFJSONResponseSerializer* responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:0];
     responseSerializer.removesKeysWithNullValues = YES;
     responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", nil];
-    [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", access_token] forHTTPHeaderField:@"Authorization"];
     self.session.responseSerializer = responseSerializer;
     return self.session;
 }
 - (void)uploadRecording:(id)recordingFile withImageIndex:(NSInteger)index{
     AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
     manager.requestSerializer.timeoutInterval = 15.0;
-    [manager POST:@"Public/FileUpload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:[NSString stringWithFormat:@"%@%@",gCfg.rootURLString,@"Public/FileUpload"] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // 上传filename
         if ([recordingFile isKindOfClass:[NSString class]]) {
             NSString * fileName = [NSString stringWithFormat:@"file%ld.mp3",(long)index];
@@ -112,7 +111,8 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array
                                                        options:kNilOptions
                                                          error:nil];
-    [request setHTTPBody:jsonData];
+     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
     [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
         self.successBlockObject(responseObject);
     }] resume];
@@ -173,6 +173,7 @@
     manager.requestSerializer.timeoutInterval = 15.0;
     NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:nil error:nil];
     [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
                                                        options:kNilOptions
                                                          error:nil];
@@ -180,5 +181,29 @@
     [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
         self.successBlockObject(responseObject);
     }] resume];
+}
+- (void)putDeviceProfile:(NSString *)url dic:(NSDictionary *)dic{
+    
+    NSString *URLString = [NSString stringWithFormat:@"%@%@?accessToken=%@",gCfg.rootURLString,url,[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:nil error:nil];
+    [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:kNilOptions
+                                                         error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
+        self.successBlockObject(responseObject);
+    }] resume];
+    
+}
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end

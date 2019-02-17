@@ -147,7 +147,9 @@
         }
     }];
     CAPDevice *device = self.device;
-    device.setting.reportFrequency = [self.time integerValue];
+    CAPDeviceSetting *setting = [[CAPDeviceSetting alloc] init];
+    setting.reportFrequency = [self.time integerValue];
+    device.setting = setting;
     [deviceService updateSetting:device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         NSDictionary *data = response.data;

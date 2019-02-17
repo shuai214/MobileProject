@@ -45,6 +45,8 @@
 		2B6DDB9E21E48961004CAE09 /* diallingcode.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9D21E48960004CAE09 /* diallingcode.json */; };
 		2B6DDBA121E489F7004CAE09 /* CAPMMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */; };
 		2B714CE121E4E83100AF7B82 /* CAPDeviceBindInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */; };
+		2B77097B2217D4F2007DC8C6 /* CAPChangeUserTelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77097A2217D4F2007DC8C6 /* CAPChangeUserTelViewController.m */; };
+		2B77097E2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77097D2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m */; };
 		2B78076121F0C35300DD31FB /* MQTTResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78076021F0C35300DD31FB /* MQTTResult.m */; };
 		2B7BAB9621EA00CB006A42F8 /* CAPUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */; };
 		2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */; };
@@ -325,6 +327,10 @@
 		2B6DDBA021E489F7004CAE09 /* CAPMMCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPMMCountry.m; sourceTree = "<group>"; };
 		2B714CDF21E4E83100AF7B82 /* CAPDeviceBindInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceBindInfo.h; sourceTree = "<group>"; };
 		2B714CE021E4E83100AF7B82 /* CAPDeviceBindInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceBindInfo.m; sourceTree = "<group>"; };
+		2B7709792217D4F2007DC8C6 /* CAPChangeUserTelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPChangeUserTelViewController.h; sourceTree = "<group>"; };
+		2B77097A2217D4F2007DC8C6 /* CAPChangeUserTelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPChangeUserTelViewController.m; sourceTree = "<group>"; };
+		2B77097C2219A6D0007DC8C6 /* CAPDeviceVerAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceVerAlertView.h; sourceTree = "<group>"; };
+		2B77097D2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceVerAlertView.m; sourceTree = "<group>"; };
 		2B78076021F0C35300DD31FB /* MQTTResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTResult.m; sourceTree = "<group>"; };
 		2B7BAB9421EA00CB006A42F8 /* CAPUserSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUserSettingViewController.h; sourceTree = "<group>"; };
 		2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUserSettingViewController.m; sourceTree = "<group>"; };
@@ -892,6 +898,8 @@
 				2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */,
 				EF7BE558218845AB00562EE9 /* MainViewController.h */,
 				EF7BE559218845AB00562EE9 /* MainViewController.m */,
+				2B7709792217D4F2007DC8C6 /* CAPChangeUserTelViewController.h */,
+				2B77097A2217D4F2007DC8C6 /* CAPChangeUserTelViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -977,6 +985,8 @@
 				2BF3EA3621F840DA00B5BB63 /* CAPModifyAvatar.xib */,
 				2B98BAC221EE2CBE006B779B /* CAPAlertView.h */,
 				2B98BAC321EE2CBE006B779B /* CAPAlertView.m */,
+				2B77097C2219A6D0007DC8C6 /* CAPDeviceVerAlertView.h */,
+				2B77097D2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m */,
 				2B18E13B21F60AB5002E884D /* CAPSOSAlertView.h */,
 				2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */,
 				2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */,
@@ -1638,6 +1648,7 @@
 			files = (
 				2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */,
 				EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */,
+				2B77097E2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m in Sources */,
 				EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */,
 				2B98BAB421EE1AB3006B779B /* CAPAlertCustomView.m in Sources */,
 				2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */,
@@ -1688,6 +1699,7 @@
 				EFD0AC83218C3CE500405FD8 /* CAPBaseViewController.m in Sources */,
 				2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */,
 				EF6CA6A8218D84530014771E /* CAPPhotoPresenter.m in Sources */,
+				2B77097B2217D4F2007DC8C6 /* CAPChangeUserTelViewController.m in Sources */,
 				EF6CA690218D836C0014771E /* CAPBasePresenter.m in Sources */,
 				EFD0AC98218C3E6C00405FD8 /* CAPFenceListViewController.m in Sources */,
 				2B97BCCA21EC5AD70042D95D /* CAPCoreData.m in Sources */,

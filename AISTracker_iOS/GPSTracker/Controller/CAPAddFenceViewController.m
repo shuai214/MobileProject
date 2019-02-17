@@ -33,6 +33,9 @@
 @property (strong,nonatomic)NSMutableArray <GMSMarker *>*markerArrays;
 @property (strong, nonatomic) UIView *tableContentView;
 @property (assign,nonatomic) NSInteger chooseIndex;
+@property (copy,nonatomic) NSString *address;
+@property (copy,nonatomic) NSString *vicinity;
+
 @end
 
 @implementation CAPAddFenceViewController
@@ -87,7 +90,16 @@
     self.tapMarker = [GMSMarker markerWithPosition:coordinate];
     self.tapMarker.map = self.mapView;
     self.tapMarker.icon = GetImage(@"map_drop_blue");
-    
+    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+    [geoCoder reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@",response);
+        if (response != nil) {
+            GMSAddress *placemark = response.firstResult;
+            self.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
+            self.vicinity = placemark.lines.firstObject;
+        }
+        
+    }];
     [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
     [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",coordinate.latitude,coordinate.longitude]];
@@ -127,11 +139,19 @@
 //    [mapView animateToCameraPosition:camera];
 //    [CATransaction commit];
     if (marker == self.tapMarker) {
-        [self addFence:self.poiArrays.firstObject];
+        CAPGooglePlace *googlePlace = [[CAPGooglePlace alloc] init];
+        googlePlace.name = self.address;
+        googlePlace.vicinity = self.vicinity;
+        Geometry *geometry = [[Geometry alloc] init];
+        Location *location = [[Location alloc] init];
+        location.lat = self.tapMarker.position.latitude;
+        location.lng = self.tapMarker.position.longitude;
+        geometry.location = location;
+        googlePlace.geometry = geometry;
+        [self addFence:googlePlace];
     }else{
         NSInteger index = [self.markerArrays indexOfObject:marker];
         [self addFence:[self.poiArrays objectAtIndex:index]];
-        
     }
     return YES;
 }
@@ -153,6 +173,7 @@
 - (void)addFence:(CAPGooglePlace *)place{
     CAPWeakSelf(self);
     [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"information_of_the_fence") dataSource:@[@"50",@"100",@"500",@"1000",@"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
+        self.curLocation = CLLocationCoordinate2DMake(place.geometry.location.lat, place.geometry.location.lng);
         [weakself drawCenter:[selectValue integerValue]];
         [CAPAlertView initAddressAlertWithContent:[NSString stringWithFormat:@"%@\n%@",place.name,place.vicinity] ocloseBlock:^{
             [weakself.navigationController popViewControllerAnimated:YES];

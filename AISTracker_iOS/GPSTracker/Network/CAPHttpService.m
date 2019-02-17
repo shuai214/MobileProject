@@ -62,9 +62,9 @@
 }
 
 - (void)auth:(NSString *)token {
-    NSLog(@"[%@ auth:%@]", [self class], token);
     AFHTTPRequestSerializer* requestSerializer = self.session.requestSerializer;
     [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", token] forHTTPHeaderField:@"Authorization"];
+    NSLog(@"[%@ auth:%@]", [self class], token);
 }
 
 - (NSURLSessionDataTask *)send:(CAPHttpRequest *)request reply:(CAPHttpServiceCallback)reply {

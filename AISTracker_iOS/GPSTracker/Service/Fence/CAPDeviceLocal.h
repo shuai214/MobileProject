@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CAPDeviceLocal : NSObject
 + (instancetype)local;
 @property(nonatomic,assign)CLLocationCoordinate2D local;
+@property(nonatomic,copy)NSString *deviceId;
 
 //CLLocationCoordinate2D
 @end

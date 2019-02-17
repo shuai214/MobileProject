@@ -112,10 +112,20 @@
                                  @"avatarPath": device.avatarPath ? device.avatarPath : @"",
                                  @"avatarBaseUrl": device.avatarBaseUrl ? device.avatarBaseUrl : @""
                                  };
+       
+        
         CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
         }];
+        
+        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+        [fileUpload putDeviceProfile:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] dic:params];
+        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+            NSLog(@"%@",object);
+        }];
+        
+        
     }else{
         [gApp hideHUD];
     }
@@ -140,11 +150,11 @@
                                  @"answerMode":setting.setting.answerMode ? setting.setting.answerMode:@"",
                                  @"reportFrequency":[NSString stringWithFormat:@"%ld",setting.setting.reportFrequency ? setting.setting.reportFrequency:0]
                                  };
-//        CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
-//        [fileUplod updateDeviceInfo:params deviceID:setting.deviceID];
-//        [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
-//            NSLog(@"%@",object);
-//        }];
+        CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
+        [fileUplod updateDeviceInfo:params deviceID:setting.deviceID];
+        [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
+            NSLog(@"%@",object);
+        }];
         
         CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:setting.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
@@ -226,6 +236,13 @@
         NSDictionary *params = @{
                                  @"sos":array
                                  };
+        
+//        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+//        [fileUpload setSOSMobile:device array:array];
+//        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+//            NSLog(@"%@",object);
+//        }];
+        
         CAPHttpRequest *request = [self buildRequest:[@"Device/SOS/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
@@ -268,5 +285,10 @@
 //    [self sendRequest:request reply:^(CAPHttpResponse *response) {
 ////        reply([CAPCheckDeviceVersionResponse responseWithHttpResponse:response]);
 //    }];
+}
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end
