@@ -46,7 +46,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.782488"
+                  timestampString = "573559139.0424989"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -61,7 +61,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.784453"
+                  timestampString = "573559139.045083"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "146"
@@ -76,7 +76,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.78633"
+                  timestampString = "573559139.046999"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -125,7 +125,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.7965291"
+                  timestampString = "573559139.056414"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "182"
@@ -140,7 +140,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.798378"
+                  timestampString = "573559139.058187"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "182"
@@ -155,7 +155,7 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "573558769.8001"
+                  timestampString = "573559139.059955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "182"
@@ -236,22 +236,6 @@
             startingLineNumber = "148"
             endingLineNumber = "148"
             landmarkName = "-mapView:didTapMarker:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Supporting Files/AppDelegate.m"
-            timestampString = "573558769.634506"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-applicationDidEnterBackground:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
