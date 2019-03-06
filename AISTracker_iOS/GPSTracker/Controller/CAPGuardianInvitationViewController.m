@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"邀请";
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.device.setting.avatarBaseUrl,self.device.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
     [self loadDeviceShareInfo];
 }
 
@@ -50,6 +51,16 @@
 - (IBAction)onOkButtonClicked:(id)sender {
     
 }
+
+/*
+ 固件调整多一些。
+ 1.绑定设备 -- 设置名字，号码  绑定的时候：先不做绑定，先走下一屏幕的名字，号码，再去绑定用户。
+ 2.设备的上下线不及时，设备的状态反馈不及时。deviceList 接口返回的消息与mqtt反馈的不一致。
+ 解决方案：发送一个mqtt请求，3次左右查看设备的状态。
+ 3.cell和wifi定位 //--- A gps有效 ，V是cell有效。
+ 
+ 4.
+ */
 
 - (void)creatCodeImage:(NSString *)string{
     //创建过滤器

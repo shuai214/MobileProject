@@ -30,6 +30,8 @@
         self = [super initWithFrame:frame];
         if (self) {
             self.backgroundColor = [UIColor whiteColor];
+            self.layer.cornerRadius = 15;
+            self.layer.masksToBounds = YES;
             self.contentDesc = title;
             [self initCustomSubview];
             [self configTwoButtonAutoLayout];
@@ -51,7 +53,7 @@
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
     [_okButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
-    [_okButton setTitle:@"确定" forState:UIControlStateNormal];
+    [_okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton setBackgroundColor:[CAPColors red]];
     [_okButton addTarget:self action:@selector(okAddressAction) forControlEvents:UIControlEventTouchUpInside];
@@ -61,7 +63,7 @@
     [_closeButton addTarget:self action:@selector(closeAddressAction) forControlEvents:UIControlEventTouchUpInside];
     _closeButton.sd_cornerRadius = @5.0f;
     [_closeButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
-    [_closeButton setTitle:@"取消" forState:UIControlStateNormal];
+    [_closeButton setTitle:CAPLocalizedString(@"cancel") forState:UIControlStateNormal];
     [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_closeButton setBackgroundColor:[CAPColors gray1]];
     [self addSubview:_closeButton];
@@ -74,7 +76,7 @@
     [self addSubview:_line2];
     
     _inputField = [UITextField new];
-    _inputField.placeholder = @"请输入围栏名称";
+    _inputField.placeholder = CAPLocalizedString(@"information_of_the_fence");
     [self addSubview:_inputField];
     _paddingView = [UIView new];
     _paddingView.backgroundColor = [UIColor clearColor];

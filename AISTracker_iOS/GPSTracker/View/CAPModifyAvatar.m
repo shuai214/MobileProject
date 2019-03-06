@@ -17,7 +17,10 @@
     return [[[NSBundle mainBundle] loadNibNamed:@"CAPModifyAvatar"
                                           owner:nil options:nil]lastObject];
 }
-
+- (void)initView{
+    self.takingPhotoLabel.text = CAPLocalizedString(@"take_photo");
+    self.albumLabel.text = CAPLocalizedString(@"album");
+}
 - (IBAction)takingPhotoAction:(id)sender {
     if (self.tabkingPhotoBlock) self.tabkingPhotoBlock();
 }

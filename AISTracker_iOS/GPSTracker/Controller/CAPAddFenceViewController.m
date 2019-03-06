@@ -18,7 +18,7 @@
 #import "CAPGooglePlace.h"
 #import "SDAutoLayout.h"
 #import "CAPAddFenceTableViewCell.h"
-@interface CAPAddFenceViewController ()<GMSMapViewDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface CAPAddFenceViewController ()<GMSMapViewDelegate,GMSAutocompleteViewControllerDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UISearchBar * _searchBar;
 }
@@ -62,82 +62,15 @@
 }
 
 #pragma  mark - Mapview Delegate
-//- (void)mapView:(GMSMapView *)mapView
-//didTapPOIWithPlaceID:(NSString *)placeID
-//           name:(NSString *)name
-//       location:(CLLocationCoordinate2D)location{
-//    [self.marker.map clear];
-//    self.marker.map = nil;
-//    self.marker = [GMSMarker markerWithPosition:location];
-//    self.marker.title = name;
-//    self.marker.opacity = 0;
-//    CGPoint pos = self.marker.infoWindowAnchor;
-//    pos.y = 1;
-//    self.marker.infoWindowAnchor = pos;
-//    self.marker.map = mapView;
-//    mapView.selectedMarker = self.marker;
-//
-//}
+
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
-    self.poiArrays = [NSMutableArray array];
-    self.markerArrays = [NSMutableArray array];
-    [self.marker.map clear];
-    self.marker.map = nil;
-    // 通过location  或得到当前位置的经纬度
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
-     self.mapView.camera = camera;
-    //大头针
-    self.tapMarker = [GMSMarker markerWithPosition:coordinate];
-    self.tapMarker.map = self.mapView;
-    self.tapMarker.icon = GetImage(@"map_drop_blue");
-    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-    [geoCoder reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@",response);
-        if (response != nil) {
-            GMSAddress *placemark = response.firstResult;
-            self.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
-            self.vicinity = placemark.lines.firstObject;
-        }
-        
-    }];
-    [gApp showHUD:CAPLocalizedString(@"loading")];
-    CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
-    [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",coordinate.latitude,coordinate.longitude]];
-    [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
-        NSLog(@"%@",object);
-        NSDictionary *dic = (NSDictionary *)object;
-        if ([[dic objectForKey:@"status"] isEqualToString:@"OK"]) {
-            NSArray *result = [dic objectForKey:@"results"];
-            for (NSInteger i = 1;i < result.count ; i++) {
-                NSDictionary *dicResult = result[i];
-                CAPGooglePlace *googlePlace = [CAPGooglePlace mj_objectWithKeyValues:dicResult];
-                googlePlace.index = i;
-                CLLocationCoordinate2D position2D = CLLocationCoordinate2DMake(googlePlace.geometry.location.lat,googlePlace.geometry.location.lng);
-                //大头针
-                self.marker = [GMSMarker markerWithPosition:position2D];
-                self.marker.map = self.mapView;
-                self.curLocation = position2D;
-                [self.poiArrays addObject:googlePlace];
-                [self.markerArrays addObject:self.marker];
-            }
-            [gApp hideHUD];
-            [self creatAddressTableView];
-        }
-        [gApp hideHUD];
-    }];
+    [self reloadMoreLocal:coordinate WithPlace:nil];
 }
 
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture{
     
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-//    [CATransaction begin];
-//    [CATransaction setAnimationDuration:1.0f];
-//    GMSCameraPosition *camera =
-//    [GMSCameraPosition cameraWithTarget:marker.position
-//                                         zoom:20];
-//    [mapView animateToCameraPosition:camera];
-//    [CATransaction commit];
     if (marker == self.tapMarker) {
         CAPGooglePlace *googlePlace = [[CAPGooglePlace alloc] init];
         googlePlace.name = self.address;
@@ -165,10 +98,88 @@
     acController.delegate = self;
     [self presentViewController:acController animated:YES completion:nil];
 }
+#pragma mark - GMSAutocompleteViewControllerDelegate
 
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self reloadMoreLocal:place.coordinate WithPlace:place];
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
 - (void)refreshLocalizedString {
     
 }
+
+- (void)reloadMoreLocal:(CLLocationCoordinate2D)coordinate WithPlace:(GMSPlace *)place{
+    self.poiArrays = [NSMutableArray array];
+    self.markerArrays = [NSMutableArray array];
+    [self.marker.map clear];
+    self.marker.map = nil;
+    // 通过location  或得到当前位置的经纬度
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
+    self.mapView.camera = camera;
+    //大头针
+    self.tapMarker = [GMSMarker markerWithPosition:coordinate];
+    self.tapMarker.map = self.mapView;
+    self.tapMarker.icon = GetImage(@"map_drop_blue");
+    if (place == nil) {
+        GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+        [geoCoder reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@",response);
+            if (response != nil) {
+                GMSAddress *placemark = response.firstResult;
+                self.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
+                self.vicinity = placemark.lines.firstObject;
+            }
+        }];
+    }else{
+        self.address = place.formattedAddress;
+        self.vicinity = place.name;
+    }
+    
+    [gApp showHUD:CAPLocalizedString(@"loading")];
+    CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
+    [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",coordinate.latitude,coordinate.longitude]];
+    [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
+        NSLog(@"%@",object);
+        NSDictionary *dic = (NSDictionary *)object;
+        if ([[dic objectForKey:@"status"] isEqualToString:@"OK"]) {
+            NSArray *result = [dic objectForKey:@"results"];
+            for (NSInteger i = 1;i < result.count ; i++) {
+                NSDictionary *dicResult = result[i];
+                CAPGooglePlace *googlePlace = [CAPGooglePlace mj_objectWithKeyValues:dicResult];
+                googlePlace.index = i;
+                CLLocationCoordinate2D position2D = CLLocationCoordinate2DMake(googlePlace.geometry.location.lat,googlePlace.geometry.location.lng);
+                //大头针
+                self.marker = [GMSMarker markerWithPosition:position2D];
+                self.marker.map = self.mapView;
+                self.curLocation = position2D;
+                [self.poiArrays addObject:googlePlace];
+                [self.markerArrays addObject:self.marker];
+            }
+            [gApp hideHUD];
+            [self creatAddressTableView];
+        }
+        [gApp hideHUD];
+    }];
+}
+
 
 - (void)addFence:(CAPGooglePlace *)place{
     CAPWeakSelf(self);
@@ -259,12 +270,6 @@
         }];
     }];
 }
-
-- (void)placePickerDidCancel:(GMSPlacePickerViewController *)viewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
 - (void)drawCenter:(NSInteger)chooseRadius{
     [self.circ.map clear];
     CGFloat zoom = 12;
@@ -413,11 +418,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.marker = self.markerArrays[indexPath.row];
     self.chooseIndex = indexPath.row;
-    GMSCameraPosition *camera =
-    [[GMSCameraPosition alloc] initWithTarget:self.marker.position
-                                         zoom:20
-                                      bearing:50
-                                 viewingAngle:60];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.marker.position.latitude longitude:self.marker.position.longitude zoom:15];
     [self.mapView animateToCameraPosition:camera];
 }
 

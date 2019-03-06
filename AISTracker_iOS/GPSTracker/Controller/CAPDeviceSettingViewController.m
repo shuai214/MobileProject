@@ -129,42 +129,51 @@
         [CAPToast toastError:@"输入的号码不正确"];
         return;
     }
-    if (self.device) {
-        [gApp showHUD:CAPLocalizedString(@"loading")];
-        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
-            NSDictionary *data = response.data;
-            if ([[data objectForKey:@"code"] integerValue] == 200) {
+    if (kStringIsEmpty(self.deviceStr)) {
+//        [gApp showHUD:CAPLocalizedString(@"loading")];
+//        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
+//            NSDictionary *data = response.data;
+//            if ([[data objectForKey:@"code"] integerValue] == 200) {
                 NSString *userSettingStr = [CAPUserDefaults objectForKey:@"userSetting"];
                 if (userSettingStr) {
-                    [self performSegueWithIdentifier:@"Main" sender:nil];
+                    [gApp showHUD:@"正在处理，请稍后..."];
+                    CAPDeviceService *service = [[CAPDeviceService alloc] init];
+                    [service addDevice:self.device reply:^(CAPHttpResponse *response) {
+                        [gApp hideHUD];
+                        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                            CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+                            [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+                            [self performSegueWithIdentifier:@"Main" sender:nil];
+                        }
+                    }];
                     return ;
                 }
-                [gApp hideHUD];
-                [CAPNotifications notify:kNotificationDeviceCountChange object:self.device];
+//                [gApp hideHUD];
+//                [CAPNotifications notify:kNotificationDeviceCountChange object:self.device];
                 CAPUserSettingViewController *userSetting = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"UserSettingViewController"];
                 userSetting.device = self.device;
                 userSetting.device.isOwner = @"owner";
                 [self.navigationController pushViewController:userSetting animated:YES];
-            }else{
-                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
-                    [gApp hideHUD];
-                }];
-            }
-        }];
+//            }else{
+//                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+//                    [gApp hideHUD];
+//                }];
+//            }
+//        }];
         
     }else{
         if (self.deviceStr) {
             [gApp showHUD:CAPLocalizedString(@"loading")];
             NSDictionary *param = @{
-                                    @"name":self.deviceName.text,
-                                    @"sos":self.deviceNumber.telField.text,
-                                    @"avatarPath":self.avatarPath,
-                                    @"avatarBaseUrl":self.avatarBaseUrl
+                                    @"name":self.deviceName.text ? self.deviceName.text: @"",
+                                    @"sos":self.deviceNumber.telField.text ? self.deviceNumber.telField.text:@"",
+                                    @"avatarPath":self.avatarPath ? self.avatarPath: @"",
+                                    @"avatarBaseUrl":self.avatarBaseUrl ? self.avatarPath: @""
                                     };
-            NSString *strJson= [self dictionaryToJson:param];
-            NSMutableDictionary *json = [NSMutableDictionary dictionary];
-            [json setObject:strJson forKey:@"json"];
-            [deviceService bindDevice:self.deviceStr param:json reply:^(CAPHttpResponse *response) {
+//            NSString *strJson= [self dictionaryToJson:param];
+//            NSMutableDictionary *json = [NSMutableDictionary dictionary];
+//            [json setObject:strJson forKey:@"json"];
+            [deviceService bindDevice:self.deviceStr param:param reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {
                     self.device = [CAPDevice mj_objectWithKeyValues:[data objectForKey:@"result"]];

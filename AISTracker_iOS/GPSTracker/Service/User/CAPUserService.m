@@ -51,10 +51,9 @@
     }];
 }
 
-- (void)socialLogin:(NSDictionary *)user reply:(CAPServiceReply)reply {
+- (void)socialLogin:(NSMutableDictionary *)user reply:(CAPServiceReply)reply {
     NSLog(@"[%@ socialLogin:]", [self class]);
-    NSString *content = [NSString stringWithFormat:@"iOS,%@,%@", [CAPPhones systemVersion], [CAPPhones phoneType]];
-    [user setValue:content forKey:@"content"];
+    
     CAPHttpRequest *request = [self buildRequest:@"Account/ThirdSignInPlus"method:@"POST" parameters:user];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {
         reply([CAPSocialLoginResponse responseWithHttpResponse:response]);

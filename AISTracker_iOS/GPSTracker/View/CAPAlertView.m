@@ -15,9 +15,10 @@
 #import "CAPModifyAvatar.h"
 #import "CAPBindAlertView.h"
 #import "CAPDeviceVerAlertView.h"
+#import "CAPFenceAlertView.h"
 @implementation CAPAlertView
 
-+ (void)initAlertWithContent:(NSString *)content title:(nonnull NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
++ (void)initAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
     CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:title contentDesc:content alertType:alertType];
     
     [customView setCloseBlock:^{
@@ -38,7 +39,8 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow()
+    .LeeCornerRadius(15);
 }
 + (void)initCloseAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock alertType:(AlertType)alertType{
     CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content contentDesc:title alertType:alertType];
@@ -54,7 +56,7 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 + (void)initAlertWithContent:(NSString *)content okBlock:(okBlock)okBlock alertType:(AlertType)alertType{
     CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:@"" contentDesc:content alertType:alertType];
@@ -70,7 +72,7 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 
 +(void)initAddressAlertWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock{
@@ -92,7 +94,7 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 + (void)initAddressEditWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okAddressBlock)okBlock{
     CAPEditAlertView *customView = [[CAPEditAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
@@ -113,7 +115,7 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 
 + (void)initSOSAlertViewWithContent:(MQTTInfo *)contentInfo ocloseBlock:(closeBlock)closeBlock okBlock:(okMQTTInfoBlock)okMQTTInfoBlock{
@@ -137,10 +139,11 @@
     .LeeCustomView(view)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 + (void)initTakingPhotoBlock:(takingPhotoBlock)takingBlock albumBlock:(albumBlock)albumBlock closeBlock:(closeBlock)closeBlock{
      CAPModifyAvatar *view = [CAPModifyAvatar instance];
+    [view initView];
     // Nib形式请设置UIViewAutoresizingNone
     view.autoresizingMask = UIViewAutoresizingNone;
     [view setTabkingPhotoBlock:^{
@@ -165,7 +168,7 @@
     .LeeCustomView(view)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 + (void)initBindAlertViewWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
     CAPBindAlertView *view = [CAPBindAlertView instance];
@@ -189,7 +192,7 @@
     .LeeCustomView(view)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
 }
 + (void)initDeviceVerWithContent:(NSString *)content closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
     CAPDeviceVerAlertView *customView = [[CAPDeviceVerAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
@@ -212,6 +215,23 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow();
+    .LeeShow().LeeCornerRadius(15);
+}
++ (void)initDeviceFenceAlertView:(CAPDevice *)deviceInfo content:(NSString *)content closeBlock:(closeBlock)closeBlock{
+    CAPFenceAlertView *view = [[CAPFenceAlertView alloc] init];
+    [view fillData:deviceInfo content:content];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setCloseBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow().LeeCornerRadius(15);
 }
 @end

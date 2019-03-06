@@ -28,6 +28,8 @@
     if (self) {
         self.title = title;
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 15;
+        self.layer.masksToBounds = YES;
         [self initCustomSubview];
         [self configTwoButtonAutoLayout];
     }

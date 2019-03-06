@@ -27,7 +27,7 @@
     // 将NSData转为UIImage
     UIImage *decodedImage = [UIImage imageWithData:decodeData];
     [self.sosImageView setImage:decodedImage];
-    [self.deviceImageView setImage:GetImage(@"ic_default_avatar_new")];
+    [self.deviceImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",info.userProfile.avatarBaseUrl,info.userProfile.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
 }
 - (IBAction)closeButton:(id)sender {
       if (self.closeAddressBlock) self.closeAddressBlock();

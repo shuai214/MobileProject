@@ -66,8 +66,8 @@
 }
 
 - (void)presentBattery:(CAPBatteryView *)view {
-    MQTTInfo *info = [self getDeviceInfo];
-    [view reloadBattery:(info ? info.batlevel : 0)];
+//    MQTTInfo *info = [self getDeviceInfo];
+//    [view reloadBattery:(info ? info.batlevel : 0)];
 }
 
 - (void)presentFrequency:(UILabel *)label {

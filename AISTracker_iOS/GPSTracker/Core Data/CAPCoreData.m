@@ -142,7 +142,7 @@
 
 - (NSString *)time_timestampToString:(NSInteger)timestamp{
     
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp/1000];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
     
     NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
     

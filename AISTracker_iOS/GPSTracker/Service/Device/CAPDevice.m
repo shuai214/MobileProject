@@ -26,4 +26,5 @@
 {
     return @{@"footprint": @"CAPFootprint",@"setting": @"CAPDeviceSetting"};
 }
+
 @end

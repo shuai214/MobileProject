@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPModifyAvatar : UIView
 + (instancetype)instance;
+- (void)initView;
 /**
  *  关闭Block
  */

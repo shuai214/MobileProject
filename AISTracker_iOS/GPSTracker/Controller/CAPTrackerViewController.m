@@ -36,14 +36,10 @@
 #define PACE_H 15
 @interface CAPTrackerViewController () <CAPDeviceListViewDelegate, CAPTrackerViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
-@property (strong, nonatomic) GMSMarker *marker;
-@property (strong, nonatomic) GMSMarker *chooseMarker;
 @property (strong, nonatomic) NSMutableArray *markerArray;
 @property (strong, nonatomic) NSMutableArray *deviceLists;
 
 @property (nonatomic,strong) CLLocationManager *locationManager;//地图定位对象
-@property (nonatomic,strong) GMSPlacesClient * placesClient;//可以获取某个地方的信息
-
 @property (strong, nonatomic)  CAPDeviceListView *deviceListView;
 @property (strong, nonatomic)  CAPTrackerView *trackerView;
 @property (strong, nonatomic)  MQTTInfo *mqttInfo;
@@ -53,6 +49,10 @@
 @property (strong,nonatomic)CAPDevice *currentDevice;
 @property (strong,nonatomic)NSString *address;
 @property (nonatomic ,strong)dispatch_source_t timer;//  注意:此处应该使用强引用 strong
+
+@property (assign,nonatomic)NSInteger chooseIndex;
+@property (assign,nonatomic)BOOL isUp;
+
 @end
 
 @implementation CAPTrackerViewController
@@ -61,8 +61,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [CAPUserDefaults setObject:@"YES" forKey:@"isFirst"];
     self.navigationItem.title = @"GPS Tracker";
-
+    self.isUp = YES;
+    self.chooseIndex = 0;
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
 //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
 //    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
@@ -146,13 +148,12 @@
 }
 
 - (void)fetchDevice{
-    self.markerArray = [NSMutableArray array];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     CAPWeakSelf(self);
     [deviceService fetchDevice:^(id response) {
         CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
-        NSLog(@"%@",deviceLists);
+        NSLog(@"-=-=-=-=-=-= %@",httpResponse.data);
         weakself.deviceListView.devices = deviceLists.result.list;
         if (deviceLists.result.list.count == 0) {
             [UIView animateWithDuration:0.37 animations:^{
@@ -161,7 +162,6 @@
             }];
             [CAPUserDefaults setObject:@"add user info" forKey:@"userInfo"];
             [weakself performSegueWithIdentifier:@"pair.segue" sender:nil];
-            [weakself.marker.map clear];
         }else{
             weakself.currentDevice = weakself.deviceListView.devices.firstObject;
         }
@@ -176,32 +176,33 @@
 - (void)getDeviceLocal{
     self.markerArray = [NSMutableArray array];
     self.deviceLists = [NSMutableArray array];
+    [self.mapView clear];
     for (NSInteger i = 0; i < self.deviceListView.devices.count; i++) {
         CAPDevice *device = self.deviceListView.devices[i];
         CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
         [deviceService fetchDevice:device.deviceID reply:^(CAPHttpResponse *response) {
-            
             NSDictionary *resultDic = (NSDictionary *)response.data;
             NSDictionary *result = resultDic[@"result"];
-            [self.deviceLists addObject:device.deviceID];
             CAPDeviceLocalModel *localModel = [CAPDeviceLocalModel mj_objectWithKeyValues:result];
-            NSLog(@"%@----%@",localModel.lat,localModel.lng);
             if (localModel.lat == nil) {
-                localModel.lat = @"0";
-                localModel.lng = @"0";
+                localModel.lat = [NSString stringWithFormat:@"%ld",i];
+                localModel.lng = [NSString stringWithFormat:@"%ld",i];
             }
             device.createdDate = localModel.createdAt;
-            self.marker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([localModel.lat floatValue], [localModel.lng floatValue])];
+            [self.deviceLists addObject:device];
+            GMSMarker *dMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([localModel.lat floatValue], [localModel.lng floatValue])];
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 47.4)];
             [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"master_bubble%ld",i + 1]]];
             UIImageView *deviceImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-            [deviceImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.avatarBaseUrl,device.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
+            deviceImgView.layer.cornerRadius = deviceImgView.frame.size.width / 2;
+            deviceImgView.layer.masksToBounds = YES;
+            [deviceImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.setting.avatarBaseUrl,device.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
             [imgView addSubview:deviceImgView];
             
-            [self.marker setIconView:imgView];
-            self.marker.map = self.mapView;
+            [dMarker setIconView:imgView];
+            dMarker.map = self.mapView;
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-            [dic setObject:self.marker forKey:device.deviceID];
+            [dic setObject:dMarker forKey:device.deviceID];
             [self.markerArray addObject:dic];
         }];
     }
@@ -212,17 +213,23 @@
     [deviceService deviceSendCommand:device.deviceID cmd:@"GPS" param:nil reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
+        self.mqttInfo = nil;
     }];
 }
 //通过MQTT获取设备的位置。
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
     self.mqttInfo = info;
+    if (self.currentDevice) {
+        if(![info.deviceID isEqualToString:self.currentDevice.deviceID]){
+            return;
+        }
+    }
     [gApp hideHUD];
+    self.currentDevice.connected = 1;
     for (NSInteger i = 0; i < self.markerArray.count; i++) {
         NSDictionary *dic = self.markerArray[i];
         if([info.deviceID isEqualToString:dic.allKeys.firstObject]){
-            self.chooseMarker = dic[info.deviceID];
             if ([info.command isEqualToString:@"GPS"]) {
                 if (info.latitude == 0.0) {
                     NSMutableDictionary *parame = [NSMutableDictionary dictionary];
@@ -283,7 +290,7 @@
                             [local setLocal:coords];
                             [self.trackerView.batteryView reloadBattery:info.batlevel];
                         }];
-                        
+
                     }
                 }else{
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
@@ -291,7 +298,6 @@
                     CAPDeviceLocal *local = [CAPDeviceLocal local];
                     [local setLocal:coords];
                     [self.trackerView.batteryView reloadBattery:info.batlevel];
-                    
                 }
             }
         }
@@ -304,11 +310,8 @@
         NSDictionary *dic = self.markerArray[i];
         [array addObjectsFromArray:[dic allValues]];
     }
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:3.f];  // 3 second animation
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:marker.position zoom:18];
     [mapView animateToCameraPosition:camera];
-    [CATransaction commit];
     NSInteger index = [array indexOfObject:marker];
     [self.deviceListView reloadButton:index];
     return YES;
@@ -336,30 +339,48 @@
 }
 //重新定位
 - (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate time:(NSString *)time deviceInfo:(NSString *)deviceId{
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:3.f];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:15];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:18];
     CLLocationCoordinate2D position2D = coordinate;
     self.mapView.camera = camera;
-    NSInteger index = [self.deviceLists indexOfObject:deviceId];
-    NSDictionary *dic = self.markerArray[index];
-    self.marker = [dic objectForKey:deviceId];
-    self.marker = [GMSMarker markerWithPosition:coordinate];
-    [CATransaction commit];
+    NSDictionary *dic = self.markerArray[self.chooseIndex];
+    GMSMarker *currentMarker = [dic objectForKey:deviceId];
+    [currentMarker setPosition:position2D];
+    currentMarker.map = self.mapView;
 
-    self.chooseMarker.position = position2D;
-    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-    [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@",response);
-        if (response != nil) {
-            GMSAddress *placemark = response.firstResult;
-            self.currentDevice.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
-            [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time ? time:@""];
-        }else{
-            [self.trackerView refreshDeviceLocation:self.currentDevice location:CAPLocalizedString(@"unknown") time:@""];
+//    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+//    [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+//        NSLog(@"%@",response);
+//        if (response != nil) {
+//            GMSAddress *placemark = response.firstResult;
+//            self.currentDevice.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
+//            [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time ? time:@""];
+//            [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
+//        }else{
+//            [self.trackerView refreshDeviceLocation:self.currentDevice location:CAPLocalizedString(@"unknown") time:@""];
+//            [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
+//        }
+//    }];
+    
+    //创建位置
+    CLLocation *location=[[CLLocation alloc]initWithLatitude:position2D.latitude longitude:position2D.longitude];
+    
+    CLGeocoder *geocoder=[[CLGeocoder alloc]init];
+
+    //反地理编码
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        //判断是否有错误或者placemarks是否为空
+        if (error !=nil || placemarks.count==0) {
+            NSLog(@"%@",error);
+            return ;
         }
-        
+        CLPlacemark *placemark = placemarks.firstObject;
+        NSDictionary *addressDictionary = placemark.addressDictionary;
+        NSArray *array = placemark.areasOfInterest;
+        self.currentDevice.address = [NSString stringWithFormat:@"%@%@%@%@",addressDictionary[@"City"],addressDictionary[@"SubLocality"],addressDictionary[@"Street"],array.count == 1 ? array.firstObject:@""];
+        [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time ? time:@""];
+        [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
     }];
+    
     CAPFencePresenter *fencePresenter = [CAPFencePresenter sharedCheckFence];
     [fencePresenter getFenceList:self.currentDevice deviceLocal:coordinate];
 }
@@ -373,7 +394,17 @@
 #pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
 -(void)didSelectDeviceAtIndex:(NSInteger)index {
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    if (index == self.chooseIndex && self.isUp == YES) {
+        [UIView animateWithDuration:0.37 animations:^{
+            [self.trackerView setY:self.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+            [self.deviceListView setY:Main_Screen_Height - TabBarHeight - self.rectDeviceListView.size.height - 10];
+        }];
+        self.isUp = !self.isUp;
+        self.chooseIndex = index;
+        return;
+    }
+    self.isUp = YES;
+    self.chooseIndex = index;
     CAPDevice *device = self.deviceListView.devices[index];
     [UIView animateWithDuration:0.37 animations:^{
         self.trackerView.frame = self.rectTrackerView;
@@ -390,17 +421,17 @@
     if (self.markerArray.count == 0) {
         return;
     }
+    if (index >= self.markerArray.count) {
+        return;
+    }
     NSDictionary *dic = self.markerArray[index];
-    self.marker = [dic objectForKey:device.deviceID];
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:3.f];  // 3 second animation
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.marker.position.latitude longitude:self.marker.position.longitude zoom:15];
-    [self refreshDeviceLocalized:self.marker.position time:[NSString dateFormateWithTimeInterval:device.createdDate] deviceInfo:device.deviceID];
+    GMSMarker *currentMarker = [dic objectForKey:device.deviceID];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentMarker.position.latitude longitude:currentMarker.position.longitude zoom:15];
+    [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:device.createdDate] deviceInfo:device.deviceID];
     self.mapView.camera = camera;
     CAPDeviceLocal *local = [CAPDeviceLocal local];
-    [local setLocal:self.marker.position];
+    [local setLocal:currentMarker.position];
     [local setDeviceId:device.deviceID];
-    [CATransaction commit];
     [self getDeviceLocation:device];
 }
 
@@ -429,7 +460,7 @@
         case CAPTrackerViewActionSetting:
         {CAPMasterSettingViewController *masterSetting = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"MasterSettingViewController"];
             masterSetting.device = self.currentDevice;
-            masterSetting.battery = self.mqttInfo.batlevel;
+            masterSetting.battery = self.mqttInfo ? self.mqttInfo.batlevel : 0;;
             [self.navigationController pushViewController:masterSetting animated:YES];
         }
             break;
@@ -466,6 +497,7 @@
     }
 }
 - (IBAction)getCurrentDeviceLocal:(id)sender {
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     [self getDeviceLocation:self.currentDevice];
 }
 

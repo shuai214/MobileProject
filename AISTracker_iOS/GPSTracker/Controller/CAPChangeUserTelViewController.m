@@ -10,6 +10,8 @@
 #import "CAPDeviceNumber.h"
 #import "CAPMMCountry.h"
 #import "CAPUserService.h"
+#import "CAPDeviceService.h"
+#import "CAPDeviceLists.h"
 #import "CAPFetchUserProfileResponse.h"
 @interface CAPChangeUserTelViewController ()
 @property(nonatomic,strong)NSMutableArray *countryArray;
@@ -32,7 +34,7 @@
 
 - (void)initFirstView{
     UILabel *mustBeThreeNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, TopHeight + 10, Main_Screen_Width, 20)];
-    mustBeThreeNumber.text = @"There three numbers are from APP";
+    mustBeThreeNumber.text = self.userStr ? @"Your phone number":CAPLocalizedString(@"The number of the GPS device");
     mustBeThreeNumber.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:mustBeThreeNumber];
     CGFloat numViewHeight = 80;
@@ -58,7 +60,7 @@
     self.deviceNumberView = [[CAPDeviceNumber alloc] initWithFrame:CGRectMake(imgView.right + 10, 0, width - imgView.right - 30, height) isEdit:YES];
     self.deviceNumberView.countryNameLabel.userInteractionEnabled = YES;
 
-    NSArray *array = [self.user.info.mobile componentsSeparatedByString:@" "];
+    NSArray *array = [self.user.info.mobile ? self.user.info.mobile :self.device.mobile componentsSeparatedByString:@" "];
     self.deviceNumberView.telAreaCodeLabel.text = array.firstObject;
     self.deviceNumberView.telField.text = array.lastObject;
     NSArray *telCode = self.telCodeArray;
@@ -132,21 +134,62 @@
     }];
 }
 - (void)saveButtonClicked{
-    self.user.info.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumberView.telAreaCodeLabel.text,self.deviceNumberView.telField.text];
-    NSLog(@"%@",self.user.info.mobile);
-    [gApp showHUD:CAPLocalizedString(@"loading")];
-    CAPUserService *userService = [[CAPUserService alloc] init];
-    CAPWeakSelf(self);
-    [userService putProfile:self.user reply:^(CAPFetchUserProfileResponse *response) {
-        if (response.code == 200) {
-            [gApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
-            [CAPNotifications notify:kNotificationChangeNickName];
-            [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
-                self->_updateSuccessBlock ?: self->_updateSuccessBlock( weakself.user);
-                [weakself.navigationController popViewControllerAnimated:YES];
-            } alertType:AlertTypeNoClose];
+    if (self.userStr) {
+        self.user.info.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumberView.telAreaCodeLabel.text,self.deviceNumberView.telField.text];
+        NSLog(@"%@",self.user.info.mobile);
+        [gApp showHUD:CAPLocalizedString(@"loading")];
+        CAPUserService *userService = [[CAPUserService alloc] init];
+        CAPWeakSelf(self);
+        [userService putProfile:self.user reply:^(CAPFetchUserProfileResponse *response) {
+            if (response.code == 200) {
+                [gApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
+                [CAPNotifications notify:kNotificationChangeNickName];
+                [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
+                    self->_updateSuccessBlock ?: self->_updateSuccessBlock( weakself.user);
+                    [self fetchDevice:self.user.info.mobile];
+                    [weakself.navigationController popViewControllerAnimated:YES];
+                } alertType:AlertTypeNoClose];
+            }
+            [gApp hideHUD];
+        }];
+    }else{
+        self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumberView.telAreaCodeLabel.text,self.deviceNumberView.telField.text];
+        NSLog(@"%@",self.user.info.mobile);
+        [gApp showHUD:CAPLocalizedString(@"loading")];
+        CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+        CAPWeakSelf(self);
+        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
+            NSLog(@"%@",response);
+            [gApp hideHUD];
+            NSDictionary *data = response.data;
+            if ([[data objectForKey:@"code"] integerValue] == 200) {
+                [gApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
+                [CAPNotifications notify:kNotificationChangeNickName];
+                [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
+                    weakself.updateDeviceSuccessBlock(weakself.device);
+                    [weakself.navigationController popViewControllerAnimated:YES];
+                } alertType:AlertTypeNoClose];
+            }
+            [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+        }];
+    }
+}
+- (void)fetchDevice:(NSString *)sos{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:^(id response) {
+        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
+        CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
+        NSLog(@"%@",deviceLists);
+        for (NSInteger i = 0; i < deviceLists.result.list.count; i++) {
+            CAPDevice *device = deviceLists.result.list[i];
+            if (![device.role isEqualToString:@"user"]) {
+                device.sos = sos;
+                [deviceService updateDevice:device reply:^(id response) {
+                    
+                }];
+            }
         }
-        [gApp hideHUD];
+       
     }];
 }
 @end

@@ -33,6 +33,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 15;
+        self.layer.masksToBounds = YES;
         self.contentDesc = desc;
         self.title = title;
         self.alertType = alertType;
@@ -95,7 +97,7 @@
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
     [_okButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
-    [_okButton setTitle:@"确定" forState:UIControlStateNormal];
+    [_okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton setBackgroundColor:[CAPColors red]];
     [_okButton addTarget:self action:@selector(okButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -204,7 +206,7 @@
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
     [_okButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
-    [_okButton setTitle:@"确定" forState:UIControlStateNormal];
+    [_okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton addTarget:self action:@selector(okButtonAction) forControlEvents:UIControlEventTouchUpInside];
     if(self.alertType == AlertTypeNoClose){
@@ -220,7 +222,7 @@
     [_closeButton addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     _closeButton.sd_cornerRadius = @5.0f;
     [_closeButton.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
-    [_closeButton setTitle:@"取消" forState:UIControlStateNormal];
+    [_closeButton setTitle:CAPLocalizedString(@"cancel") forState:UIControlStateNormal];
     [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_closeButton setBackgroundColor:[CAPColors gray1]];
     _closeButton.enabled = NO;

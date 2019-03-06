@@ -89,8 +89,9 @@
         
     }];
 }
-- (void)getDeviceDetailLoacl:(NSDictionary *)parameter{
-    NSString *URLString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/detail/json?reference=%@key=AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4",[parameter mj_JSONString]];
+- (void)getDeviceDetailLoacl:(NSString *)latlng{
+    //
+    NSString *URLString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%@&sensor=true&key=AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4",latlng];
     AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
     manager.requestSerializer.timeoutInterval = 15.0;
     [manager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {

@@ -67,7 +67,18 @@
     
     [self.sdImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_off"):GetImage(@"check_on")];
     [self.customImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_on"):GetImage(@"check_off")];
-    [self.customButton setTitle:[CAPUserDefaults objectForKey:@"uploadTime"] forState:UIControlStateNormal];
+    NSString *time = @"";
+    if (self.device.setting.reportFrequency) {
+        if (self.device.setting.reportFrequency / 60 < 60) {
+            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+        }
+        if (self.device.setting.reportFrequency / 60 > 60) {
+            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+        }
+    }else{
+        time = [CAPUserDefaults objectForKey:@"uploadTime"];
+    }
+    [self.customButton setTitle:time forState:UIControlStateNormal];
 
     [self.view addSubview:buttonView];
     
@@ -95,7 +106,7 @@
     [self.sdImageView setImage:GetImage(@"check_off")];
     [self.customImageView setImage:GetImage(@"check_on")];
     NSArray *times = @[CAPLocalizedString(@"real_time"), [NSString stringWithFormat:@"5%@",CAPLocalizedString(@"minutes")], [NSString stringWithFormat:@"15%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"30%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_1")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_4")]];
-    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"update_frequency") dataSource:times defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"update_frequency") dataSource:times defaultSelValue:[NSString stringWithFormat:@"5%@",CAPLocalizedString(@"minutes")] resultBlock:^(id selectValue) {
         [self.customButton setTitle:[NSString stringWithFormat:@"%@",selectValue] forState:UIControlStateNormal];
         [CAPUserDefaults setObject:selectValue forKey:@"uploadTime"];
         NSInteger index = [times indexOfObject:selectValue];

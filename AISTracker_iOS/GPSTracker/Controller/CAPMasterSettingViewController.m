@@ -16,6 +16,7 @@
 #import "CAPUploadFrequencyViewController.h"
 #import "CAPFileUpload.h"
 #import "CAPDeviceBindInfo.h"
+#import "CAPChangeUserTelViewController.h"
 @interface CAPMasterSettingViewController () <UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -25,35 +26,36 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<NSString *> *titles;
 @property (strong, nonatomic) NSArray<NSString *> *details;
-
+@property (copy, nonatomic)NSString *time;
+@property (copy, nonatomic)NSString *deviceVer;
 @end
 
 @implementation CAPMasterSettingViewController
--(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
-{
-    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
-}
+//-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
+//{
+//    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
+//    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return scaledImage;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *time = @"";
+    self.time = @"";
     if (self.device.setting.reportFrequency) {
         if (self.device.setting.reportFrequency / 60 < 60) {
-            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+            self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
         }
         if (self.device.setting.reportFrequency / 60 > 60) {
             
-            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+            self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
         }
     }
     self.title = CAPLocalizedString(@"profile");
     self.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
                     @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",time,@"",@""];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -61,7 +63,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     UIImage *avatar = GetImage(@"ic_default_avatar_new");
     
-    [self.avatarImageView setImage:avatar];
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.device.setting.avatarBaseUrl,self.device.setting.avatarPath]] placeholderImage:avatar];
     self.avatarImageView.layer.cornerRadius =  self.avatarImageView.width/2.0;
     self.avatarImageView.layer.masksToBounds = YES;
     
@@ -70,9 +72,13 @@
     
     self.nextDeviceImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
-//    [self.nextDeviceImage addGestureRecognizer:labelTapGestureRecognizer];
+    [self.nextDeviceImage addGestureRecognizer:labelTapGestureRecognizer];
     [self refreshLocalizedString];
+    [self checkDevice];
+    [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
+    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
 }
+
 - (void)labelTouchUpInside:(NSNotification *)notifi{
     UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
     imagePickerVc.delegate = self;
@@ -126,6 +132,7 @@
     static NSString * const cellIdentifier = @"right_detail_cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.titles[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.detailTextLabel.text = self.details[indexPath.row];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     return cell;
@@ -161,7 +168,20 @@
             break;
         case 2:
             break;
-        case 3:
+        case 3:{
+            CAPChangeUserTelViewController *editName = [[CAPChangeUserTelViewController alloc] init];
+            editName.device = self.device;
+            CAPWeakSelf(self);
+            [editName setUpdateDeviceSuccessBlock:^(CAPDevice * _Nonnull device) {
+                weakself.device = device;
+                weakself.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
+                                @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
+                weakself.details = @[device? device.name:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",self.time,@"",@""];
+                [weakself checkDevice];
+                [weakself.tableView reloadData];
+            }];
+            [self.navigationController pushViewController:editName animated:YES];
+        }
             break;
         case 4:
         {UIStoryboard *story = [UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil];
@@ -208,6 +228,22 @@
             } alertType:AlertTypeCustom];
         }
             break;
+        case 8:{
+            if (kStringIsEmpty(self.deviceVer)) {
+                [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
+                [self checkDevice];
+            }else{
+                [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") closeBlock:^{
+                    
+                } okBlock:^{
+                    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                    [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPGRADECHK" param:nil reply:^(id response) {
+                        NSLog(@"%@",response);
+                    }];
+                }];
+            }
+        }
+            break;
         default:
             break;
     }
@@ -226,16 +262,39 @@
         NSDictionary *dic = (NSDictionary *)object;
         if ([[dic objectForKey:@"code"] integerValue] == 200) {
             NSDictionary *resultDic = [dic objectForKey:@"result"];
-//            self.capUser.profile.avatarBaseUrl = resultDic[@"base_url"];
-//            self.capUser.profile.avatarPath = resultDic[@"path"];
-//            CAPUserService *userService = [[CAPUserService alloc] init];
-//            [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
-//                NSLog(@"%@",response);
-//                [gApp hideHUD];
-//            }];
+            self.device.avatarBaseUrl = resultDic[@"base_url"];
+            self.device.avatarPath = resultDic[@"path"];
+            CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+            [deviceService updateSetting:self.device reply:^(id response) {
+                NSLog(@"%@",response);
+                [gApp hideHUD];
+                [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+            }];
         }
     }];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - 获取设备的版本
+- (void)checkDevice{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService deviceSendCommand:self.device.deviceID cmd:@"VERNO" param:nil reply:^(id response) {
+        NSLog(@"%@",response);
+    }];
+}
+- (void)getDeviceVerno:(NSNotification *)notifi{
+    MQTTInfo *info = notifi.object;
+    NSLog(@"%@",info);
+    self.deviceVer = info.ver;
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
+
+    [self.tableView reloadData];
+}
+- (void)updateDeviceVerno:(NSNotification *)notifi{
+    MQTTInfo *info = notifi.object;
+    NSLog(@"%@",info);
+    self.deviceVer = info.ver;
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
+    [self.tableView reloadData];
 }
 #pragma mark 调整图片分辨率/尺寸（等比例缩放）
 - (UIImage *)newSizeImage:(CGSize)size image:(UIImage *)sourceImage {

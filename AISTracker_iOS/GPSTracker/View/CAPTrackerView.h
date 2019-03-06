@@ -30,4 +30,5 @@ typedef NS_ENUM(NSUInteger, CAPTrackerViewAction) {
 @property (nonatomic, weak) id<CAPTrackerViewDelegate> delegate;
 - (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location time:(NSString *)time;
 - (void)userOrowner:(BOOL)is;
+- (void)isLine:(BOOL)isLine;
 @end

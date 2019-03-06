@@ -47,8 +47,8 @@
 - (IBAction)onOkButtonClicked:(id)sender {
 //    NSUInteger selectedRow = [self.pickerView selectedRowInComponent:self.selectIndex];
 //    [self.userPresenter changeLanguage:selectedRow];
-//    [self performSegueWithIdentifier:@"main.segue" sender:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"main.segue" sender:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIPickerView

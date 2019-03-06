@@ -27,6 +27,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 15;
+        self.layer.masksToBounds = YES;
         self.contentDesc = title;
         [self initCustomSubview];
         [self configCustomAutoLayout];

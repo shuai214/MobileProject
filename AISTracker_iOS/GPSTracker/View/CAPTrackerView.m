@@ -59,7 +59,14 @@
         self.onlineLabel.text = @"online";
 //        self.onlineLabel.textColor = [CAPColors green1];
     }
-    [self.batteryView reloadBattery:info.batlevel];
+}
+- (void)isLine:(BOOL)isLine{
+    if (isLine) {
+        self.onlineLabel.text = @"online";
+    }else{
+        self.onlineLabel.text = @"offline";
+        [self.batteryView reloadBattery:0];
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -98,6 +105,9 @@
 - (void)refreshDeviceLocation:(CAPDevice *)device location:(NSString *)location time:(NSString *)time{
     self.DeviceName.text = device.name;
     self.DeviceLocation.text = location;
+    if (time.length != 0) {
+        time = [time substringWithRange:NSMakeRange(0,time.length - 3)];
+    }
     time ? self.updateTimeLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"last_updated"),time] : @"";
 }
 //- (void)layoutSubviews {

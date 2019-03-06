@@ -225,7 +225,7 @@
         info.online = 1;
     }
     if ([info.command isEqualToString:@"STATUS"]) {
-        NSString *status = @"未知状态";
+        NSString *status = @"unknow";
         UIColor *color = nil;
         if (info.online ? 0 : 1) {
             status = @"离线";
@@ -273,7 +273,7 @@
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
         [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] ocloseBlock:^{
-            [gApp showHUD:@"正在处理，请稍后..."];
+            [gApp showHUD:CAPLocalizedString(@"loading")];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"0" reply:^(CAPHttpResponse *response) {
                 NSLog(@"%@",response);

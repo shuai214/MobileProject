@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"消息";
+    self.navigationItem.title = CAPLocalizedString(@"message");
     self.tableHeight = self.tableView.frame.size.height;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -77,20 +77,20 @@
 }
 - (void)layoutSubviews
 {
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:CAPLocalizedString(@"edit") style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
 }
 - (void)rightBarItemClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"编辑"]) {
+    if ([item.title isEqualToString:CAPLocalizedString(@"edit")]) {
         if (self.listData.count == 0) {
             return;
         }
-        item.title = @"取消";
+        item.title = CAPLocalizedString(@"cancel");
         [self.tableView setEditing:YES animated:YES];
         [self showEitingView:YES];
     }else{
-        item.title = @"编辑";
+        item.title = CAPLocalizedString(@"edit");
         [self.tableView setEditing:NO animated:YES];
         [self showEitingView:NO];
     }
@@ -165,7 +165,7 @@
         _editingView = [[UIView alloc] initWithFrame:CGRectMake(0, Main_Screen_Height, Main_Screen_Width, 45)];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor redColor];
-        [button setTitle:@"删除" forState:UIControlStateNormal];
+        [button setTitle:CAPLocalizedString(@"delete") forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(Main_Screen_Width / 2, 0, Main_Screen_Width / 2, 45);
@@ -173,7 +173,7 @@
         
         button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor darkGrayColor];
-        [button setTitle:@"全选" forState:UIControlStateNormal];
+        [button setTitle:CAPLocalizedString(@"select_all") forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0, 0, Main_Screen_Width / 2, 45);
@@ -183,7 +183,7 @@
 }
 - (void)p__buttonClick:(UIButton *)sender
 {
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"delete")]) {
         NSMutableIndexSet *insets = [[NSMutableIndexSet alloc] init];
         NSMutableArray *indexArray = [[NSMutableArray alloc] init];
         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -193,7 +193,7 @@
         [self.listData removeObjectsAtIndexes:insets];
         [self.tableView deleteRowsAtIndexPaths:[self.tableView indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
         if (self.listData.count == 0) {
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
+            self.navigationItem.rightBarButtonItem.title = CAPLocalizedString(@"edit");
             [self.tableView setEditing:NO animated:YES];
             [self showEitingView:NO];
         }
@@ -205,28 +205,28 @@
             [self loadData];
             [self.tableView setEditing:NO animated:YES];
             [self showEitingView:NO];
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
+            self.navigationItem.rightBarButtonItem.title = CAPLocalizedString(@"edit");
         }else{
             [coreData deleteAllData];
             [self loadData];
             [self.tableView setEditing:NO animated:YES];
             [self showEitingView:NO];
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
+            self.navigationItem.rightBarButtonItem.title = CAPLocalizedString(@"edit");
         }
         
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"select_all")]) {
         [self.listData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         }];
         self.selectAll = @"YES";
-        [sender setTitle:@"全不选" forState:UIControlStateNormal];
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
+        [sender setTitle:CAPLocalizedString(@"cancel") forState:UIControlStateNormal];
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"cancel")]){
         
         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView deselectRowAtIndexPath:obj animated:NO];
         }];
         self.selectAll = @"NO";
-        [sender setTitle:@"全选" forState:UIControlStateNormal];
+        [sender setTitle:CAPLocalizedString(@"select_all") forState:UIControlStateNormal];
         
     }
 }

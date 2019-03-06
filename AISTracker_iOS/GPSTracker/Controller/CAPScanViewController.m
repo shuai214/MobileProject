@@ -59,7 +59,7 @@
         [self.view addSubview:btn];
     }
 }
-#pragma mark - 菜单按钮点击事件
+
 - (void)btnClick:(UIButton *)sender
 {
     if (sender.tag == 0) {
@@ -118,11 +118,11 @@
                 !self->_ScanSuccessBlock ? : self->_ScanSuccessBlock(scannedResult);
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫描结果"
-                                                            message:@"不是二维码图片"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:CAPLocalizedString(@"scan_error")
                                                            delegate:self
                                                   cancelButtonTitle:nil
-                                                  otherButtonTitles:@"确定", nil];
+                                                  otherButtonTitles:CAPLocalizedString(@"ok"), nil];
             [self.view addSubview:alert];
             [alert show];
         }
@@ -141,7 +141,7 @@
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if(authStatus ==AVAuthorizationStatusRestricted|| authStatus ==AVAuthorizationStatusDenied){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请在iPhone的“设置”-“隐私”-“相机”功能中，找到“某某应用”打开相机访问权限" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:CAPLocalizedString(@"camera_permission_rationale") delegate:self cancelButtonTitle:CAPLocalizedString(@"ok") otherButtonTitles:nil];
         [alert show];
         return;
     }

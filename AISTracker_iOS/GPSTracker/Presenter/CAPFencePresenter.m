@@ -12,6 +12,7 @@
 #import "CAPCoreData.h"
 @interface CAPFencePresenter()
 @property(nonatomic,assign)FenceType type;
+@property(nonatomic,assign)BOOL first;
 @property(nonatomic,strong)NSMutableArray *activeFences;
 @end
 @implementation CAPFencePresenter
@@ -26,6 +27,7 @@
 }
 - (void)getFenceList:(CAPDevice *)device deviceLocal:(CLLocationCoordinate2D)coordinate{
     self.activeFences = [NSMutableArray array];
+    
     CAPWeakSelf(self);
     CAPFenceService *fenceService = [[CAPFenceService alloc] init];
     [fenceService fetchFence:device.deviceID reply:^(CAPHttpResponse *response) {
@@ -36,11 +38,15 @@
         }else{
             for (NSInteger i = 0; i < fenceList.result.list.count; i++) {
                 List *list = fenceList.result.list[i];
+                if ([[CAPUserDefaults objectForKey:@"isFirst"] isEqualToString:@"YES"]) {
+                    [CAPUserDefaults removeObjectForKey:list.fid];
+                }
                 if ([list.status isEqualToString:@"1"]) {
                     [self.activeFences addObject:list];
                 }
             }
             FenceType type = [self lisetnDeviceFence:coordinate withDevice:device];
+            [CAPUserDefaults setObject:@"NO" forKey:@"isFirst"];
         }
     }];
 }
@@ -64,28 +70,59 @@
         NSInteger minutes = seconds / 60;
         if([CAPUserDefaults objectForKey:@"uploadTimeInter"]){
             NSString *times = [CAPUserDefaults objectForKey:@"uploadTimeInter"];
-           NSInteger integerTimes = [times integerValue];
-            UIColor *color = nil;
-            NSString *status = nil;
-            if(minutes > (integerTimes / 60)){
-                if (meters > list.range) {
-                    status = CAPLocalizedString(@"message_type_out_fence");
-                    color = [UIColor redColor];
-                }else{
-                    status = CAPLocalizedString(@"message_type_in_fence");
-                    color = [UIColor greenColor];
-                }
-                [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@%@",device.name,status,list.name] backGroundColor:color];
-                MQTTInfo *info = [[MQTTInfo alloc] init];
-                info.deviceID = device.deviceID;
-                info.time = seconds;
-                info.message = [NSString stringWithFormat:@"设备%@%@",device.name,status];
-                CAPCoreData *coreData = [CAPCoreData coreData];
-                [coreData creatResource:@"GPSTracker"];
-                [coreData insertData:info];
+            NSInteger integerTimes = [times integerValue];
+            if (device.setting.reportFrequency != 0) {
+                integerTimes = device.setting.reportFrequency;
+            }
+            [self validateDeviceFence:meters minutes:minutes integerTimes:integerTimes list:list device:device timeInterval:seconds];
+        }else{
+            if (device.setting.reportFrequency != 0) {
+                NSInteger integerTimes = device.setting.reportFrequency;
+                [self validateDeviceFence:meters minutes:minutes integerTimes:integerTimes list:list device:device timeInterval:seconds];
+            }else{
+                NSInteger integerTimes = 0;
+                [self validateDeviceFence:meters minutes:minutes integerTimes:integerTimes list:list device:device timeInterval:seconds];
             }
         }
     }
     return self.type;
+}
+
+- (void)validateDeviceFence:(CLLocationDistance)meters minutes:(NSInteger)minutes integerTimes:(NSInteger)integerTimes list:(List *)list device:(CAPDevice *)device timeInterval:(NSTimeInterval)seconds{
+     NSString *status = nil;
+    if(minutes > (integerTimes / 60)){
+        if (meters > list.range) {
+            status = CAPLocalizedString(@"message_type_out_fence");
+        }else{
+            status = CAPLocalizedString(@"message_type_in_fence");
+        }
+        NSDictionary *dicDevice = [CAPUserDefaults objectForKey:list.fid];
+        if (!kDictIsEmpty(dicDevice)) {
+            NSString *deviceStatus = [dicDevice objectForKey:@"status"];
+            NSString *fenceID = [dicDevice objectForKey:@"fid"];
+            if (![deviceStatus isEqualToString:status]) {
+                if ([fenceID isEqualToString:list.fid]) {
+                    [CAPAlertView initDeviceFenceAlertView:device content:[NSString stringWithFormat:@"%@%@%@",device.name,status,list.name] closeBlock:^{
+                        
+                    }];
+                }
+            }
+        }else{
+            [CAPAlertView initDeviceFenceAlertView:device content:[NSString stringWithFormat:@"%@%@%@",device.name,status,list.name] closeBlock:^{
+                
+            }];
+        }
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:status forKey:@"status"];
+        [dic setObject:list.fid forKey:@"fid"];
+        [CAPUserDefaults setObject:dic forKey:list.fid];
+        MQTTInfo *info = [[MQTTInfo alloc] init];
+        info.deviceID = device.deviceID;
+        info.time = seconds;
+        info.message = [NSString stringWithFormat:@"%@%@",device.name,status];
+        CAPCoreData *coreData = [CAPCoreData coreData];
+        [coreData creatResource:@"GPSTracker"];
+        [coreData insertData:info];
+    }
 }
 @end

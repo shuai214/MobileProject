@@ -44,7 +44,7 @@
     [mqttCenter open:config];
 }
 - (void)registBindUserDevice:(NSNotification *)notifi{
-    [CAPAlertView initAlertWithContent:@"绑定成功！" title:@"" closeBlock:^{
+    [CAPAlertView initAlertWithContent:CAPLocalizedString(@"pair_success") title:@"" closeBlock:^{
         
     } okBlock:^{
         [CAPNotifications notify:kNotificationDeviceCountChange];
@@ -76,16 +76,16 @@
         [weakself addDeviceService:successStr owner:YES];
     }];
     [ScanVC setBindSuccessBlock:^(NSString *successStr) {
-        [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",successStr] title:@"绑定该设备吗？" closeBlock:^{
+        [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),successStr] title:@"" closeBlock:^{
             
         } okBlock:^{
             CAPDeviceSettingViewController *deviceSettingVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
             deviceSettingVC.deviceStr = successStr;
             [deviceSettingVC setInputDeviceBlock:^(CAPDevice *device) {
-                [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",device.deviceID] title:@"绑定该设备吗？" closeBlock:^{
+                [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),device.deviceID] title:@"" closeBlock:^{
                     
                 } okBlock:^{
-                    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",device.deviceID] title:@"绑定该设备吗？" closeBlock:^{
+                    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),device.deviceID] title:@"" closeBlock:^{
                         
                     } okBlock:^{
                         
@@ -113,28 +113,28 @@
 
 
 - (void)addDeviceService:(NSString *)deviceNum owner:(BOOL)is{
-    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"GPS ID is : %@",deviceNum] title:@"绑定该设备吗？" closeBlock:^{
+    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),deviceNum] title:@"" closeBlock:^{
         
     } okBlock:^{
         CAPDevice *device = [[CAPDevice alloc] init];
         [device setDeviceID:deviceNum];
         [device setName:deviceNum];
-        [gApp showHUD:@"正在处理，请稍后..."];
-        CAPDeviceService *service = [[CAPDeviceService alloc] init];
-        [service addDevice:device reply:^(CAPHttpResponse *response) {
-            [gApp hideHUD];
-            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-                [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
-                CAPDeviceSettingViewController *AddTrackerVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
-                AddTrackerVC.device = getDevice;
-                [self.navigationController pushViewController:AddTrackerVC animated:YES];
-            }else{
-                [CAPAlerts alertWarning:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] buttonTitle:@"确定" actionBlock:^{
-                    
-                }];
-            }
-        }];
+//        [gApp showHUD:@"正在处理，请稍后..."];
+//        CAPDeviceService *service = [[CAPDeviceService alloc] init];
+//        [service addDevice:device reply:^(CAPHttpResponse *response) {
+//            [gApp hideHUD];
+//            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+//                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+//                [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+                CAPDeviceSettingViewController *deviceSeting = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
+                deviceSeting.device = device;
+                [self.navigationController pushViewController:deviceSeting animated:YES];
+//            }else{
+//                [CAPAlerts alertWarning:[NSString stringWithFormat:@"%@",[response.data objectForKey:@"message"]] buttonTitle:@"确定" actionBlock:^{
+//
+//                }];
+//            }
+//        }];
     } alertType:AlertTypeCustom];
 }
 @end

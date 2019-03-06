@@ -84,7 +84,7 @@
             button.layer.masksToBounds = YES;
             
             CAPDevice *device = self.devices[i];
-            [button sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.avatarBaseUrl,device.avatarPath]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"ic_default_avatar_new"]];
+            [button sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",device.setting.avatarBaseUrl,device.setting.avatarPath]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"ic_default_avatar_new"]];
             [button addTarget:self action:@selector(onDeviceClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
             NSLog(@"1111111111---------%@",button);

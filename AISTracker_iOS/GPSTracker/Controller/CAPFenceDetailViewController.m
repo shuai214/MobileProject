@@ -147,7 +147,7 @@
 - (void)fenceRangeTouchUpInside:(UITapGestureRecognizer *)recognizer{
     [BRStringPickerView showStringPickerWithTitle:@"选择围栏范围" dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
         self.listItem.range = [selectValue integerValue];
-        self.label2.text = [NSString stringWithFormat:@"%ld%@",[selectValue integerValue],CAPLocalizedString(@"m")];
+        self.label2.text = [NSString stringWithFormat:@"%d%@",[selectValue integerValue],CAPLocalizedString(@"m")];
     }];
 }
 

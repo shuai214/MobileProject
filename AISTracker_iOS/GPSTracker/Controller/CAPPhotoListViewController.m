@@ -33,7 +33,7 @@
     NSArray *array = [CAPUserDefaults objectForKey:kNotificationPhotoCountChange];
     [self.showPhotos addObjectsFromArray:array];
     [self.collectionView reloadData];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:CAPLocalizedString(@"edit") style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     [self.view addSubview:self.editingView];
     
@@ -43,18 +43,18 @@
     self.seleceAll = NO;
 }
 - (void)rightBarItemClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"编辑"]) {
+    if ([item.title isEqualToString:CAPLocalizedString(@"edit")]) {
         if (self.showPhotos.count == 0) {
             return;
         }
-        item.title = @"取消";
+        item.title = CAPLocalizedString(@"cancel");
         [self showEitingView:YES];
         self.edit = YES;
     }else{
-        item.title = @"编辑";
+        item.title = CAPLocalizedString(@"edit");
         [self showEitingView:NO];
         UIButton *button = (UIButton *)[_editingView viewWithTag:10000];
-        [button setTitle:@"全选" forState:UIControlStateNormal];
+        [button setTitle:CAPLocalizedString(@"select_all") forState:UIControlStateNormal];
         self.edit = NO;
         self.seleceAll = NO;
         [self.collectionView reloadData];
@@ -74,7 +74,7 @@
         _editingView = [[UIView alloc] initWithFrame:CGRectMake(0, Main_Screen_Height, Main_Screen_Width, 45)];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor redColor];
-        [button setTitle:@"删除" forState:UIControlStateNormal];
+        [button setTitle:CAPLocalizedString(@"delete") forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(Main_Screen_Width / 2, 0, Main_Screen_Width / 2, 45);
@@ -82,7 +82,7 @@
         
         button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor darkGrayColor];
-        [button setTitle:@"全选" forState:UIControlStateNormal];
+        [button setTitle:CAPLocalizedString(@"select_all") forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 10000;
@@ -93,7 +93,7 @@
 }
 - (void)p__buttonClick:(UIButton *)sender
 {
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"delete")]) {
         if (self.seleceAll == YES) {
             [self.showPhotos removeAllObjects];
         }else{
@@ -104,12 +104,12 @@
         self.showPhotos = [NSMutableArray array];
         [self.showPhotos addObjectsFromArray:array];
         [self.collectionView reloadData];
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"select_all")]) {
         self.seleceAll = YES;
-        [sender setTitle:@"全不选" forState:UIControlStateNormal];
+        [sender setTitle:CAPLocalizedString(@"cancel") forState:UIControlStateNormal];
         [self.collectionView reloadData];
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
-        [sender setTitle:@"全选" forState:UIControlStateNormal];
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CAPLocalizedString(@"cancel")]){
+        [sender setTitle:CAPLocalizedString(@"select_all") forState:UIControlStateNormal];
         self.seleceAll = NO;
         [self.collectionView reloadData];
     }

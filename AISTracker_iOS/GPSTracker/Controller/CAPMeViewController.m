@@ -19,6 +19,8 @@
 #import "CAPChangeUserTelViewController.h"
 #import "CAPDeviceLocal.h"
 #import "CAPDeviceService.h"
+#import <TrueIDFramework/TrueIDFramework-Swift.h>
+#import "AppDelegate.h"
 @interface CAPMeViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,7 +29,7 @@
 @property (strong, nonatomic) NSArray<NSString *> *details;
 @property (strong, nonatomic) CAPUser *capUser;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-@property (copy, nonatomic)NSString *deviceVer;
+//@property (copy, nonatomic)NSString *deviceVer;
 @end
 
 @implementation CAPMeViewController
@@ -45,29 +47,29 @@
     self.userImageView.layer.masksToBounds = YES;
     [self getDeviceUser];
     [CAPNotifications addObserver:self selector:@selector(getDeviceUser) name:kNotificationChangeNickName object:nil];
-    [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
-    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
-    [self checkDevice];
-}
-
-- (void)checkDevice{
-    CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"VERNO" param:nil reply:^(id response) {
-        NSLog(@"%@",response);
-    }];
-}
-- (void)getDeviceVerno:(NSNotification *)notifi{
-    MQTTInfo *info = notifi.object;
-    NSLog(@"%@",info);
-    self.deviceVer = info.ver;
-    [self.tableView reloadData];
-}
-- (void)updateDeviceVerno:(NSNotification *)notifi{
-    MQTTInfo *info = notifi.object;
-    NSLog(@"%@",info);
-    self.deviceVer = info.ver;
-    [self.tableView reloadData];
+//    [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
+//    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
+//    [self checkDevice];
+//}
+//
+//- (void)checkDevice{
+//    CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
+//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"VERNO" param:nil reply:^(id response) {
+//        NSLog(@"%@",response);
+//    }];
+//}
+//- (void)getDeviceVerno:(NSNotification *)notifi{
+//    MQTTInfo *info = notifi.object;
+//    NSLog(@"%@",info);
+//    self.deviceVer = info.ver;
+//    [self.tableView reloadData];
+//}
+//- (void)updateDeviceVerno:(NSNotification *)notifi{
+//    MQTTInfo *info = notifi.object;
+//    NSLog(@"%@",info);
+//    self.deviceVer = info.ver;
+//    [self.tableView reloadData];
 }
 - (void)getDeviceUser{
     [gApp showHUD:CAPLocalizedString(@"loading")];
@@ -103,7 +105,7 @@
         cell.detailTextLabel.text = self.capUser.info.mobile;
     }
     if (indexPath.row == 3) {
-        cell.detailTextLabel.text = self.deviceVer;
+        cell.detailTextLabel.text = [CAPPhones systemVersion];
     }
     return cell;
 }
@@ -123,6 +125,7 @@
         
         CAPChangeUserTelViewController *editName = [[CAPChangeUserTelViewController alloc] init];
         editName.user = self.capUser;
+        editName.userStr = @"yes";
         CAPWeakSelf(self);
         [editName setUpdateSuccessBlock:^(id cap) {
             [weakself getDeviceUser];
@@ -134,20 +137,22 @@
         [self performSegueWithIdentifier:@"language.segue" sender:nil];
     }
     if (indexPath.row == 3) {
-        if (kStringIsEmpty(self.deviceVer)) {
-            [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
-            [self checkDevice];
-        }else{
-            [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") closeBlock:^{
-                
-            } okBlock:^{
-                CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
-                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-                [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"UPGRADECHK" param:nil reply:^(id response) {
-                    NSLog(@"%@",response);
-                }];
-            }];
-        }
+        NSString *str =@"https://itunes.apple.com/app/apple-store/id81316811650?mt";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//        if (kStringIsEmpty(self.deviceVer)) {
+//            [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
+//            [self checkDevice];
+//        }else{
+//            [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") closeBlock:^{
+//                
+//            } okBlock:^{
+//                CAPDeviceLocal *deviceLocal = [CAPDeviceLocal local];
+//                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//                [deviceService deviceSendCommand:deviceLocal.deviceId cmd:@"UPGRADECHK" param:nil reply:^(id response) {
+//                    NSLog(@"%@",response);
+//                }];
+//            }];
+//        }
     }
 }
 
@@ -172,19 +177,30 @@
 }
 
 - (IBAction)onLogoutButtonClicked:(id)sender {
-//    [self performSegueWithIdentifier:@"language.segue" sender:nil];
-//     [self performSegueWithIdentifier:@"feedback.segue" sender:nil];
+    [[TrueIdPlatformAuth shareInstance] logoutWithResponseComplete:^(NSDictionary * _Nonnull response) {
+        NSLog(@"%@",response);
+    } responseFailed:^(NSDictionary * _Nonnull dic) {
+        NSLog(@"%@",dic);
+    }];
+    [CAPUserDefaults removeObjectForKey:@"user_profileDic"];
+    MQTTCenter *mqttCenter = [MQTTCenter center];
     MQTTConfig *config = [[MQTTConfig alloc] init];
-    config.host = @"www.capelabs.net";
+    config.host = @"mqtt.kvtel.com";
     config.port = 1883;
     config.username = @"demo_app";
     config.password = @"demo_890_123_654";
-    config.clientID = @"X3211fd93441ed535NVWR4E00120000000052";
-    config.userID = @"130";
-    config.deviceType = MQTTDeviceTypeApp;
-    config.platformID = @"TRUEIOT";
+    config.userID = [CAPUserDefaults objectForKey:@"userID"];
     config.keepAliveInterval = 20;
-    [[MQTTCenter center] open:config];
+    config.deviceType = MQTTDeviceTypeApp;
+    config.platformID = @"KVTELIOT";
+    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+    [mqttCenter close];
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateInitialViewController];
+    UIViewController *vc = app.window.rootViewController;
+    app.window.rootViewController = viewController;
+    [vc removeFromParentViewController];
 }
 
 

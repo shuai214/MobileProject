@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.profileDic = [NSDictionary dictionary];
     [TrueIdPlatformAuth shareInstance].registerDelegate = self;
     [TrueIdPlatformAuth shareInstance].loginDelegate = self;
     [TrueIdPlatformAuth shareInstance].refreshTokenDelegate = self;
@@ -66,8 +66,12 @@
 
     Boolean isLogin = [[TrueIdPlatformAuth shareInstance] getAccessToken] != NULL;
     NSLog(@"%@",[[TrueIdPlatformAuth shareInstance] getAccessToken]);
+//    [CAPUserDefaults setObject:self.profileDic forKey:@"user_profileDic"];
     if (isLogin == TRUE){
-        [self loginAction];
+        self.profileDic = [CAPUserDefaults objectForKey:@"user_profileDic"];
+        if (!kDictIsEmpty(self.profileDic)) {
+            [self userInfoDownloadWithOpenID:nil];
+        }
     }
 }
 
@@ -115,6 +119,9 @@
             NSString *email = profileDic[@"account_email"];
             NSString *expirationDate = [NSString stringWithFormat:@"%ld",([profileDic[@"exp"] integerValue] - [profileDic[@"iat"] integerValue])];
             NSString *accessToken = profileDic[@"account_email"];
+            if (accessToken.length == 0) {
+                accessToken = profileDic[@"account_mobile"];
+            }
             NSString *name = profileDic[@"display_name"];
 
             if (name) userInfoDic[@"name"] = name;
@@ -124,10 +131,10 @@
             if (accessToken)    userInfoDic[@"accessToken"] = accessToken;
             if (expirationDate)  userInfoDic[@"expiration"] = expirationDate;
             userInfoDic[@"type"] = [NSString stringWithFormat:@"%ld",CAPUserTypeTrue];
+            NSString *content = [NSString stringWithFormat:@"iOS,%@,%@", [CAPPhones systemVersion], [CAPPhones phoneType]];
+            userInfoDic[@"content"]=content;
         }
-        
         self.profileDic = userInfoDic;
-        
         [weakself userInfoDownloadWithOpenID:weakself.openID];
         
     } failed:^(NSDictionary * _Nonnull error) {
@@ -156,19 +163,18 @@
 - (void)userInfoDownloadWithOpenID:(NSString *)openID
 {
 
-    [gApp showHUD:@"loading"];
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPUserService *userService = [[CAPUserService alloc] init];
     [userService socialLogin:self.profileDic reply:^(id response) {
         NSLog(@"%@",response);
         if ([response isKindOfClass:[CAPSocialLoginResponse class]]) {
             CAPSocialLoginResponse *loginResponse = response;
             if(loginResponse.code == 200){
+                [CAPUserDefaults setObject:self.profileDic forKey:@"user_profileDic"];
                 if(loginResponse.isSucceed) {
                     [gApp hideHUD];
                     CAPUser *user = loginResponse.result;
-
                     [self showMainPage];
-
                     [CAPNotifications notify:kNotificationLoginDeviceCount object:user];
                     [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
                     [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];

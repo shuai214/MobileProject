@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>SmartTracking</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -39,14 +39,14 @@
 			<string>aaa.library.sdk_v4</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>GPSTracker</string>
+				<string>SmartTracking</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>GPSTracker</string>
+			<string>SmartTracking</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.capelabs.gpstracker</string>
@@ -84,9 +84,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>允许访问摄像头</string>
+	<string>Allow access to cameras</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>允许获取当前位置</string>
+	<string>Allow access to the current location</string>
 	<key>TrueAppId</key>
 	<string>653</string>
 	<key>TrueRedirectUrl</key>

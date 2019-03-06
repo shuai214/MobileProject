@@ -15,7 +15,8 @@
 #import "CAPFootprint.h"
 #import "CAPFileUpload.h"
 #import "SDAutoLayout.h"
-
+#import "CAPDeviceLocal.h"
+#import "CAPFileUpload.h"
 @interface CAPFootprintViewController ()<GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *gmsMapView;
 @property (nonatomic, strong) HMWeeklySelectDateView *dateSelectView;
@@ -67,6 +68,10 @@
     NSString *endTimeString = [NSString stringWithFormat:@"%0.f", a];//转为字符
     NSString *startTimeString = [NSString stringWithFormat:@"%0.f", [self getZeroWithTimeInterverl:a]];//转为字符
     [self loadFootprint:startTimeString endtime:endTimeString];
+    CAPDeviceLocal *local = [CAPDeviceLocal local];
+    GMSCameraPosition *camera =
+    [GMSCameraPosition cameraWithLatitude:local.local.latitude longitude:local.local.longitude zoom:4];
+    self.gmsMapView.camera = camera;
     self.gmsMapView.delegate = self;
 }
 
@@ -79,19 +84,17 @@
         if (self.footprint.code == 200) {
             if (self.footprint.result.count == 0) {
                 [gApp showNotifyInfo:CAPLocalizedString(@"tips_no_footprint") backGroundColor:[UIColor orangeColor]];
+                return;
             }
             for (NSInteger i = 0; i < self.footprint.result.count; i++) {
                 ResultFootprintList *footPrint = [self.footprint.result objectAtIndex:i];
-                if (i == 0) {
-                    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:footPrint.lat longitude:footPrint.lng zoom:15];
-                    self.gmsMapView.camera = camera;
-                }
+               
                 [self creatMarkerWithPosition:CLLocationCoordinate2DMake(footPrint.lat,footPrint.lng) title:[NSString stringWithFormat:@"%ld",(i + 1)]];
-//                CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
-//                [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",footPrint.lat,footPrint.lng]];
-//                [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
-//
-//                }];
+                CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
+                [fileUplod getDeviceDetailLoacl:[NSString stringWithFormat:@"%lf,%lf",footPrint.lat,footPrint.lng]];
+                [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
+
+                }];
                 
                 [self.locals addObject:footPrint];
             }
@@ -106,6 +109,10 @@
     sydneyMarker.position = position;
     sydneyMarker.map = self.gmsMapView;
     [self.markets addObject:sydneyMarker];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.markets.firstObject.position.latitude longitude:self.markets.firstObject.position.longitude zoom:11];
+    self.gmsMapView.camera = camera;
+    
 }
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
@@ -113,21 +120,39 @@
         oldMarker.icon = [self addText:[UIImage imageNamed:@"number_blue0"] text:oldMarker.title];
     }
     NSInteger index = [self.markets indexOfObject:marker];
-//    marker.icon = [UIImage imageNamed:@"number_red0"];
     marker.icon = [self addText:[UIImage imageNamed:@"number_red0"] text:marker.title];
 
     ResultFootprintList *list = self.locals[index];
-    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-    [gApp showHUD:@""];
-    [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-        [gApp hideHUD];
-        GMSAddress *placemark = response.firstResult;
-        [self showAddress:placemark footPrintList:list];
+//    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
+//    [gApp showHUD:@""];
+//    [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+//        [gApp hideHUD];
+//        GMSAddress *placemark = response.firstResult;
+//        [self showAddress:placemark footPrintList:list];
+//    }];
+    //创建位置
+    CLLocation *location=[[CLLocation alloc]initWithLatitude:list.lat longitude:list.lng];
+    
+    CLGeocoder *geocoder=[[CLGeocoder alloc]init];
+    
+    //反地理编码
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        //判断是否有错误或者placemarks是否为空
+        if (error !=nil || placemarks.count==0) {
+            NSLog(@"%@",error);
+            return ;
+        }
+        CLPlacemark *placemark = placemarks.firstObject;
+        NSDictionary *addressDictionary = placemark.addressDictionary;
+        NSArray *array = placemark.areasOfInterest;
+        NSString *address = [NSString stringWithFormat:@"%@%@%@%@",addressDictionary[@"City"],addressDictionary[@"SubLocality"],addressDictionary[@"Street"],array.firstObject];
+        [self showAddress:address footPrintList:list];
     }];
+    
     return YES;
 }
 
-- (void)showAddress:(GMSAddress *)address footPrintList:(ResultFootprintList *)list{
+- (void)showAddress:(NSString *)address footPrintList:(ResultFootprintList *)list{
     if (!_showAddressView) {
         _showAddressView = [[UIView alloc] initWithFrame:CGRectMake(10, Main_Screen_Height - 80, Main_Screen_Width - 20, 60)];
         _showAddressView.backgroundColor = [UIColor whiteColor];
@@ -153,7 +178,7 @@
         _showAddressLabel.textAlignment = NSTextAlignmentCenter;
         [_showAddressView addSubview:_showAddressLabel];
     }
-    _showAddressLabel.text = [NSString stringWithFormat:@"%@%@%@",address.locality,address.subLocality,address.thoroughfare];
+    _showAddressLabel.text = address;
     if (list.createdAt) {
         NSString *time = [NSString dateFormateWithTimeInterval:[list.createdAt integerValue]];
         NSArray *array = [time componentsSeparatedByString:@" "];

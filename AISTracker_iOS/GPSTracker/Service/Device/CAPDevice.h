@@ -46,7 +46,8 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *mobile;
 @property (nonatomic, copy) NSString *sos;
 @property (nonatomic, copy) NSString *trackerNumber;
-
+@property (nonatomic, copy) NSString *avatarPath;
+@property (nonatomic, copy) NSString *avatarBaseUrl;
 @end
 
 @interface CAPDevice : CAPBaseJSON
@@ -65,4 +66,6 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, strong) CAPDeviceSetting *setting;
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, assign, readonly) BOOL isMaster;
+@property (nonatomic, assign) NSInteger connected;
+
 @end

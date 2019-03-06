@@ -60,6 +60,8 @@
 		2B98BAC021EE1DDD006B779B /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98BABE21EE1DDD006B779B /* UIView+SDAutoLayout.m */; };
 		2B98BAC121EE1DDD006B779B /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98BABF21EE1DDD006B779B /* UITableView+SDAutoTableViewCellHeight.m */; };
 		2B98BAC421EE2CBE006B779B /* CAPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98BAC321EE2CBE006B779B /* CAPAlertView.m */; };
+		2BA40A61221BA7C40004FC4F /* CAPFenceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA40A60221BA7C40004FC4F /* CAPFenceAlertView.m */; };
+		2BA40A63221BA7E70004FC4F /* CAPFenceAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA40A62221BA7E70004FC4F /* CAPFenceAlertView.xib */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
 		2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBF8C421DE3E7A00AF1DD6 /* CAPFenceList.m */; };
@@ -357,6 +359,9 @@
 		2B98BABF21EE1DDD006B779B /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		2B98BAC221EE2CBE006B779B /* CAPAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAlertView.h; sourceTree = "<group>"; };
 		2B98BAC321EE2CBE006B779B /* CAPAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAlertView.m; sourceTree = "<group>"; };
+		2BA40A5F221BA7C40004FC4F /* CAPFenceAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceAlertView.h; sourceTree = "<group>"; };
+		2BA40A60221BA7C40004FC4F /* CAPFenceAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFenceAlertView.m; sourceTree = "<group>"; };
+		2BA40A62221BA7E70004FC4F /* CAPFenceAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPFenceAlertView.xib; sourceTree = "<group>"; };
 		2BA9277D21CE2A4300CF0D48 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2BA9278621CE334C00CF0D48 /* CAPCodeScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeScanView.h; sourceTree = "<group>"; };
 		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
@@ -983,6 +988,9 @@
 				2BF3EA3321F840C300B5BB63 /* CAPModifyAvatar.h */,
 				2BF3EA3421F840C300B5BB63 /* CAPModifyAvatar.m */,
 				2BF3EA3621F840DA00B5BB63 /* CAPModifyAvatar.xib */,
+				2BA40A5F221BA7C40004FC4F /* CAPFenceAlertView.h */,
+				2BA40A60221BA7C40004FC4F /* CAPFenceAlertView.m */,
+				2BA40A62221BA7E70004FC4F /* CAPFenceAlertView.xib */,
 				2B98BAC221EE2CBE006B779B /* CAPAlertView.h */,
 				2B98BAC321EE2CBE006B779B /* CAPAlertView.m */,
 				2B77097C2219A6D0007DC8C6 /* CAPDeviceVerAlertView.h */,
@@ -1514,6 +1522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA40A63221BA7E70004FC4F /* CAPFenceAlertView.xib in Resources */,
 				2B18E13F21F60AD9002E884D /* CAPSOSAlertView.xib in Resources */,
 				2BBBF8CA21DE42D000AF1DD6 /* CAPFenceListTableViewCell.xib in Resources */,
 				2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */,
@@ -1684,6 +1693,7 @@
 				EFD0AD1E218C4F7200405FD8 /* UIColor+CAP.m in Sources */,
 				EFD0ACCE218C467000405FD8 /* CAPViews.m in Sources */,
 				EFD0AD44218C550C00405FD8 /* CAPSignOutResponse.m in Sources */,
+				2BA40A61221BA7C40004FC4F /* CAPFenceAlertView.m in Sources */,
 				2B1C07E721DF0B0700B258C1 /* CAPDeviceLogs.m in Sources */,
 				EFD0AD2C218C505900405FD8 /* CAPUser.m in Sources */,
 				EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */,

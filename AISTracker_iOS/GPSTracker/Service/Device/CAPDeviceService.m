@@ -42,8 +42,8 @@
                              @"uuid": device.deviceID,
                              @"token": [CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@"",
                              @"name": device.name,
-                             @"mobile":@"13888888888",
-                             @"sos":@"13888888888"
+                             @"mobile":device.mobile,
+                             @"sos":device.sos
                              };
     CAPHttpRequest *request = [self buildRequest:@"Device/Device" method:@"POST" parameters:params];
     [self sendRequest:request reply:^(CAPHttpResponse *response) {
@@ -112,18 +112,16 @@
                                  @"avatarPath": device.avatarPath ? device.avatarPath : @"",
                                  @"avatarBaseUrl": device.avatarBaseUrl ? device.avatarBaseUrl : @""
                                  };
-       
-        
         CAPHttpRequest *request = [self buildRequest:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);
         }];
         
-        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
-        [fileUpload putDeviceProfile:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] dic:params];
-        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
-            NSLog(@"%@",object);
-        }];
+//        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+//        [fileUpload putDeviceProfile:[@"Device/BindInfo/" stringByAppendingString:device.deviceID] dic:params];
+//        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+//            NSLog(@"%@",object);
+//        }];
         
         
     }else{
@@ -148,14 +146,11 @@
                                  @"name": setting.name,
                                  @"mobile":setting.mobile,
                                  @"answerMode":setting.setting.answerMode ? setting.setting.answerMode:@"",
-                                 @"reportFrequency":[NSString stringWithFormat:@"%ld",setting.setting.reportFrequency ? setting.setting.reportFrequency:0]
+                                 @"reportFrequency":[NSString stringWithFormat:@"%ld",(long)(setting.setting.reportFrequency ? setting.setting.reportFrequency:0)],
+                                 @"avatarPath": setting.avatarPath ? setting.avatarPath : @"",
+                                 @"avatarBaseUrl": setting.avatarBaseUrl ? setting.avatarBaseUrl : @""
                                  };
-        CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
-        [fileUplod updateDeviceInfo:params deviceID:setting.deviceID];
-        [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
-            NSLog(@"%@",object);
-        }];
-        
+
         CAPHttpRequest *request = [self buildRequest:[@"Device/Setting/" stringByAppendingString:setting.deviceID] method:@"PUT" parameters:params];
         [self sendRequest:request reply:^(CAPHttpResponse *response) {
             reply(response);

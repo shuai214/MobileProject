@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)void (^successBlockObject)(id object);
 - (void)uploadRecording:(id)recordingFile withImageIndex:(NSInteger)index;
 - (void)getDeviceLoacl:(NSString *)latlng;
-- (void)getDeviceDetailLoacl:(NSDictionary *)parameter;
+- (void)getDeviceDetailLoacl:(NSString *)latlng;
 - (void)setSOSMobile:(CAPDevice *)device array:(NSArray *)array;
 - (void)loadDeviceParameter:(id)parameter device:(CAPDevice *)device;
 - (void)updateDeviceInfo:(NSDictionary *)dic deviceID:(NSString *)deviceId;
