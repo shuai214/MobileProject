@@ -114,7 +114,12 @@
     self.timer = timer;
 
 }
-
+#pragma 断掉重连时自动进行mqtt的重新连接
+#pragma 扫描二维码之后填写信息的中文字符串
+#pragma 围栏的中文title、
+#pragma 设置里的title  更新频率的UI imei号码（确定下是不是接口换了）
+#pragma “记录”要改成字符串
+#pragma 经纬度的返回
 - (void)reloadDevice{
     NSInteger integerTimes = 30;
     if (self.currentDevice.setting.reportFrequency) {
@@ -132,20 +137,6 @@
     self.timer = timer;
 }
 
-- (void)mqttConnect{
-    MQTTCenter *mqttCenter = [MQTTCenter center];
-    MQTTConfig *config = [[MQTTConfig alloc] init];
-    config.host = @"mqtt.kvtel.com";
-    config.port = 1883;
-    config.username = @"demo_app";
-    config.password = @"demo_890_123_654";
-    config.userID = [CAPUserDefaults objectForKey:@"userID"];
-    config.keepAliveInterval = 20;
-    config.deviceType = MQTTDeviceTypeApp;
-    config.platformID = @"KVTELIOT";
-    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
-    [mqttCenter open:config];
-}
 
 - (void)fetchDevice{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
@@ -154,7 +145,7 @@
         CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
         NSLog(@"-=-=-=-=-=-= %@",httpResponse.data);
-        weakself.deviceListView.devices = deviceLists.result.list;
+        self.deviceListView.devices = deviceLists.result.list;
         if (deviceLists.result.list.count == 0) {
             [UIView animateWithDuration:0.37 animations:^{
                 [weakself.trackerView setY:weakself.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
@@ -170,15 +161,15 @@
         }else{
             [weakself.trackerView userOrowner:NO];
         }
-        [self getDeviceLocal];
+        [self getDeviceLocal:deviceLists.result.list];
     }];
 }
-- (void)getDeviceLocal{
+- (void)getDeviceLocal:(NSArray *)array{
     self.markerArray = [NSMutableArray array];
     self.deviceLists = [NSMutableArray array];
     [self.mapView clear];
-    for (NSInteger i = 0; i < self.deviceListView.devices.count; i++) {
-        CAPDevice *device = self.deviceListView.devices[i];
+    for (NSInteger i = 0; i < array.count; i++) {
+        CAPDevice *device = array[i];
         CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
         [deviceService fetchDevice:device.deviceID reply:^(CAPHttpResponse *response) {
             NSDictionary *resultDic = (NSDictionary *)response.data;
@@ -187,6 +178,8 @@
             if (localModel.lat == nil) {
                 localModel.lat = [NSString stringWithFormat:@"%ld",i];
                 localModel.lng = [NSString stringWithFormat:@"%ld",i];
+            }else{
+                
             }
             device.createdDate = localModel.createdAt;
             [self.deviceLists addObject:device];
@@ -207,6 +200,37 @@
         }];
     }
 }
+
+//获取单个device的local
+- (void)getDeviceLocal{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:self.currentDevice.deviceID reply:^(CAPHttpResponse *response) {
+        NSDictionary *resultDic = (NSDictionary *)response.data;
+        NSDictionary *result = resultDic[@"result"];
+        CAPDeviceLocalModel *localModel = [CAPDeviceLocalModel mj_objectWithKeyValues:result];
+        if (localModel.lat == nil) {
+            localModel.lat = @"0";
+            localModel.lng = @"0";
+        }else{
+            
+        }
+        GMSMarker *dMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([localModel.lat floatValue], [localModel.lng floatValue])];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 47.4)];
+        [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"master_bubble%ld",self.chooseIndex]]];
+        UIImageView *deviceImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+        deviceImgView.layer.cornerRadius = deviceImgView.frame.size.width / 2;
+        deviceImgView.layer.masksToBounds = YES;
+        [deviceImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.currentDevice.setting.avatarBaseUrl,self.currentDevice.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
+        [imgView addSubview:deviceImgView];
+        
+        [dMarker setIconView:imgView];
+        dMarker.map = self.mapView;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:dMarker forKey:self.currentDevice.deviceID];
+        [self.markerArray addObject:dic];
+    }];
+}
+
 //向设备发送GPS信号。
 - (void)getDeviceLocation:(CAPDevice *)device{
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
@@ -227,31 +251,18 @@
     }
     [gApp hideHUD];
     self.currentDevice.connected = 1;
+    CAPDevice *device = self.deviceListView.devices[self.chooseIndex];
+    device.batlevel = info.batlevel;
+    device.createdDate = info.time / 1000;
     for (NSInteger i = 0; i < self.markerArray.count; i++) {
         NSDictionary *dic = self.markerArray[i];
         if([info.deviceID isEqualToString:dic.allKeys.firstObject]){
             if ([info.command isEqualToString:@"GPS"]) {
-                if (info.latitude == 0.0) {
-                    NSMutableDictionary *parame = [NSMutableDictionary dictionary];
-                    if(info.wifis.count != 0){
-                        NSInteger max = 0;
-                        NSInteger max_index = 0;
-                        for (NSInteger i = 0; i < info.wifis.count; i++) {
-                            NSDictionary *wifiInfo = (NSDictionary *)info.wifis[i];
-                            NSInteger a = [wifiInfo[@"dBm"] integerValue];
-                            if (a > max) {
-                                max_index = i;
-                            }
-                            max = a>max?a:max;
-                        }
-                        NSDictionary *wifiInfo = (NSDictionary *)info.wifis[max_index];
-                        [parame setObject:[wifiInfo objectForKey:@"mac"] forKey:@"macAddress"];
-                        [parame setObject:[wifiInfo objectForKey:@"dBm"] forKey:@"signalStrength"];
-                        [parame setObject:[wifiInfo objectForKey:@"channel"] forKey:@"channel"];
-                        [parame setObject:@"0" forKey:@"age"];
-                        [parame setObject:@"0" forKey:@"signalToNoiseRatio"];
+                    if ([info.gps isEqualToString:@"V"]) {
+                        NSDictionary *parames = [[NSDictionary alloc] init];
+                        parames = [self paramesForWifi:info.wifis cellID:info.station];
                         CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
-                        [fileUpload loadDeviceParameter:parame device:self.currentDevice];
+                        [fileUpload loadDeviceParameter:parames device:self.currentDevice];
                         [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
                             NSLog(@"%@",object);
                             NSDictionary *objectDic = (NSDictionary *)object;
@@ -264,33 +275,13 @@
                             [local setLocal:coords];
                             [self.trackerView.batteryView reloadBattery:info.batlevel];
                         }];
-                    }
-                    if (info.station.count != 0) {
-                        NSMutableArray *parameArray = [NSMutableArray array];
-                        for (NSDictionary *stationInfo in info.station) {
-                            [parame setObject:[stationInfo objectForKey:@"ta"] forKey:@"timingAdvance"];
-                            [parame setObject:[stationInfo objectForKey:@"mcc"] forKey:@"mobileCountryCode"];
-                            [parame setObject:[stationInfo objectForKey:@"mnc"] forKey:@"mobileNetworkCode"];
-                            [parame setObject:[stationInfo objectForKey:@"ac"] forKey:@"locationAreaCode"];
-                            [parame setObject:[stationInfo objectForKey:@"no"] forKey:@"cellId"];
-                            [parame setObject:[stationInfo objectForKey:@"ss"] forKey:@"signalStrength"];
-                            [parameArray addObject:parame];
-                        }
-                        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
-                        [fileUpload loadDeviceParameter:parameArray device:self.currentDevice];
-                        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
-                            NSLog(@"%@",object);
-                            NSDictionary *objectDic = (NSDictionary *)object;
-                            NSDictionary *location = objectDic[@"location"];
-                            CGFloat lat = [location[@"lat"] floatValue];
-                            CGFloat lng = [location[@"lng"] floatValue];
-                            CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(lat,lng);//纬度，经度
-                            [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
+                        [fileUpload setFailureBlock:^{
+                            GMSMarker *currentMarker = [dic objectForKey:device.deviceID];
+                            [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
                             CAPDeviceLocal *local = [CAPDeviceLocal local];
-                            [local setLocal:coords];
+                            [local setLocal:currentMarker.position];
                             [self.trackerView.batteryView reloadBattery:info.batlevel];
                         }];
-
                     }
                 }else{
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
@@ -301,8 +292,20 @@
                 }
             }
         }
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
     NSMutableArray *array = [NSMutableArray array];
@@ -333,34 +336,19 @@
      */
     CLLocation *curLocation = [locations lastObject];
     // 通过location  或得到当前位置的经纬度
-    GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:curLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
+    GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:curLocation.coordinate zoom:16 bearing:0 viewingAngle:0];
     self.mapView.camera = camera;
     [self.locationManager stopUpdatingLocation];//定位成功后停止定位
 }
 //重新定位
 - (void)refreshDeviceLocalized:(CLLocationCoordinate2D)coordinate time:(NSString *)time deviceInfo:(NSString *)deviceId{
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:18];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude longitude:coordinate.longitude zoom:16];
     CLLocationCoordinate2D position2D = coordinate;
     self.mapView.camera = camera;
     NSDictionary *dic = self.markerArray[self.chooseIndex];
     GMSMarker *currentMarker = [dic objectForKey:deviceId];
     [currentMarker setPosition:position2D];
     currentMarker.map = self.mapView;
-
-//    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-//    [geoCoder reverseGeocodeCoordinate:position2D completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-//        NSLog(@"%@",response);
-//        if (response != nil) {
-//            GMSAddress *placemark = response.firstResult;
-//            self.currentDevice.address = [NSString stringWithFormat:@"%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality ? placemark.subLocality : @"",placemark.thoroughfare ? placemark.thoroughfare : @""];
-//            [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time ? time:@""];
-//            [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
-//        }else{
-//            [self.trackerView refreshDeviceLocation:self.currentDevice location:CAPLocalizedString(@"unknown") time:@""];
-//            [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
-//        }
-//    }];
-    
     //创建位置
     CLLocation *location=[[CLLocation alloc]initWithLatitude:position2D.latitude longitude:position2D.longitude];
     
@@ -371,6 +359,9 @@
         //判断是否有错误或者placemarks是否为空
         if (error !=nil || placemarks.count==0) {
             NSLog(@"%@",error);
+            self.currentDevice.address = CAPLocalizedString(@"unknown_address");
+            [self.trackerView refreshDeviceLocation:self.currentDevice location:self.currentDevice.address time:time ? time:@""];
+            [self.trackerView isLine:self.currentDevice.connected ? YES:NO];
             return ;
         }
         CLPlacemark *placemark = placemarks.firstObject;
@@ -388,11 +379,73 @@
     
 }
 
-- (void)onAddButtonClicked:(id)sender {
-    [CAPViews pushFromViewController:self storyboarName:@"Pair" withIdentifier:@"PairViewController"];
+#pragma mark -- mqtt 链接
+- (void)mqttConnect{
+    MQTTCenter *mqttCenter = [MQTTCenter center];
+    MQTTConfig *config = [[MQTTConfig alloc] init];
+    config.host = @"mqtt.kvtel.com";
+    config.port = 1883;
+    config.username = @"demo_app";
+    config.password = @"demo_890_123_654";
+    config.userID = [CAPUserDefaults objectForKey:@"userID"];
+    config.keepAliveInterval = 20;
+    config.deviceType = MQTTDeviceTypeApp;
+    config.platformID = @"KVTELIOT";
+    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+    [mqttCenter open:config];
 }
-#pragma mark - CAPDeviceListViewDelegate - CAPTrackerViewDelegate
 
+#pragma mark ---- 获取设备列表
+- (void)getDeviceList{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    CAPWeakSelf(self);
+    [deviceService fetchDevice:^(id response) {
+        CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
+        CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
+        NSLog(@"-=-=-=-=-=-= %@",httpResponse.data);
+        self.deviceListView.devices = deviceLists.result.list;
+        if (deviceLists.result.list.count == 0) {
+            [UIView animateWithDuration:0.37 animations:^{
+                [weakself.trackerView setY:weakself.rectTrackerView.origin.y + self.rectTrackerView.size.height + TabBarHeight];
+                [weakself.deviceListView setY:Main_Screen_Height - TabBarHeight - weakself.rectDeviceListView.size.height - 10];
+            }];
+            [CAPUserDefaults setObject:@"add user info" forKey:@"userInfo"];
+            [weakself performSegueWithIdentifier:@"pair.segue" sender:nil];
+        }else{
+            weakself.currentDevice = weakself.deviceListView.devices.firstObject;
+        }
+        [self creatMarker:self.deviceListView.devices];
+        [self getDeviceFromService];
+        if ([weakself.currentDevice.role isEqualToString:@"user"]) {
+            [weakself.trackerView userOrowner:YES];
+        }else{
+            [weakself.trackerView userOrowner:NO];
+        }
+    }];
+}
+#pragma mark --创建Marker
+- (void)creatMarker:(NSArray *)array{
+    self.markerArray = [NSMutableArray array];
+    [self.mapView clear];
+    for (NSInteger i = 0; i < array.count; i++) {
+        GMSMarker *dMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(0, 0)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 47.4)];
+        [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"master_bubble%ld",self.chooseIndex]]];
+        UIImageView *deviceImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+        deviceImgView.layer.cornerRadius = deviceImgView.frame.size.width / 2;
+        deviceImgView.layer.masksToBounds = YES;
+        [deviceImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.currentDevice.setting.avatarBaseUrl,self.currentDevice.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
+        [imgView addSubview:deviceImgView];
+        
+        [dMarker setIconView:imgView];
+        dMarker.map = self.mapView;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:dMarker forKey:self.currentDevice.deviceID];
+        [self.markerArray addObject:dic];
+    }
+}
+
+#pragma mark - CAPDeviceListViewDelegate -
 -(void)didSelectDeviceAtIndex:(NSInteger)index {
     if (index == self.chooseIndex && self.isUp == YES) {
         [UIView animateWithDuration:0.37 animations:^{
@@ -406,13 +459,15 @@
     self.isUp = YES;
     self.chooseIndex = index;
     CAPDevice *device = self.deviceListView.devices[index];
+    [self.trackerView.batteryView reloadBattery:device.batlevel];
     [UIView animateWithDuration:0.37 animations:^{
         self.trackerView.frame = self.rectTrackerView;
         self.deviceListView.frame = self.rectDeviceListView;
     }];
+    
     self.currentDevice = device;
     [self.trackerView refreshDeviceLocation:device location:self.currentDevice.address time:[NSString dateFormateWithTimeInterval:device.createdDate]];
-
+    
     if ([device.role isEqualToString:@"user"]) {
         [self.trackerView userOrowner:YES];
     }else{
@@ -435,6 +490,52 @@
     [self getDeviceLocation:device];
 }
 
+#pragma mark ---- 从服务器获取设备的位置
+- (void)getDeviceFromService{
+    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+    [deviceService fetchDevice:self.currentDevice.deviceID reply:^(CAPHttpResponse *response) {
+        NSDictionary *dic = self.markerArray[self.chooseIndex];
+        NSDictionary *resultDic = (NSDictionary *)response.data;
+        NSDictionary *result = resultDic[@"result"];
+        CAPDeviceLocalModel *localModel = [CAPDeviceLocalModel mj_objectWithKeyValues:result];
+        if (localModel.lat == nil) {
+            localModel.lat = @"0";
+            localModel.lng = @"0";
+        }else{
+            if (localModel.wifis.count == 0 && localModel.station.count == 0) {
+                [self refreshDeviceLocalized:CLLocationCoordinate2DMake([localModel.lat floatValue], [localModel.lng floatValue]) time:[NSString dateFormateWithTimeInterval:localModel.createdAt / 1000] deviceInfo:self.currentDevice.deviceID];
+            }else{
+                NSDictionary *parames = [[NSDictionary alloc] init];
+                parames = [self paramesForWifi:localModel.wifis cellID:localModel.station];
+                CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+                [fileUpload loadDeviceParameter:parames device:self.currentDevice];
+                [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+                    NSLog(@"%@",object);
+                    NSDictionary *objectDic = (NSDictionary *)object;
+                    NSDictionary *location = objectDic[@"location"];
+                    CGFloat lat = [location[@"lat"] floatValue];
+                    CGFloat lng = [location[@"lng"] floatValue];
+                    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(lat,lng);//纬度，经度
+                    [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:localModel.createdAt / 1000] deviceInfo:self.currentDevice.deviceID];
+                    CAPDeviceLocal *local = [CAPDeviceLocal local];
+                    [local setLocal:coords];
+    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
+                }];
+                [fileUpload setFailureBlock:^{
+                    GMSMarker *currentMarker = [dic objectForKey:self.currentDevice.deviceID];
+                    [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:localModel.createdAt / 1000] deviceInfo:self.currentDevice.deviceID];
+    //                CAPDeviceLocal *local = [CAPDeviceLocal local];
+    //                [local setLocal:currentMarker.position];
+    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
+                }];
+                
+            }
+        }
+        
+    }];
+}
+
+#pragma mark  CAPTrackerViewDelegate
 -(void)onTrackerViewActionPerformed:(CAPTrackerViewAction)action {
     switch (action) {
         case CAPTrackerViewActionFence:
@@ -496,9 +597,49 @@
             break;
     }
 }
+#pragma mark --- buttonAction
+- (void)onAddButtonClicked:(id)sender {
+    [CAPViews pushFromViewController:self storyboarName:@"Pair" withIdentifier:@"PairViewController"];
+}
+
 - (IBAction)getCurrentDeviceLocal:(id)sender {
     [gApp showHUD:CAPLocalizedString(@"loading")];
     [self getDeviceLocation:self.currentDevice];
 }
-
+#pragma mark  通过cellID和wifis 生成参数
+- (NSDictionary *)paramesForWifi:(NSArray *)wifis cellID:(NSArray *)cellIDs{
+    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
+    if(wifis.count != 0){
+        NSMutableArray *parameArray = [NSMutableArray array];
+        for (NSDictionary *wifiInfo in wifis){
+            NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+            [parame setObject:[wifiInfo objectForKey:@"mac"] forKey:@"macAddress"];
+            [parame setObject:[wifiInfo objectForKey:@"dBm"] forKey:@"signalStrength"];
+            [parame setObject:[wifiInfo objectForKey:@"channel"] forKey:@"channel"];
+            [parame setObject:@"0" forKey:@"age"];
+            [parame setObject:@"0" forKey:@"signalToNoiseRatio"];
+            [parameArray addObject:parame];
+        }
+        [parames setObject:parameArray forKey:@"wifiAccessPoints"];
+    }else{
+        [parames setObject:@"" forKey:@"wifiAccessPoints"];
+    }
+    if (cellIDs.count != 0) {
+        NSMutableArray *parameArray = [NSMutableArray array];
+        for (NSDictionary *stationInfo in cellIDs) {
+            NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+            [parame setObject:[stationInfo objectForKey:@"ta"] forKey:@"timingAdvance"];
+            [parame setObject:[stationInfo objectForKey:@"mcc"] forKey:@"mobileCountryCode"];
+            [parame setObject:[stationInfo objectForKey:@"mnc"] forKey:@"mobileNetworkCode"];
+            [parame setObject:[stationInfo objectForKey:@"ac"] forKey:@"locationAreaCode"];
+            [parame setObject:[stationInfo objectForKey:@"no"] forKey:@"cellId"];
+            [parame setObject:[stationInfo objectForKey:@"ss"] forKey:@"signalStrength"];
+            [parameArray addObject:parame];
+        }
+        [parames setValue:parameArray forKey:@"cellTowers"];
+    }else{
+        [parames setObject:@"" forKey:@"cellTowers"];
+    }
+    return parames;
+}
 @end

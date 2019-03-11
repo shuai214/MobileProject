@@ -140,7 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZt-7w-nCo">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZt-7w-nCo">
                                 <rect key="frame" x="20" y="172" width="335" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="yw5-tY-V7Y"/>
@@ -270,7 +270,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="PKY-Ih-GAt"/>
                                 </constraints>
-                                <state key="normal" title="确定">
+                                <state key="normal" title="OK">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -380,7 +380,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="96e-BZ-ST9"/>
                                 </constraints>
-                                <state key="normal" title="确定">
+                                <state key="normal" title="OK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -436,6 +436,6 @@
         <image name="user_default_avatar" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d57-ZL-dHn"/>
+        <segue reference="gS4-cj-YEy"/>
     </inferredMetricsTieBreakers>
 </document>

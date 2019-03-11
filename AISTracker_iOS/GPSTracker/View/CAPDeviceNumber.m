@@ -52,7 +52,7 @@
     [self addSubview:self.telAreaCodeLabel];
     
     self.countryNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(verticalLine.frame.origin.x + 1, 0, self.frame.size.width / 4 * 2, self.frame.size.height / 2)];
-    self.countryNameLabel.text = @"泰国";
+    self.countryNameLabel.text = @"Thai";
     
     
     self.buttonSend = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 * 3, 0, self.frame.size.width / 4, self.frame.size.height / 2)];

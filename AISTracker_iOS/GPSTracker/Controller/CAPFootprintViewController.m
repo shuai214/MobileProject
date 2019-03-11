@@ -124,9 +124,8 @@
 
     ResultFootprintList *list = self.locals[index];
 //    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-//    [gApp showHUD:@""];
+    [gApp showHUD:@""];
 //    [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
-//        [gApp hideHUD];
 //        GMSAddress *placemark = response.firstResult;
 //        [self showAddress:placemark footPrintList:list];
 //    }];
@@ -142,6 +141,7 @@
             NSLog(@"%@",error);
             return ;
         }
+        [gApp hideHUD];
         CLPlacemark *placemark = placemarks.firstObject;
         NSDictionary *addressDictionary = placemark.addressDictionary;
         NSArray *array = placemark.areasOfInterest;

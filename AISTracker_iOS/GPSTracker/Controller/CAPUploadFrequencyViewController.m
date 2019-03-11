@@ -19,7 +19,7 @@
 @property(nonatomic,strong)MQTTInfo *mqttInfo;
 
 @end
-#define  IMAGE_W_H 40
+#define  IMAGE_W_H 25
 @implementation CAPUploadFrequencyViewController
 
 - (void)viewDidLoad {
@@ -67,6 +67,8 @@
     
     [self.sdImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_off"):GetImage(@"check_on")];
     [self.customImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_on"):GetImage(@"check_off")];
+
+    
     NSString *time = @"";
     if (self.device.setting.reportFrequency) {
         if (self.device.setting.reportFrequency / 60 < 60) {
@@ -75,6 +77,7 @@
         if (self.device.setting.reportFrequency / 60 > 60) {
             time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
         }
+        [self.customImageView setImage:GetImage(@"check_on")];
     }else{
         time = [CAPUserDefaults objectForKey:@"uploadTime"];
     }
@@ -83,7 +86,7 @@
     [self.view addSubview:buttonView];
     
     
-    UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(15, Main_Screen_Height - TabBarHeight - IMAGE_W_H, Main_Screen_Width - 30, IMAGE_W_H)];
+    UIButton *okButton = [[UIButton alloc] initWithFrame:CGRectMake(15, Main_Screen_Height - TabBarHeight - IMAGE_W_H, Main_Screen_Width - 30, IMAGE_W_H * 2)];
     okButton.backgroundColor = [CAPColors red];
     [okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
     [okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

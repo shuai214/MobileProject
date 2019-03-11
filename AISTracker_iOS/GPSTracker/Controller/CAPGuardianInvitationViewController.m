@@ -19,15 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"邀请";
+    self.title = CAPLocalizedString(@"invitation");
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.device.setting.avatarBaseUrl,self.device.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
     [self loadDeviceShareInfo];
 }
 
 - (void)loadDeviceShareInfo{
-    self.deviceLabel.text = [NSString stringWithFormat:@"设备ID:%@",self.device.deviceID];
+    self.deviceLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"device_id"),self.device.deviceID];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [gApp showHUD:@"正在处理,请稍后..."];
+    [gApp showHUD:CAPLocalizedString(@"loading")];
     [deviceService shareDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         NSDictionary *dict = response.data;

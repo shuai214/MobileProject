@@ -53,8 +53,8 @@
         }
     }
     self.title = CAPLocalizedString(@"profile");
-    self.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
-                    @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
+    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), CAPLocalizedString(@"setting_device_imei"),
+                   CAPLocalizedString(@"setting_device_number"), CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"unbind"),CAPLocalizedString(@"firmware_version")];
     self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",@""];
     
     self.tableView.dataSource = self;
@@ -174,7 +174,7 @@
             CAPWeakSelf(self);
             [editName setUpdateDeviceSuccessBlock:^(CAPDevice * _Nonnull device) {
                 weakself.device = device;
-                weakself.titles = @[CAPLocalizedString(@"name"), @"Device ID", @"Device IMEI",
+                weakself.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), @"Device IMEI",
                                 @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
                 weakself.details = @[device? device.name:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",self.time,@"",@""];
                 [weakself checkDevice];
@@ -206,7 +206,7 @@
             break;
         case 7:
         {
-            [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{
+            [CAPAlertView initAlertWithContent:CAPLocalizedString(@"confirm_delete_device") title:@"" closeBlock:^{
                 
             } okBlock:^{
                 [gApp showHUD:CAPLocalizedString(@"loading")];
@@ -219,7 +219,7 @@
                         [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
                         [self.navigationController popViewControllerAnimated:YES];
                     }else{
-                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
                             
                         }];
                     }
@@ -251,6 +251,7 @@
 #pragma mark -----imagePickerController delegate
 //选择图片后,更换头像,并保存到沙盒,上传到服务器
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSLog(@"%f --- %f",self.avatarImageView.width,self.avatarImageView.height);
     UIImage *iconImage = [info objectForKey:UIImagePickerControllerEditedImage];
     UIImage *newIconImage = [self newSizeImage:CGSizeMake(self.avatarImageView.width, self.avatarImageView.height) image:iconImage];
     [self.avatarImageView setImage:newIconImage];
@@ -303,7 +304,7 @@
     CGFloat tempHeight = newSize.height / size.height;
     CGFloat tempWidth = newSize.width / size.width;
     
-    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+    if (tempWidth > 1.0 && tempWidth >= tempHeight) {
         newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
     } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
         newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);

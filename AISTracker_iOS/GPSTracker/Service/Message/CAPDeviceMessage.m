@@ -26,7 +26,7 @@
     // 时间的x = 头像最大的x + 间隙
     CGFloat timeLabelX = CGRectGetMaxX(self.iconF) + padding;
     // 计算文字的宽高
-    CGSize timeSize = [self sizeWithString:_messageInfo.deviceMessage font:CAPNameFont maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    CGSize timeSize = [self sizeWithString:_messageInfo.deviceMessageTime font:CAPNameFont maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     CGFloat timeLabelH = timeSize.height;
     CGFloat timeLabelW = timeSize.width;
     CGFloat timeLabelY = iconViewY + (iconViewH - timeLabelH) * 0.5;

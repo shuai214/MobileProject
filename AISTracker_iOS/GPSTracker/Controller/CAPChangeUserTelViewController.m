@@ -165,10 +165,10 @@
             if ([[data objectForKey:@"code"] integerValue] == 200) {
                 [gApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
                 [CAPNotifications notify:kNotificationChangeNickName];
-                [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
+//                [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
                     weakself.updateDeviceSuccessBlock(weakself.device);
                     [weakself.navigationController popViewControllerAnimated:YES];
-                } alertType:AlertTypeNoClose];
+//                } alertType:AlertTypeNoClose];
             }
             [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
         }];

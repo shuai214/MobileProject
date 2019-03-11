@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"填写用户信息";
+    self.title = CAPLocalizedString(@"account_setting");
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.countryArrays = [[NSArray alloc] init];
@@ -151,7 +151,7 @@
     if (self.userField.text.length != 0) {
         self.capUser.profile.firstName = self.userField.text;
     }else{
-        [CAPToast toastError:@"请输入设备名称"];
+        [CAPToast toastError:CAPLocalizedString(@"account_name_hint")];
         return;
     }
     if (self.number.telField.text.length != 0) {
@@ -159,11 +159,11 @@
             self.capUser.info.mobile = [NSString stringWithFormat:@"%@ %@",self.number.telAreaCodeLabel.text,self.number.telField.text];
             self.device.sos = [NSString stringWithFormat:@"%@ %@",self.number.telAreaCodeLabel.text,self.number.telField.text];
         }else{
-            [CAPToast toastError:@"输入的号码不正确"];
+            [CAPToast toastError:CAPLocalizedString(@"phone_number_error")];
             return;
         }
     }else{
-        [CAPToast toastError:@"请输入号码"];
+        [CAPToast toastError:CAPLocalizedString(@"account_no_hint")];
         return;
     }
     if (self.device) {

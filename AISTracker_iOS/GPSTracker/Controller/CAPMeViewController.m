@@ -36,9 +36,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+  
     // Do any additional setup after loading the view.
     self.title = CAPLocalizedString(@"me");
-    self.titles = @[CAPLocalizedString(@"name"),CAPLocalizedString(@"mobile"), CAPLocalizedString(@"language"),CAPLocalizedString(@"version")];
+    self.titles = @[CAPLocalizedString(@"name"),CAPLocalizedString(@"phone_number"), CAPLocalizedString(@"language"),CAPLocalizedString(@"version")];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -105,7 +107,10 @@
         cell.detailTextLabel.text = self.capUser.info.mobile;
     }
     if (indexPath.row == 3) {
-        cell.detailTextLabel.text = [CAPPhones systemVersion];
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        // app版本
+        NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        cell.detailTextLabel.text = app_Version;
     }
     return cell;
 }
@@ -235,7 +240,7 @@
     CGFloat tempHeight = newSize.height / size.height;
     CGFloat tempWidth = newSize.width / size.width;
     
-    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+    if (tempWidth > 1.0 && tempWidth >= tempHeight) {
         newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
     } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
         newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);

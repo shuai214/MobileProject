@@ -272,7 +272,7 @@
         [CAPNotifications notify:kNotificationREMOVEDCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
-        [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@想要绑定您的设备。",info.userProfile.firstName] ocloseBlock:^{
+        [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@ want to bind your device。",info.userProfile.firstName] ocloseBlock:^{
             [gApp showHUD:CAPLocalizedString(@"loading")];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"0" reply:^(CAPHttpResponse *response) {

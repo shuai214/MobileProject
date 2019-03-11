@@ -62,7 +62,7 @@ AppConfig* gCfg = nil;
 //    _rootURLString = @"https://iot.capelabs.net/trueiot/v1/";
     _avatarBaseUrl = @"https://cloud.kvtel.com/source";
     _google_api_key = @"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ";
-    _google_web_api_key = @"AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4";
+    _google_web_api_key = @"AIzaSyAD8FC9VKywHNyI6aJZPPb7wsdEQLgqBm4";//AIzaSyDSDleY535yi-UAVlRwKDKW8x4cT-_00_U
 }
 
 - (void)setBurnAfterBackup:(BOOL)isBurn {

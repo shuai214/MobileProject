@@ -30,8 +30,10 @@
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
     self.fenceListTableView.delegate = self;
     self.fenceListTableView.dataSource = self;
-    self.fenceListTableView.rowHeight = 80;
+    self.fenceListTableView.rowHeight = 125;
+    self.fenceListTableView.backgroundColor = gCfg.appBackgroundColor;
     self.fenceListTableView.tableFooterView = [UIView new];
+    self.fenceListTableView.separatorStyle = UITableViewCellEditingStyleNone;
 }
 
 - (void)getFenceList{

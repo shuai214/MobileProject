@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *showPhotos;
 @property (strong, nonatomic) MQTTInfo *mqttInfo;
 @property (strong, nonatomic) UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
@@ -35,7 +36,7 @@
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
     [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationPhotoCountChange object:nil];
-
+    self.nameLabel.text = CAPLocalizedString(@"records");
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

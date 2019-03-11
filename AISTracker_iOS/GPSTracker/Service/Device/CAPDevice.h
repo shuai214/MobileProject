@@ -67,5 +67,7 @@ static NSString* const kMasterRole = @"owner";
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, assign, readonly) BOOL isMaster;
 @property (nonatomic, assign) NSInteger connected;
-
+@property(nonatomic,assign)NSInteger batlevel;
+@property (nonatomic, copy) NSString *lat;
+@property (nonatomic, copy) NSString *lng;
 @end

@@ -10,7 +10,7 @@
 
 @interface CAPFenceListTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *creatDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressDetail;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *fenSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *rangeLabel;
@@ -26,14 +26,16 @@
 
 - (void)setListData:(List *)list{
     self.nameLabel.text = list.name;
-    self.creatDateLabel.text = [NSString dateFormateWithTimeInterval:list.createdAt];
-    self.addressLabel.text = [NSString stringWithFormat:@"%@ %@",list.address,list.content];
+    self.nameLabel.textColor = [CAPColors green2];
+    self.addressLabel.text = [NSString stringWithFormat:@"%@",list.content];
+    self.addressDetail.text = [NSString stringWithFormat:@"%@",list.address];
     if ([list.status integerValue] == 1) {
         [self.fenSwitch setOn:YES animated:YES];
     }else{
         [self.fenSwitch setOn:NO animated:YES];
     }
-    self.rangeLabel.text = [NSString stringWithFormat:@"%ld%@",list.range,CAPLocalizedString(@"m")];
+    self.rangeLabel.text = [NSString stringWithFormat:@"%ld%@",(long)list.range,CAPLocalizedString(@"m")];
+    self.rangeLabel.textColor = [CAPColors green2];
     [self.fenSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];   // 开关事件切换通知
 
 }

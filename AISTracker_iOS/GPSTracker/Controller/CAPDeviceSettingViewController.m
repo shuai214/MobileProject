@@ -30,11 +30,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if ([self.device.role isEqualToString:@"owner"] && self.device.isOwner.length == 0) {
-        self.title = @"填写设备信息";
+        self.title = CAPLocalizedString(@"device_setting");
     }else if (self.device.isOwner != nil){
-        self.title = @"填写用户信息";
+        self.title = CAPLocalizedString(@"account_setting");
     }else{
-        self.title = @"填写设备信息";
+        self.title = CAPLocalizedString(@"device_setting");
     }
     self.view.backgroundColor = [UIColor whiteColor];
     self.deviceNumber.countryNameLabel.userInteractionEnabled = YES;
@@ -120,13 +120,13 @@
     if (self.deviceName.text.length != 0) {
         self.device.name = self.deviceName.text;
     }else{
-        [CAPToast toastError:@"请输入设备名称"];
+        [CAPToast toastError:CAPLocalizedString(@"device_name_hint")];
         return;
     }
     if ([CAPValidators validPhoneNumber:self.deviceNumber.telField.text]) {
         self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text];
     }else{
-        [CAPToast toastError:@"输入的号码不正确"];
+        [CAPToast toastError:CAPLocalizedString(@"phone_number_error")];
         return;
     }
     if (kStringIsEmpty(self.deviceStr)) {
@@ -136,7 +136,7 @@
 //            if ([[data objectForKey:@"code"] integerValue] == 200) {
                 NSString *userSettingStr = [CAPUserDefaults objectForKey:@"userSetting"];
                 if (userSettingStr) {
-                    [gApp showHUD:@"正在处理，请稍后..."];
+                    [gApp showHUD:CAPLocalizedString(@"loading")];
                     CAPDeviceService *service = [[CAPDeviceService alloc] init];
                     [service addDevice:self.device reply:^(CAPHttpResponse *response) {
                         [gApp hideHUD];
@@ -166,7 +166,7 @@
             [gApp showHUD:CAPLocalizedString(@"loading")];
             NSDictionary *param = @{
                                     @"name":self.deviceName.text ? self.deviceName.text: @"",
-                                    @"sos":self.deviceNumber.telField.text ? self.deviceNumber.telField.text:@"",
+                                    @"sos":self.deviceNumber.telField.text ? [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text]:@"",
                                     @"avatarPath":self.avatarPath ? self.avatarPath: @"",
                                     @"avatarBaseUrl":self.avatarBaseUrl ? self.avatarPath: @""
                                     };
@@ -181,7 +181,7 @@
                     [self.navigationController popViewControllerAnimated:YES];
                     !self->_inputDeviceBlock ? : self->_inputDeviceBlock(self.device);
                 }else{
-                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
                         [gApp hideHUD];
                     }];
                 }

@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 //private static final int MASK_SOS = 0x10;
 
 @property (nonatomic, assign) NSTimeInterval time;
-@property (nonatomic, assign) CGFloat gps;
+@property (nonatomic, copy) NSString *gps;
 @property (nonatomic, assign) CGFloat latitude;
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) CGFloat altitude;

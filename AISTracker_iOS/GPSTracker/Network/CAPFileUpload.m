@@ -150,6 +150,7 @@
             }
         } else {
             NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+            self.failureBlock();
         }
     }] resume];
 }

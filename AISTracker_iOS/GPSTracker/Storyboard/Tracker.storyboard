@@ -153,7 +153,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g7Z-C9-vzh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="421"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="421.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="g7Z-C9-vzh" secondAttribute="height" multiplier="375:421" id="0Oh-xh-LAH"/>
@@ -161,7 +161,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhB-HJ-z4J">
-                                <rect key="frame" x="0.0" y="489" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="489.5" width="375" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-Mj-BBH">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
@@ -192,7 +192,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zNo-cr-1be">
-                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="524.5" width="375" height="93.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zNo-cr-1be" secondAttribute="height" multiplier="4:1" id="v8l-wC-4ny"/>
@@ -205,7 +205,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="RKj-Il-2qu" customClass="CAPCollectionCell">
-                                        <rect key="frame" x="0.0" y="-0.5" width="62" height="95"/>
+                                        <rect key="frame" x="0.0" y="-1" width="62" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="62" height="95"/>
@@ -239,7 +239,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="TakingPhoto" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-he-eUh">
-                                <rect key="frame" x="147" y="400" width="81" height="85"/>
+                                <rect key="frame" x="147" y="400.5" width="81" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Gzy-he-eUh" secondAttribute="height" multiplier="1:1" constant="-4" id="NFP-tp-Ibl"/>
                                     <constraint firstAttribute="height" constant="85" id="bqa-ZN-aSr"/>
@@ -274,6 +274,7 @@
                     <connections>
                         <outlet property="cameraButton" destination="Gzy-he-eUh" id="rX8-et-e0s"/>
                         <outlet property="collectionView" destination="zNo-cr-1be" id="Ddt-Zx-EVT"/>
+                        <outlet property="nameLabel" destination="Dd0-Mj-BBH" id="Dx4-tk-sye"/>
                         <outlet property="showPhotoImage" destination="g7Z-C9-vzh" id="Oww-jZ-AKN"/>
                         <segue destination="2fD-CX-xR3" kind="show" identifier="photo.list.segue" id="muv-Ft-a6l"/>
                     </connections>
@@ -449,7 +450,7 @@
         <image name="map_refresh" width="84" height="84"/>
         <image name="next_green" width="50" height="50"/>
         <image name="photo_default" width="16" height="16"/>
-        <image name="tab_true_tracker" width="35" height="35"/>
-        <image name="tab_true_tracker_active" width="35" height="35"/>
+        <image name="tab_true_tracker" width="27" height="27"/>
+        <image name="tab_true_tracker_active" width="27" height="27"/>
     </resources>
 </document>

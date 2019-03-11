@@ -108,7 +108,7 @@
     if (time.length != 0) {
         time = [time substringWithRange:NSMakeRange(0,time.length - 3)];
     }
-    time ? self.updateTimeLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"last_updated"),time] : @"";
+    time ? self.updateTimeLabel.text = [NSString stringWithFormat:@"%@ %@",CAPLocalizedString(@"last_updated"),time] : @"";
 }
 //- (void)layoutSubviews {
 //    [super layoutSubviews];

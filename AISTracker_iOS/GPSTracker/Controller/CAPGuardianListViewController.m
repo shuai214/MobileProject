@@ -20,8 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"监护人列表";
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"邀请" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
+    self.title = CAPLocalizedString(@"guardian");
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:CAPLocalizedString(@"invitation") style:UIBarButtonItemStyleDone target:self action:@selector(rightBarItemClick:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
