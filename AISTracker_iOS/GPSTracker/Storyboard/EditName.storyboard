@@ -18,18 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCU-0I-7sg">
-                                <rect key="frame" x="0.0" y="20" width="375" height="291"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="IC6-16-fRN" userLabel="Avatar Image View">
-                                        <rect key="frame" x="112.5" y="70.5" width="150" height="150"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="IC6-16-fRN" firstAttribute="centerY" secondItem="fCU-0I-7sg" secondAttribute="centerY" id="7vL-ak-jgA"/>
-                                    <constraint firstItem="IC6-16-fRN" firstAttribute="centerX" secondItem="fCU-0I-7sg" secondAttribute="centerX" id="TzB-M4-vS5"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biN-4T-X1P" userLabel="Ok Button">
                                 <rect key="frame" x="30" y="597" width="315" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,19 +40,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="IC6-16-fRN" userLabel="Avatar Image View">
+                                <rect key="frame" x="112.5" y="85" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="6KC-8D-hQ6"/>
+                                    <constraint firstAttribute="width" constant="150" id="Ifu-Jy-Slq"/>
+                                    <constraint firstAttribute="width" secondItem="IC6-16-fRN" secondAttribute="height" multiplier="1:1" id="MKu-EH-XkY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="IC6-16-fRN" firstAttribute="centerX" secondItem="d8y-th-RVE" secondAttribute="centerX" id="0ov-r2-JwB"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="bottom" secondItem="d8y-th-RVE" secondAttribute="bottom" constant="-20" id="FCe-Ec-WbL"/>
-                            <constraint firstAttribute="trailing" secondItem="fCU-0I-7sg" secondAttribute="trailing" id="I9I-lu-Int"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="trailing" secondItem="azf-7R-vQK" secondAttribute="trailing" id="IjH-cQ-WSn"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="leading" secondItem="azf-7R-vQK" secondAttribute="leading" id="Irr-EP-wdQ"/>
                             <constraint firstItem="azf-7R-vQK" firstAttribute="centerY" secondItem="kSu-vM-zFW" secondAttribute="centerY" constant="49" id="RvH-FV-JXp"/>
-                            <constraint firstItem="fCU-0I-7sg" firstAttribute="leading" secondItem="kSu-vM-zFW" secondAttribute="leading" id="XYE-h4-a3g"/>
-                            <constraint firstItem="azf-7R-vQK" firstAttribute="top" secondItem="fCU-0I-7sg" secondAttribute="bottom" constant="49" id="f8f-ki-o0z"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="centerX" secondItem="kSu-vM-zFW" secondAttribute="centerX" id="fuk-UZ-n9d"/>
-                            <constraint firstItem="fCU-0I-7sg" firstAttribute="top" secondItem="d8y-th-RVE" secondAttribute="top" id="iE8-bH-dfm"/>
                             <constraint firstItem="biN-4T-X1P" firstAttribute="width" secondItem="kSu-vM-zFW" secondAttribute="width" multiplier="0.84" id="szX-fl-YA1"/>
+                            <constraint firstItem="IC6-16-fRN" firstAttribute="top" secondItem="d8y-th-RVE" secondAttribute="top" constant="65" id="ttC-3l-xpt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d8y-th-RVE"/>
                     </view>

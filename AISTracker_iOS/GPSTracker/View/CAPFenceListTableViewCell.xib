@@ -13,14 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FenceListTableViewCell" rowHeight="144" id="KGk-i7-Jjw" customClass="CAPFenceListTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="124.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7s-kj-Vox">
-                        <rect key="frame" x="5" y="5" width="310" height="114.5"/>
+                        <rect key="frame" x="5" y="5" width="310" height="124.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7X-GK-4l8">
                                 <rect key="frame" x="35" y="5" width="36" height="20"/>
@@ -57,14 +57,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_drop_blue" translatesAutoresizingMaskIntoConstraints="NO" id="c6N-QI-J71">
-                                <rect key="frame" x="8" y="47.5" width="20" height="20"/>
+                                <rect key="frame" x="8" y="52.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="FrY-QI-jEz"/>
                                     <constraint firstAttribute="width" constant="20" id="UF9-rC-74H"/>
                                 </constraints>
                             </imageView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVK-0f-HnU">
-                                <rect key="frame" x="252" y="75" width="51" height="31"/>
+                                <rect key="frame" x="252" y="85" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="0aF-Ub-Ots"/>
+                                </constraints>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,7 +99,7 @@
                                 <integer key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                <color key="value" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -120,7 +123,7 @@
                 <outlet property="nameLabel" destination="t7X-GK-4l8" id="r29-E0-Goe"/>
                 <outlet property="rangeLabel" destination="d4B-pz-dOw" id="dOx-Cc-qVE"/>
             </connections>
-            <point key="canvasLocation" x="-368" y="125.4872563718141"/>
+            <point key="canvasLocation" x="-552" y="118"/>
         </tableViewCell>
     </objects>
     <resources>

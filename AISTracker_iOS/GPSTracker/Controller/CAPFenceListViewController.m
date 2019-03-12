@@ -26,11 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"围栏";
+    self.title = CAPLocalizedString(@"gps_fencing2");
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
     self.fenceListTableView.delegate = self;
     self.fenceListTableView.dataSource = self;
-    self.fenceListTableView.rowHeight = 125;
+    self.fenceListTableView.rowHeight = 135;
     self.fenceListTableView.backgroundColor = gCfg.appBackgroundColor;
     self.fenceListTableView.tableFooterView = [UIView new];
     self.fenceListTableView.separatorStyle = UITableViewCellEditingStyleNone;

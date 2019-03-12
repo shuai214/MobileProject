@@ -48,7 +48,6 @@
             self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
         }
         if (self.device.setting.reportFrequency / 60 > 60) {
-            
             self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
         }
     }
@@ -70,9 +69,9 @@
     self.deviceLabel.text = [@"Device ID: " stringByAppendingString:self.device ? self.device.deviceID:@""];
     [self.batteryView reloadBattery:self.battery];
     
-    self.nextDeviceImage.userInteractionEnabled = YES;
+    self.headerView.userInteractionEnabled = YES;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
-    [self.nextDeviceImage addGestureRecognizer:labelTapGestureRecognizer];
+    [self.headerView addGestureRecognizer:labelTapGestureRecognizer];
     [self refreshLocalizedString];
     [self checkDevice];
     [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];

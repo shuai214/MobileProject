@@ -144,7 +144,6 @@
     [deviceService fetchDevice:^(id response) {
         CAPHttpResponse *httpResponse = (CAPHttpResponse *)response;
         CAPDeviceLists *deviceLists = [CAPDeviceLists mj_objectWithKeyValues:httpResponse.data];
-        NSLog(@"-=-=-=-=-=-= %@",httpResponse.data);
         self.deviceListView.devices = deviceLists.result.list;
         if (deviceLists.result.list.count == 0) {
             [UIView animateWithDuration:0.37 animations:^{
@@ -283,7 +282,8 @@
                             [self.trackerView.batteryView reloadBattery:info.batlevel];
                         }];
                     }
-                }else{
+                }
+            if([info.gps isEqualToString:@"A"]){
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
                     [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
                     CAPDeviceLocal *local = [CAPDeviceLocal local];

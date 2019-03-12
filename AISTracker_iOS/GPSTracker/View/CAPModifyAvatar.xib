@@ -82,11 +82,17 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="IYK-Ia-UFl"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="15"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="albumLabel" destination="VTr-12-Eko" id="kOf-jY-X56"/>
                 <outlet property="takingPhotoLabel" destination="H1F-Ru-eVQ" id="OBS-1i-ibj"/>
             </connections>
-            <point key="canvasLocation" x="200" y="-255"/>
+            <point key="canvasLocation" x="-328" y="-238"/>
         </view>
     </objects>
     <resources>

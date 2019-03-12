@@ -30,6 +30,17 @@
     if(self.defaultName) {
         self.nameTextField.text = self.defaultName;
     }
+    if (self.capUser) {
+        UIImage *avatar = GetImage(@"ic_default_avatar_new");
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.capUser.profile.avatarBaseUrl,self.capUser.profile.avatarPath]] placeholderImage:avatar];
+        self.avatarImageView.layer.cornerRadius =  self.avatarImageView.width/2.0;
+        self.avatarImageView.layer.masksToBounds = YES;
+    }else if (self.capDevice){
+        UIImage *avatar = GetImage(@"ic_default_avatar_new");
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.capDevice.setting.avatarBaseUrl,self.capDevice.setting.avatarPath]] placeholderImage:avatar];
+        self.avatarImageView.layer.cornerRadius =  self.avatarImageView.width/2.0;
+        self.avatarImageView.layer.masksToBounds = YES;
+    }
 }
 
 - (void)refreshLocalizedString {

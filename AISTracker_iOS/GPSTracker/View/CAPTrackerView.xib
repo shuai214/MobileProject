@@ -41,7 +41,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nan Shan Dist. Taoyuan Street" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-xK-UjP">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nan Shan Dist. Taoyuan Street" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-xK-UjP">
                     <rect key="frame" x="6" y="35.5" width="394" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,10 +112,10 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-tu-8UR">
-                    <rect key="frame" x="48.5" y="62.5" width="309" height="67.5"/>
+                    <rect key="frame" x="57.5" y="62.5" width="291" height="67.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uii-PC-72V">
-                            <rect key="frame" x="0.0" y="20" width="83" height="27"/>
+                            <rect key="frame" x="0.0" y="20" width="77" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="call" image="tracker_call">
                                 <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,7 +125,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sm-Pa-dli" userLabel="Footprint Button">
-                            <rect key="frame" x="113" y="20" width="83" height="27"/>
+                            <rect key="frame" x="107" y="20" width="77" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="Footprint" image="tracker_footprint">
                                 <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,7 +135,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA6-hr-PMs" userLabel="Unbindung Button">
-                            <rect key="frame" x="226" y="17" width="83" height="33"/>
+                            <rect key="frame" x="214" y="20" width="77" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="Unbinding" image="unbind">
                                 <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,6 +200,6 @@
         <image name="tracker_footprint" width="27" height="27"/>
         <image name="tracker_photograph" width="27" height="27"/>
         <image name="tracker_setting" width="27" height="27"/>
-        <image name="unbind" width="33" height="33"/>
+        <image name="unbind" width="27" height="27"/>
     </resources>
 </document>
