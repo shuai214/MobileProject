@@ -38,19 +38,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ws-WM-cqY">
-                                <rect key="frame" x="63" y="96" width="265" height="251"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="251"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="8ws-WM-cqY" secondAttribute="height" multiplier="265:251" id="Am6-vR-1Je"/>
+                                    <constraint firstAttribute="width" secondItem="8ws-WM-cqY" secondAttribute="height" multiplier="265:251" constant="110" id="Am6-vR-1Je"/>
                                     <constraint firstAttribute="height" constant="251" id="DdM-C1-64G"/>
-                                    <constraint firstAttribute="width" constant="265" id="wEl-oj-D3j"/>
+                                    <constraint firstAttribute="width" constant="375" id="wEl-oj-D3j"/>
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-RR-wek">
-                                <rect key="frame" x="63" y="368" width="265" height="251"/>
+                                <rect key="frame" x="0.0" y="368" width="375" height="251"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="265" id="gQ1-UB-ttj"/>
+                                    <constraint firstAttribute="width" constant="375" id="gQ1-UB-ttj"/>
                                     <constraint firstAttribute="height" constant="251" id="hlR-vO-WGf"/>
-                                    <constraint firstAttribute="width" secondItem="Yfg-RR-wek" secondAttribute="height" multiplier="265:251" id="jEQ-i4-adE"/>
+                                    <constraint firstAttribute="width" secondItem="Yfg-RR-wek" secondAttribute="height" multiplier="265:251" constant="110" id="jEQ-i4-adE"/>
                                 </constraints>
                                 <connections>
                                     <action selector="trackerAction:" destination="UBP-db-LrG" eventType="touchUpInside" id="dq0-TJ-9yj"/>
@@ -62,8 +62,8 @@
                             <constraint firstItem="GeJ-gL-LkJ" firstAttribute="centerX" secondItem="qOC-Sk-nhf" secondAttribute="centerX" id="2cv-bn-Cur"/>
                             <constraint firstItem="Yfg-RR-wek" firstAttribute="top" secondItem="GeJ-gL-LkJ" secondAttribute="bottom" constant="-319" id="6D4-Py-efv"/>
                             <constraint firstItem="GeJ-gL-LkJ" firstAttribute="bottom" secondItem="qOC-Sk-nhf" secondAttribute="bottom" constant="20" id="BzM-U7-yf2"/>
-                            <constraint firstItem="Yfg-RR-wek" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-312" id="HbB-4t-5vJ"/>
-                            <constraint firstItem="8ws-WM-cqY" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-312" id="cBB-CB-377"/>
+                            <constraint firstItem="Yfg-RR-wek" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-375" id="HbB-4t-5vJ"/>
+                            <constraint firstItem="8ws-WM-cqY" firstAttribute="leading" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" constant="-375" id="cBB-CB-377"/>
                             <constraint firstItem="qOC-Sk-nhf" firstAttribute="trailing" secondItem="GeJ-gL-LkJ" secondAttribute="trailing" id="eFe-NV-ODA"/>
                             <constraint firstItem="GeJ-gL-LkJ" firstAttribute="top" secondItem="8ws-WM-cqY" secondAttribute="bottom" constant="-347" id="fgE-0s-bPz"/>
                             <constraint firstItem="GeJ-gL-LkJ" firstAttribute="leading" secondItem="qOC-Sk-nhf" secondAttribute="leading" id="l52-t1-SDa"/>
@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rzm-7c-Ebg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-158" y="-178"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="-178.56071964017991"/>
         </scene>
     </scenes>
     <resources>

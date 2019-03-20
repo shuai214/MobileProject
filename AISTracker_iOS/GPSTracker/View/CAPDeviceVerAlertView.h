@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  确定Block
  */
 @property (nonatomic , copy ) void (^okBlock)(void);
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title;
+- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title buttonTitle:(NSString *)buttonTitle;
 @end
 
 NS_ASSUME_NONNULL_END

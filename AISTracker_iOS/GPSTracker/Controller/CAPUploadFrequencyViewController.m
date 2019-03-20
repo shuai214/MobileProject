@@ -16,6 +16,8 @@
 @property(nonatomic,strong)UIImageView *sdImageView;
 @property(nonatomic,strong)UIImageView *customImageView;
 @property(nonatomic,copy)NSString *time;
+@property(nonatomic,copy)NSString *choosetime;
+
 @property(nonatomic,strong)MQTTInfo *mqttInfo;
 
 @end
@@ -65,23 +67,27 @@
     self.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.customButton.width - IMAGE_W_H - 5, (self.customButton.height - IMAGE_W_H) / 2, IMAGE_W_H, IMAGE_W_H)];
     [self.customButton addSubview:self.customImageView];
     
-    [self.sdImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_off"):GetImage(@"check_on")];
-    [self.customImageView setImage:[CAPUserDefaults objectForKey:@"uploadTime"]? GetImage(@"check_on"):GetImage(@"check_off")];
-
-    
+    [self.sdImageView setImage:GetImage(@"check_off")];
+    [self.customImageView setImage:GetImage(@"check_on")];
     NSString *time = @"";
-    if (self.device.setting.reportFrequency) {
-        if (self.device.setting.reportFrequency / 60 < 60) {
-            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+    if (self.device.setting.reportFrequency >= 0) {
+        if (self.device.setting.reportFrequency) {
+            if (self.device.setting.reportFrequency / 60 < 60) {
+                time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+            }
+            if (self.device.setting.reportFrequency / 60 > 60) {
+                time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+            }
+            [self.customImageView setImage:GetImage(@"check_on")];
+        }else{
+            time = [CAPUserDefaults objectForKey:@"uploadTime"];
         }
-        if (self.device.setting.reportFrequency / 60 > 60) {
-            time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
-        }
-        [self.customImageView setImage:GetImage(@"check_on")];
+        [self.customButton setTitle:time forState:UIControlStateNormal];
     }else{
-        time = [CAPUserDefaults objectForKey:@"uploadTime"];
+        [self.customImageView setImage:GetImage(@"check_off")];
+        [self.sdImageView setImage:GetImage(@"check_on")];
     }
-    [self.customButton setTitle:time forState:UIControlStateNormal];
+    
 
     [self.view addSubview:buttonView];
     
@@ -113,6 +119,7 @@
         [self.customButton setTitle:[NSString stringWithFormat:@"%@",selectValue] forState:UIControlStateNormal];
         [CAPUserDefaults setObject:selectValue forKey:@"uploadTime"];
         NSInteger index = [times indexOfObject:selectValue];
+        self.choosetime = [NSString stringWithFormat:@"%@",selectValue];
         switch (index) {
             case 0:
                 self.time = @"0";
@@ -149,6 +156,7 @@
 }
 - (void)okAction{
     [gApp showHUD:CAPLocalizedString(@"loading")];
+    CAPWeakSelf(self);
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPLOAD" param:self.time reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
@@ -157,6 +165,7 @@
             [gApp hideHUD];
             [CAPToast toastSuccess:CAPLocalizedString(@"update_success")];
             [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationUPLOADCountChange object:nil];
+            weakself.updateSuccessBlock(weakself.choosetime);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -176,6 +185,5 @@
     self.mqttInfo = notifi.object;
     NSLog(@"%@",self.mqttInfo);
     [gApp hideHUD];
-   
 }
 @end

@@ -31,15 +31,26 @@
     self.dataArray = [NSMutableArray array];
     [self loadDeviceBindUserInfo];
 }
+- (void)deviceOffLine{
+    [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"device_offline_error") buttonTitle:CAPLocalizedString(@"ok") closeBlock:^{
+        
+    } okBlock:^{
+        
+    }];
+}
 - (void)rightBarItemClick:(UIBarButtonItem *)item
 {
-    CAPGuardianInvitationViewController *GuardianInvitationVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"GuardianInvitationViewController"];
-    GuardianInvitationVC.device = self.device;
-//    CAPWeakSelf(self);
-//    [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
-//        [weakself addDeviceService:successStr];
-//    }];
-    [self.navigationController pushViewController:GuardianInvitationVC animated:YES];
+    if (self.device.connected == 1) {
+        CAPGuardianInvitationViewController *GuardianInvitationVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"GuardianInvitationViewController"];
+        GuardianInvitationVC.device = self.device;
+//      CAPWeakSelf(self);
+//      [AddTrackerVC setInputSuccessBlock:^(NSString *successStr) {
+//          [weakself addDeviceService:successStr];
+//      }];
+        [self.navigationController pushViewController:GuardianInvitationVC animated:YES];
+    }else{
+        [self deviceOffLine];
+    }
 }
 - (void)loadDeviceBindUserInfo{
     [gApp showHUD:CAPLocalizedString(@"loading")];

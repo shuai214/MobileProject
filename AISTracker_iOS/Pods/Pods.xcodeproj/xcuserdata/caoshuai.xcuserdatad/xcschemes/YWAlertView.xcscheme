@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "02AA1F3CC1B09FFC424978199D474EC5"
+               BlueprintIdentifier = "B46A42EA74A28D6F1C76F5120280C766"
                BlueprintName = "YWAlertView"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libYWAlertView.a">

@@ -99,7 +99,7 @@
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command) {
-            [gApp showHUD:command.message];
+            [gApp showHUD:CAPLocalizedString(@"loading")];
             //GCD延迟
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (!self.mqttInfo) {

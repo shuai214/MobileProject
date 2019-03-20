@@ -182,30 +182,35 @@
 }
 
 - (IBAction)onLogoutButtonClicked:(id)sender {
-    [[TrueIdPlatformAuth shareInstance] logoutWithResponseComplete:^(NSDictionary * _Nonnull response) {
-        NSLog(@"%@",response);
-    } responseFailed:^(NSDictionary * _Nonnull dic) {
-        NSLog(@"%@",dic);
+    
+    [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_logout") buttonTitle:CAPLocalizedString(@"ok") closeBlock:^{
+        
+    } okBlock:^{
+        [[TrueIdPlatformAuth shareInstance] logoutWithResponseComplete:^(NSDictionary * _Nonnull response) {
+            NSLog(@"%@",response);
+        } responseFailed:^(NSDictionary * _Nonnull dic) {
+            NSLog(@"%@",dic);
+        }];
+        [CAPUserDefaults removeObjectForKey:@"user_profileDic"];
+        MQTTCenter *mqttCenter = [MQTTCenter center];
+        MQTTConfig *config = [[MQTTConfig alloc] init];
+        config.host = @"mqtt.kvtel.com";
+        config.port = 1883;
+        config.username = @"demo_app";
+        config.password = @"demo_890_123_654";
+        config.userID = [CAPUserDefaults objectForKey:@"userID"];
+        config.keepAliveInterval = 20;
+        config.deviceType = MQTTDeviceTypeApp;
+        config.platformID = @"KVTELIOT";
+        config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
+        [mqttCenter close];
+        AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        UIViewController *viewController = [storyboard instantiateInitialViewController];
+        UIViewController *vc = app.window.rootViewController;
+        app.window.rootViewController = viewController;
+        [vc removeFromParentViewController];
     }];
-    [CAPUserDefaults removeObjectForKey:@"user_profileDic"];
-    MQTTCenter *mqttCenter = [MQTTCenter center];
-    MQTTConfig *config = [[MQTTConfig alloc] init];
-    config.host = @"mqtt.kvtel.com";
-    config.port = 1883;
-    config.username = @"demo_app";
-    config.password = @"demo_890_123_654";
-    config.userID = [CAPUserDefaults objectForKey:@"userID"];
-    config.keepAliveInterval = 20;
-    config.deviceType = MQTTDeviceTypeApp;
-    config.platformID = @"KVTELIOT";
-    config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
-    [mqttCenter close];
-    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    UIViewController *viewController = [storyboard instantiateInitialViewController];
-    UIViewController *vc = app.window.rootViewController;
-    app.window.rootViewController = viewController;
-    [vc removeFromParentViewController];
 }
 
 

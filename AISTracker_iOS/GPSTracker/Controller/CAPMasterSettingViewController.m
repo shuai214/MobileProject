@@ -28,6 +28,8 @@
 @property (strong, nonatomic) NSArray<NSString *> *details;
 @property (copy, nonatomic)NSString *time;
 @property (copy, nonatomic)NSString *deviceVer;
+@property (copy, nonatomic)NSString *IMEI;
+
 @end
 
 @implementation CAPMasterSettingViewController
@@ -43,18 +45,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.time = @"";
-    if (self.device.setting.reportFrequency) {
+    if (self.device.setting.reportFrequency >= 0) {
+        
         if (self.device.setting.reportFrequency / 60 < 60) {
-            self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+            self.time = [NSString stringWithFormat:@"%d%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
         }
         if (self.device.setting.reportFrequency / 60 > 60) {
-            self.time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+            self.time = [NSString stringWithFormat:@"%d%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+        }
+        if (self.device.setting.reportFrequency == 0) {
+            self.time = CAPLocalizedString(@"real_time");
         }
     }
     self.title = CAPLocalizedString(@"profile");
     self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), CAPLocalizedString(@"setting_device_imei"),
                    CAPLocalizedString(@"setting_device_number"), CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"unbind"),CAPLocalizedString(@"firmware_version")];
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",@""];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"", self.device?self.device.mobile:@"", @"",@"",self.time,@"",@""];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -76,8 +82,14 @@
     [self checkDevice];
     [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
     [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
+    [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
 }
-
+- (void)deviceOnline:(NSNotification *)notifi{
+    MQTTInfo *info = (MQTTInfo *)notifi.object;
+    if ([info.deviceID isEqualToString:self.device.deviceID]) {
+        self.device.connected = info.online;
+    }
+}
 - (void)labelTouchUpInside:(NSNotification *)notifi{
     UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
     imagePickerVc.delegate = self;
@@ -134,6 +146,7 @@
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.detailTextLabel.text = self.details[indexPath.row];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.accessoryType = UITableViewCellAccessoryNone;//cell没有任何的样式
     return cell;
 }
 
@@ -168,18 +181,22 @@
         case 2:
             break;
         case 3:{
-            CAPChangeUserTelViewController *editName = [[CAPChangeUserTelViewController alloc] init];
-            editName.device = self.device;
-            CAPWeakSelf(self);
-            [editName setUpdateDeviceSuccessBlock:^(CAPDevice * _Nonnull device) {
-                weakself.device = device;
-                weakself.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), @"Device IMEI",
-                                @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
-                weakself.details = @[device? device.name:@"", device?device.deviceID:@"", @"XXXX", device?device.mobile:@"", @"",@"",self.time,@"",@""];
-                [weakself checkDevice];
-                [weakself.tableView reloadData];
-            }];
-            [self.navigationController pushViewController:editName animated:YES];
+            if (self.device.connected == 1) {
+                CAPChangeUserTelViewController *editName = [[CAPChangeUserTelViewController alloc] init];
+                editName.device = self.device;
+                CAPWeakSelf(self);
+                [editName setUpdateDeviceSuccessBlock:^(CAPDevice * _Nonnull device) {
+                    weakself.device = device;
+                    weakself.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), @"Device IMEI",
+                                        @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
+                    weakself.details = @[device ? device.name:@"", device ? device.deviceID:@"", self.IMEI ? self.IMEI : @"" , device ? device.mobile:@"", @"",@"",self.time,@"",self.deviceVer ? self.deviceVer : @""];
+                    [weakself checkDevice];
+                    [weakself.tableView reloadData];
+                }];
+                [self.navigationController pushViewController:editName animated:YES];
+            }else{
+                [self deviceOffLine];
+            }
         }
             break;
         case 4:
@@ -191,16 +208,29 @@
             break;
         case 5:
         {
-            CAPSOSMobileViewController *sosVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"SOSMobileViewController"];
-            sosVC.device = self.device;
-            [self.navigationController pushViewController:sosVC animated:YES];
+            if (self.device.connected == 1) {
+                CAPSOSMobileViewController *sosVC = [[UIStoryboard storyboardWithName:@"MasterSetting" bundle:nil] instantiateViewControllerWithIdentifier:@"SOSMobileViewController"];
+                sosVC.device = self.device;
+                [self.navigationController pushViewController:sosVC animated:YES];
+            }else{
+                [self deviceOffLine];
+            }
         }
             break;
         case 6:
         {
-            CAPUploadFrequencyViewController *uploadVC = [[CAPUploadFrequencyViewController alloc] init];
-            uploadVC.device = self.device;
-            [self.navigationController pushViewController:uploadVC animated:YES];
+            if (self.device.connected == 1) {
+                CAPUploadFrequencyViewController *uploadVC = [[CAPUploadFrequencyViewController alloc] init];
+                uploadVC.device = self.device;
+                CAPWeakSelf(self);
+                [uploadVC setUpdateSuccessBlock:^(NSString * _Nonnull time) {
+                    weakself.details = @[weakself.device? weakself.device.name:@"", weakself.device?weakself.device.deviceID:@"",   weakself.IMEI ? weakself.IMEI : @"", weakself.device?weakself.device.mobile:@"", @"",@"",time,@"",weakself.deviceVer ? weakself.deviceVer : @""];
+                    [weakself.tableView reloadData];
+                }];
+                [self.navigationController pushViewController:uploadVC animated:YES];
+            }else{
+                [self deviceOffLine];
+            }
         }
             break;
         case 7:
@@ -232,11 +262,11 @@
                 [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
                 [self checkDevice];
             }else{
-                [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") closeBlock:^{
+                [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") buttonTitle:CAPLocalizedString(@"upgrade") closeBlock:^{
                     
                 } okBlock:^{
                     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-                    [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPGRADECHK" param:nil reply:^(id response) {
+                    [deviceService deviceSendCommand:self.device.deviceID cmd:@"CHECKFIRMWARE" param:nil reply:^(id response) {
                         NSLog(@"%@",response);
                     }];
                 }];
@@ -246,6 +276,14 @@
         default:
             break;
     }
+}
+
+- (void)deviceOffLine{
+    [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"device_offline_error") buttonTitle:CAPLocalizedString(@"ok") closeBlock:^{
+        
+    } okBlock:^{
+        
+    }];
 }
 #pragma mark -----imagePickerController delegate
 //选择图片后,更换头像,并保存到沙盒,上传到服务器
@@ -285,15 +323,22 @@
     MQTTInfo *info = notifi.object;
     NSLog(@"%@",info);
     self.deviceVer = info.ver;
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
-
+    if (info.imei) {
+        self.IMEI = info.imei;
+    }else{
+        self.IMEI = @"";
+    }
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"",  self.IMEI ? self.IMEI : @"", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer ? self.deviceVer : @""];
+    if (info.batlevel >= 0) {
+        [self.batteryView reloadBattery:info.batlevel];
+    }
     [self.tableView reloadData];
 }
 - (void)updateDeviceVerno:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
     NSLog(@"%@",info);
     self.deviceVer = info.ver;
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"XXXX", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
+    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", self.IMEI, self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
     [self.tableView reloadData];
 }
 #pragma mark 调整图片分辨率/尺寸（等比例缩放）

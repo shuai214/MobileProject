@@ -14,6 +14,8 @@
 #import "CAPDeviceLists.h"
 #import "CAPValidators.h"
 #import "CAPDeviceBindList.h"
+#import "CAPFileUpload.h"
+
 @interface CAPSOSMobileViewController ()
 @property(nonatomic,strong)UIScrollView *bgscrollView;
 @property(nonatomic,strong)CAPDeviceLists *deviceLists;
@@ -51,7 +53,7 @@
         NSDictionary *dic =(NSDictionary *)response.data;
         if ([[dic objectForKey:@"code"] integerValue] == 200) {
             CAPDeviceBindList *bindList = [CAPDeviceBindList mj_objectWithKeyValues:[dic objectForKey:@"result"]];
-            NSLog(@"%ld",bindList.users.count);
+            NSLog(@"%lu",(unsigned long)bindList.users.count);
             for (USERS *user in bindList.users) {
                 [self.dataArray addObject:user];
             }
@@ -65,15 +67,20 @@
         if ([[dic objectForKey:@"code"] integerValue] == 200) {
             NSArray *result = dic[@"result"];
             NSDictionary *dicSos = result.firstObject;
-            NSDictionary *sosDic= dicSos[@"sos"];
-            NSArray *sosArr = sosDic[@"sos"];
-            [self.sosArray addObjectsFromArray:sosArr];
+            id sos = dicSos[@"sos"];
+            if ([sos isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *sosDic= (NSDictionary *)sos;
+                NSArray *sosArr = sosDic[@"sos"];
+                [self.sosArray addObjectsFromArray:sosArr];
+            }else if ([sos isKindOfClass:[NSArray class]]){
+                NSArray *sosArr = dicSos[@"sos"];
+                [self.sosArray addObjectsFromArray:sosArr];
+            }
         }
         [self initTwoView];
         [gApp hideHUD];
     }];
 }
-
 - (void)configSubView{
     if (!self.bgscrollView) {
         self.bgscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TopHeight, Main_Screen_Width, Main_Screen_Height - TopHeight)];
@@ -168,8 +175,13 @@
                 deviceNumberView.telField.text = array.lastObject;
                 NSArray *telCode = self.telCodeArray;
                 NSUInteger index = [telCode indexOfObject:deviceNumberView.telAreaCodeLabel.text];
-                NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
-                deviceNumberView.countryNameLabel.text = countryName;
+                if (index >= self.countryArray.count) {
+                    
+                }else{
+                    NSString *countryName = [self.countryArray objectAtIndex:(NSInteger)index];
+                    deviceNumberView.countryNameLabel.text = countryName;
+                }
+               
             }
         }
     }
@@ -256,14 +268,35 @@
         }
     }
     [gApp showHUD:CAPLocalizedString(@"loading")];
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService setSOSMobile:self.device sosMobiles:self.inputTelArray reply:^(CAPHttpResponse *response) {
-        [gApp hideHUD];
-        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
-        }else{
-            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
-        }
+//    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+//    [deviceService setSOSMobile:self.device sosMobiles:self.inputTelArray reply:^(CAPHttpResponse *response) {
+//        [gApp hideHUD];
+//        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+//            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+//        }else{
+//            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+//        }
+//    }];
+    CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+    [fileUpload setSOSMobile:self.device array:self.inputTelArray];
+    [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [gApp hideHUD];
+            if ([[object objectForKey:@"code"] integerValue] == 200) {
+                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.inputTelArray
+                                                                   options:kNilOptions
+                                                                     error:nil];
+                NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                             encoding:NSUTF8StringEncoding];
+                [deviceService deviceSendCommand:self.device.deviceID cmd:@"SOS" param:jsonString reply:^(CAPHttpResponse *response) {
+                    NSLog(@"%@",response);
+                }];
+                [gApp showNotifyInfo:[object objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+            }else{
+                [gApp showNotifyInfo:[object objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+            }
+        });
     }];
 }
 

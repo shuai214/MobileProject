@@ -17,12 +17,13 @@
 @property(nonatomic,strong)UIButton *okButton;
 @property(nonatomic,strong)UILabel *contentLabel;
 @property(nonatomic,copy)NSString *contentDesc;
+@property(nonatomic,copy)NSString *buttonTitle;
 
 @end
 
 @implementation CAPDeviceVerAlertView
 
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title{
+- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title buttonTitle:(nonnull NSString *)buttonTitle{
     
     self = [super initWithFrame:frame];
     if (self) {
@@ -30,6 +31,7 @@
         self.layer.cornerRadius = 15;
         self.layer.masksToBounds = YES;
         self.contentDesc = title;
+        self.buttonTitle = buttonTitle;
         [self initCustomSubview];
         [self configCustomAutoLayout];
     }
@@ -49,7 +51,7 @@
     _okButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _okButton.sd_cornerRadius = @5.0f;
     [_okButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
-    [_okButton setTitle:@"升级" forState:UIControlStateNormal];
+    [_okButton setTitle:self.buttonTitle forState:UIControlStateNormal];
     [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_okButton setBackgroundColor:[CAPColors red]];
     [_okButton addTarget:self action:@selector(okButtonAction) forControlEvents:UIControlEventTouchUpInside];

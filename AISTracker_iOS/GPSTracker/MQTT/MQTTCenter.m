@@ -228,14 +228,14 @@
         NSString *status = @"unknow";
         UIColor *color = nil;
         if (info.online ? 0 : 1) {
-            status = @"离线";
+            status = CAPLocalizedString(@"device_offline");
             color = [UIColor grayColor];
         }else{
-            status = @"上线";
+            status = CAPLocalizedString(@"device_online");
             color = [UIColor greenColor];
         }
         info.message = [NSString stringWithFormat:@"%@%@",info.deviceID,status];
-        [gApp showNotifyInfo:[NSString stringWithFormat:@"设备%@%@",info.deviceID,status] backGroundColor:color];
+        [gApp showNotifyInfo:[NSString stringWithFormat:@"%@%@%@",CAPLocalizedString(@"tips_device_online1"),info.deviceID,status] backGroundColor:color];
         [coreData insertData:info];
         
     }else if ([info.command isEqualToString:@"UPGRADEREQ"]){

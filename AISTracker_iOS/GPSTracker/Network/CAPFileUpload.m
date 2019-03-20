@@ -104,19 +104,71 @@
     }];
 }
 - (void)setSOSMobile:(CAPDevice *)device array:(id)array{
+//    NSDictionary *params = @{
+//                             @"sos":array
+//                             };
     NSString *URLString = [NSString stringWithFormat:@"%@%@%@",gCfg.rootURLString,@"Device/SOS/",device.deviceID];
-    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
-    manager.requestSerializer.timeoutInterval = 15.0;
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:nil error:nil];
-    [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array
+//    AFHTTPSessionManager *manager = [self ManagerSetHearderandToken:[CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""];
+//    manager.requestSerializer.timeoutInterval = 15.0;
+//
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array
+//                                                       options:kNilOptions
+//                                                         error:nil];
+//     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    [manager PUT:URLString parameters:array success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        self.successBlockObject(responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//    }];
+//    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"PUT" URLString:URLString parameters:array error:nil];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    // 设置body
+//    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+//    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        if (!error) {
+//            self.successBlockObject(responseObject);
+//        } else {
+//
+//        }
+//    }] resume];
+
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *requestd = [NSMutableURLRequest requestWithURL:url];
+    requestd.HTTPMethod = @"PUT";
+    NSMutableDictionary *requestSerializerDic = [NSMutableDictionary dictionary];
+    [requestSerializerDic setObject:@"1234567890" forKey:@"App-Key"];
+    [requestSerializerDic setObject:@"1" forKey:@"App-OS"]; //1-iOS, 2-android, 3-windows
+    [requestSerializerDic setObject:[CAPPhones phoneModel] forKey:@"App-OS-Model"];
+    [requestSerializerDic setObject:[CAPPhones systemName] forKey:@"App-OS-SDK"];
+    [requestSerializerDic setObject:[CAPPhones systemVersion] forKey:@"App-OS-Release"];
+    [requestSerializerDic setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"] forKey:@"App-Package-Name"];
+    [requestSerializerDic setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"App-Version-Name"];
+    [requestSerializerDic setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"App-Version-Code"];
+    [requestSerializerDic setObject:@"143565456" forKey:@"App-Install-Time"];
+    [requestSerializerDic setObject:@"143565456" forKey:@"App-Update-Time"];
+    [requestSerializerDic setObject:[CAPPhones getUUIDString] forKey:@"App-UDID"];
+    [requestSerializerDic setObject:([CAPPhones isChineseLanguage] ? @"zh-CN" : @"en-US") forKey:@"App-Language"];
+    [requestSerializerDic setObject:[NSString stringWithFormat:@"Bearer %@", [CAPUserDefaults objectForKey:@"accessToken"] ? [CAPUserDefaults objectForKey:@"accessToken"]:@""] forKey:@"Authorization"];
+    requestd.allHTTPHeaderFields = requestSerializerDic;//此处为请求头，类型为字典
+
+    NSData *jsonDataDD = [NSJSONSerialization dataWithJSONObject:array
                                                        options:kNilOptions
                                                          error:nil];
-     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *_Nonnull response, id _Nullable responseObject,NSError * _Nullable error){
-        self.successBlockObject(responseObject);
+    NSString *jsonStringdd = [[NSString alloc] initWithData:jsonDataDD encoding:NSUTF8StringEncoding];
+    [requestd setHTTPBody:[jsonStringdd dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [[[NSURLSession sharedSession] dataTaskWithRequest:requestd completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *receiveStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSData * datas = [receiveStr dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+        self.successBlockObject(jsonDict);
+        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
     }] resume];
+    
 }
 - (void)loadDeviceParameter:(id)parameter device:(CAPDevice *)device{
     NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/geolocation/v1/geolocate?key=%@",gCfg.google_web_api_key];

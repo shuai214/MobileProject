@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"轨迹";
+    self.title = CAPLocalizedString(@"footprint");
     [self.view addSubview:self.dateSelectView];
     self.markets = [NSMutableArray array];
     self.locals = [NSMutableArray array];
@@ -60,7 +60,7 @@
         make.top.equalTo(self.view).offset(TopHeight);
         make.height.equalTo(@100);
     }];
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:@"今天" style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
     
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -79,27 +79,54 @@
     [gApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService fetchFootprint:self.device.deviceID starttime:starttime endtime:endtime reply:^(CAPHttpResponse *response) {
-        [gApp hideHUD];
         self.footprint = [CAPFootprint mj_objectWithKeyValues:response.data];
+        //0 v --- 1 A
         if (self.footprint.code == 200) {
             if (self.footprint.result.count == 0) {
                 [gApp showNotifyInfo:CAPLocalizedString(@"tips_no_footprint") backGroundColor:[UIColor orangeColor]];
+                [gApp hideHUD];
                 return;
             }
             for (NSInteger i = 0; i < self.footprint.result.count; i++) {
-                ResultFootprintList *footPrint = [self.footprint.result objectAtIndex:i];
-               
-                [self creatMarkerWithPosition:CLLocationCoordinate2DMake(footPrint.lat,footPrint.lng) title:[NSString stringWithFormat:@"%ld",(i + 1)]];
-                CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
-                [fileUplod getDeviceDetailLoacl:[NSString stringWithFormat:@"%lf,%lf",footPrint.lat,footPrint.lng]];
-                [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
-
-                }];
-                
-                [self.locals addObject:footPrint];
+                CAPDeviceLocalModel *footprint = [self.footprint.result objectAtIndex:i];
+                if ([footprint.type isEqualToString:@"1"]) {
+                    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([footprint.lat floatValue],[footprint.lng floatValue]);//纬度，经度
+                    [self creatMarkerWithPosition:coords title:[NSString stringWithFormat:@"%ld",(i + 1)]];
+                    [self.locals addObject:footprint];
+                }else{
+                    if (footprint.wifis.count != 0 && footprint.station.count != 0) {
+                        NSDictionary *parames = [[NSDictionary alloc] init];
+                        parames = [self paramesForWifi:footprint.wifis cellID:footprint.station];
+                        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+                        [fileUpload loadDeviceParameter:parames device:self.device];
+                        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+                            NSLog(@"%@",object);
+                            NSDictionary *objectDic = (NSDictionary *)object;
+                            NSDictionary *location = objectDic[@"location"];
+                            CGFloat lat = [location[@"lat"] floatValue];
+                            CGFloat lng = [location[@"lng"] floatValue];
+                            footprint.lat = location[@"lat"];
+                            footprint.lng = location[@"lng"];
+                            CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(lat,lng);//纬度，经度
+                            [self creatMarkerWithPosition:coords title:[NSString stringWithFormat:@"%ld",(i + 1)]];
+                            [self.locals addObject:footprint];
+                        }];
+                        [fileUpload setFailureBlock:^{
+                            [self creatMarkerWithPosition:CLLocationCoordinate2DMake([footprint.lat floatValue],[footprint.lng floatValue]) title:[NSString stringWithFormat:@"%ld",(i + 1)]];
+                            [self.locals addObject:footprint];
+                        }];
+                    }else{
+                        [self creatMarkerWithPosition:CLLocationCoordinate2DMake([footprint.lat floatValue],[footprint.lng floatValue]) title:[NSString stringWithFormat:@"%ld",(i + 1)]];
+                        [self.locals addObject:footprint];
+                    }
+                }
+                if (self.locals.count == self.footprint.result.count) {
+                    [gApp hideHUD];
+                }
             }
         }
     }];
+    
 }
 
 - (void)creatMarkerWithPosition:(CLLocationCoordinate2D)position title:(NSString *)title{
@@ -122,7 +149,7 @@
     NSInteger index = [self.markets indexOfObject:marker];
     marker.icon = [self addText:[UIImage imageNamed:@"number_red0"] text:marker.title];
 
-    ResultFootprintList *list = self.locals[index];
+    CAPDeviceLocalModel *list = self.locals[index];
 //    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
     [gApp showHUD:@""];
 //    [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
@@ -130,7 +157,7 @@
 //        [self showAddress:placemark footPrintList:list];
 //    }];
     //创建位置
-    CLLocation *location=[[CLLocation alloc]initWithLatitude:list.lat longitude:list.lng];
+    CLLocation *location=[[CLLocation alloc]initWithLatitude:[list.lat floatValue] longitude:[list.lng floatValue]];
     
     CLGeocoder *geocoder=[[CLGeocoder alloc]init];
     
@@ -145,14 +172,14 @@
         CLPlacemark *placemark = placemarks.firstObject;
         NSDictionary *addressDictionary = placemark.addressDictionary;
         NSArray *array = placemark.areasOfInterest;
-        NSString *address = [NSString stringWithFormat:@"%@%@%@%@",addressDictionary[@"City"],addressDictionary[@"SubLocality"],addressDictionary[@"Street"],array.firstObject];
+        NSString *address = [NSString stringWithFormat:@"%@%@%@%@",addressDictionary[@"City"] ? addressDictionary[@"City"] : @"",addressDictionary[@"SubLocality"] ? addressDictionary[@"SubLocality"] : @"",addressDictionary[@"Street"] ? addressDictionary[@"Street"] : @"",array.firstObject ? array.firstObject : @""];
         [self showAddress:address footPrintList:list];
     }];
     
     return YES;
 }
 
-- (void)showAddress:(NSString *)address footPrintList:(ResultFootprintList *)list{
+- (void)showAddress:(NSString *)address footPrintList:(CAPDeviceLocalModel *)list{
     if (!_showAddressView) {
         _showAddressView = [[UIView alloc] initWithFrame:CGRectMake(10, Main_Screen_Height - 80, Main_Screen_Width - 20, 60)];
         _showAddressView.backgroundColor = [UIColor whiteColor];
@@ -180,7 +207,7 @@
     }
     _showAddressLabel.text = address;
     if (list.createdAt) {
-        NSString *time = [NSString dateFormateWithTimeInterval:[list.createdAt integerValue]];
+        NSString *time = [NSString dateFormateWithTimeInterval:list.createdAt];
         NSArray *array = [time componentsSeparatedByString:@" "];
         NSString *hours = array.lastObject;
         _showAddressTimeLabel.text = [NSString stringWithFormat:@"%@",[hours substringWithRange:NSMakeRange(0,5)]];
@@ -226,5 +253,41 @@
     UIImage *newImage=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+#pragma mark  通过cellID和wifis 生成参数
+- (NSDictionary *)paramesForWifi:(NSArray *)wifis cellID:(NSArray *)cellIDs{
+    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
+    if(wifis.count != 0){
+        NSMutableArray *parameArray = [NSMutableArray array];
+        for (Wifis *wifiInfo in wifis){
+            NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+            [parame setObject:wifiInfo.mac forKey:@"macAddress"];
+            [parame setObject:[NSString stringWithFormat:@"%ld",wifiInfo.dBm] forKey:@"signalStrength"];
+            [parame setObject:wifiInfo.channel forKey:@"channel"];
+            [parame setObject:@"0" forKey:@"age"];
+            [parame setObject:@"0" forKey:@"signalToNoiseRatio"];
+            [parameArray addObject:parame];
+        }
+        [parames setObject:parameArray forKey:@"wifiAccessPoints"];
+    }else{
+        [parames setObject:@"" forKey:@"wifiAccessPoints"];
+    }
+    if (cellIDs.count != 0) {
+        NSMutableArray *parameArray = [NSMutableArray array];
+        for (Station *stationInfo in cellIDs) {
+            NSMutableDictionary *parame = [NSMutableDictionary dictionary];
+            [parame setObject:stationInfo.ta ? stationInfo.ta : @"0" forKey:@"timingAdvance"];
+            [parame setObject:stationInfo.mcc ? stationInfo.mcc : @"" forKey:@"mobileCountryCode"];
+            [parame setObject:stationInfo.mnc ? stationInfo.mnc : @"" forKey:@"mobileNetworkCode"];
+            [parame setObject:stationInfo.ac ? stationInfo.ac : @"" forKey:@"locationAreaCode"];
+            [parame setObject:stationInfo.no ? stationInfo.no : @"" forKey:@"cellId"];
+            [parame setObject:stationInfo.ss ? stationInfo.ss : @"" forKey:@"signalStrength"];
+            [parameArray addObject:parame];
+        }
+        [parames setValue:parameArray forKey:@"cellTowers"];
+    }else{
+        [parames setObject:@"" forKey:@"cellTowers"];
+    }
+    return parames;
 }
 @end

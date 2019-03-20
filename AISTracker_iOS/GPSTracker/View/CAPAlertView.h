@@ -27,7 +27,7 @@ typedef void (^albumBlock)(void);
 + (void)initSOSAlertViewWithContent:(MQTTInfo *)contentInfo ocloseBlock:(closeBlock)closeBlock okBlock:(okMQTTInfoBlock)okMQTTInfoBlock;
 + (void)initTakingPhotoBlock:(takingPhotoBlock)takingBlock albumBlock:(albumBlock)albumBlock closeBlock:(closeBlock)closeBlock;
 + (void)initBindAlertViewWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
-+ (void)initDeviceVerWithContent:(NSString *)content closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
++ (void)initDeviceVerWithContent:(NSString *)content buttonTitle:(NSString *)buttonTitle closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
 + (void)initDeviceFenceAlertView:(CAPDevice *)deviceInfo content:(NSString *)content closeBlock:(closeBlock)closeBlock;
 @end
 

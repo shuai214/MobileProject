@@ -20,17 +20,21 @@
 #import <UserNotifications/UserNotifications.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
+#import <Firebase/Firebase.h>
 #import "IQKeyboardManager.h"
 #import <GooglePlaces/GooglePlaces.h>
 #import "CAPSocialService.h"
 #import <TrueIDFramework/TrueIDFramework-Swift.h>
 #import "FYLoginViewController.h"
 #import "CAPNavigationController.h"
+#import "CAPMessageService.h"
 @import GoogleMaps;
 
 AppDelegate* gApp = nil;
 
-@interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate> {
+NSString *const kGCMMessageIDKey = @"398365024525";
+
+@interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate,FIRMessagingDelegate,UNUserNotificationCenterDelegate> {
     MBProgressHUD *_textHud;
     MBProgressHUD *_progressHud;
 }
@@ -82,6 +86,30 @@ AppDelegate* gApp = nil;
         [self redirectNSLog];
     }
     self.logFilePath = nil;
+    //开启谷歌推送
+    [FIRApp configure];
+    [FIRMessaging messaging].delegate = self;
+    if ([UNUserNotificationCenter class] != nil) {
+        // iOS 10 or later
+        // For iOS 10 display notification (sent via APNS)
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert |
+        UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter]
+         requestAuthorizationWithOptions:authOptions
+         completionHandler:^(BOOL granted, NSError * _Nullable error) {
+             // ...
+         }];
+    } else {
+        // iOS 10 notifications aren't available; fall back to iOS 8-9 notifications.
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    
+    [application registerForRemoteNotifications];
     
     DLog(@"== didFinishLaunchingWithOptions ==");
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
@@ -100,8 +128,8 @@ AppDelegate* gApp = nil;
     DLog(@"create HUD result: %D", hud);
     
     [Bugly startWithAppId:(gCfg.isBuild ? @"7c5f7a10e5" : @"9ebc08e2a2")];
-    [GMSServices provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
-    [GMSPlacesClient provideAPIKey:@"AIzaSyABHJ0ktbPvD8-2YHQuANVOFue20fd8QCQ"];
+    [GMSServices provideAPIKey:@"AIzaSyD70_KIiNtToPgyXXCv3QriAdzC7xT-els"];
+    [GMSPlacesClient provideAPIKey:@"AIzaSyD70_KIiNtToPgyXXCv3QriAdzC7xT-els"];
     //    [GMSServices provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
     //    [GMSPlacesClient provideAPIKey:@"AIzaSyCM0E9o_s8Mf7Ch8lf1xknD0IGfoohIIkk"];
     
@@ -236,27 +264,7 @@ AppDelegate* gApp = nil;
     }
 }
 
-#pragma mark - UNUserNotificationCenterDelegate
--(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    NSLog(@"[AppDelegate didReceiveLocalNotification:]");
-}
 
-//在展示通知前进行处理，即有机会在展示通知前再修改通知内容。
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    //1. 处理通知
-    NSLog(@"Handle local notification");
-    //2. 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式
-    completionHandler(UNNotificationPresentationOptionAlert);
-}
-
-void UncaughtExceptionHandler(NSException *exception) {
-    NSLog(@"------  UncaughtExceptionHandler  ------");
-    NSArray *callStack = [exception callStackSymbols];
-    NSString *reason = [exception reason];
-    NSString *name = [exception name];
-    NSString *content = [NSString stringWithFormat:@"========异常错误报告========\nName: %@\nReason: %@\nCallStackSymbols:\n%@",name, reason, [callStack componentsJoinedByString:@"\n"]];
-    NSLog(@"ERROR: \n%@", content);
-}
 
 #pragma mark - Core Data stack
 
@@ -469,84 +477,89 @@ void UncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    //    BOOL ok = NO;
-    //    if ([url.scheme hasPrefix:@"wx"]) {
-    //        ok = [WXApi handleOpenURL:url delegate:self];
-    //    }
-    //    else if ([url.scheme hasPrefix:@"tencent"]) {
-    //        ok = [TencentOAuth HandleOpenURL:url];
-    //    }
-    //    else if ([url.scheme hasPrefix:@"wb"]) {
-    //        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-    //    }
+   
     return  [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url sourceApplication:sourceApplication];
-//    return [WXAUTH handleOpenURL:url];
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    
     return [[TrueIdPlatformAuth shareInstance] handleOpenURLWithUrl:url options:options];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    //    BOOL ok = NO;
-    //
-    //    if ([url.scheme hasPrefix:@"wx"]) {
-    //        ok = [WXApi handleOpenURL:url delegate:self];
-    //    }
-    //    else if ([url.scheme hasPrefix:@"tencent"]) {
-    //        ok = [TencentOAuth HandleOpenURL:url];
-    //    }
-    //    else if ([url.scheme hasPrefix:@"wb"]) {
-    //        //ok = [WeiboSDK handleOpenURL:url delegate:self];
-    //    }
-    //
     return [WXAUTH handleOpenURL:url];
 }
 
-- (void)logByteArray:(const uint8_t *)buf length:(NSUInteger)length {
-    for(int i=0; i<(length-length%8); i+=8) {
-        NSLog(@"L%d | %d, %d, %d, %d, %d, %d, %d, %d", i, buf[i], buf[i+1], buf[i+2], buf[i+3], buf[i+4], buf[i+5], buf[i+6], buf[i+7]);
-    }
-    for(int i=0; i<length%8; i++) {
-        NSLog(@"%d", buf[length-length%8+i]);
-    }
+#pragma mark fireBase
+- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage{
+    
 }
 
-//#pragma mark - WXApiDelegate
-///*! @brief 接收并处理来自微信终端程序的事件消息
-// *
-// * 接收并处理来自微信终端程序的事件消息，期间微信界面会切换到第三方应用程序。
-// * WXApiDelegate 会在handleOpenURL:delegate:中使用并触发。
-// */
-//
-///*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
-// *
-// * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
-// * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
-// * @param req 具体请求内容，是自动释放的
-// */
-//- (void)onReq:(BaseReq*)req {
-//    DLog(@"%s", __FUNCTION__);
-//}
-//
-///*! @brief 发送一个sendReq后，收到微信的回应
-// *
-// * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
-// * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
-// * @param resp具体的回应内容，是自动释放的
-// */
-//- (void)onResp:(BaseResp*)resp {
-//    DLog(@"%s", __FUNCTION__);
-//    if ([resp isKindOfClass:[SendAuthResp class]]) {
-//        SendAuthResp* res = (SendAuthResp*)resp;
-//        if (res.code) {
-//            NSLog(@"%@", kNotificationWechatLogin);
-//            [CAPNotifications notify:kNotificationWechatLogin object:res.code];
-//            DLog(@"[*]Wechat Login with code: %@", res.code);
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"3123123"
-//                                                                object:res.code
-//                                                              userInfo:nil];
-//
+- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken{
+//    [[FIRInstanceID instanceID] instanceIDWithHandler:^(FIRInstanceIDResult * _Nullable result,
+//                                                        NSError * _Nullable error) {
+//        if (error != nil) {
+//            NSLog(@"Error fetching remote instance ID: %@", error);
+//        } else {
+//            NSLog(@"Remote instance ID token: %@", result.token);
+//            NSString* message =
+//            [NSString stringWithFormat:@"Remote InstanceID token: %@", result.token];
 //        }
-//    }
-//}
+//    }];
+    NSLog(@"FCM registration token: %@", fcmToken);
+    // Notify about received token.
+    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:
+     @"FCMToken" object:nil userInfo:dataDict];
+    CAPMessageService *messageService = [[CAPMessageService alloc] init];
+    if (fcmToken != nil) {
+        [messageService updatePushToken:fcmToken reply:^(id response) {
+            NSLog(@"%@",response);
+        }];
+    }
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
+}
+#pragma mark - UNUserNotificationCenterDelegate
+
+// Handle notification messages after display notification is tapped by the user.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void(^)(void))completionHandler {
+    NSDictionary *userInfo = response.notification.request.content.userInfo;
+    if (userInfo[kGCMMessageIDKey]) {
+        NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+    }
+    
+    // Print full message.
+    NSLog(@"%@", userInfo);
+    
+    completionHandler();
+}
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"[AppDelegate didReceiveLocalNotification:]");
+}
+
+//在展示通知前进行处理，即有机会在展示通知前再修改通知内容。
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    //1. 处理通知
+    NSLog(@"Handle local notification");
+    //2. 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式
+    completionHandler(UNNotificationPresentationOptionAlert);
+}
+
+void UncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"------  UncaughtExceptionHandler  ------");
+    NSArray *callStack = [exception callStackSymbols];
+    NSString *reason = [exception reason];
+    NSString *name = [exception name];
+    NSString *content = [NSString stringWithFormat:@"========异常错误报告========\nName: %@\nReason: %@\nCallStackSymbols:\n%@",name, reason, [callStack componentsJoinedByString:@"\n"]];
+    NSLog(@"ERROR: \n%@", content);
+}
+/**
+ line:
+ Channel ID
+ 1611889003
+ Channel secret
+ 821373e8154311eceb779df94d53075e
+ */
 @end

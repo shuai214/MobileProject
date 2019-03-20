@@ -9,5 +9,5 @@
 #import "CAPBaseService.h"
 
 @interface CAPMessageService : CAPBaseService
-
+- (void)updatePushToken:(NSString *)token reply:(CAPServiceReply)reply;
 @end

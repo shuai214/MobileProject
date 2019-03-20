@@ -33,7 +33,7 @@
         _fenceImageView = [UIImageView new];
         
         _numLabel = [UILabel new];
-        _numLabel.textColor = [UIColor blackColor];
+        _numLabel.textColor = [UIColor whiteColor];
         _numLabel.font = [UIFont boldSystemFontOfSize:13.0f];
         _numLabel.textAlignment = NSTextAlignmentCenter;
         _numLabel.numberOfLines = 0;
@@ -87,6 +87,7 @@
     _fenceName.text = _googlePlace.vicinity;
     _fenceDetail.text = _googlePlace.name;
     _numLabel.text = [NSString stringWithFormat:@"%ld",(long)_googlePlace.index];
+    
     [self setupAutoHeightWithBottomView:_fenceDetail bottomMargin:5];
 
 }

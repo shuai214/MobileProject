@@ -30,11 +30,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GPSTracker/Network/CAPFileUpload.m"
-            timestampString = "574072151.333752"
+            timestampString = "574754846.5284261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "-putProfile:"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,11 +46,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GPSTracker/Network/CAPFileUpload.m"
-            timestampString = "574072151.3338211"
+            timestampString = "574754846.5285"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-putProfile:"
             landmarkType = "7">
             <Locations>
@@ -62,11 +62,11 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "574072151.5804811"
+                  timestampString = "574754787.176852"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
                   offsetFromSymbolStart = "876">
                </Location>
                <Location
@@ -77,26 +77,26 @@
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "574072151.58227"
+                  timestampString = "574754787.178758"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
                   offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.307"
+                  symbolName = "__destroy_helper_block_.327"
                   moduleName = "GPSTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Network/CAPFileUpload.m"
-                  timestampString = "574072151.583979"
+                  timestampString = "574754787.180517"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
@@ -109,11 +109,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GPSTracker/Network/CAPFileUpload.m"
-            timestampString = "574072151.333871"
+            timestampString = "574754846.528566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-putDeviceProfile:dic:"
             landmarkType = "7">
          </BreakpointContent>
@@ -125,11 +125,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GPSTracker/Network/CAPFileUpload.m"
-            timestampString = "574072151.333917"
+            timestampString = "574754846.528616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "-putDeviceProfile:dic:"
             landmarkType = "7">
          </BreakpointContent>
@@ -141,11 +141,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GPSTracker/Network/CAPFileUpload.m"
-            timestampString = "574072151.333962"
+            timestampString = "574754846.5286649"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-putDeviceProfile:dic:"
             landmarkType = "7">
          </BreakpointContent>
@@ -161,19 +161,21 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Service/Device/CAPDeviceService.m"
-            timestampString = "573884204.698514"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-bindDevice:param:reply:"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -182,13 +184,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GPSTracker/Controller/CAPPhotographViewController.m"
-            timestampString = "573900243.402374"
+            filePath = "GPSTracker/MQTT/MQTTCenter.m"
+            timestampString = "574745357.974828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-onCameraButtonClicked:"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "-handleInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

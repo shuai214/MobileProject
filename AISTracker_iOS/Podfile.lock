@@ -18,6 +18,25 @@ PODS:
   - Bugly (2.4.8)
   - CRToast (0.0.9)
   - DateTools (1.7.0)
+  - Firebase/CoreOnly (5.15.0):
+    - FirebaseCore (= 5.1.10)
+  - Firebase/Messaging (5.15.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.2.2)
+  - FirebaseAnalyticsInterop (1.1.0)
+  - FirebaseCore (5.1.10):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.3.0):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMessaging (3.2.2):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -28,8 +47,16 @@ PODS:
     - GooglePlaces (= 2.7.0)
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
+  - GoogleUtilities/Environment (5.3.6)
+  - GoogleUtilities/Logger (5.3.6):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Reachability (5.3.6):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.6):
+    - GoogleUtilities/Logger
   - IQKeyboardManager (6.0.3)
   - JSONModel (1.7.0)
+  - LineSDK (5.0.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.15.1)
@@ -42,6 +69,7 @@ PODS:
   - MQTTClient/Manager (0.14.0):
     - MQTTClient/Min
   - MQTTClient/Min (0.14.0)
+  - Protobuf (3.6.1)
   - SCLAlertView-Objective-C (1.1.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -54,11 +82,13 @@ DEPENDENCIES:
   - Bugly (~> 2.4.8)
   - CRToast (~> 0.0.7)
   - DateTools (~> 1.7.0)
+  - Firebase/Messaging
   - GoogleMaps (~> 2.7.0)
   - GooglePlacePicker (~> 2.7.0)
   - GooglePlaces (~> 2.7.0)
   - IQKeyboardManager
   - JSONModel (~> 1.7.0)
+  - LineSDK (~> 5.0.0)
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJExtension
@@ -75,16 +105,24 @@ SPEC REPOS:
     - Bugly
     - CRToast
     - DateTools
+    - Firebase
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - GoogleUtilities
     - IQKeyboardManager
     - JSONModel
+    - LineSDK
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
     - MQTTClient
+    - Protobuf
     - SCLAlertView-Objective-C
     - SDWebImage
     - YWAlertView
@@ -95,20 +133,28 @@ SPEC CHECKSUMS:
   Bugly: da3c02408c14838d498429320545a8e439392978
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
+  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
+  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
+  FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
+  FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  LineSDK: b086f6943d5bb2c05f9bc829323ad574dbedf284
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MQTTClient: eea2eaaa6ddef852a1019a4dda091e22ad928b58
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SCLAlertView-Objective-C: 917836fb2349afa58edc43d592d22d21d46bb2a4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YWAlertView: 79f125a2a9fe4f5c8d314626233248875e89d233
 
-PODFILE CHECKSUM: 4ba34e279686694f08e5ab61dde470229b3ed639
+PODFILE CHECKSUM: 7300411ac3c05deeb5ae5fd85a4866013d6a4391
 
 COCOAPODS: 1.5.3

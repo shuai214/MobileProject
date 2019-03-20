@@ -187,6 +187,11 @@
                 [deviceService updateDevice:device reply:^(id response) {
                     
                 }];
+            }else{
+                device.sos = sos;
+                [deviceService updateDevice:device reply:^(id response) {
+                    
+                }];
             }
         }
        

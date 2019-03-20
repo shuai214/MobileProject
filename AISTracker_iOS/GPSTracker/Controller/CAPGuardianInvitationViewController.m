@@ -49,9 +49,28 @@
 }
 
 - (IBAction)onOkButtonClicked:(id)sender {
-    
+    NSLog(@"111");
+    [self sharePicture];
 }
+//
+- (BOOL)sharePicture{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    UIImage *image = self.qrImageView.image;
+    [pasteboard setData:UIImageJPEGRepresentation(image, 0.9) forPasteboardType:@"public.jpeg"];
+    NSString *contentType =@"image";
 
+    NSString *contentKey = [pasteboard.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    NSString *urlString = [NSString stringWithFormat:@"line://msg/%@/%@",contentType, contentKey];
+    NSURL *url = [NSURL URLWithString:urlString];
+
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        return [[UIApplication sharedApplication] openURL:url];
+    }else{
+        return NO;
+    }
+
+}
 /*
  固件调整多一些。
  1.绑定设备 -- 设置名字，号码  绑定的时候：先不做绑定，先走下一屏幕的名字，号码，再去绑定用户。

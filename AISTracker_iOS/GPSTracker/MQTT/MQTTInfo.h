@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, MQTTInfoType) {
 
 @property (nonatomic, copy) NSString *ver;
 @property (nonatomic, copy) NSString *ID;
-@property (nonatomic, copy) NSString *IMEI;
+@property (nonatomic, copy) NSString *imei;
 @property (nonatomic, assign) NSInteger upload;
 @property (nonatomic, copy) NSString *server;
 @property (nonatomic, assign) NSInteger port;

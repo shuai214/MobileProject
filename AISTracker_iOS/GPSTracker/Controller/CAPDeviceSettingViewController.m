@@ -15,8 +15,10 @@
 #import "CAPUserSettingViewController.h"
 #import "CAPFileUpload.h"
 #import "CAPUser.h"
+#import "CAPDeviceCommand.h"
 @interface CAPDeviceSettingViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *deviceName;
+@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
 @property (weak, nonatomic) IBOutlet CAPDeviceNumber *deviceNumber;
 @property (weak, nonatomic) IBOutlet UIImageView *deviceImageView;
 @property (copy, nonatomic) NSString *avatarBaseUrl;
@@ -48,6 +50,13 @@
     self.deviceImageView.layer.masksToBounds = YES;
     UITapGestureRecognizer *imageViewTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewTouchUpInside)];
     [self.deviceImageView addGestureRecognizer:imageViewTapGestureRecognizer];
+    if (self.deviceStr) {
+        self.deviceNumber.hidden = YES;
+        self.alertLabel.hidden = YES;
+    }else{
+        self.deviceNumber.hidden = NO;
+        self.alertLabel.hidden = NO;
+    }
 }
 -(void)imageViewTouchUpInside{
     UIImagePickerController *imagePickerVc = [[UIImagePickerController alloc] init];
@@ -123,56 +132,62 @@
         [CAPToast toastError:CAPLocalizedString(@"device_name_hint")];
         return;
     }
-    if ([CAPValidators validPhoneNumber:self.deviceNumber.telField.text]) {
-        self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text];
-    }else{
-        [CAPToast toastError:CAPLocalizedString(@"phone_number_error")];
-        return;
+    if (self.deviceStr == nil) {
+        if ([CAPValidators validPhoneNumber:self.deviceNumber.telField.text]) {
+            self.device.mobile = [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text];
+        }else{
+            [CAPToast toastError:CAPLocalizedString(@"phone_number_error")];
+            return;
+        }
     }
     if (kStringIsEmpty(self.deviceStr)) {
-//        [gApp showHUD:CAPLocalizedString(@"loading")];
-//        [deviceService updateDevice:self.device reply:^(CAPHttpResponse *response) {
-//            NSDictionary *data = response.data;
-//            if ([[data objectForKey:@"code"] integerValue] == 200) {
-                NSString *userSettingStr = [CAPUserDefaults objectForKey:@"userSetting"];
-                if (userSettingStr) {
-                    [gApp showHUD:CAPLocalizedString(@"loading")];
-                    CAPDeviceService *service = [[CAPDeviceService alloc] init];
-                    [service addDevice:self.device reply:^(CAPHttpResponse *response) {
-                        [gApp hideHUD];
-                        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-                            CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
-                            [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
-                            [self performSegueWithIdentifier:@"Main" sender:nil];
-                        }
-                    }];
-                    return ;
+        NSString *userSettingStr = [CAPUserDefaults objectForKey:@"userSetting"];
+        if (userSettingStr) {
+            [gApp showHUD:CAPLocalizedString(@"loading")];
+            CAPDeviceService *service = [[CAPDeviceService alloc] init];
+            [service addDevice:self.device reply:^(CAPHttpResponse *response) {
+                [gApp hideHUD];
+                if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                    CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+                    [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+                    [self performSegueWithIdentifier:@"Main" sender:nil];
                 }
-//                [gApp hideHUD];
-//                [CAPNotifications notify:kNotificationDeviceCountChange object:self.device];
-                CAPUserSettingViewController *userSetting = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"UserSettingViewController"];
-                userSetting.device = self.device;
-                userSetting.device.isOwner = @"owner";
-                [self.navigationController pushViewController:userSetting animated:YES];
-//            }else{
-//                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
-//                    [gApp hideHUD];
-//                }];
-//            }
-//        }];
-        
+            }];
+            return ;
+        }else if (capUser){
+            [gApp showHUD:CAPLocalizedString(@"loading")];
+            CAPDeviceService *service = [[CAPDeviceService alloc] init];
+            [service addDevice:self.device reply:^(CAPHttpResponse *response) {
+                [gApp hideHUD];
+                if ([[response.data objectForKey:@"code"] integerValue] == 200) {
+                    CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
+                    CAPDevice *device = self.device;
+                    CAPDeviceSetting *setting = [[CAPDeviceSetting alloc] init];
+                    setting.reportFrequency =300;
+                    device.setting = setting;
+                    [deviceService updateSetting:device reply:^(CAPHttpResponse *response) {
+                        
+                    }];
+                    [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];
+                    [self performSegueWithIdentifier:@"Main" sender:nil];
+                }
+            }];
+            return ;
+        }
+        CAPUserSettingViewController *userSetting = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"UserSettingViewController"];
+        userSetting.device = self.device;
+        userSetting.device.isOwner = @"owner";
+        [self.navigationController pushViewController:userSetting animated:YES];
     }else{
         if (self.deviceStr) {
             [gApp showHUD:CAPLocalizedString(@"loading")];
+             CAPUser *capUser = (CAPUser *)[NSKeyedUnarchiver unarchiveObjectWithData:[CAPUserDefaults objectForKey:@"CAP_User"]];
             NSDictionary *param = @{
                                     @"name":self.deviceName.text ? self.deviceName.text: @"",
-                                    @"sos":self.deviceNumber.telField.text ? [NSString stringWithFormat:@"%@ %@",self.deviceNumber.telAreaCodeLabel.text,self.deviceNumber.telField.text]:@"",
+                                    @"sos":capUser ? capUser.info.mobile : @"+86 1323333333",
                                     @"avatarPath":self.avatarPath ? self.avatarPath: @"",
                                     @"avatarBaseUrl":self.avatarBaseUrl ? self.avatarPath: @""
                                     };
-//            NSString *strJson= [self dictionaryToJson:param];
-//            NSMutableDictionary *json = [NSMutableDictionary dictionary];
-//            [json setObject:strJson forKey:@"json"];
             [deviceService bindDevice:self.deviceStr param:param reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {

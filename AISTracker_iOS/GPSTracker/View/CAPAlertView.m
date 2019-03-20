@@ -40,6 +40,7 @@
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow()
+    .LeeClickBackgroundClose(YES)
     .LeeCornerRadius(15);
 }
 + (void)initCloseAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock alertType:(AlertType)alertType{
@@ -194,8 +195,8 @@
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow().LeeCornerRadius(15);
 }
-+ (void)initDeviceVerWithContent:(NSString *)content closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
-    CAPDeviceVerAlertView *customView = [[CAPDeviceVerAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content];
++ (void)initDeviceVerWithContent:(NSString *)content buttonTitle:(NSString *)buttonTitle closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock{
+    CAPDeviceVerAlertView *customView = [[CAPDeviceVerAlertView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:content buttonTitle:buttonTitle];
     
     [customView setCloseBlock:^{
         [LEEAlert closeWithCompletionBlock:^{
@@ -215,7 +216,9 @@
     .LeeCustomView(customView)
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
-    .LeeShow().LeeCornerRadius(15);
+    .LeeShow()
+    .LeeCornerRadius(15)
+    .LeeClickBackgroundClose(YES);
 }
 + (void)initDeviceFenceAlertView:(CAPDevice *)deviceInfo content:(NSString *)content closeBlock:(closeBlock)closeBlock{
     CAPFenceAlertView *view = [[CAPFenceAlertView alloc] init];

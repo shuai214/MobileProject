@@ -65,12 +65,14 @@
     CAPCoreData *coreData = [CAPCoreData coreData];
     [coreData creatResource:@"GPSTracker"];
     NSArray *array = [coreData readData:@"DeviceMessageInfo"];
+    NSMutableArray *arrayMessage = [NSMutableArray array];
     for (DeviceMessageInfo *messageInfo in array) {
         // 根据模型数据创建frame模型
-       CAPDeviceMessage *deviceMessage = [[CAPDeviceMessage alloc] init];
+        CAPDeviceMessage *deviceMessage = [[CAPDeviceMessage alloc] init];
         deviceMessage.messageInfo = messageInfo;
-        [self.listData addObject:deviceMessage];
+        [arrayMessage addObject:deviceMessage];
     }
+    self.listData = (NSMutableArray *)[[arrayMessage reverseObjectEnumerator] allObjects];
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
 

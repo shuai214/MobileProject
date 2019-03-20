@@ -309,6 +309,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="alertLabel" destination="Vm6-6f-tCe" id="n8B-D2-qNf"/>
                         <outlet property="deviceImageView" destination="sP0-8P-fsH" id="SIe-Qb-64T"/>
                         <outlet property="deviceName" destination="Q3X-xq-dDV" id="eZF-oe-AAp"/>
                         <outlet property="deviceNumber" destination="gwY-92-Qkp" id="TdX-F1-D7R"/>
@@ -436,6 +437,6 @@
         <image name="user_default_avatar" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gS4-cj-YEy"/>
+        <segue reference="d57-ZL-dHn"/>
     </inferredMetricsTieBreakers>
 </document>
