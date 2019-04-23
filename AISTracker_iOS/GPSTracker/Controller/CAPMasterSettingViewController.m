@@ -29,37 +29,40 @@
 @property (copy, nonatomic)NSString *time;
 @property (copy, nonatomic)NSString *deviceVer;
 @property (copy, nonatomic)NSString *IMEI;
+@property (strong, nonatomic) MQTTInfo *mqttInfo;
+@property (assign, nonatomic) BOOL isUnbind;
 
 @end
 
 @implementation CAPMasterSettingViewController
-//-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
-//{
-//    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
-//    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-//    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return scaledImage;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.time = @"";
+    self.isUnbind = NO;
     if (self.device.setting.reportFrequency >= 0) {
         
         if (self.device.setting.reportFrequency / 60 < 60) {
-            self.time = [NSString stringWithFormat:@"%d%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+            self.time = [NSString stringWithFormat:@"%@%ld%@",CAPLocalizedString(@"any"),self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
         }
         if (self.device.setting.reportFrequency / 60 > 60) {
-            self.time = [NSString stringWithFormat:@"%d%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+            self.time = [NSString stringWithFormat:@"%@%ld%@",CAPLocalizedString(@"any"),self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
         }
         if (self.device.setting.reportFrequency == 0) {
             self.time = CAPLocalizedString(@"real_time");
         }
     }
     self.title = CAPLocalizedString(@"profile");
-    self.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), CAPLocalizedString(@"setting_device_imei"),
-                   CAPLocalizedString(@"setting_device_number"), CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"unbind"),CAPLocalizedString(@"firmware_version")];
+    self.titles = @[
+                    CAPLocalizedString(@"text_device_name_title"),
+                    CAPLocalizedString(@"setting_device_id"),
+                    CAPLocalizedString(@"setting_device_imei"),
+                    CAPLocalizedString(@"setting_device_number"),
+                    CAPLocalizedString(@"guardian"),
+                    CAPLocalizedString(@"sos_number"),
+                    CAPLocalizedString(@"update_frequency"),
+                    CAPLocalizedString(@"untether"),
+                    CAPLocalizedString(@"firmware_version")
+                    ];
     self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", @"", self.device?self.device.mobile:@"", @"",@"",self.time,@"",@""];
     
     self.tableView.dataSource = self;
@@ -81,7 +84,7 @@
     [self refreshLocalizedString];
     [self checkDevice];
     [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
-    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
+    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationCHECKFIRMWAREName object:nil];
     [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
 }
 - (void)deviceOnline:(NSNotification *)notifi{
@@ -103,22 +106,6 @@
     } closeBlock:^{
         
     }];
-}
-- (void)loadDeviceInfo{
-    [gApp showHUD:@"loading"];
-
-    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [deviceService getDevice:self.device reply:^(id response) {
-
-    }];
-    //    [deviceService getDeviceBindinfo:self.device reply:^(CAPHttpResponse *response) {
-    //        self.deviceBindInfo = [CAPDeviceBindInfo mj_objectWithKeyValues:response.data];
-    //        if (self.deviceBindInfo.code == 200) {
-    //            self.details = @[self.deviceBindInfo.result.bindinfo.name? self.deviceBindInfo.result.bindinfo.name:@"", self.deviceBindInfo.result.deviceID?self.deviceBindInfo.result.deviceID:@"", @"XXXX", self.deviceBindInfo.result.mobile?self.deviceBindInfo.result.mobile:@"", @"",@"",@"",@"",@""];
-    //            [self.tableView reloadData];
-    //            [gApp hideHUD];
-    //        }
-    //    }];
 }
 
 - (void)refreshLocalizedString {
@@ -157,7 +144,6 @@
 
     switch (indexPath.row) {
         case 0:
-//            [self performSegueWithIdentifier:@"edit.name.segue" sender:nil];
         {UIStoryboard *story = [UIStoryboard storyboardWithName:@"EditName" bundle:nil];
             CAPEditNameViewController *EditNameVC = [story instantiateViewControllerWithIdentifier:@"EditNameViewController"];
             EditNameVC.isUser = NO;
@@ -187,8 +173,17 @@
                 CAPWeakSelf(self);
                 [editName setUpdateDeviceSuccessBlock:^(CAPDevice * _Nonnull device) {
                     weakself.device = device;
-                    weakself.titles = @[CAPLocalizedString(@"name"), CAPLocalizedString(@"setting_device_id"), @"Device IMEI",
-                                        @"Device Number", CAPLocalizedString(@"guardian_s_qualification"),CAPLocalizedString(@"sos_number"),CAPLocalizedString(@"update_frequency"),CAPLocalizedString(@"no_tethering"),CAPLocalizedString(@"firmware_version")];
+                    weakself.titles = @[
+                                        CAPLocalizedString(@"text_device_name_title"),
+                                        CAPLocalizedString(@"setting_device_id"),
+                                        CAPLocalizedString(@"setting_device_imei"),
+                                        CAPLocalizedString(@"setting_device_number"),
+                                        CAPLocalizedString(@"guardian"),
+                                        CAPLocalizedString(@"sos_number"),
+                                        CAPLocalizedString(@"update_frequency"),
+                                        CAPLocalizedString(@"untether"),
+                                        CAPLocalizedString(@"firmware_version")
+                                        ];
                     weakself.details = @[device ? device.name:@"", device ? device.deviceID:@"", self.IMEI ? self.IMEI : @"" , device ? device.mobile:@"", @"",@"",self.time,@"",self.deviceVer ? self.deviceVer : @""];
                     [weakself checkDevice];
                     [weakself.tableView reloadData];
@@ -235,26 +230,17 @@
             break;
         case 7:
         {
-            [CAPAlertView initAlertWithContent:CAPLocalizedString(@"confirm_delete_device") title:@"" closeBlock:^{
-                
-            } okBlock:^{
-                [gApp showHUD:CAPLocalizedString(@"loading")];
-                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-                [deviceService deleteDevice:self.device reply:^(CAPHttpResponse *response) {
-                    NSDictionary *data = response.data;
-                    if ([[data objectForKey:@"code"] integerValue] == 200) {
-                        [gApp hideHUD];
-                        [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
-                        [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }else{
-                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
-                            
-                        }];
-                    }
-                    
-                }];
-            } alertType:AlertTypeCustom];
+            self.isUnbind = YES;
+            [capgApp showHUD:@"loading"];
+            [self checkDevice];
+            //GCD延迟
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (!self.mqttInfo) {
+                    [capgApp hideHUD];
+                    self.isUnbind = NO;
+                    [capgApp showNotifyInfo:CAPLocalizedString(@"delete_device_error") backGroundColor:[CAPColors gray3]];
+                }
+            });
         }
             break;
         case 8:{
@@ -262,14 +248,17 @@
                 [CAPToast toastWarning:CAPLocalizedString(@"wait_response_from_device")];
                 [self checkDevice];
             }else{
-                [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") buttonTitle:CAPLocalizedString(@"upgrade") closeBlock:^{
-                    
-                } okBlock:^{
-                    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-                    [deviceService deviceSendCommand:self.device.deviceID cmd:@"CHECKFIRMWARE" param:nil reply:^(id response) {
-                        NSLog(@"%@",response);
-                    }];
+                [capgApp showHUD:CAPLocalizedString(@"text_check_firmware")];
+                CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+                [deviceService deviceSendCommand:self.device.deviceID cmd:@"CHECKFIRMWARE" param:nil reply:^(id response) {
+                    NSLog(@"%@",response);
                 }];
+//                [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"confirm_upgrade") buttonTitle:CAPLocalizedString(@"upgrade") closeBlock:^{
+//
+//                } okBlock:^{
+//                    //UPDATEFIRMWARE
+//
+//                }];
             }
         }
             break;
@@ -305,7 +294,7 @@
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService updateSetting:self.device reply:^(id response) {
                 NSLog(@"%@",response);
-                [gApp hideHUD];
+                [capgApp hideHUD];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
             }];
         }
@@ -317,29 +306,72 @@
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService deviceSendCommand:self.device.deviceID cmd:@"VERNO" param:nil reply:^(id response) {
         NSLog(@"%@",response);
+        self.mqttInfo = nil;
     }];
 }
 - (void)getDeviceVerno:(NSNotification *)notifi{
-    MQTTInfo *info = notifi.object;
-    NSLog(@"%@",info);
-    self.deviceVer = info.ver;
-    if (info.imei) {
-        self.IMEI = info.imei;
+    self.mqttInfo = notifi.object;
+    NSLog(@"%@",self.mqttInfo);
+    [capgApp hideHUD];
+    if (self.isUnbind == YES) {
+        [CAPAlertView initAlertWithContent:CAPLocalizedString(@"confirm_delete_device") title:@"" closeBlock:^{
+            
+        } okBlock:^{
+            [capgApp showHUD:CAPLocalizedString(@"loading")];
+            CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+            [deviceService deleteDevice:self.device reply:^(CAPHttpResponse *response) {
+                NSDictionary *data = response.data;
+                if ([[data objectForKey:@"code"] integerValue] == 200) {
+                    [capgApp hideHUD];
+                    [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
+                    [CAPUserDefaults removeObjectForKey:@"userSetting"];//setObject:@"YES" forKey:@"userSetting"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else{
+                    [capgApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
+                        
+                    }];
+                }
+                
+            }];
+        } alertType:AlertTypeCustom];
+    }else{
+        self.isUnbind = NO;
+    }
+    self.deviceVer = self.mqttInfo.ver;
+    if (self.mqttInfo.imei) {
+        self.IMEI = self.mqttInfo.imei;
     }else{
         self.IMEI = @"";
     }
     self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"",  self.IMEI ? self.IMEI : @"", self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer ? self.deviceVer : @""];
-    if (info.batlevel >= 0) {
-        [self.batteryView reloadBattery:info.batlevel];
+    if (self.mqttInfo.batlevel > 0) {
+        [self.batteryView reloadBattery:self.mqttInfo.batlevel];
     }
     [self.tableView reloadData];
 }
 - (void)updateDeviceVerno:(NSNotification *)notifi{
-    MQTTInfo *info = notifi.object;
-    NSLog(@"%@",info);
-    self.deviceVer = info.ver;
-    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", self.IMEI, self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
-    [self.tableView reloadData];
+    self.mqttInfo = notifi.object;
+    [capgApp hideHUD];
+    NSLog(@"%@",self.mqttInfo);
+    if (![self.mqttInfo.ver isEqualToString:self.deviceVer]) {
+        [CAPAlertView initDeviceVerWithContent:CAPLocalizedString(@"text_update_firmware") buttonTitle:CAPLocalizedString(@"upgrade") closeBlock:^{
+            
+        } okBlock:^{
+            //UPDATEFIRMWARE
+            CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
+            [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPDATEFIRMWARE" param:nil reply:^(id response) {
+                NSLog(@"%@",response);
+            }];
+        }];
+
+    }else{
+        [CAPAlertView initAlertMessage:CAPLocalizedString(@"It_is_the_latest_version") closeBlock:^{
+            
+        }];
+    }
+//    self.deviceVer = info.ver;
+//    self.details = @[self.device? self.device.name:@"", self.device?self.device.deviceID:@"", self.IMEI, self.device?self.device.mobile:@"", @"",@"",self.time,@"",self.deviceVer];
+//    [self.tableView reloadData];
 }
 #pragma mark 调整图片分辨率/尺寸（等比例缩放）
 - (UIImage *)newSizeImage:(CGSize)size image:(UIImage *)sourceImage {

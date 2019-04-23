@@ -26,6 +26,9 @@
 @property (copy, nonatomic) NSString *avatarBaseUrl;
 @property (copy, nonatomic) NSString *avatarPath;
 @property (copy, nonatomic) NSString *sos;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 
 @end
 
@@ -36,7 +39,11 @@
     // Do any additional setup after loading the view.
     self.title = CAPLocalizedString(@"account_setting");
     self.view.backgroundColor = [UIColor whiteColor];
-
+    self.numberLabel.text = CAPLocalizedString(@"account_no_hint");
+    self.nameLabel.text = CAPLocalizedString(@"account_name_hint");
+    self.userField.placeholder = CAPLocalizedString(@"account_name_hint");
+    [self.okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
+    
     self.countryArrays = [[NSArray alloc] init];
     self.countryCodeArrays = [[NSArray alloc] init];
     [self get];
@@ -175,14 +182,14 @@
             
         }];
         CAPUserService *userService = [[CAPUserService alloc] init];
-        [gApp showHUD:CAPLocalizedString(@"loading")];
+        [capgApp showHUD:CAPLocalizedString(@"loading")];
         [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
             if (response.code == 200) {
                 [CAPUserDefaults setObject:@"YES" forKey:@"userSetting"];
-                [gApp hideHUD];
+                [capgApp hideHUD];
                 [self performSegueWithIdentifier:@"Main" sender:nil];
             }
-            [gApp hideHUD];
+            [capgApp hideHUD];
         }];
         
     }

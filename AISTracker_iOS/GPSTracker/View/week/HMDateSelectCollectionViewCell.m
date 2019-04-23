@@ -53,40 +53,40 @@
 - (NSString *)acquireMonthStringWithDate:(NSDate *)date {
     NSString *tempString = @"";
     if (date.month == 1) {
-        tempString = @"一月";
+        tempString = @"January";
     }
     else if (date.month == 2) {
-        tempString = @"二月";
+        tempString = @"February";
     }
     else if (date.month == 3) {
-        tempString = @"三月";
+        tempString = @"March";
     }
     else if (date.month == 4) {
-        tempString = @"四月";
+        tempString = @"April";
     }
     else if (date.month == 5) {
-        tempString = @"五月";
+        tempString = @"May";
     }
     else if (date.month == 6) {
-        tempString = @"六月";
+        tempString = @"June";
     }
     else if (date.month == 7) {
-        tempString = @"七月";
+        tempString = @"July";
     }
     else if (date.month == 8) {
-        tempString = @"八月";
+        tempString = @"August";
     }
     else if (date.month == 9) {
-        tempString = @"九月";
+        tempString = @"September";
     }
     else if (date.month == 10) {
-        tempString = @"十月";
+        tempString = @"October";
     }
     else if (date.month == 11) {
-        tempString = @"十一月";
+        tempString = @"November";
     }
     else if (date.month == 12) {
-        tempString = @"十二月";
+        tempString = @"December";
     }
     return tempString;
 }

@@ -66,9 +66,9 @@
     self.isUp = YES;
     self.chooseIndex = 0;
     [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
-//    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
-//    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
-
+    //    self.mapView.camera = [GMSCameraPosition cameraWithLatitude:22.290664 longitude:114.195304 zoom:16];
+    //    self.navigationItem.rightBarButtonItems = @[[CAPViews newBarButtonWithImage:@"bar_add" target:self action:@selector(onAddButtonClicked:)]];
+    
     self.deviceListView = [[CAPDeviceListView alloc] initWithFrame:CGRectMake(VIEW_X, Main_Screen_Height - TabBarHeight - PACE_H * 2 - TRACKER_H - DEVICE_LIST_H, Main_Screen_Width - 2 * VIEW_X, DEVICE_LIST_H)];
     self.deviceListView.backgroundColor = [UIColor clearColor];
     self.deviceListView.userInteractionEnabled = YES;
@@ -276,8 +276,8 @@
         //GCD延迟
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (!self.mqttInfo) {
-                [gApp hideHUD];
-                [gApp showNotifyInfo:CAPLocalizedString(@"no_response_from_device") backGroundColor:[CAPColors gray3]];
+                [capgApp hideHUD];
+                [capgApp showNotifyInfo:CAPLocalizedString(@"no_response_from_device") backGroundColor:[CAPColors gray3]];
             }
         });
     }];
@@ -286,13 +286,13 @@
 - (void)deviceRefreshLocation:(NSNotification *)notifi{
     MQTTInfo *info = notifi.object;
     self.mqttInfo = info;
-//    if (self.currentDevice) {
-//        if(![info.deviceID isEqualToString:self.currentDevice.deviceID]){
-//            return;
-//        }
-//    }
-    [gApp hideHUD];
-//    self.currentDevice.connected = 1;
+    //    if (self.currentDevice) {
+    //        if(![info.deviceID isEqualToString:self.currentDevice.deviceID]){
+    //            return;
+    //        }
+    //    }
+    [capgApp hideHUD];
+    //    self.currentDevice.connected = 1;
     for (CAPDevice *device in self.deviceListView.devices) {
         if([device.deviceID isEqualToString:info.deviceID]){
             device.batlevel = info.batlevel;
@@ -303,49 +303,49 @@
         NSDictionary *dic = self.markerArray[i];
         if([info.deviceID isEqualToString:dic.allKeys.firstObject]){
             if ([info.command isEqualToString:@"GPS"]) {
-                    if ([info.gps isEqualToString:@"V"]) {
-                        NSDictionary *parames = [[NSDictionary alloc] init];
-                        if (info.wifis.count != 0 && info.station.count != 0) {
-                            parames = [self paramesForWifi:info.wifis cellID:info.station];
-                            CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
-                            [fileUpload loadDeviceParameter:parames device:self.currentDevice];
-                            [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
-                                NSLog(@"%@",object);
-                                NSDictionary *objectDic = (NSDictionary *)object;
-                                NSDictionary *location = objectDic[@"location"];
-                                CGFloat lat = [location[@"lat"] floatValue];
-                                CGFloat lng = [location[@"lng"] floatValue];
-                                CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(lat,lng);//纬度，经度
-                                [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
-                                CAPDeviceLocal *local = [CAPDeviceLocal local];
-                                [local setLocal:coords];
-                                [self.trackerView.batteryView reloadBattery:info.batlevel];
-                            }];
-                            [fileUpload setFailureBlock:^{
-                                GMSMarker *currentMarker = [dic objectForKey:info.deviceID];
-                                [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
-                                CAPDeviceLocal *local = [CAPDeviceLocal local];
-                                [local setLocal:currentMarker.position];
-                                [self.trackerView.batteryView reloadBattery:info.batlevel];
-                            }];
-                        }else{
-                            CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
+                if ([info.gps isEqualToString:@"V"]) {
+                    NSDictionary *parames = [[NSDictionary alloc] init];
+                    if (info.wifis.count != 0 && info.station.count != 0) {
+                        parames = [self paramesForWifi:info.wifis cellID:info.station];
+                        CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
+                        [fileUpload loadDeviceParameter:parames device:self.currentDevice];
+                        [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
+                            NSLog(@"%@",object);
+                            NSDictionary *objectDic = (NSDictionary *)object;
+                            NSDictionary *location = objectDic[@"location"];
+                            CGFloat lat = [location[@"lat"] floatValue];
+                            CGFloat lng = [location[@"lng"] floatValue];
+                            CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(lat,lng);//纬度，经度
                             [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
                             CAPDeviceLocal *local = [CAPDeviceLocal local];
                             [local setLocal:coords];
                             [self.trackerView.batteryView reloadBattery:info.batlevel];
-                        }
+                        }];
+                        [fileUpload setFailureBlock:^{
+                            GMSMarker *currentMarker = [dic objectForKey:info.deviceID];
+                            [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
+                            CAPDeviceLocal *local = [CAPDeviceLocal local];
+                            [local setLocal:currentMarker.position];
+                            [self.trackerView.batteryView reloadBattery:info.batlevel];
+                        }];
+                    }else{
+                        CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
+                        [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
+                        CAPDeviceLocal *local = [CAPDeviceLocal local];
+                        [local setLocal:coords];
+                        [self.trackerView.batteryView reloadBattery:info.batlevel];
                     }
                 }
+            }
             if([info.gps isEqualToString:@"A"]){
-                    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
-                    [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
-                    CAPDeviceLocal *local = [CAPDeviceLocal local];
-                    [local setLocal:coords];
-                    [self.trackerView.batteryView reloadBattery:info.batlevel];
-                }
+                CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(info.latitude,info.longitude);//纬度，经度
+                [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:info.time / 1000] deviceInfo:info.deviceID];
+                CAPDeviceLocal *local = [CAPDeviceLocal local];
+                [local setLocal:coords];
+                [self.trackerView.batteryView reloadBattery:info.batlevel];
             }
         }
+    }
 }
 
 
@@ -384,7 +384,7 @@
     }
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-   
+    
     /**
      * 位置更新时调用
      */
@@ -412,7 +412,7 @@
     CLLocation *location=[[CLLocation alloc]initWithLatitude:position2D.latitude longitude:position2D.longitude];
     
     CLGeocoder *geocoder=[[CLGeocoder alloc]init];
-
+    
     //反地理编码
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         //判断是否有错误或者placemarks是否为空
@@ -599,14 +599,14 @@
                     [self refreshDeviceLocalized:coords time:[NSString dateFormateWithTimeInterval:localModel.createdAt / 1000] deviceInfo:self.currentDevice.deviceID];
                     CAPDeviceLocal *local = [CAPDeviceLocal local];
                     [local setLocal:coords];
-    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
+                    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
                 }];
                 [fileUpload setFailureBlock:^{
                     GMSMarker *currentMarker = [dic objectForKey:self.currentDevice.deviceID];
                     [self refreshDeviceLocalized:currentMarker.position time:[NSString dateFormateWithTimeInterval:localModel.createdAt / 1000] deviceInfo:self.currentDevice.deviceID];
-    //                CAPDeviceLocal *local = [CAPDeviceLocal local];
-    //                [local setLocal:currentMarker.position];
-    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
+                    //                CAPDeviceLocal *local = [CAPDeviceLocal local];
+                    //                [local setLocal:currentMarker.position];
+                    //                [self.trackerView.batteryView reloadBattery:info.batlevel];
                 }];
                 
             }
@@ -657,15 +657,15 @@
             [CAPAlertView initAlertWithContent:@"确定要解绑这台设备吗？" title:@"" closeBlock:^{
                 
             } okBlock:^{
-                [gApp showHUD:@"正在处理，请稍后..."];
+                [capgApp showHUD:@"正在处理，请稍后..."];
                 CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
                 [deviceService deleteDevice:self.currentDevice reply:^(CAPHttpResponse *response) {
                     NSDictionary *data = response.data;
                     if ([[data objectForKey:@"code"] integerValue] == 200) {
-                        [gApp hideHUD];
+                        [capgApp hideHUD];
                         [CAPNotifications notify:kNotificationDeviceCountChange object:nil];
                     }else{
-                        [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                        [capgApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
                             
                         }];
                     }
@@ -683,7 +683,7 @@
 }
 
 - (IBAction)getCurrentDeviceLocal:(id)sender {
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     [self getDeviceLocation:self.currentDevice];
 }
 #pragma mark  通过cellID和wifis 生成参数
@@ -710,7 +710,7 @@
                 [parame setObject:@"0" forKey:@"signalToNoiseRatio"];
                 [parameArray addObject:parame];
             }
-           
+            
         }
         [parames setObject:parameArray forKey:@"wifiAccessPoints"];
     }else{

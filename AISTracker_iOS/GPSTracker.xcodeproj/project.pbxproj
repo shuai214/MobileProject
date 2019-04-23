@@ -10,12 +10,13 @@
 		02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77029455FB2FEE9E269B3920 /* libPods-GPSTracker.a */; };
 		2B066F3F21E623B80087A741 /* CAPUploadFrequencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */; };
 		2B1353B3223D249500834816 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B1353B2223D249500834816 /* GoogleService-Info.plist */; };
+		2B1816CE224515230085AF40 /* CAPAlertMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1816CD224515230085AF40 /* CAPAlertMessageView.m */; };
+		2B1816D0224515390085AF40 /* CAPAlertMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B1816CF224515390085AF40 /* CAPAlertMessageView.xib */; };
 		2B18E13D21F60AB5002E884D /* CAPSOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */; };
 		2B18E13F21F60AD9002E884D /* CAPSOSAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */; };
 		2B19B0A521F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0A421F21BED004DF9BE /* CAPChooseDeviceTypeViewController.m */; };
 		2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */; };
 		2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0D621F47A64004DF9BE /* Localizable.strings */; };
-		2B19B0DD21F47DA6004DF9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0DC21F47DA5004DF9BE /* Main.storyboard */; };
 		2B19B0E021F56011004DF9BE /* CAPChooseFenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */; };
 		2B19B0E221F56196004DF9BE /* CAPChooseFenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */; };
 		2B19B0E521F5CBC8004DF9BE /* CAPEditAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B0E421F5CBC8004DF9BE /* CAPEditAlertView.m */; };
@@ -25,6 +26,7 @@
 		2B1C080B21E0A03400B258C1 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080A21E0A03400B258C1 /* MBProgressHUD+NHAdd.m */; };
 		2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */; };
 		2B2BE48621ECCCBC006D728C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2BE48521ECCCBB006D728C /* CoreData.framework */; };
+		2B3EF2C52250E92300D44FB0 /* CAPLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EF2C32250E92200D44FB0 /* CAPLogin.m */; };
 		2B4165E421FB4D6E00562EE7 /* CAPGooglePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4165E321FB4D6E00562EE7 /* CAPGooglePlace.m */; };
 		2B4165E721FB61D500562EE7 /* CAPAddFenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4165E621FB61D500562EE7 /* CAPAddFenceTableViewCell.m */; };
 		2B45228A21FF483C001BD5DC /* NSBundle+DAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45228821FF483B001BD5DC /* NSBundle+DAUtils.m */; };
@@ -34,11 +36,15 @@
 		2B527E2621E5D32A00EE6D02 /* CAPSOSMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2521E5D32A00EE6D02 /* CAPSOSMobileViewController.m */; };
 		2B527E2921E5DCD200EE6D02 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B527E2721E5DCD100EE6D02 /* UIViewExt.m */; };
 		2B53C1A121EB1A0D00D645B4 /* CAPDeviceLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */; };
+		2B56CC60225DE81E00969F6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B56CC62225DE81E00969F6F /* Main.storyboard */; };
+		2B56CC6E225DECF300969F6F /* Tracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B56CC70225DECF300969F6F /* Tracker.storyboard */; };
+		2B56CC79225DED9600969F6F /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B56CC7B225DED9600969F6F /* Me.storyboard */; };
+		2B5FCC98224B1960003669BC /* CAPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5FCC94224B1960003669BC /* CAPConfig.m */; };
+		2B5FCC99224B1960003669BC /* CAPMainConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5FCC97224B1960003669BC /* CAPMainConfig.m */; };
+		2B66B80D225ED46200E18D55 /* CAPTrackerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B66B80F225ED46200E18D55 /* CAPTrackerView.xib */; };
 		2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BE48721ECCD3D006D728C /* GPSTracker.xcdatamodeld */; };
 		2B6B667021EDD44A00C02A41 /* CAPDeviceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */; };
 		2B6DD7CA21F1A80D0029190F /* FYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */; };
-		2B6DD7CC21F1A85E0029190F /* TrueIDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */; };
-		2B6DD89821F1ACEA0029190F /* TrueIDFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B6DDB9521E43C96004CAE09 /* CAPGuardianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */; };
 		2B6DDB9621E43C96004CAE09 /* CAPGuardianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9421E43C96004CAE09 /* CAPGuardianTableViewCell.xib */; };
 		2B6DDB9921E46F25004CAE09 /* CAPDeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DDB9821E46F25004CAE09 /* CAPDeviceSettingViewController.m */; };
@@ -51,8 +57,8 @@
 		2B78076121F0C35300DD31FB /* MQTTResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78076021F0C35300DD31FB /* MQTTResult.m */; };
 		2B7BAB9621EA00CB006A42F8 /* CAPUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9521EA00CB006A42F8 /* CAPUserSettingViewController.m */; };
 		2B7BAB9E21EAEE00006A42F8 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */; };
+		2B7C79A3225EF6E400B4CC0B /* CAPBindAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C79A5225EF6E400B4CC0B /* CAPBindAlertView.xib */; };
 		2B8B362F21F98E7F00889EC4 /* CAPBindAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B362E21F98E7F00889EC4 /* CAPBindAlertView.m */; };
-		2B8B363121F98EB000889EC4 /* CAPBindAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B8B363021F98EB000889EC4 /* CAPBindAlertView.xib */; };
 		2B8B363421F9BE6E00889EC4 /* CAPFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B363321F9BE6E00889EC4 /* CAPFileUpload.m */; };
 		2B8BEC7C21D2254F00D2E5CE /* CAPDeviceLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BEC7B21D2254F00D2E5CE /* CAPDeviceLists.m */; };
 		2B97BCC121EC39BA0042D95D /* CAPFenceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97BCC021EC39BA0042D95D /* CAPFenceDetailViewController.m */; };
@@ -65,6 +71,8 @@
 		2BA40A63221BA7E70004FC4F /* CAPFenceAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA40A62221BA7E70004FC4F /* CAPFenceAlertView.xib */; };
 		2BA9278821CE334C00CF0D48 /* CAPCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */; };
 		2BA9278B21CE336400CF0D48 /* CAPCodeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */; };
+		2BAB50BB2255DC82008B7290 /* CAPAddDeviceShareAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB50BA2255DC82008B7290 /* CAPAddDeviceShareAlertView.m */; };
+		2BAB50BD2255DC98008B7290 /* CAPAddDeviceShareAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BAB50BC2255DC98008B7290 /* CAPAddDeviceShareAlertView.xib */; };
 		2BBBF8C521DE3E7A00AF1DD6 /* CAPFenceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBF8C421DE3E7A00AF1DD6 /* CAPFenceList.m */; };
 		2BBBF8C921DE42D000AF1DD6 /* CAPFenceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBF8C721DE42D000AF1DD6 /* CAPFenceListTableViewCell.m */; };
 		2BBBF8CA21DE42D000AF1DD6 /* CAPFenceListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBBF8C821DE42D000AF1DD6 /* CAPFenceListTableViewCell.xib */; };
@@ -76,6 +84,9 @@
 		2BF3EA3521F840C300B5BB63 /* CAPModifyAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3EA3421F840C300B5BB63 /* CAPModifyAvatar.m */; };
 		2BF3EA3721F840DA00B5BB63 /* CAPModifyAvatar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF3EA3621F840DA00B5BB63 /* CAPModifyAvatar.xib */; };
 		2BF3EA3A21F867D700B5BB63 /* CAPDeviceBindList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3EA3921F867D700B5BB63 /* CAPDeviceBindList.m */; };
+		2BF937122269F883000B1CFA /* TrueIDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF937112269F882000B1CFA /* TrueIDFramework.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2BF937132269F8E7000B1CFA /* TrueIDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF937112269F882000B1CFA /* TrueIDFramework.framework */; };
+		2BF937142269F8E7000B1CFA /* TrueIDFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF937112269F882000B1CFA /* TrueIDFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		570C5B9857861FF800DB8F5A /* libPods-GPSTrackerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */; };
 		EF12AE022193C596006A8AE1 /* CAPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF12AE012193C596006A8AE1 /* CAPTabBarController.m */; };
 		EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF12AE032193C915006A8AE1 /* CAPWeekView.xib */; };
@@ -88,7 +99,6 @@
 		EF358BF42191443200EFB4BF /* CAPTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF02191443200EFB4BF /* CAPTableCell.m */; };
 		EF358BF52191443200EFB4BF /* CAPCheckableTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF12191443200EFB4BF /* CAPCheckableTableCell.m */; };
 		EF358BF8219144A700EFB4BF /* CAPStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BF6219144A700EFB4BF /* CAPStyles.m */; };
-		EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */; };
 		EF358BFD219159C600EFB4BF /* CAPTrackerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BFC219159C600EFB4BF /* CAPTrackerView.m */; };
 		EF358C002191766200EFB4BF /* CAPCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358BFF2191766200EFB4BF /* CAPCardView.m */; };
 		EF358C0321918B6300EFB4BF /* CAPBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF358C0221918B6300EFB4BF /* CAPBatteryView.m */; };
@@ -148,8 +158,6 @@
 		EF6CA6AB218EA24C0014771E /* CAPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6A9218EA24C0014771E /* CAPNavigationController.m */; };
 		EF6CA6AE218EA3620014771E /* CAPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6AC218EA3610014771E /* CAPApplication.m */; };
 		EF6CA6B0218EC35D0014771E /* Pair.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6AF218EC35D0014771E /* Pair.storyboard */; };
-		EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6B4218EC7DA0014771E /* Me.storyboard */; };
-		EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6B6218EC90E0014771E /* Tracker.storyboard */; };
 		EF6CA6BA218EC9B30014771E /* CAPPhotographViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA6B9218EC9B30014771E /* CAPPhotographViewController.m */; };
 		EF6CA6BC218ECA240014771E /* MasterSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */; };
 		EF6CA6BE218ECA5A0014771E /* GuestSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6CA6BD218ECA5A0014771E /* GuestSetting.storyboard */; };
@@ -244,13 +252,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2B6DD89921F1ACEA0029190F /* Embed Frameworks */ = {
+		2B3A75EF2269CF0800527F53 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2B6DD89821F1ACEA0029190F /* TrueIDFramework.framework in Embed Frameworks */,
+				2BF937142269F8E7000B1CFA /* TrueIDFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +270,9 @@
 		2B066F3D21E623B80087A741 /* CAPUploadFrequencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPUploadFrequencyViewController.h; sourceTree = "<group>"; };
 		2B066F3E21E623B80087A741 /* CAPUploadFrequencyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPUploadFrequencyViewController.m; sourceTree = "<group>"; };
 		2B1353B2223D249500834816 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B1816CC224515230085AF40 /* CAPAlertMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAlertMessageView.h; sourceTree = "<group>"; };
+		2B1816CD224515230085AF40 /* CAPAlertMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAlertMessageView.m; sourceTree = "<group>"; };
+		2B1816CF224515390085AF40 /* CAPAlertMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPAlertMessageView.xib; sourceTree = "<group>"; };
 		2B18E13B21F60AB5002E884D /* CAPSOSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSOSAlertView.h; sourceTree = "<group>"; };
 		2B18E13C21F60AB5002E884D /* CAPSOSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSOSAlertView.m; sourceTree = "<group>"; };
 		2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPSOSAlertView.xib; sourceTree = "<group>"; };
@@ -272,7 +283,6 @@
 		2B19B0D921F47A71004DF9BE /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B19B0DA21F47A88004DF9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B19B0DB21F47A8F004DF9BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2B19B0DC21F47DA5004DF9BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2B19B0DE21F56011004DF9BE /* CAPChooseFenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPChooseFenceView.h; sourceTree = "<group>"; };
 		2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPChooseFenceView.m; sourceTree = "<group>"; };
 		2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPChooseFenceView.xib; sourceTree = "<group>"; };
@@ -291,6 +301,8 @@
 		2B1C080D21E0ABF400B258C1 /* CAPDeviceCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceCommand.m; sourceTree = "<group>"; };
 		2B2BE48521ECCCBB006D728C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2B2BE48821ECCD3D006D728C /* GPSTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSTracker.xcdatamodel; sourceTree = "<group>"; };
+		2B3EF2C32250E92200D44FB0 /* CAPLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPLogin.m; sourceTree = "<group>"; };
+		2B3EF2C42250E92300D44FB0 /* CAPLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPLogin.h; sourceTree = "<group>"; };
 		2B4165E221FB4D6E00562EE7 /* CAPGooglePlace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGooglePlace.h; sourceTree = "<group>"; };
 		2B4165E321FB4D6E00562EE7 /* CAPGooglePlace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGooglePlace.m; sourceTree = "<group>"; };
 		2B4165E521FB61D500562EE7 /* CAPAddFenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAddFenceTableViewCell.h; sourceTree = "<group>"; };
@@ -309,6 +321,22 @@
 		2B527E2821E5DCD100EE6D02 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		2B53C19F21EB1A0D00D645B4 /* CAPDeviceLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLocal.h; sourceTree = "<group>"; };
 		2B53C1A021EB1A0D00D645B4 /* CAPDeviceLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceLocal.m; sourceTree = "<group>"; };
+		2B56CC65225DEA9300969F6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B56CC6B225DEBF100969F6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		2B56CC6D225DEBFD00969F6F /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Main.strings; sourceTree = "<group>"; };
+		2B56CC6F225DECF300969F6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tracker.storyboard; sourceTree = "<group>"; };
+		2B56CC76225DED4000969F6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Tracker.strings; sourceTree = "<group>"; };
+		2B56CC78225DED7500969F6F /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Tracker.strings; sourceTree = "<group>"; };
+		2B56CC7A225DED9600969F6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Me.storyboard; sourceTree = "<group>"; };
+		2B56CC7D225DED9F00969F6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Me.strings; sourceTree = "<group>"; };
+		2B56CC7F225DEDA700969F6F /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Me.strings; sourceTree = "<group>"; };
+		2B5956762260734800267722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CAPTrackerView.strings; sourceTree = "<group>"; };
+		2B5956772260734F00267722 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/CAPTrackerView.strings; sourceTree = "<group>"; };
+		2B5FCC94224B1960003669BC /* CAPConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPConfig.m; sourceTree = "<group>"; };
+		2B5FCC95224B1960003669BC /* CAPMainConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPMainConfig.h; sourceTree = "<group>"; };
+		2B5FCC96224B1960003669BC /* CAPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPConfig.h; sourceTree = "<group>"; };
+		2B5FCC97224B1960003669BC /* CAPMainConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPMainConfig.m; sourceTree = "<group>"; };
+		2B66B80E225ED46200E18D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CAPTrackerView.xib; sourceTree = "<group>"; };
 		2B6B666E21EDD44A00C02A41 /* CAPDeviceMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceMessage.h; sourceTree = "<group>"; };
 		2B6B666F21EDD44A00C02A41 /* CAPDeviceMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceMessage.m; sourceTree = "<group>"; };
 		2B6B667121EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMessageInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -317,7 +345,6 @@
 		2B6B667421EDD90400C02A41 /* DeviceMessageInfo+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DeviceMessageInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		2B6DD7C821F1A80D0029190F /* FYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLoginViewController.m; sourceTree = "<group>"; };
 		2B6DD7C921F1A80D0029190F /* FYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYLoginViewController.h; sourceTree = "<group>"; };
-		2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TrueIDFramework.framework; sourceTree = "<group>"; };
 		2B6DD89A21F1BE5A0029190F /* GPSTracker.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GPSTracker.entitlements; sourceTree = "<group>"; };
 		2B6DDB9221E43C96004CAE09 /* CAPGuardianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPGuardianTableViewCell.h; sourceTree = "<group>"; };
 		2B6DDB9321E43C96004CAE09 /* CAPGuardianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPGuardianTableViewCell.m; sourceTree = "<group>"; };
@@ -341,9 +368,9 @@
 		2B7BAB9B21EAEDFF006A42F8 /* LEEAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlertHelper.h; sourceTree = "<group>"; };
 		2B7BAB9C21EAEDFF006A42F8 /* LEEAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEAlert.m; sourceTree = "<group>"; };
 		2B7BAB9D21EAEDFF006A42F8 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
+		2B7C79AB225EF71A00B4CC0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CAPBindAlertView.xib; sourceTree = "<group>"; };
 		2B8B362D21F98E7F00889EC4 /* CAPBindAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPBindAlertView.h; sourceTree = "<group>"; };
 		2B8B362E21F98E7F00889EC4 /* CAPBindAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPBindAlertView.m; sourceTree = "<group>"; };
-		2B8B363021F98EB000889EC4 /* CAPBindAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPBindAlertView.xib; sourceTree = "<group>"; };
 		2B8B363221F9BE6E00889EC4 /* CAPFileUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFileUpload.h; sourceTree = "<group>"; };
 		2B8B363321F9BE6E00889EC4 /* CAPFileUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFileUpload.m; sourceTree = "<group>"; };
 		2B8BEC7A21D2254F00D2E5CE /* CAPDeviceLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceLists.h; sourceTree = "<group>"; };
@@ -369,6 +396,9 @@
 		2BA9278721CE334C00CF0D48 /* CAPCodeScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeScanView.m; sourceTree = "<group>"; };
 		2BA9278921CE336400CF0D48 /* CAPCodeBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCodeBackgroundView.h; sourceTree = "<group>"; };
 		2BA9278A21CE336400CF0D48 /* CAPCodeBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPCodeBackgroundView.m; sourceTree = "<group>"; };
+		2BAB50B92255DC82008B7290 /* CAPAddDeviceShareAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPAddDeviceShareAlertView.h; sourceTree = "<group>"; };
+		2BAB50BA2255DC82008B7290 /* CAPAddDeviceShareAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPAddDeviceShareAlertView.m; sourceTree = "<group>"; };
+		2BAB50BC2255DC98008B7290 /* CAPAddDeviceShareAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPAddDeviceShareAlertView.xib; sourceTree = "<group>"; };
 		2BBBF8C321DE3E7A00AF1DD6 /* CAPFenceList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceList.h; sourceTree = "<group>"; };
 		2BBBF8C421DE3E7A00AF1DD6 /* CAPFenceList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPFenceList.m; sourceTree = "<group>"; };
 		2BBBF8C621DE42D000AF1DD6 /* CAPFenceListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPFenceListTableViewCell.h; sourceTree = "<group>"; };
@@ -389,6 +419,7 @@
 		2BF3EA3621F840DA00B5BB63 /* CAPModifyAvatar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPModifyAvatar.xib; sourceTree = "<group>"; };
 		2BF3EA3821F867D700B5BB63 /* CAPDeviceBindList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPDeviceBindList.h; sourceTree = "<group>"; };
 		2BF3EA3921F867D700B5BB63 /* CAPDeviceBindList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPDeviceBindList.m; sourceTree = "<group>"; };
+		2BF937112269F882000B1CFA /* TrueIDFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TrueIDFramework.framework; sourceTree = "<group>"; };
 		46E97DF53CDF58D180E385DF /* Pods-GPSTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTrackerUITests/Pods-GPSTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		49C59C153BCABDFD25BC2A25 /* libPods-GPSTrackerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTrackerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F20DA90B8218740A4DFF9A /* Pods-GPSTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPSTracker/Pods-GPSTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,7 +447,6 @@
 		EF358BF22191443200EFB4BF /* CAPSelectableTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSelectableTableCell.h; sourceTree = "<group>"; };
 		EF358BF6219144A700EFB4BF /* CAPStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPStyles.m; sourceTree = "<group>"; };
 		EF358BF7219144A700EFB4BF /* CAPStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPStyles.h; sourceTree = "<group>"; };
-		EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CAPTrackerView.xib; sourceTree = "<group>"; };
 		EF358BFB219159C600EFB4BF /* CAPTrackerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPTrackerView.h; sourceTree = "<group>"; };
 		EF358BFC219159C600EFB4BF /* CAPTrackerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPTrackerView.m; sourceTree = "<group>"; };
 		EF358BFE2191766200EFB4BF /* CAPCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPCardView.h; sourceTree = "<group>"; };
@@ -520,8 +550,6 @@
 		EF6CA6AC218EA3610014771E /* CAPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPApplication.m; sourceTree = "<group>"; };
 		EF6CA6AD218EA3620014771E /* CAPApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPApplication.h; sourceTree = "<group>"; };
 		EF6CA6AF218EC35D0014771E /* Pair.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pair.storyboard; sourceTree = "<group>"; };
-		EF6CA6B4218EC7DA0014771E /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
-		EF6CA6B6218EC90E0014771E /* Tracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracker.storyboard; sourceTree = "<group>"; };
 		EF6CA6B8218EC9B30014771E /* CAPPhotographViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPPhotographViewController.h; sourceTree = "<group>"; };
 		EF6CA6B9218EC9B30014771E /* CAPPhotographViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPPhotographViewController.m; sourceTree = "<group>"; };
 		EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterSetting.storyboard; sourceTree = "<group>"; };
@@ -676,6 +704,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF6CA679218D7CC30014771E /* AVFoundation.framework in Frameworks */,
 				2B2BE48621ECCCBC006D728C /* CoreData.framework in Frameworks */,
 				EF6CA687218D7D100014771E /* UIKit.framework in Frameworks */,
 				EF6CA685218D7D060014771E /* QuartzCore.framework in Frameworks */,
@@ -684,12 +713,12 @@
 				EF6CA67F218D7CDD0014771E /* libbz2.tbd in Frameworks */,
 				EF6CA67D218D7CD40014771E /* CoreMedia.framework in Frameworks */,
 				EF6CA67B218D7CCB0014771E /* CoreGraphics.framework in Frameworks */,
-				EF6CA679218D7CC30014771E /* AVFoundation.framework in Frameworks */,
 				EF6CA677218D7CBA0014771E /* SystemConfiguration.framework in Frameworks */,
 				EF6CA675218D7CB10014771E /* Security.framework in Frameworks */,
 				EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */,
-				2B6DD7CC21F1A85E0029190F /* TrueIDFramework.framework in Frameworks */,
+				2BF937122269F883000B1CFA /* TrueIDFramework.framework in Frameworks */,
 				EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */,
+				2BF937132269F8E7000B1CFA /* TrueIDFramework.framework in Frameworks */,
 				EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */,
 				EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */,
 				02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */,
@@ -963,7 +992,7 @@
 				EF358BF02191443200EFB4BF /* CAPTableCell.m */,
 				EF358BFB219159C600EFB4BF /* CAPTrackerView.h */,
 				EF358BFC219159C600EFB4BF /* CAPTrackerView.m */,
-				EF358BF92191599F00EFB4BF /* CAPTrackerView.xib */,
+				2B66B80F225ED46200E18D55 /* CAPTrackerView.xib */,
 				EF12AE052193C926006A8AE1 /* CAPWeekView.h */,
 				EF12AE062193C926006A8AE1 /* CAPWeekView.m */,
 				EF12AE032193C915006A8AE1 /* CAPWeekView.xib */,
@@ -983,6 +1012,9 @@
 				2B6DDB9B21E47126004CAE09 /* CAPDeviceNumber.m */,
 				2B98BAB221EE1AB3006B779B /* CAPAlertCustomView.h */,
 				2B98BAB321EE1AB3006B779B /* CAPAlertCustomView.m */,
+				2BAB50B92255DC82008B7290 /* CAPAddDeviceShareAlertView.h */,
+				2BAB50BA2255DC82008B7290 /* CAPAddDeviceShareAlertView.m */,
+				2BAB50BC2255DC98008B7290 /* CAPAddDeviceShareAlertView.xib */,
 				2BDBD46F21EF16CC008DDB53 /* CAPFenceAddView.h */,
 				2BDBD47021EF16CC008DDB53 /* CAPFenceAddView.m */,
 				2B19B0E321F5CBC8004DF9BE /* CAPEditAlertView.h */,
@@ -993,6 +1025,9 @@
 				2BA40A5F221BA7C40004FC4F /* CAPFenceAlertView.h */,
 				2BA40A60221BA7C40004FC4F /* CAPFenceAlertView.m */,
 				2BA40A62221BA7E70004FC4F /* CAPFenceAlertView.xib */,
+				2B1816CC224515230085AF40 /* CAPAlertMessageView.h */,
+				2B1816CD224515230085AF40 /* CAPAlertMessageView.m */,
+				2B1816CF224515390085AF40 /* CAPAlertMessageView.xib */,
 				2B98BAC221EE2CBE006B779B /* CAPAlertView.h */,
 				2B98BAC321EE2CBE006B779B /* CAPAlertView.m */,
 				2B77097C2219A6D0007DC8C6 /* CAPDeviceVerAlertView.h */,
@@ -1002,7 +1037,7 @@
 				2B18E13E21F60AD9002E884D /* CAPSOSAlertView.xib */,
 				2B8B362D21F98E7F00889EC4 /* CAPBindAlertView.h */,
 				2B8B362E21F98E7F00889EC4 /* CAPBindAlertView.m */,
-				2B8B363021F98EB000889EC4 /* CAPBindAlertView.xib */,
+				2B7C79A5225EF6E400B4CC0B /* CAPBindAlertView.xib */,
 				2B19B0DE21F56011004DF9BE /* CAPChooseFenceView.h */,
 				2B19B0DF21F56011004DF9BE /* CAPChooseFenceView.m */,
 				2B19B0E121F56196004DF9BE /* CAPChooseFenceView.xib */,
@@ -1090,6 +1125,7 @@
 		EF79BB5121886149000358FA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2BF937112269F882000B1CFA /* TrueIDFramework.framework */,
 				2B45228721FF483B001BD5DC /* DAConfig.h */,
 				2B45228921FF483B001BD5DC /* DAConfig.m */,
 				2B45228621FF483B001BD5DC /* NSBundle+DAUtils.h */,
@@ -1106,8 +1142,13 @@
 		EF79BB522188615C000358FA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B5FCC96224B1960003669BC /* CAPConfig.h */,
+				2B5FCC94224B1960003669BC /* CAPConfig.m */,
+				2B5FCC95224B1960003669BC /* CAPMainConfig.h */,
+				2B5FCC97224B1960003669BC /* CAPMainConfig.m */,
+				2B3EF2C42250E92300D44FB0 /* CAPLogin.h */,
+				2B3EF2C32250E92200D44FB0 /* CAPLogin.m */,
 				2B1353B2223D249500834816 /* GoogleService-Info.plist */,
-				2B6DD7CB21F1A85E0029190F /* TrueIDFramework.framework */,
 				EF6CA6AD218EA3620014771E /* CAPApplication.h */,
 				EF6CA6AC218EA3610014771E /* CAPApplication.m */,
 				EFD0AD25218C4FB600405FD8 /* AppConfig.h */,
@@ -1131,10 +1172,10 @@
 				EF358BE221913B0D00EFB4BF /* Login.storyboard */,
 				2B19B0A621F21C51004DF9BE /* ChooseDevice.storyboard */,
 				EF6CA6BB218ECA240014771E /* MasterSetting.storyboard */,
-				EF6CA6B4218EC7DA0014771E /* Me.storyboard */,
-				2B19B0DC21F47DA5004DF9BE /* Main.storyboard */,
+				2B56CC7B225DED9600969F6F /* Me.storyboard */,
+				2B56CC62225DE81E00969F6F /* Main.storyboard */,
 				EF6CA6AF218EC35D0014771E /* Pair.storyboard */,
-				EF6CA6B6218EC90E0014771E /* Tracker.storyboard */,
+				2B56CC70225DECF300969F6F /* Tracker.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -1421,7 +1462,7 @@
 				EF7BE54F218845AB00562EE9 /* Frameworks */,
 				EF7BE550218845AB00562EE9 /* Resources */,
 				43AA8479DDE726CF022A23F0 /* [CP] Copy Pods Resources */,
-				2B6DD89921F1ACEA0029190F /* Embed Frameworks */,
+				2B3A75EF2269CF0800527F53 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1534,18 +1575,20 @@
 				2B19B0D821F47A65004DF9BE /* Localizable.strings in Resources */,
 				2B19B0A721F21C51004DF9BE /* ChooseDevice.storyboard in Resources */,
 				EF358C082191D84100EFB4BF /* EditName.storyboard in Resources */,
-				EF6CA6B7218EC90E0014771E /* Tracker.storyboard in Resources */,
+				2B56CC6E225DECF300969F6F /* Tracker.storyboard in Resources */,
 				2B4B2BE321F6BFAA007A928D /* LaunchScreen.storyboard in Resources */,
 				2BF3EA3721F840DA00B5BB63 /* CAPModifyAvatar.xib in Resources */,
-				2B8B363121F98EB000889EC4 /* CAPBindAlertView.xib in Resources */,
+				2B7C79A3225EF6E400B4CC0B /* CAPBindAlertView.xib in Resources */,
 				2B19B0E221F56196004DF9BE /* CAPChooseFenceView.xib in Resources */,
-				EF358BFA2191599F00EFB4BF /* CAPTrackerView.xib in Resources */,
-				EF6CA6B5218EC7DA0014771E /* Me.storyboard in Resources */,
+				2B66B80D225ED46200E18D55 /* CAPTrackerView.xib in Resources */,
+				2B1816D0224515390085AF40 /* CAPAlertMessageView.xib in Resources */,
+				2B56CC79225DED9600969F6F /* Me.storyboard in Resources */,
 				EF6CA6BE218ECA5A0014771E /* GuestSetting.storyboard in Resources */,
 				2B6DDB9E21E48961004CAE09 /* diallingcode.json in Resources */,
 				EF6CA6B0218EC35D0014771E /* Pair.storyboard in Resources */,
 				EF12AE042193C915006A8AE1 /* CAPWeekView.xib in Resources */,
-				2B19B0DD21F47DA6004DF9BE /* Main.storyboard in Resources */,
+				2BAB50BD2255DC98008B7290 /* CAPAddDeviceShareAlertView.xib in Resources */,
+				2B56CC60225DE81E00969F6F /* Main.storyboard in Resources */,
 				EF7BE562218845AC00562EE9 /* Assets.xcassets in Resources */,
 				2B1353B3223D249500834816 /* GoogleService-Info.plist in Resources */,
 				EF358BE321913B0D00EFB4BF /* Login.storyboard in Resources */,
@@ -1666,6 +1709,7 @@
 			files = (
 				2B6B666721ED79E100C02A41 /* GPSTracker.xcdatamodeld in Sources */,
 				EF7BE55A218845AB00562EE9 /* MainViewController.m in Sources */,
+				2B1816CE224515230085AF40 /* CAPAlertMessageView.m in Sources */,
 				2B77097E2219A6D0007DC8C6 /* CAPDeviceVerAlertView.m in Sources */,
 				EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */,
 				2B98BAB421EE1AB3006B779B /* CAPAlertCustomView.m in Sources */,
@@ -1735,6 +1779,7 @@
 				EFD0ACE6218C46A500405FD8 /* CAPValidators.m in Sources */,
 				2BF3EA3A21F867D700B5BB63 /* CAPDeviceBindList.m in Sources */,
 				EF358BEC2191441600EFB4BF /* CAPCollectionCell.m in Sources */,
+				2B5FCC99224B1960003669BC /* CAPMainConfig.m in Sources */,
 				EF46F2812192991A009A357C /* CAPFootprint.m in Sources */,
 				2B78076121F0C35300DD31FB /* MQTTResult.m in Sources */,
 				2B45228A21FF483C001BD5DC /* NSBundle+DAUtils.m in Sources */,
@@ -1792,6 +1837,7 @@
 				EF6CA64E218D31380014771E /* CAPReadUserSettingResponse.m in Sources */,
 				EFD0AC86218C3D0F00405FD8 /* CAPLoginViewController.m in Sources */,
 				2BEB2B5422115287009DFDB3 /* CAPDeviceLocalModel.m in Sources */,
+				2B3EF2C52250E92300D44FB0 /* CAPLogin.m in Sources */,
 				EF6CA69C218D84220014771E /* CAPFootprintPresenter.m in Sources */,
 				EFD0AC92218C3E4F00405FD8 /* CAPEditFenceViewController.m in Sources */,
 				EF46F2782192916A009A357C /* CAPGuardianService.m in Sources */,
@@ -1809,6 +1855,7 @@
 				EF46F29021929CD0009A357C /* CAPFileService.m in Sources */,
 				EFD0AC9E218C3E9700405FD8 /* CAPGuardianInvitationViewController.m in Sources */,
 				EFD0ACE8218C46A500405FD8 /* CAPCapabilities.m in Sources */,
+				2B5FCC98224B1960003669BC /* CAPConfig.m in Sources */,
 				2B1C080E21E0ABF400B258C1 /* CAPDeviceCommand.m in Sources */,
 				2B6DDB9C21E47126004CAE09 /* CAPDeviceNumber.m in Sources */,
 				2B19B0E521F5CBC8004DF9BE /* CAPEditAlertView.m in Sources */,
@@ -1818,6 +1865,7 @@
 				EFD0ACBF218C420C00405FD8 /* CAPMeViewController.m in Sources */,
 				EFD0ACEC218C46A500405FD8 /* CAPImages.m in Sources */,
 				EFD0AD01218C47D900405FD8 /* CAPUserService.m in Sources */,
+				2BAB50BB2255DC82008B7290 /* CAPAddDeviceShareAlertView.m in Sources */,
 				EFD0AD00218C47D900405FD8 /* CAPHttpRequest.m in Sources */,
 				EFD0ACAD218C3EDA00405FD8 /* CAPPairViewController.m in Sources */,
 				EFD0ACA7218C3EB500405FD8 /* CAPLanguageViewController.m in Sources */,
@@ -1888,6 +1936,54 @@
 				2B4B2BE021F6BFAA007A928D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2B56CC62225DE81E00969F6F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B56CC65225DEA9300969F6F /* Base */,
+				2B56CC6B225DEBF100969F6F /* en */,
+				2B56CC6D225DEBFD00969F6F /* th */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B56CC70225DECF300969F6F /* Tracker.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B56CC6F225DECF300969F6F /* Base */,
+				2B56CC76225DED4000969F6F /* en */,
+				2B56CC78225DED7500969F6F /* th */,
+			);
+			name = Tracker.storyboard;
+			sourceTree = "<group>";
+		};
+		2B56CC7B225DED9600969F6F /* Me.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B56CC7A225DED9600969F6F /* Base */,
+				2B56CC7D225DED9F00969F6F /* en */,
+				2B56CC7F225DEDA700969F6F /* th */,
+			);
+			name = Me.storyboard;
+			sourceTree = "<group>";
+		};
+		2B66B80F225ED46200E18D55 /* CAPTrackerView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B66B80E225ED46200E18D55 /* Base */,
+				2B5956762260734800267722 /* en */,
+				2B5956772260734F00267722 /* th */,
+			);
+			name = CAPTrackerView.xib;
+			sourceTree = "<group>";
+		};
+		2B7C79A5225EF6E400B4CC0B /* CAPBindAlertView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B7C79AB225EF71A00B4CC0B /* Base */,
+			);
+			name = CAPBindAlertView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2014,7 +2110,7 @@
 				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5LTU4BTV2N;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2022,10 +2118,21 @@
 					"$(PROJECT_DIR)/GPSTracker",
 					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2038,7 +2145,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstrackerTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = gpsTrackerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2052,7 +2159,7 @@
 				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5LTU4BTV2N;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2060,10 +2167,21 @@
 					"$(PROJECT_DIR)/GPSTracker",
 					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
+					"$(PROJECT_DIR)/GPSTracker/Supporting\\ Files",
 				);
 				GCC_PREFIX_HEADER = "/Users/caoshuai/Desktop/MobileProject/AISTracker_iOS/GPSTracker/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = GPSTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2076,7 +2194,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstrackerTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = gpsTrackerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

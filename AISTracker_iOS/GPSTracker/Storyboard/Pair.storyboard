@@ -186,6 +186,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="numField" destination="jZt-7w-nCo" id="ff8-nR-mfz"/>
+                        <outlet property="okButton" destination="2u1-ag-qf6" id="cTb-y5-app"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lc3-NZ-ccQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,8 +251,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the device name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vm6-6f-tCe">
-                                <rect key="frame" x="16" y="334" width="225.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the device phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vm6-6f-tCe">
+                                <rect key="frame" x="16" y="334" width="295" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -309,10 +310,12 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="alertLabel" destination="Vm6-6f-tCe" id="n8B-D2-qNf"/>
                         <outlet property="deviceImageView" destination="sP0-8P-fsH" id="SIe-Qb-64T"/>
                         <outlet property="deviceName" destination="Q3X-xq-dDV" id="eZF-oe-AAp"/>
                         <outlet property="deviceNumber" destination="gwY-92-Qkp" id="TdX-F1-D7R"/>
+                        <outlet property="enterNameLabel" destination="53f-DX-qwM" id="4zB-5w-l8q"/>
+                        <outlet property="enterNumberLabel" destination="Vm6-6f-tCe" id="Vup-1U-EzQ"/>
+                        <outlet property="okButton" destination="2qZ-NO-2Xo" id="oYB-VU-UDx"/>
                         <segue destination="rNp-ou-H0a" kind="presentation" identifier="Main" id="d57-ZL-dHn"/>
                     </connections>
                 </viewController>
@@ -361,8 +364,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWy-vU-gaU">
-                                <rect key="frame" x="16" y="334" width="208.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the user phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWy-vU-gaU">
+                                <rect key="frame" x="16" y="334" width="278" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -420,7 +423,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="nameLabel" destination="Wnc-R3-2LL" id="ycQ-fm-pn5"/>
                         <outlet property="number" destination="tRx-BJ-Z6v" id="8nx-NO-Ia3"/>
+                        <outlet property="numberLabel" destination="aWy-vU-gaU" id="fYx-sP-gV4"/>
+                        <outlet property="okButton" destination="aYl-V2-GxF" id="iBZ-hD-zEj"/>
                         <outlet property="userField" destination="wJH-N5-h1v" id="OMf-dE-Py3"/>
                         <outlet property="userImageView" destination="t0K-iv-uLG" id="kv7-fn-GqK"/>
                         <segue destination="rNp-ou-H0a" kind="presentation" identifier="Main" id="gS4-cj-YEy"/>
@@ -437,6 +443,6 @@
         <image name="user_default_avatar" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d57-ZL-dHn"/>
+        <segue reference="gS4-cj-YEy"/>
     </inferredMetricsTieBreakers>
 </document>

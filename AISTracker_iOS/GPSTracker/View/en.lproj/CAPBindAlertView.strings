@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "258-l5-rRI"; */
+"258-l5-rRI.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Allow"; ObjectID = "gae-OP-Rxl"; */
+"gae-OP-Rxl.normalTitle" = "Allow";
+
+/* Class = "UIButton"; normalTitle = "Refuse"; ObjectID = "rIH-z6-24O"; */
+"rIH-z6-24O.normalTitle" = "Refuse";

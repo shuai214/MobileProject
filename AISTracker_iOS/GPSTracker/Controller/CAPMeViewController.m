@@ -21,6 +21,7 @@
 #import "CAPDeviceService.h"
 #import <TrueIDFramework/TrueIDFramework-Swift.h>
 #import "AppDelegate.h"
+#import "CAPMessageService.h"
 @interface CAPMeViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,13 +34,17 @@
 @end
 
 @implementation CAPMeViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSLog(@"111");
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
   
     // Do any additional setup after loading the view.
-    self.title = CAPLocalizedString(@"me");
+    self.navigationItem.title = CAPLocalizedString(@"me");
+//    self.tabBarItem.title = CAPLocalizedString(@"me");
     self.titles = @[CAPLocalizedString(@"name"),CAPLocalizedString(@"phone_number"), CAPLocalizedString(@"language"),CAPLocalizedString(@"version")];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -49,6 +54,7 @@
     self.userImageView.layer.masksToBounds = YES;
     [self getDeviceUser];
     [CAPNotifications addObserver:self selector:@selector(getDeviceUser) name:kNotificationChangeNickName object:nil];
+    [self.logoutButton setTitle:CAPLocalizedString(@"logout") forState:UIControlStateNormal];
 //    [CAPNotifications addObserver:self selector:@selector(getDeviceVerno:) name:kNotificationVernoName object:nil];
 //    [CAPNotifications addObserver:self selector:@selector(updateDeviceVerno:) name:kNotificationUPGRADEREQName object:nil];
 //    [self checkDevice];
@@ -74,11 +80,11 @@
 //    [self.tableView reloadData];
 }
 - (void)getDeviceUser{
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPUserService *userServer = [[CAPUserService alloc] init];
     [userServer fetchProfile:^(CAPFetchUserProfileResponse *response) {
         NSLog(@"%@",response.result);
-        [gApp hideHUD];
+        [capgApp hideHUD];
         self.capUser = response.result;
         [self.tableView reloadData];
         [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.capUser.profile.avatarBaseUrl,self.capUser.profile.avatarPath]] placeholderImage:GetImage(@"user_default_avatar")];
@@ -204,6 +210,10 @@
         config.platformID = @"KVTELIOT";
         config.clientID = [[CAPPhones getUUIDString] stringByAppendingString:[NSString calculateStringLength:[CAPUserDefaults objectForKey:@"userID"]]];
         [mqttCenter close];
+        CAPMessageService *messageService = [[CAPMessageService alloc] init];
+        [messageService deletePushTokenReply:^(id response) {
+            NSLog(@"%@",response);
+        }];
         AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         UIViewController *viewController = [storyboard instantiateInitialViewController];
@@ -232,7 +242,7 @@
             CAPUserService *userService = [[CAPUserService alloc] init];
             [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
                 NSLog(@"%@",response);
-                [gApp hideHUD];
+                [capgApp hideHUD];
             }];
         }
     }];

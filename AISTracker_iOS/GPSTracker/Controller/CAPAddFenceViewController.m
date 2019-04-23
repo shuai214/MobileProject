@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = CAPLocalizedString(@"add fence");
+    self.title = CAPLocalizedString(@"message_type_create_fence");
 //    [self setRightBarImageButton:@"bar_add" action:@selector(onAddButtonClicked:)];
     self.view.backgroundColor = [UIColor whiteColor];
    
@@ -153,7 +153,7 @@ didFailAutocompleteWithError:(NSError *)error {
         self.vicinity = place.name;
     }
     
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPFileUpload *fileUplod = [[CAPFileUpload alloc] init];
     [fileUplod getDeviceLoacl:[NSString stringWithFormat:@"%lf,%lf",coordinate.latitude,coordinate.longitude]];
     [fileUplod setSuccessBlockObject:^(id  _Nonnull object) {
@@ -173,10 +173,10 @@ didFailAutocompleteWithError:(NSError *)error {
                 [self.poiArrays addObject:googlePlace];
                 [self.markerArrays addObject:self.marker];
             }
-            [gApp hideHUD];
+            [capgApp hideHUD];
             [self creatAddressTableView];
         }
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }];
 }
 
@@ -203,12 +203,12 @@ didFailAutocompleteWithError:(NSError *)error {
             }else{
                 fence.name = CAPLocalizedString(@"gps_fencing");
             }
-            [gApp showHUD:CAPLocalizedString(@"loading")];
+            [capgApp showHUD:CAPLocalizedString(@"loading")];
             CAPFenceService *fenceService =[[CAPFenceService alloc] init];
             [fenceService addFence:fence reply:^(CAPHttpResponse  *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {
-                    [gApp hideHUD];
+                    [capgApp hideHUD];
                     CAPFence *resultFence = [[CAPFence alloc] initWithDictionary:data[@"result"] error:nil];
                     weakself.backView = [[CAPChooseFenceView alloc] initWithFrame:CGRectMake(15, self->_searchBar.top - 130, Main_Screen_Width - 30, 120)];
                     CAPFenceService *editFenceService =[[CAPFenceService alloc] init];
@@ -221,11 +221,11 @@ didFailAutocompleteWithError:(NSError *)error {
                             }else{
                                 fence.name = CAPLocalizedString(@"gps_fencing");
                             }
-                            [gApp showHUD:CAPLocalizedString(@"loading")];
+                            [capgApp showHUD:CAPLocalizedString(@"loading")];
                             [editFenceService editAddFence:resultFence reply:^(id response) {
                                 if ([[data objectForKey:@"code"] integerValue] == 200) {
-                                    [gApp hideHUD];
-                                    [gApp showNotifyInfo:[data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+                                    [capgApp hideHUD];
+                                    [capgApp showNotifyInfo:[data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
                                     [weakself.backView setDatafenceInfo:resultFence];
                                 }
                             }];
@@ -235,11 +235,11 @@ didFailAutocompleteWithError:(NSError *)error {
                         [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"information_of_the_fence") dataSource:@[@"50",@"100",@"500", @"1000", @"1500"] defaultSelValue:@"1000" resultBlock:^(id selectValue) {
                             [weakself drawCenter:[selectValue integerValue]];
                             resultFence.range = [selectValue integerValue];
-                            [gApp showHUD:CAPLocalizedString(@"loading")];
+                            [capgApp showHUD:CAPLocalizedString(@"loading")];
                             [editFenceService editAddFence:resultFence reply:^(id response) {
                                 if ([[data objectForKey:@"code"] integerValue] == 200) {
-                                    [gApp hideHUD];
-                                    [gApp showNotifyInfo:[data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+                                    [capgApp hideHUD];
+                                    [capgApp showNotifyInfo:[data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
                                     [weakself.backView setDatafenceInfo:resultFence];
                                 }
                             }];
@@ -247,10 +247,10 @@ didFailAutocompleteWithError:(NSError *)error {
                     }];
                     [weakself.backView setCloseButtonBlock:^(CAPChooseFenceView *view){
                         CAPFenceService *fenceDeleteService =[[CAPFenceService alloc] init];
-                        [gApp showHUD:CAPLocalizedString(@"loading")];
+                        [capgApp showHUD:CAPLocalizedString(@"loading")];
                         [fenceDeleteService deleteFence:resultFence.fenceID reply:^(id response) {
                             if ([[data objectForKey:@"code"] integerValue] == 200) {
-                                [gApp hideHUD];
+                                [capgApp hideHUD];
                                 [weakself.circ.map clear];
                                 [view removeFromSuperview];
                             }
@@ -262,8 +262,8 @@ didFailAutocompleteWithError:(NSError *)error {
                     [weakself.view bringSubviewToFront:weakself.tableContentView];
 
                 }else{
-                    [gApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
-                        [gApp hideHUD];
+                    [capgApp showHUD:[data objectForKey:@"message"] cancelTitle:CAPLocalizedString(@"ok") onCancelled:^{
+                        [capgApp hideHUD];
                     }];
                 }
             }];

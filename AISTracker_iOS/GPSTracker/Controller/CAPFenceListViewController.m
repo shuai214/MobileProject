@@ -37,15 +37,15 @@
 }
 
 - (void)getFenceList{
-    [gApp showHUD:@"loading"];
+    [capgApp showHUD:@"loading"];
     CAPFenceService *fenceService = [[CAPFenceService alloc] init];
     [fenceService fetchFence:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         self.fenceList = [CAPFenceList mj_objectWithKeyValues:response.data];
         [self.fenceListTableView reloadData];
-        [gApp hideHUD];
+        [capgApp hideHUD];
         if (self.fenceList.result.list.count == 0) {
-            [gApp showNotifyInfo:CAPLocalizedString(@"tips_no_fence") backGroundColor:[UIColor orangeColor]];
+            [capgApp showNotifyInfo:CAPLocalizedString(@"tips_no_fence") backGroundColor:[UIColor orangeColor]];
         }
     }];
 
@@ -75,14 +75,14 @@
         List *cellList = weakself.fenceList.result.list[indexCellPath.row];
         cellList.status = isOn ? @"1":@"0";
         CAPFenceService *fenceService = [[CAPFenceService alloc] init];
-        [gApp showHUD:@"正在更新设置，请稍后..."];
+        [capgApp showHUD:@"正在更新设置，请稍后..."];
         [fenceService editFence:cellList reply:^(CAPHttpResponse *response) {
             NSDictionary *data = response.data;
             if ([[data objectForKey:@"code"] integerValue] == 200) {
-                [gApp hideHUD];
+                [capgApp hideHUD];
             }else{
-                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
-                    [gApp hideHUD];
+                [capgApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [capgApp hideHUD];
                 }];
             }
         }];
@@ -107,7 +107,7 @@
 //3
 //修改编辑按钮文字
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
+    return CAPLocalizedString(@"delete");
 }
 //4
 //点击删除
@@ -125,12 +125,12 @@
         } okBlock:^{
             List *cellList = self.fenceList.result.list[indexPath.row];
             CAPFenceService *fenceService = [[CAPFenceService alloc] init];
-            [gApp showHUD:@"loading"];
+            [capgApp showHUD:@"loading"];
             [fenceService deleteFence:cellList.fid reply:^(CAPHttpResponse *response) {
                 NSDictionary *data = response.data;
                 if ([[data objectForKey:@"code"] integerValue] == 200) {
-                    [gApp hideHUD];
-                    [gApp showNotifyInfo:CAPLocalizedString(@"delete_fence_success") backGroundColor:[CAPColors red1]];
+                    [capgApp hideHUD];
+                    [capgApp showNotifyInfo:CAPLocalizedString(@"delete_fence_success") backGroundColor:[CAPColors red1]];
                     [self getFenceList];
                 }
             }];

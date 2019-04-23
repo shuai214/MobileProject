@@ -216,25 +216,25 @@
         }];
         NSString *tempString = @"";
         if (indexPath.row == 0) {
-            tempString = @"日";
+            tempString = CAPLocalizedString(@"Sun");
         }
         else if (indexPath.row == 1) {
-            tempString = @"一";
+            tempString = CAPLocalizedString(@"MON");
         }
         else if (indexPath.row == 2) {
-            tempString = @"二";
+            tempString = CAPLocalizedString(@"TUE");
         }
         else if (indexPath.row == 3) {
-            tempString = @"三";
+            tempString = CAPLocalizedString(@"WED");
         }
         else if (indexPath.row == 4) {
-            tempString = @"四";
+            tempString = CAPLocalizedString(@"THU");
         }
         else if (indexPath.row == 5) {
-            tempString = @"五";
+            tempString = CAPLocalizedString(@"FRI");
         }
         else if (indexPath.row == 6) {
-            tempString = @"六";
+            tempString = CAPLocalizedString(@"SAT");
         }
         
         [weekLb setText:tempString];

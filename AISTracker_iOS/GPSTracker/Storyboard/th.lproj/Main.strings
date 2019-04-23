@@ -1,0 +1,12 @@
+
+/* Class = "UITabBarItem"; title = "Me"; ObjectID = "bFi-88-3An"; */
+"bFi-88-3An.title" = "บัญชี";
+
+/* Class = "UITabBarItem"; title = "Tracker"; ObjectID = "bwz-VX-G8w"; */
+"bwz-VX-G8w.title" = "ตำแหน่ง";
+
+/* Class = "UITabBarItem"; title = "Message"; ObjectID = "uct-ME-hmw"; */
+"uct-ME-hmw.title" = "ข้อความ";
+
+/* Class = "UITabBarItem"; title = "Message"; ObjectID = "xJU-AL-wNQ"; */
+"xJU-AL-wNQ.title" = "Message";

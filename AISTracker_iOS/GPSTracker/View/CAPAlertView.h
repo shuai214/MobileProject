@@ -19,6 +19,7 @@ typedef void (^takingPhotoBlock)(void);
 typedef void (^albumBlock)(void);
 
 @interface CAPAlertView : NSObject
++ (void)initAlertWithContent:(NSString *)content deviceID:(NSString *)deviceID okBlock:(okBlock)okBlock;
 + (void)initAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock alertType:(AlertType)alertType;
 + (void)initAlertWithContent:(NSString *)content okBlock:(okBlock)okBlock alertType:(AlertType)alertType;
 + (void)initCloseAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(closeBlock)closeBlock alertType:(AlertType)alertType;
@@ -29,6 +30,7 @@ typedef void (^albumBlock)(void);
 + (void)initBindAlertViewWithContent:(NSString *)content ocloseBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
 + (void)initDeviceVerWithContent:(NSString *)content buttonTitle:(NSString *)buttonTitle closeBlock:(closeBlock)closeBlock okBlock:(okBlock)okBlock;
 + (void)initDeviceFenceAlertView:(CAPDevice *)deviceInfo content:(NSString *)content closeBlock:(closeBlock)closeBlock;
++ (void)initAlertMessage:(NSString *)message closeBlock:(closeBlock)closeBlock;
 @end
 
 NS_ASSUME_NONNULL_END

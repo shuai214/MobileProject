@@ -19,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"%@",self.viewControllers);
+
     [CAPNotifications addObserver:self selector:@selector(didReceiveNotificationLanguageChange:) name:kNotificationLanguageChange object:nil];
     [[UITabBar appearance] setBarTintColor:[CAPColors red]];
 }

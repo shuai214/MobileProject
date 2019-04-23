@@ -79,7 +79,7 @@
             reply([CAPFetchUserProfileResponse responseWithHttpResponse:response]);
         }];
     }else{
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }
     
 }

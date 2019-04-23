@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"SOS Number";
+    self.title = CAPLocalizedString(@"sos_number");
     // Do any additional setup after loading the view.
     [self setRightBarImageButton:@"save_sos" action:@selector(saveButtonClicked)];
 
@@ -46,7 +46,7 @@
 }
 
 - (void)fetchDevice{
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
     [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
@@ -59,7 +59,7 @@
             }
         }
         [self initFirstView];
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }];
     [deviceServer getSOSMobile:self.device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
@@ -78,7 +78,7 @@
             }
         }
         [self initTwoView];
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }];
 }
 - (void)configSubView{
@@ -97,10 +97,18 @@
 }
 - (void)initFirstView{
     self.firstViewArray = [NSMutableArray array];
-    UILabel *mustBeThreeNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, TopHeight / 2, Main_Screen_Width, 20)];
-    mustBeThreeNumber.text = @"There three numbers are from APP";
-    mustBeThreeNumber.textAlignment = NSTextAlignmentCenter;
+    UILabel *mustBeThreeNumber = [[UILabel alloc] init];
+    mustBeThreeNumber.text = CAPLocalizedString(@"sos_numbers_from_app");
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:16]};
+    CGSize labelSize = [mustBeThreeNumber.text boundingRectWithSize:CGSizeMake(200, 5000) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    //200为UILabel的宽度，5000是预设的一个高度，表示在这个范围内
+    //注意：之前使用了NSString类的sizeWithFont: constrainedToSize: lineBreakMode:方法，但是该方法已经被iOS7 Deprecated了，而iOS7新出了一个boudingRectWithSize: options: attributes: context:方法来代替。
+    mustBeThreeNumber.frame = CGRectMake(10, TopHeight / 2, Main_Screen_Width - 20, labelSize.height);
+    //保持原来Label的位置和宽度，只是改变高度。
+    mustBeThreeNumber.numberOfLines = 0;//表示label可以多行显示
+    mustBeThreeNumber.font = [UIFont systemFontOfSize:16];
     [self.bgscrollView addSubview:mustBeThreeNumber];
+
     CGFloat numViewHeight = 80;
     NSInteger j = 0;
     NSInteger count = 3;
@@ -116,11 +124,22 @@
 - (void)initTwoView{
     CGFloat numViewHeight = 80;
     NSInteger j = 3;
-    CGRect frame = CGRectMake(0, TopHeight / 2 + 20 + (numViewHeight + 10 )* (j - 1) + 10, Main_Screen_Width, numViewHeight);
-    UILabel *mayBeTwoNumber = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height + frame.origin.y + 20, Main_Screen_Width, 20)];
-    mayBeTwoNumber.text = @"You can set these two numbers freely";
-    mayBeTwoNumber.textAlignment = NSTextAlignmentCenter;
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:16]};
+    CGSize labelSize = [CAPLocalizedString(@"sos_numbers_from_app") boundingRectWithSize:CGSizeMake(200, 5000) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    CGRect frame = CGRectMake(0, TopHeight / 2 + labelSize.height + (numViewHeight + 10 )* (j - 1) + 10, Main_Screen_Width, numViewHeight);
+    
+    
+    UILabel *mayBeTwoNumber = [[UILabel alloc] init];
+    mayBeTwoNumber.text = CAPLocalizedString(@"sos_numbers_input_manual");
+    CGSize label2Size = [mayBeTwoNumber.text boundingRectWithSize:CGSizeMake(200, 5000) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    //200为UILabel的宽度，5000是预设的一个高度，表示在这个范围内
+    //注意：之前使用了NSString类的sizeWithFont: constrainedToSize: lineBreakMode:方法，但是该方法已经被iOS7 Deprecated了，而iOS7新出了一个boudingRectWithSize: options: attributes: context:方法来代替。
+    mayBeTwoNumber.frame = CGRectMake(10, frame.size.height + frame.origin.y + 20, Main_Screen_Width - 20, label2Size.height);
+    //保持原来Label的位置和宽度，只是改变高度。
+    mayBeTwoNumber.numberOfLines = 0;//表示label可以多行显示
+    mayBeTwoNumber.font = [UIFont systemFontOfSize:16];
     [self.bgscrollView addSubview:mayBeTwoNumber];
+
     
     NSMutableArray <UIView *>*mayViews = [NSMutableArray array];
     
@@ -267,21 +286,21 @@
             [self.inputTelArray addObject:[NSString stringWithFormat:@"%@ %@",deviceNumber4.telAreaCodeLabel.text,deviceNumber4.telField.text]];
         }
     }
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
 //    CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
 //    [deviceService setSOSMobile:self.device sosMobiles:self.inputTelArray reply:^(CAPHttpResponse *response) {
-//        [gApp hideHUD];
+//        [capgApp hideHUD];
 //        if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-//            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+//            [capgApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors green1]];
 //        }else{
-//            [gApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+//            [capgApp showNotifyInfo:[response.data objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
 //        }
 //    }];
     CAPFileUpload *fileUpload = [[CAPFileUpload alloc] init];
     [fileUpload setSOSMobile:self.device array:self.inputTelArray];
     [fileUpload setSuccessBlockObject:^(id  _Nonnull object) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [gApp hideHUD];
+            [capgApp hideHUD];
             if ([[object objectForKey:@"code"] integerValue] == 200) {
                 CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
                 NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.inputTelArray
@@ -292,14 +311,26 @@
                 [deviceService deviceSendCommand:self.device.deviceID cmd:@"SOS" param:jsonString reply:^(CAPHttpResponse *response) {
                     NSLog(@"%@",response);
                 }];
-                [gApp showNotifyInfo:[object objectForKey:@"message"] backGroundColor:[CAPColors green1]];
+                [capgApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
             }else{
-                [gApp showNotifyInfo:[object objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
+                [capgApp showNotifyInfo:[object objectForKey:@"message"] backGroundColor:[CAPColors gray1]];
             }
         });
     }];
 }
 
 
-
+- (CGFloat)getStringHeightWithText:(NSString *)text font:(UIFont *)font viewWidth:(CGFloat)width {
+    // 设置文字属性 要和label的一致
+    NSDictionary *attrs = @{NSFontAttributeName :font};
+    CGSize maxSize = CGSizeMake(width, MAXFLOAT);
+    
+    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    
+    // 计算文字占据的宽高
+    CGSize size = [text boundingRectWithSize:maxSize options:options attributes:attrs context:nil].size;
+    
+    // 当你是把获得的高度来布局控件的View的高度的时候.size转化为ceilf(size.height)。
+    return  ceilf(size.height);
+}
 @end

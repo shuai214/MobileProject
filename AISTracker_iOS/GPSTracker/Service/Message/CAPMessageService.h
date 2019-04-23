@@ -10,4 +10,6 @@
 
 @interface CAPMessageService : CAPBaseService
 - (void)updatePushToken:(NSString *)token reply:(CAPServiceReply)reply;
+- (void)deletePushTokenReply:(CAPServiceReply)reply;
+
 @end

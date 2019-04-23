@@ -38,7 +38,7 @@
     self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
     self.countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 4, self.frame.size.height / 2 - 1)];
-    self.countryLabel.text = @"Country";
+    self.countryLabel.text =CAPLocalizedString(@"no_country");
     self.countryLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.countryLabel];
     
@@ -52,7 +52,7 @@
     [self addSubview:self.telAreaCodeLabel];
     
     self.countryNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(verticalLine.frame.origin.x + 1, 0, self.frame.size.width / 4 * 2, self.frame.size.height / 2)];
-    self.countryNameLabel.text = @"Thai";
+    self.countryNameLabel.text = CAPLocalizedString(@"Thailand");
     
     
     self.buttonSend = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 * 3, 0, self.frame.size.width / 4, self.frame.size.height / 2)];
@@ -70,7 +70,7 @@
    
     
     self.telField = [[UITextField alloc] initWithFrame:CGRectMake(self.frame.size.width / 4 , self.frame.size.height / 2, self.frame.size.width / 4 * 3, self.frame.size.height / 2 - 1)];
-    self.telField.placeholder = @"Please input number";
+    self.telField.placeholder =CAPLocalizedString(@"please_input_no");
     self.telField.textAlignment = NSTextAlignmentCenter;
     self.telField.delegate = self;
     self.telField.keyboardType = UIKeyboardTypePhonePad;

@@ -23,4 +23,14 @@
         reply(response);
     }];
 }
+- (void)deletePushTokenReply:(CAPServiceReply)reply{
+    NSString *idfv = [[UIDevice currentDevice].identifierForVendor UUIDString];
+    NSDictionary *params = @{
+                             @"udid": idfv
+                             };
+    CAPHttpRequest *request = [self buildRequest:@"Account/PushToken" method:@"DELETE" parameters:params];
+    [self sendRequest:request reply:^(CAPHttpResponse *response) {
+        reply(response);
+    }];
+}
 @end

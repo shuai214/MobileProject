@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "B2E-J9-e8j"; */
+"B2E-J9-e8j.normalTitle" = "Logout";
+
+/* Class = "UITabBarItem"; title = "Me"; ObjectID = "IyJ-2q-p4M"; */
+"IyJ-2q-p4M.title" = "บัญชี";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip um odioque civiuda.ullamco laboris nisi ut aliquip um odioque civiuda."; ObjectID = "PCS-Yr-GTu"; */
+"PCS-Yr-GTu.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip um odioque civiuda.ullamco laboris nisi ut aliquip um odioque civiuda.";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "UsC-yL-oea"; */
+"UsC-yL-oea.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "VHD-rU-S79"; */
+"VHD-rU-S79.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "Feedback to us"; ObjectID = "cLj-7h-gJG"; */
+"cLj-7h-gJG.text" = "Feedback to us";
+
+/* Class = "UILabel"; text = "Your Mobile No. (Optional)"; ObjectID = "jl5-au-5m2"; */
+"jl5-au-5m2.text" = "Your Mobile No. (Optional)";

@@ -99,12 +99,12 @@
         NSLog(@"%@",response);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command) {
-            [gApp showHUD:CAPLocalizedString(@"loading")];
+            [capgApp showHUD:CAPLocalizedString(@"loading")];
             //GCD延迟
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (!self.mqttInfo) {
-                    [gApp hideHUD];
-                    [gApp showNotifyInfo:CAPLocalizedString(@"take_photo_error") backGroundColor:[CAPColors gray1]];
+                    [capgApp hideHUD];
+                    [capgApp showNotifyInfo:CAPLocalizedString(@"take_photo_error") backGroundColor:[CAPColors gray1]];
                 }
             });
         }
@@ -115,7 +115,7 @@
 - (void)getNotification:(NSNotification *)notifi{
     self.mqttInfo = notifi.object;
     NSLog(@"%@",self.mqttInfo);
-    [gApp hideHUD];
+    [capgApp hideHUD];
     // 将base64字符串转为NSData
     NSData *decodeData = [[NSData alloc]initWithBase64EncodedString:self.mqttInfo.data options:(NSDataBase64DecodingIgnoreUnknownCharacters)];
     // 将NSData转为UIImage

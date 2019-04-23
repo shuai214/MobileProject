@@ -31,10 +31,12 @@
 #import <DateTools/DateTools.h>
 #import "MBProgressHUD+NHAdd.h"
 #import "CAPColors.h"
-#import "AppConfig.h"
 #import "UIViewExt.h"
 #import "YWAlertView.h"
 #import "CAPAlertView.h"
 #import "CAPToast.h"
 #import "CAPGetCurrentViewController.h"
+#import "CAPConfig.h"
+
+
 #endif /* PrefixHeader_pch */

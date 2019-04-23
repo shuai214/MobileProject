@@ -60,7 +60,7 @@
         make.top.equalTo(self.view).offset(TopHeight);
         make.height.equalTo(@100);
     }];
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:CAPLocalizedString(@"Today") style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
     
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -76,15 +76,15 @@
 }
 
 - (void)loadFootprint:(NSString *)starttime endtime:(NSString *)endtime{
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService fetchFootprint:self.device.deviceID starttime:starttime endtime:endtime reply:^(CAPHttpResponse *response) {
         self.footprint = [CAPFootprint mj_objectWithKeyValues:response.data];
         //0 v --- 1 A
         if (self.footprint.code == 200) {
             if (self.footprint.result.count == 0) {
-                [gApp showNotifyInfo:CAPLocalizedString(@"tips_no_footprint") backGroundColor:[UIColor orangeColor]];
-                [gApp hideHUD];
+                [capgApp showNotifyInfo:CAPLocalizedString(@"tips_no_footprint") backGroundColor:[UIColor orangeColor]];
+                [capgApp hideHUD];
                 return;
             }
             for (NSInteger i = 0; i < self.footprint.result.count; i++) {
@@ -121,14 +121,13 @@
                     }
                 }
                 if (self.locals.count == self.footprint.result.count) {
-                    [gApp hideHUD];
+                    [capgApp hideHUD];
                 }
             }
         }
     }];
     
 }
-
 - (void)creatMarkerWithPosition:(CLLocationCoordinate2D)position title:(NSString *)title{
     GMSMarker *sydneyMarker = [[GMSMarker alloc] init];
     sydneyMarker.title = title;
@@ -151,7 +150,7 @@
 
     CAPDeviceLocalModel *list = self.locals[index];
 //    GMSGeocoder *geoCoder = [GMSGeocoder geocoder];
-    [gApp showHUD:@""];
+    [capgApp showHUD:@""];
 //    [geoCoder reverseGeocodeCoordinate:CLLocationCoordinate2DMake(list.lat, list.lng) completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
 //        GMSAddress *placemark = response.firstResult;
 //        [self showAddress:placemark footPrintList:list];
@@ -168,7 +167,7 @@
             NSLog(@"%@",error);
             return ;
         }
-        [gApp hideHUD];
+        [capgApp hideHUD];
         CLPlacemark *placemark = placemarks.firstObject;
         NSDictionary *addressDictionary = placemark.addressDictionary;
         NSArray *array = placemark.areasOfInterest;

@@ -10,6 +10,7 @@
 
 @interface CAPAddTrackerViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *numField;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 
 @end
 
@@ -18,8 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = CAPLocalizedString(@"Please input number");
-    self.numField.placeholder = CAPLocalizedString(@"Please input number");
+    self.title = CAPLocalizedString(@"device_no_enter");
+    self.numField.placeholder = CAPLocalizedString(@"please_enter");
+    [self.okButton setTitle:CAPLocalizedString(@"ok") forState:UIControlStateNormal];
+
 }
 - (IBAction)addDevice:(UIButton *)sender {
     if (self.numField.text.length != 0) {

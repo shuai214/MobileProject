@@ -16,8 +16,26 @@
 #import "CAPBindAlertView.h"
 #import "CAPDeviceVerAlertView.h"
 #import "CAPFenceAlertView.h"
+#import "CAPAlertMessageView.h"
+#import "CAPAddDeviceShareAlertView.h"
 @implementation CAPAlertView
-
++ (void)initAlertWithContent:(NSString *)content deviceID:(NSString *)deviceID okBlock:(okBlock)okBlock{
+    CAPAddDeviceShareAlertView *view = [CAPAddDeviceShareAlertView instance];
+    [view fillContent:content deviceID:deviceID];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setOkBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            okBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow().LeeCornerRadius(15).LeeClickBackgroundClose(YES);
+}
 + (void)initAlertWithContent:(NSString *)content title:(NSString *)title closeBlock:(nonnull closeBlock)closeBlock okBlock:(nonnull okBlock)okBlock alertType:(AlertType)alertType{
     CAPAlertCustomView *customView = [[CAPAlertCustomView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) title:title contentDesc:content alertType:alertType];
     
@@ -236,5 +254,22 @@
     .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeHeaderColor([UIColor clearColor])
     .LeeShow().LeeCornerRadius(15);
+}
++ (void)initAlertMessage:(NSString *)message closeBlock:(closeBlock)closeBlock{
+    CAPAlertMessageView *view = [CAPAlertMessageView instance];
+    [view initContentView:message];
+    // Nib形式请设置UIViewAutoresizingNone
+    view.autoresizingMask = UIViewAutoresizingNone;
+    [view setCloseBlock:^{
+        [LEEAlert closeWithCompletionBlock:^{
+            // 打开XXX
+            closeBlock();
+        }];
+    }];
+    [LEEAlert alert].config
+    .LeeCustomView(view)
+    .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeShow().LeeCornerRadius(15).LeeClickBackgroundClose(YES);
 }
 @end

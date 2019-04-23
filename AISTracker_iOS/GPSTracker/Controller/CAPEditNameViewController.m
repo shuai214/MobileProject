@@ -24,7 +24,9 @@
     [super viewDidLoad];
     
 //    [self.avatarImageView sd_setImageWithURL:self.avatarURL];
-    self.title = CAPLocalizedString(@"nickname");
+    self.title = self.capUser ? CAPLocalizedString(@"your_name") : CAPLocalizedString(@"text_device_name_title");
+    
+    [self.okButton setTitle:CAPLocalizedString(@"complete") forState:UIControlStateNormal];
     
     self.nameTextField.placeholder = CAPLocalizedString(@"please_enter");
     if(self.defaultName) {
@@ -56,7 +58,7 @@
             self.capUser.profile.firstName = self.nameTextField.text;
         }
     }else{
-        [gApp showNotifyInfo:CAPLocalizedString(@"please_enter") backGroundColor:[CAPColors red1]];
+        [capgApp showNotifyInfo:CAPLocalizedString(@"please_enter") backGroundColor:[CAPColors red1]];
         return;
     }
     CAPWeakSelf(self);
@@ -65,7 +67,7 @@
         [deviceService updateDevice:self.capDevice reply:^(CAPHttpResponse *response) {
             NSDictionary *data = response.data;
             if ([[data objectForKey:@"code"] integerValue] == 200) {
-                [gApp hideHUD];
+                [capgApp hideHUD];
                 self.capDevice.name = [data objectForKey:@"name"];
                 [CAPNotifications notify:kNotificationDeviceCountChange object:self.capDevice];
                 [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
@@ -73,24 +75,24 @@
                     [weakself.navigationController popViewControllerAnimated:YES];
                 } alertType:AlertTypeNoClose];
             }else{
-                [gApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
-                    [gApp hideHUD];
+                [capgApp showHUD:[data objectForKey:@"message"] cancelTitle:@"确定" onCancelled:^{
+                    [capgApp hideHUD];
                 }];
             }
         }];
     }else{
         CAPUserService *userService = [[CAPUserService alloc] init];
-        [gApp showHUD:CAPLocalizedString(@"loading")];
+        [capgApp showHUD:CAPLocalizedString(@"loading")];
         [userService putProfile:self.capUser reply:^(CAPFetchUserProfileResponse *response) {
             if (response.code == 200) {
-                [gApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
+                [capgApp showNotifyInfo:CAPLocalizedString(@"update_success") backGroundColor:[CAPColors green1]];
                 [CAPNotifications notify:kNotificationChangeNickName];
                 [CAPAlertView initAlertWithContent:CAPLocalizedString(@"update_success") okBlock:^{
                     self->_updateSuccessBlock ?: self->_updateSuccessBlock( weakself.capUser);
                     [weakself.navigationController popViewControllerAnimated:YES];
                 } alertType:AlertTypeNoClose];
             }
-            [gApp hideHUD];
+            [capgApp hideHUD];
         }];
     }
 }

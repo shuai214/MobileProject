@@ -67,7 +67,7 @@
 }
 
 - (NSArray *)getLanguages {
-    return @[@"System", @"Chinese", @"English", @"Thai"];
+    return @[@"System", @"Chinese", @"English", @"Thailand"];
 }
 
 @end

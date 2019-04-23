@@ -22,26 +22,26 @@
                     </view>
                     <connections>
                         <segue destination="AKQ-Bx-cri" kind="show" identifier="main.segue" id="5em-2x-J6O"/>
-                        <segue destination="sIE-fz-Qf8" kind="show" identifier="pair.segue" id="yOZ-GI-7IG"/>
+                        <segue destination="sIE-fz-Qf8" kind="show" identifier="mainVC.segue" id="yOZ-GI-7IG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63b-Ss-lZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1324" y="146"/>
         </scene>
-        <!--ChooseDevice-->
+        <!--Pair-->
         <scene sceneID="RwF-qk-hOS">
             <objects>
+                <viewControllerPlaceholder storyboardName="Pair" id="AKQ-Bx-cri" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VLW-gM-jNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="ChooseDevice" id="AKQ-Bx-cri" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="960" y="-19"/>
         </scene>
-        <!--Pair-->
+        <!--Main-->
         <scene sceneID="uas-QB-tFI">
             <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="sIE-fz-Qf8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9g-Mc-YGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="Pair" id="sIE-fz-Qf8" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="965" y="320"/>
         </scene>

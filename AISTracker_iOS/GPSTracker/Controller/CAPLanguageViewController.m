@@ -29,7 +29,7 @@
 //    self.userPresenter.languages = self.languages;
     self.userPresenter = [[CAPUserPresenter alloc] init];
     self.languages = self.userPresenter.languages;
-    self.languages = @[CAPLocalizedString(@"system"), CAPLocalizedString(@"chinese"), CAPLocalizedString(@"thai"),CAPLocalizedString(@"English")];
+    self.languages = @[CAPLocalizedString(@"system"), CAPLocalizedString(@"chinese"), CAPLocalizedString(@"Thailand"),CAPLocalizedString(@"English")];
 
     self.maskView.layer.cornerRadius = self.view.bounds.size.width * 0.3;
     self.maskView.layer.masksToBounds = YES;
@@ -38,6 +38,7 @@
     self.pickerView.dataSource = self;
     
     [self.userPresenter presentLanguage:self.pickerView];
+    [self.okButton setTitle:CAPLocalizedString(@"save") forState:UIControlStateNormal];
 }
 
 - (void)refreshLocalizedString {

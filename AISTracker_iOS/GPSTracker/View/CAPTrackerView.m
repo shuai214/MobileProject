@@ -44,7 +44,16 @@
         [self initButton:self.userFootprint];
         [self initButton:self.userSetting];
         [self initButton:self.unbindung];
-        [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
+//        [self.fenceButton setTitle:CAPLocalizedString(@"fence") forState:UIControlStateNormal];
+//        [self.footprintButton setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
+//        [self.photographButton setTitle:CAPLocalizedString(@"photograph") forState:UIControlStateNormal];
+//        [self.callButton setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
+//        [self.settingButton setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
+//        [self.userCall setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
+//        [self.userFootprint setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
+//        [self.userSetting setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
+//        [self.unbindung setTitle:CAPLocalizedString(@"untether") forState:UIControlStateNormal];
+
         [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
     }
 //    https://www.googleapis.com/geolocation/v1/geolocate?key=
@@ -53,18 +62,18 @@
 - (void)deviceOnline:(NSNotification *)notifi{
     MQTTInfo *info = (MQTTInfo *)notifi.object;
     if (info.online ? 0 : 1) {
-        self.onlineLabel.text = @"offline";
+        self.onlineLabel.text = CAPLocalizedString(@"device_offline");// @"offline";
 //        self.onlineLabel.textColor = [UIColor lightGrayColor];
     }else{
-        self.onlineLabel.text = @"online";
+        self.onlineLabel.text =  CAPLocalizedString(@"device_online");//@"online";
 //        self.onlineLabel.textColor = [CAPColors green1];
     }
 }
 - (void)isLine:(BOOL)isLine{
     if (isLine) {
-        self.onlineLabel.text = @"online";
+        self.onlineLabel.text = CAPLocalizedString(@"device_online");
     }else{
-        self.onlineLabel.text = @"offline";
+        self.onlineLabel.text =CAPLocalizedString(@"device_offline");
         [self.batteryView reloadBattery:0];
     }
 }
@@ -82,6 +91,15 @@
     [self initButton:self.userFootprint];
     [self initButton:self.userSetting];
     [self initButton:self.unbindung];
+//    [self.fenceButton setTitle:CAPLocalizedString(@"gps_fencing") forState:UIControlStateNormal];
+//    [self.footprintButton setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
+//    [self.photographButton setTitle:CAPLocalizedString(@"photograph") forState:UIControlStateNormal];
+//    [self.callButton setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
+//    [self.settingButton setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
+//    [self.userCall setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
+//    [self.userFootprint setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
+//    [self.userSetting setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
+//    [self.unbindung setTitle:CAPLocalizedString(@"untether") forState:UIControlStateNormal];
     [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -164,9 +182,14 @@
 }
 
 -(void)initButton:(UIButton*)button {
+    
+    
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//使图片和文字水平居中显示
     [button setTitleEdgeInsets:UIEdgeInsetsMake(button.imageView.frame.size.height+12 ,-button.imageView.frame.size.width, 0.0, 0.0)];//文字距离上边框的距离增加imageView的高度，距离左边框减少imageView的宽度，距离下边框和右边框距离不变
     [button setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0,0.0, -button.titleLabel.bounds.size.width)];//图片距离右边框距离减少图片的宽度，其它不边
+    
+//    [button setImageEdgeInsets: UIEdgeInsetsMake(0, (button.bounds.size.width-button.imageView.bounds.size.width)*0.5, 0, 0)];
+//    [button setTitleEdgeInsets: UIEdgeInsetsMake(button.imageView.bounds.size.height + 15, 0, 0, 0)];
 }
 
 - (void)performAction:(CAPTrackerViewAction)action {

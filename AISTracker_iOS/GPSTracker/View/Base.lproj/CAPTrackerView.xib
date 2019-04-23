@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CAPTrackerView">
+            <connections>
+                <outlet property="DeviceLocation" destination="Gvk-xK-UjP" id="req-E9-E5k"/>
+                <outlet property="DeviceName" destination="7BX-E9-mWS" id="3P9-w8-NzC"/>
+                <outlet property="batteryView" destination="bsB-KE-e0T" id="aUZ-w6-aHb"/>
+                <outlet property="callButton" destination="ahl-OX-nKa" id="6tx-gp-KDg"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="brg-vJ-4Ax"/>
+                <outlet property="fenceButton" destination="oFp-nj-B0Q" id="R0x-Cz-wRl"/>
+                <outlet property="footprintButton" destination="grP-VJ-lwi" id="Jja-Ef-7fW"/>
+                <outlet property="onlineLabel" destination="7Gw-S0-hwO" id="Wpg-6J-NR5"/>
+                <outlet property="ownerStackView" destination="84t-o2-rDI" id="Vgc-53-8Ub"/>
+                <outlet property="photographButton" destination="bZn-Un-3l2" id="4TE-EO-d1m"/>
+                <outlet property="settingButton" destination="HKD-Ug-04P" id="zuw-Hy-WZP"/>
+                <outlet property="unbindung" destination="gA6-hr-PMs" id="UQS-H4-tv1"/>
+                <outlet property="updateTimeLabel" destination="ht0-Ag-4Ve" id="mpN-Fe-wFw"/>
+                <outlet property="userCall" destination="uii-PC-72V" id="LVI-44-VL3"/>
+                <outlet property="userFootprint" destination="6sm-Pa-dli" id="V1g-ge-cyy"/>
+                <outlet property="userStackView" destination="kLM-tu-8UR" id="OQd-h2-VtN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baby" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BX-E9-mWS">
+                    <rect key="frame" x="6" y="11" width="36.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nan Shan Dist. Taoyuan Street" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-xK-UjP">
+                    <rect key="frame" x="6" y="35.5" width="394" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="offline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gw-S0-hwO">
+                    <rect key="frame" x="6" y="54" width="30.5" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="84t-o2-rDI">
+                    <rect key="frame" x="0.0" y="62.5" width="406" height="67.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahl-OX-nKa">
+                            <rect key="frame" x="0.0" y="23.5" width="81" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="call" image="tracker_call">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onCallButtonClicked:" destination="-1" eventType="touchUpInside" id="XVG-2w-iHX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFp-nj-B0Q" userLabel="Fence Button">
+                            <rect key="frame" x="81" y="23.5" width="81.5" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Fence" image="tracker_fence">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onFenceButtonClicked:" destination="-1" eventType="touchUpInside" id="SDE-bY-H53"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grP-VJ-lwi" userLabel="Footprint Button">
+                            <rect key="frame" x="162.5" y="23.5" width="81" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Footprint" image="tracker_footprint">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onFootprintButtonClicked:" destination="-1" eventType="touchUpInside" id="BbL-Bw-Deb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZn-Un-3l2" userLabel="Photograph Button">
+                            <rect key="frame" x="243.5" y="23.5" width="81.5" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <state key="normal" title="Photograph" image="tracker_photograph">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onPhotographButtonClicked:" destination="-1" eventType="touchUpInside" id="SaP-Lb-OYR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKD-Ug-04P" userLabel="Setting Button">
+                            <rect key="frame" x="325" y="23.5" width="81" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Setting" image="tracker_setting">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onSettingButtonClicked:" destination="-1" eventType="touchUpInside" id="Iah-0S-jVD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="84t-o2-rDI" secondAttribute="height" multiplier="6:1" id="l5i-0d-mh9"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-tu-8UR">
+                    <rect key="frame" x="68" y="62.5" width="270" height="67.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uii-PC-72V">
+                            <rect key="frame" x="0.0" y="23.5" width="70" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="call" image="tracker_call">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onCallButtonClicked:" destination="-1" eventType="touchUpInside" id="yQi-tf-coU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sm-Pa-dli" userLabel="Footprint Button">
+                            <rect key="frame" x="100" y="23.5" width="70" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Footprint" image="tracker_footprint">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onFootprintButtonClicked:" destination="-1" eventType="touchUpInside" id="ICx-NA-Isi"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA6-hr-PMs" userLabel="Unbindung Button">
+                            <rect key="frame" x="200" y="23.5" width="70" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Unbinding" image="unbind">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="unbindingAction:" destination="-1" eventType="touchUpInside" id="jcx-ii-yTJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsB-KE-e0T" customClass="CAPBatteryView">
+                    <rect key="frame" x="310" y="6" width="90" height="28"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bsB-KE-e0T" secondAttribute="height" multiplier="45:14" id="2M0-gM-uth"/>
+                        <constraint firstAttribute="height" constant="28" id="BTz-cD-Bfd"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="battery">
+                            <real key="value" value="32"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht0-Ag-4Ve">
+                    <rect key="frame" x="49" y="54" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7Gw-S0-hwO" firstAttribute="top" secondItem="Gvk-xK-UjP" secondAttribute="bottom" constant="2.5" id="8Dm-zR-yb8"/>
+                <constraint firstItem="Gvk-xK-UjP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="CpC-ys-u6L"/>
+                <constraint firstItem="kLM-tu-8UR" firstAttribute="bottom" secondItem="84t-o2-rDI" secondAttribute="bottom" id="MAC-jZ-R4A"/>
+                <constraint firstItem="Gvk-xK-UjP" firstAttribute="top" secondItem="7BX-E9-mWS" secondAttribute="bottom" constant="5" id="Qmk-Ob-uxj"/>
+                <constraint firstItem="kLM-tu-8UR" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Sud-6m-DqF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bsB-KE-e0T" secondAttribute="trailing" constant="6" id="TUd-Kt-1nY"/>
+                <constraint firstItem="7BX-E9-mWS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="aOU-zM-a8W"/>
+                <constraint firstItem="bsB-KE-e0T" firstAttribute="top" secondItem="Gvk-xK-UjP" secondAttribute="top" constant="-29.5" id="bTb-ol-gVz"/>
+                <constraint firstItem="84t-o2-rDI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gbq-ae-LB9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gvk-xK-UjP" secondAttribute="trailing" constant="6" id="iLr-4c-nJd"/>
+                <constraint firstItem="84t-o2-rDI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jSC-ya-ypx"/>
+                <constraint firstItem="ht0-Ag-4Ve" firstAttribute="leading" secondItem="7Gw-S0-hwO" secondAttribute="trailing" constant="12.5" id="kuL-0X-BuM"/>
+                <constraint firstItem="kLM-tu-8UR" firstAttribute="centerY" secondItem="84t-o2-rDI" secondAttribute="centerY" id="lmp-Rm-1qT"/>
+                <constraint firstItem="ht0-Ag-4Ve" firstAttribute="top" secondItem="7Gw-S0-hwO" secondAttribute="top" id="mUx-pN-PRa"/>
+                <constraint firstItem="7Gw-S0-hwO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="np4-oK-kmC"/>
+                <constraint firstItem="7BX-E9-mWS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="omy-b7-GOe"/>
+                <constraint firstItem="kLM-tu-8UR" firstAttribute="top" secondItem="84t-o2-rDI" secondAttribute="top" id="ovI-qS-yhN"/>
+                <constraint firstItem="84t-o2-rDI" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="rNx-eZ-0vH"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-461" y="273"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tracker_call" width="20" height="20"/>
+        <image name="tracker_fence" width="20" height="20"/>
+        <image name="tracker_footprint" width="20" height="20"/>
+        <image name="tracker_photograph" width="20" height="20"/>
+        <image name="tracker_setting" width="20" height="20"/>
+        <image name="unbind" width="20" height="20"/>
+    </resources>
+</document>

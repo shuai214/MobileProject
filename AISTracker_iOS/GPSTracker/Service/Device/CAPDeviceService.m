@@ -117,7 +117,7 @@
             reply(response);
         }];
     }else{
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }
 }
 

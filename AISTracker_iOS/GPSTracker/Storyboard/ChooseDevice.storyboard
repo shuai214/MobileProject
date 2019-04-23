@@ -29,7 +29,7 @@
         <!--Choose Device Type View Controller-->
         <scene sceneID="bvk-GY-BS9">
             <objects>
-                <viewController id="UBP-db-LrG" customClass="CAPChooseDeviceTypeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CAPChooseDeviceTypeViewController" id="UBP-db-LrG" customClass="CAPChooseDeviceTypeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pkl-3c-67e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

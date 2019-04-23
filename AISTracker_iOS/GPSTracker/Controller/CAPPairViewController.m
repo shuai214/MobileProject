@@ -27,6 +27,9 @@
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"tether", nil)];
     [CAPNotifications addObserver:self selector:@selector(registBindUserDevice:) name:kNotificationBINDREPCountChange object:nil];
+    self.infoLabel.text = CAPLocalizedString(@"tether_tracker_to_your_smartphone");
+    [self.scanButton setTitle:CAPLocalizedString(@"scanning") forState:UIControlStateNormal];
+    [self.numberButton setTitle:CAPLocalizedString(@"number") forState:UIControlStateNormal];
     [self mqttConnect];
 }
 - (void)mqttConnect{
@@ -44,14 +47,23 @@
     [mqttCenter open:config];
 }
 - (void)registBindUserDevice:(NSNotification *)notifi{
-    [CAPAlertView initAlertWithContent:CAPLocalizedString(@"pair_success") title:@"" closeBlock:^{
-        
-    } okBlock:^{
-        [CAPNotifications notify:kNotificationDeviceCountChange];
-        [self performSegueWithIdentifier:@"main.segue" sender:nil];
+    MQTTInfo *info = notifi.object;
+    if ([info.confirm isEqualToString:@"0"]) {
+        [CAPAlertView initAlertWithContent:CAPLocalizedString(@"pair_device_error") title:@"" closeBlock:^{
+            
+        } okBlock:^{
 
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-    } alertType:AlertTypeNoClose];
+        } alertType:AlertTypeNoClose];
+    }else{
+        [CAPAlertView initAlertWithContent:CAPLocalizedString(@"pair_success") title:@"" closeBlock:^{
+            
+        } okBlock:^{
+            [CAPNotifications notify:kNotificationDeviceCountChange];
+            [self performSegueWithIdentifier:@"main.segue" sender:nil];
+
+    //        [self.navigationController popToRootViewControllerAnimated:YES];
+        } alertType:AlertTypeNoClose];
+    }
 }
 
 - (id<YWAlertViewProtocol>)ywAlert{
@@ -82,15 +94,15 @@
             CAPDeviceSettingViewController *deviceSettingVC = [[UIStoryboard storyboardWithName:@"Pair" bundle:nil] instantiateViewControllerWithIdentifier:@"DeviceSettingViewController"];
             deviceSettingVC.deviceStr = successStr;
             [deviceSettingVC setInputDeviceBlock:^(CAPDevice *device) {
-                [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),device.deviceID] title:@"" closeBlock:^{
-                    
-                } okBlock:^{
-                    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),device.deviceID] title:@"" closeBlock:^{
+                
+                [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@%@",CAPLocalizedString(@"request_guadian_text1"),successStr,CAPLocalizedString(@"request_guadian_text2")] deviceID:successStr okBlock:^{
+                    [CAPAlertView initAlertWithContent:[NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"confirm_pair_device"),successStr] title:@"" closeBlock:^{
                         
                     } okBlock:^{
                         
                     } alertType:AlertTypeTwoButton];
-                } alertType:AlertTypeNoClose];
+
+                }];
             }];
             [self.navigationController pushViewController:deviceSettingVC animated:YES];
             
@@ -119,10 +131,10 @@
         CAPDevice *device = [[CAPDevice alloc] init];
         [device setDeviceID:deviceNum];
         [device setName:deviceNum];
-//        [gApp showHUD:@"正在处理，请稍后..."];
+//        [capgApp showHUD:@"正在处理，请稍后..."];
 //        CAPDeviceService *service = [[CAPDeviceService alloc] init];
 //        [service addDevice:device reply:^(CAPHttpResponse *response) {
-//            [gApp hideHUD];
+//            [capgApp hideHUD];
 //            if ([[response.data objectForKey:@"code"] integerValue] == 200) {
 //                CAPDevice *getDevice = [CAPDevice mj_objectWithKeyValues:[response.data objectForKey:@"result"]];
 //                [CAPNotifications notify:kNotificationDeviceCountChange object:getDevice];

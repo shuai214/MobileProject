@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "Footprint"; ObjectID = "6sm-Pa-dli"; */
+"6sm-Pa-dli.normalTitle" = "ดูย้อนหลัง";
+
+/* Class = "UILabel"; text = "Baby"; ObjectID = "7BX-E9-mWS"; */
+"7BX-E9-mWS.text" = "Baby";
+
+/* Class = "UILabel"; text = "offline"; ObjectID = "7Gw-S0-hwO"; */
+"7Gw-S0-hwO.text" = "ออฟไลน์";
+
+/* Class = "UILabel"; text = "Nan Shan Dist. Taoyuan Street"; ObjectID = "Gvk-xK-UjP"; */
+"Gvk-xK-UjP.text" = "Nan Shan Dist. Taoyuan Street";
+
+/* Class = "UIButton"; normalTitle = "Setting"; ObjectID = "HKD-Ug-04P"; */
+"HKD-Ug-04P.normalTitle" = "ตั้งค่า";
+
+/* Class = "UIButton"; normalTitle = "call"; ObjectID = "ahl-OX-nKa"; */
+"ahl-OX-nKa.normalTitle" = "โทร";
+
+/* Class = "UIButton"; normalTitle = "Photograph"; ObjectID = "bZn-Un-3l2"; */
+"bZn-Un-3l2.normalTitle" = "ถ่ายรูป";
+
+/* Class = "UIButton"; normalTitle = "Unbinding"; ObjectID = "gA6-hr-PMs"; */
+"gA6-hr-PMs.normalTitle" = "ยกเลิกการจับคู่";
+
+/* Class = "UIButton"; normalTitle = "Footprint"; ObjectID = "grP-VJ-lwi"; */
+"grP-VJ-lwi.normalTitle" = "ดูย้อนหลัง";
+
+/* Class = "UIButton"; normalTitle = "Fence"; ObjectID = "oFp-nj-B0Q"; */
+"oFp-nj-B0Q.normalTitle" = "รั้ว";
+
+/* Class = "UIButton"; normalTitle = "call"; ObjectID = "uii-PC-72V"; */
+"uii-PC-72V.normalTitle" = "โทร";

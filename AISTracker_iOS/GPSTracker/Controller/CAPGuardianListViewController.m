@@ -53,7 +53,7 @@
     }
 }
 - (void)loadDeviceBindUserInfo{
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPDeviceService *deviceServer = [[CAPDeviceService alloc] init];
     [deviceServer getDeviceBindList:self.device reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
@@ -66,7 +66,7 @@
             }
             [self.tableView reloadData];
         }
-        [gApp hideHUD];
+        [capgApp hideHUD];
     }];
 }
 
@@ -99,7 +99,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 45)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, Main_Screen_Width - 30, 15)];
-    label.text = @"Administrator";
+    label.text = CAPLocalizedString(@"administrator");
     [view addSubview:label];
     return view;
 }

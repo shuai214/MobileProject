@@ -26,7 +26,9 @@ target 'GPSTracker' do
   pod 'YWAlertView'
   pod 'DateTools', '~> 1.7.0'
   pod 'LineSDK', '~> 5.0.0'
+ # pod 'TrueFrameworkSDK', '~> 4.0.44​' #for swift 4.1 or 3.3, support objc or Xcode 9.3
   pod 'Firebase/Messaging'
+
 target 'GPSTrackerTests' do
     inherit! :search_paths
     # Pods for testing

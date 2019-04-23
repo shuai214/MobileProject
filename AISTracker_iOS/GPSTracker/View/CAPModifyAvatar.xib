@@ -59,7 +59,7 @@
                         <constraint firstAttribute="width" secondItem="KRr-t6-7fU" secondAttribute="height" multiplier="1:1" id="qzt-BP-Umd"/>
                         <constraint firstAttribute="height" constant="40" id="zoh-kz-ZrR"/>
                     </constraints>
-                    <state key="normal" title="Button" image="dialog_close_red"/>
+                    <state key="normal" image="dialog_close_red"/>
                     <connections>
                         <action selector="closeAction:" destination="20I-j3-CrS" eventType="touchUpInside" id="DUI-6e-dz2"/>
                     </connections>

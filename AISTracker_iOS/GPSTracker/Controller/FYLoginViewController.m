@@ -16,6 +16,7 @@
 #import "CAPUserService.h"
 #import "CAPSocialLoginResponse.h"
 #import "CAPSocialUser.h"
+#import "CAPLogin.h"
 //#import "OpenPlatformAppRegInfo.h"
 //#import "TYDAppProfileController.h"
 @interface FYLoginViewController ()<TrueSDKLoginDelegate, TrueSDKRegisterDelegate, TrueSDKRefreshTokenDelegate>
@@ -32,8 +33,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-  
-    
 }
 
 - (void)viewDidLoad {
@@ -90,7 +89,15 @@
 - (void)onRegisterSuccessWithUserProfileData:(NSDictionary * _Nullable)userProfileData{
     
     NSLog(@"register success:%@",userProfileData);
-//    self.noticeText = TYDLocalizedString(@"registerSuccess");
+    NSLog(@"+++onRegisterSuccessWithUserProfileData: %@", userProfileData);
+    NSDictionary *profile = userProfileData[@"profile"];
+    if(profile) {
+        CAPLogin *login = [CAPLogin login];
+        [login trueIdLoginUserInfo:profile];
+    } else {
+        CAPLogin *login = [CAPLogin login];
+        [login trueIdLoginUserInfo:profile];
+    }
 }
 - (void)onRegisterErrorWithErrorMessage:(NSString * _Nullable)errorMessage{
     
@@ -107,35 +114,38 @@
     CAPWeakSelf(self);
     [[TrueIdPlatformAuth shareInstance] getLoginInfo:^(NSDictionary * _Nonnull userInfo) {
 //        [wself progressHUDHideImmediately];
-        NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionary];
-        weakself.account = userInfo[@"account"];
-        userInfoDic[@"account"] = weakself.account;
-        weakself.openID = userInfo[@"sub"];
-        NSDictionary *profileDic = userInfo[@"profile"];
-
-        if (profileDic != nil) {
-            NSString *appid = userInfo[@"aud"];
-            NSString *uid = weakself.openID;
-            NSString *email = profileDic[@"account_email"];
-            NSString *expirationDate = [NSString stringWithFormat:@"%ld",([profileDic[@"exp"] integerValue] - [profileDic[@"iat"] integerValue])];
-            NSString *accessToken = profileDic[@"account_email"];
-            if (accessToken.length == 0) {
-                accessToken = profileDic[@"account_mobile"];
-            }
-            NSString *name = profileDic[@"display_name"];
-
-            if (name) userInfoDic[@"name"] = name;
-            if (uid)   userInfoDic[@"uid"] = uid;
-            if (appid)   userInfoDic[@"appid"] = appid;
-            if (email)    userInfoDic[@"email"] = uid;
-            if (accessToken)    userInfoDic[@"accessToken"] = accessToken;
-            if (expirationDate)  userInfoDic[@"expiration"] = expirationDate;
-            userInfoDic[@"type"] = [NSString stringWithFormat:@"%ld",CAPUserTypeTrue];
-            NSString *content = [NSString stringWithFormat:@"iOS,%@,%@", [CAPPhones systemVersion], [CAPPhones phoneType]];
-            userInfoDic[@"content"]=content;
-        }
-        self.profileDic = userInfoDic;
-        [weakself userInfoDownloadWithOpenID:weakself.openID];
+        
+        CAPLogin *login = [CAPLogin login];
+        [login trueIdLoginUserInfo:userInfo];
+//        NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionary];
+//        weakself.account = userInfo[@"account"];
+//        userInfoDic[@"account"] = weakself.account;
+//        weakself.openID = userInfo[@"sub"];
+//        NSDictionary *profileDic = userInfo[@"profile"];
+//
+//        if (profileDic != nil) {
+//            NSString *appid = userInfo[@"aud"];
+//            NSString *uid = weakself.openID;
+//            NSString *email = profileDic[@"account_email"];
+//            NSString *expirationDate = [NSString stringWithFormat:@"%ld",([profileDic[@"exp"] integerValue] - [profileDic[@"iat"] integerValue])];
+//            NSString *accessToken = profileDic[@"account_email"];
+//            if (accessToken.length == 0) {
+//                accessToken = profileDic[@"account_mobile"];
+//            }
+//            NSString *name = profileDic[@"display_name"];
+//
+//            if (name) userInfoDic[@"name"] = name;
+//            if (uid)   userInfoDic[@"uid"] = uid;
+//            if (appid)   userInfoDic[@"appid"] = appid;
+//            if (email)    userInfoDic[@"email"] = uid;
+//            if (accessToken)    userInfoDic[@"accessToken"] = accessToken;
+//            if (expirationDate)  userInfoDic[@"expiration"] = expirationDate;
+//            userInfoDic[@"type"] = [NSString stringWithFormat:@"%ld",CAPUserTypeTrue];
+//            NSString *content = [NSString stringWithFormat:@"iOS,%@,%@", [CAPPhones systemVersion], [CAPPhones phoneType]];
+//            userInfoDic[@"content"]=content;
+//        }
+//        self.profileDic = userInfoDic;
+//        [weakself userInfoDownloadWithOpenID:weakself.openID];
         
     } failed:^(NSDictionary * _Nonnull error) {
 
@@ -158,12 +168,11 @@
     
 }
 
-
 //与服务器交互
 - (void)userInfoDownloadWithOpenID:(NSString *)openID
 {
 
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPUserService *userService = [[CAPUserService alloc] init];
     [userService socialLogin:self.profileDic reply:^(id response) {
         NSLog(@"%@",response);
@@ -172,9 +181,13 @@
             if(loginResponse.code == 200){
                 [CAPUserDefaults setObject:self.profileDic forKey:@"user_profileDic"];
                 if(loginResponse.isSucceed) {
-                    [gApp hideHUD];
+                    [capgApp hideHUD];
                     CAPUser *user = loginResponse.result;
-                    [self showMainPage];
+                    if (user.devices.count > 0) {
+                        [self showPairPage];
+                    }else{
+                        [self showMainPage];
+                    }
                     [CAPNotifications notify:kNotificationLoginDeviceCount object:user];
                     [CAPUserDefaults setObject:user.oauth.accessToken forKey:@"accessToken"];
                     [CAPUserDefaults setObject:user.oauth.refreshToken forKey:@"refreshToken"];
@@ -183,7 +196,7 @@
                     [CAPUserDefaults setObject:data forKey:@"CAP_User"];
                 }
             }else{
-                [gApp hideHUD];
+                [capgApp hideHUD];
                 [CAPAlertView initAlertWithContent:loginResponse.message okBlock:^{
                     
                 } alertType:AlertTypeNoClose];
@@ -195,7 +208,7 @@
     [self performSegueWithIdentifier:@"main.segue" sender:nil];
 }
 - (void)showPairPage{
-    [self performSegueWithIdentifier:@"choose.segue" sender:nil];
+    [self performSegueWithIdentifier:@"mainVC.segue" sender:nil];
 }
 
 @end

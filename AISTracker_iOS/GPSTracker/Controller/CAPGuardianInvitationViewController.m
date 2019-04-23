@@ -22,20 +22,22 @@
     self.title = CAPLocalizedString(@"invitation");
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.device.setting.avatarBaseUrl,self.device.setting.avatarPath]] placeholderImage:GetImage(@"ic_default_avatar_new")];
     [self loadDeviceShareInfo];
+    [self.okButton setBackgroundColor:[CAPColors red]];
+    [self.okButton setTitle:CAPLocalizedString(@"share") forState:UIControlStateNormal];
 }
 
 - (void)loadDeviceShareInfo{
     self.deviceLabel.text = [NSString stringWithFormat:@"%@%@",CAPLocalizedString(@"device_id"),self.device.deviceID];
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     [deviceService shareDevice:self.device.deviceID reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response);
         NSDictionary *dict = response.data;
         if ([[response.data objectForKey:@"code"] integerValue] == 200){
             [self creatCodeImage:[dict objectForKey:@"result"]];
-            [gApp hideHUD];
+            [capgApp hideHUD];
         }else{
-            [gApp hideHUD];
+            [capgApp hideHUD];
             [CAPAlertView initAlertWithContent:[dict objectForKey:@"message"] okBlock:^{
                 
             } alertType:AlertTypeNoClose];

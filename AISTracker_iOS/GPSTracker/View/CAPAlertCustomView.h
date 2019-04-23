@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy ) void (^okBlock)(void);
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title contentDesc:(NSString *)desc alertType:(AlertType)alertType;
-
 @end
 
 NS_ASSUME_NONNULL_END

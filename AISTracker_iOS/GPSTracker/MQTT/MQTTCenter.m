@@ -235,36 +235,26 @@
             color = [UIColor greenColor];
         }
         info.message = [NSString stringWithFormat:@"%@%@",info.deviceID,status];
-        [gApp showNotifyInfo:[NSString stringWithFormat:@"%@%@%@",CAPLocalizedString(@"tips_device_online1"),info.deviceID,status] backGroundColor:color];
+        [capgApp showNotifyInfo:[NSString stringWithFormat:@"%@%@%@",CAPLocalizedString(@"tips_device_online1"),info.deviceID,status] backGroundColor:color];
         [coreData insertData:info];
         
-    }else if ([info.command isEqualToString:@"UPGRADEREQ"]){
-        [CAPNotifications notify:kNotificationUPGRADEREQName object:info];
-        //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
-        //        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"VERNO"]){
         [CAPNotifications notify:kNotificationVernoName object:info];
-        //        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
-        //        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"PHOTO"]){
         [CAPNotifications notify:kNotificationPhotoCountChange object:info];
-//        info.message = [NSString stringWithFormat:@"%@进行了拍照",info.deviceID];
-//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"GPS"]){
         [CAPNotifications notify:kNotificationGPSCountChange object:info];
-//        info.message = [NSString stringWithFormat:@"%@进行了定位",info.deviceID];
-//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"UPLOAD"]){
         [CAPNotifications notify:kNotificationUPLOADCountChange object:info];
-//        info.message = [NSString stringWithFormat:@"%@更新了设置",info.deviceID];
-//        [coreData insertData:info];
+    }else if ([info.command isEqualToString:@"CHECKFIRMWARE"]){
+        [CAPNotifications notify:kNotificationCHECKFIRMWAREName object:info];
     }else if ([info.command isEqualToString:@"UNBIND"]){
         [CAPNotifications notify:kNotificationDeviceCountChange object:info];
         if ([info.userRole isEqualToString:@"user"]) {
-            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@%@%@%@",info.userProfile.firstName,CAPLocalizedString(@"message_type_guest_quit1"),info.deviceID,CAPLocalizedString(@"message_type_guest_quit2")] title:info.deviceID closeBlock:^{
+            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@%@%@%@",info.userID,CAPLocalizedString(@"message_type_guest_quit1"),info.deviceID,CAPLocalizedString(@"message_type_guest_quit2")] title:info.deviceID closeBlock:^{
             } alertType:AlertTypeButton];
         }else{
-            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@",CAPLocalizedString(@"message_type_master_quit")] title:info.deviceID closeBlock:^{
+            [CAPAlertView initCloseAlertWithContent:[NSString stringWithFormat:@"%@",CAPLocalizedString(@"ddministrator_released")] title:info.deviceID closeBlock:^{
                 
             } alertType:AlertTypeButton];
         }
@@ -272,31 +262,29 @@
         [CAPNotifications notify:kNotificationREMOVEDCountChange object:info];
     }else if ([info.command isEqualToString:@"BINDREQ"]){//BINDREP
         self.bindInfo = info;
-        [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@ want to bind your device。",info.userProfile.firstName] ocloseBlock:^{
-            [gApp showHUD:CAPLocalizedString(@"loading")];
+        [CAPAlertView initBindAlertViewWithContent:[NSString stringWithFormat:@"%@ %@",info.userProfile.firstName ? info.userProfile.firstName:info.deviceID,CAPLocalizedString(@"message1")] ocloseBlock:^{
+            [capgApp showHUD:CAPLocalizedString(@"loading")];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"0" reply:^(CAPHttpResponse *response) {
                 NSLog(@"%@",response);
                 if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-                    [gApp hideHUD];
+                    [capgApp hideHUD];
                 }
             }];
         } okBlock:^{
-            [gApp showHUD:CAPLocalizedString(@"loading")];
+            [capgApp showHUD:CAPLocalizedString(@"loading")];
             CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
             [deviceService deviceConfirm:self.bindInfo.deviceID userid:self.bindInfo.userID result:@"1" reply:^(CAPHttpResponse *response) {
                 NSLog(@"%@",response);
                 if ([[response.data objectForKey:@"code"] integerValue] == 200) {
-                    [gApp hideHUD];
-                    [CAPAlertView initAlertWithContent:[response.data objectForKey:@"message"] okBlock:^{
+                    [capgApp hideHUD];
+                    [CAPAlertView initAlertWithContent:CAPLocalizedString(@"pair_success") okBlock:^{
                     } alertType:AlertTypeNoClose];
                 }
             }];
         }];
-//        [coreData insertData:info];
     }else if ([info.command isEqualToString:@"BINDREP"]){
         self.bindInfo = info;
-//        info.message = [NSString stringWithFormat:@"您绑定了%@设备。",info.deviceID];
         [CAPNotifications notify:kNotificationBINDREPCountChange object:info];
     }else if (!info.command){
         if ([self getDecimalByBinary:info.status] == 16) {

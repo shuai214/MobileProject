@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = CAPLocalizedString(@"positioning_mode");
+    self.title = CAPLocalizedString(@"update_frequency");
     self.view.backgroundColor = gCfg.appBackgroundColor;
     
     UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(10,10 + TopHeight,Main_Screen_Width - 20,120)];
@@ -73,10 +73,10 @@
     if (self.device.setting.reportFrequency >= 0) {
         if (self.device.setting.reportFrequency) {
             if (self.device.setting.reportFrequency / 60 < 60) {
-                time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
+                time = [NSString stringWithFormat:@"%@%ld%@",CAPLocalizedString(@"any"),self.device.setting.reportFrequency / 60,CAPLocalizedString(@"minutes")];
             }
             if (self.device.setting.reportFrequency / 60 > 60) {
-                time = [NSString stringWithFormat:@"%ld%@",self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
+                time = [NSString stringWithFormat:@"%@%ld%@",CAPLocalizedString(@"any"),self.device.setting.reportFrequency / 60 / 60,CAPLocalizedString(@"hour")];
             }
             [self.customImageView setImage:GetImage(@"check_on")];
         }else{
@@ -114,7 +114,7 @@
 - (void)chooseTimeAction{
     [self.sdImageView setImage:GetImage(@"check_off")];
     [self.customImageView setImage:GetImage(@"check_on")];
-    NSArray *times = @[CAPLocalizedString(@"real_time"), [NSString stringWithFormat:@"5%@",CAPLocalizedString(@"minutes")], [NSString stringWithFormat:@"15%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"30%@",CAPLocalizedString(@"minutes")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_1")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_4")]];
+    NSArray *times = @[CAPLocalizedString(@"real_time"), CAPLocalizedString(@"mins_5"), CAPLocalizedString(@"mins_15"),CAPLocalizedString(@"mins_30"),[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_1")],[NSString stringWithFormat:@"%@",CAPLocalizedString(@"hour_4")]];
     [BRStringPickerView showStringPickerWithTitle:CAPLocalizedString(@"update_frequency") dataSource:times defaultSelValue:[NSString stringWithFormat:@"5%@",CAPLocalizedString(@"minutes")] resultBlock:^(id selectValue) {
         [self.customButton setTitle:[NSString stringWithFormat:@"%@",selectValue] forState:UIControlStateNormal];
         [CAPUserDefaults setObject:selectValue forKey:@"uploadTime"];
@@ -155,14 +155,14 @@
     }];
 }
 - (void)okAction{
-    [gApp showHUD:CAPLocalizedString(@"loading")];
+    [capgApp showHUD:CAPLocalizedString(@"loading")];
     CAPWeakSelf(self);
     CAPDeviceService *deviceService = [[CAPDeviceService alloc] init];
     [deviceService deviceSendCommand:self.device.deviceID cmd:@"UPLOAD" param:self.time reply:^(CAPHttpResponse *response) {
         NSLog(@"%@",response.data);
         CAPDeviceCommand *command = [CAPDeviceCommand mj_objectWithKeyValues:response.data];
         if (command.code == 200) {
-            [gApp hideHUD];
+            [capgApp hideHUD];
             [CAPToast toastSuccess:CAPLocalizedString(@"update_success")];
             [CAPNotifications addObserver:self selector:@selector(getNotification:) name:kNotificationUPLOADCountChange object:nil];
             weakself.updateSuccessBlock(weakself.choosetime);
@@ -184,6 +184,6 @@
 - (void)getNotification:(NSNotification *)notifi{
     self.mqttInfo = notifi.object;
     NSLog(@"%@",self.mqttInfo);
-    [gApp hideHUD];
+    [capgApp hideHUD];
 }
 @end

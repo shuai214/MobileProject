@@ -29,6 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = CAPLocalizedString(@"message");
+//    self.tabBarItem.title = CAPLocalizedString(@"message");
+    
     self.tableHeight = self.tableView.frame.size.height;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

@@ -8,7 +8,7 @@
 
 #define DLog( ... ) NSLog(__VA_ARGS__);
 
-typedef void (^CAPHUDCancelReply)();
+//typedef void (^CAPHUDCancelReply)();
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
@@ -31,19 +31,5 @@ typedef void (^CAPHUDCancelReply)();
 
 - (NSURL *)applicationDocumentsDirectory;
 
-
-- (void)showHUD;
-- (void)showHUD:(NSString *)title;
-- (void)showHUDWithCancelTitle:(NSString *)cancelTitle onCancelled:(CAPHUDCancelReply)cancelBlock;
-- (void)showHUD:(NSString *)title cancelTitle:(NSString *)cancelTitle onCancelled:(CAPHUDCancelReply)cancelBlock;
-- (void)showHUDWithCancel;
-
-- (void)updateProgress:(CGFloat)progress;
-- (void)showNotifyInfo:(NSString *)info backGroundColor:(UIColor *)color;
-- (void)hideHUD;
-- (void)logByteArray:(const uint8_t *)buf length:(NSUInteger)length;
 @end
-
-extern AppDelegate* gApp;
-
 

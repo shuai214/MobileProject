@@ -95,10 +95,10 @@ return _sharedObject; \
 //    }];
     
 //    if([self assureNetwork]) {
-//        [gApp showHUD];
+//        [capgApp showHUD];
 //        __weak typeof(self)weakSelf = self;
 //        [[CAPUserHandler defaultHandler] socialLogin:socialUser reply:^(CAPSocialLoginResponse *res) {
-//            [gApp hideHUD];
+//            [capgApp hideHUD];
 //            if(res.isSucceed) {
 //                CAPUser *user = res.result;
 //                user.type = user.type;
@@ -133,7 +133,7 @@ return _sharedObject; \
     CAPHttpService *service = [CAPHttpService defaultService];
     //req.timeoutInterval = 30;
     __weak typeof(self)weakSelf = self;
-//    [gApp showHUD];
+//    [capgApp showHUD];
     [service sendRequest:request reply:^(CAPHttpResponse *response) {
         if(response.isSucceed) {
             NSDictionary *dict = response.data;
