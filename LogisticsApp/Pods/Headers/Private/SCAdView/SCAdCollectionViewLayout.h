@@ -1,0 +1,1 @@
+../../../SCAdView/SCAdView/SCAdCollectionViewLayout.h

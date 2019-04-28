@@ -235,3 +235,10 @@
 "ERROR_STRING"="Another account already bind with this True Smart Tracking. Please contract administrator.";
 "Thailand"="Thai";
 "device_no_enter" = "Please enter the device number";
+/*权限声明*/
+"NSPhotoLibraryUsageDescription"="App needs your permission to access the album";
+"NSCameraUsageDescription"="App needs your permission to access the camera";
+"NSLocationUsageDescription"="App requires your consent to access the location";
+"NSLocationWhenInUseUsageDescription"="App requires your consent to access the location during use";
+"NSLocationAlwaysUsageDescription"="App requires your consent to always access the location";
+"NSContactsUsageDescription"="App requires your consent to access the address book";

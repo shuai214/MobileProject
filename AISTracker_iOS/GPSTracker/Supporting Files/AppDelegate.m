@@ -18,8 +18,8 @@
 #import "CAPNotifications.h"
 #import <AFNetworking/AFNetworking.h>
 #import <UserNotifications/UserNotifications.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "WXApi.h"
+//#import <TencentOpenAPI/TencentOAuth.h>
+//#import "WXApi.h"
 #import <Firebase/Firebase.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import "CAPSocialService.h"
@@ -35,7 +35,7 @@
 //AppDelegate* gApp = nil;
 
 
-@interface AppDelegate () <TrueSDKActiveAppDelegate,WXApiDelegate,FIRMessagingDelegate,UNUserNotificationCenterDelegate> {
+@interface AppDelegate () <TrueSDKActiveAppDelegate,FIRMessagingDelegate,UNUserNotificationCenterDelegate> {
     MBProgressHUD *_textHud;
     MBProgressHUD *_progressHud;
 }

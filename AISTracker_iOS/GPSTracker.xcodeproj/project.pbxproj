@@ -128,9 +128,7 @@
 		EF6CA64E218D31380014771E /* CAPReadUserSettingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA64B218D31370014771E /* CAPReadUserSettingResponse.m */; };
 		EF6CA652218D31680014771E /* CAPCheckRemoteSettingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */; };
 		EF6CA655218D31AD0014771E /* CAPRemoteSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA653218D31AC0014771E /* CAPRemoteSetting.m */; };
-		EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA659218D58160014771E /* libWeChatSDK.a */; };
 		EF6CA65F218D58170014771E /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA65B218D58170014771E /* NullSafe.m */; };
-		EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA65D218D58170014771E /* TencentOpenAPI.framework */; };
 		EF6CA66F218D7A7B0014771E /* CAPSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6CA66E218D7A7B0014771E /* CAPSocialService.m */; };
 		EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA670218D7C7F0014771E /* libc++.tbd */; };
 		EF6CA673218D7CA90014771E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6CA672218D7CA90014771E /* CoreTelephony.framework */; };
@@ -504,11 +502,7 @@
 		EF6CA651218D31680014771E /* CAPCheckRemoteSettingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPCheckRemoteSettingResponse.m; sourceTree = "<group>"; };
 		EF6CA653218D31AC0014771E /* CAPRemoteSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRemoteSetting.m; sourceTree = "<group>"; };
 		EF6CA654218D31AD0014771E /* CAPRemoteSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRemoteSetting.h; sourceTree = "<group>"; };
-		EF6CA657218D58160014771E /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		EF6CA658218D58160014771E /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		EF6CA659218D58160014771E /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		EF6CA65B218D58170014771E /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
-		EF6CA65D218D58170014771E /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		EF6CA66D218D7A7B0014771E /* CAPSocialService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAPSocialService.h; sourceTree = "<group>"; };
 		EF6CA66E218D7A7B0014771E /* CAPSocialService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPSocialService.m; sourceTree = "<group>"; };
 		EF6CA670218D7C7F0014771E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -719,8 +713,6 @@
 				2BF937122269F883000B1CFA /* TrueIDFramework.framework in Frameworks */,
 				EF6CA671218D7C7F0014771E /* libc++.tbd in Frameworks */,
 				2BF937132269F8E7000B1CFA /* TrueIDFramework.framework in Frameworks */,
-				EF6CA65E218D58170014771E /* libWeChatSDK.a in Frameworks */,
-				EF6CA660218D58170014771E /* TencentOpenAPI.framework in Frameworks */,
 				02ADE32755E1DCD9CB187C87 /* libPods-GPSTracker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -844,29 +836,12 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
-		EF6CA656218D58160014771E /* Wechat */ = {
-			isa = PBXGroup;
-			children = (
-				EF6CA657218D58160014771E /* WXApi.h */,
-				EF6CA658218D58160014771E /* WXApiObject.h */,
-				EF6CA659218D58160014771E /* libWeChatSDK.a */,
-			);
-			path = Wechat;
-			sourceTree = "<group>";
-		};
 		EF6CA65A218D58170014771E /* NullSafe */ = {
 			isa = PBXGroup;
 			children = (
 				EF6CA65B218D58170014771E /* NullSafe.m */,
 			);
 			path = NullSafe;
-			sourceTree = "<group>";
-		};
-		EF6CA65C218D58170014771E /* QQ */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = QQ;
 			sourceTree = "<group>";
 		};
 		EF79BB4C218860C0000358FA /* Controller */ = {
@@ -1132,9 +1107,6 @@
 				2B45228821FF483B001BD5DC /* NSBundle+DAUtils.m */,
 				2B1C080721E0A03400B258C1 /* NHHUDExtend */,
 				EF6CA65A218D58170014771E /* NullSafe */,
-				EF6CA65C218D58170014771E /* QQ */,
-				EF6CA65D218D58170014771E /* TencentOpenAPI.framework */,
-				EF6CA656218D58160014771E /* Wechat */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -2110,7 +2082,7 @@
 				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J524VA43H8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2143,10 +2115,10 @@
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstrackerTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.true.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = Tracker_dev;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2157,9 +2129,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GPSTracker/GPSTracker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J524VA43H8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2192,10 +2164,10 @@
 					"$(PROJECT_DIR)/GPSTracker/Vendor",
 					"$(PROJECT_DIR)/GPSTracker",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.capelabs.gpstrackerTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.true.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = Tracker_dist;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

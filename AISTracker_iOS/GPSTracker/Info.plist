@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Find For U</string>
+	<string>Smart Tracking</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,11 +15,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Find for U</string>
+	<string>Smart Tracking</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.7</string>
+	<string>1.0.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -39,16 +39,14 @@
 			<string>aaa.library.sdk_v4</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>Find</string>
-				<string>For</string>
-				<string>U</string>
+				<string>SmartTracking</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Find For U</string>
+			<string>Smart Tracking</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.true.kidzwatch</string>
@@ -104,9 +102,17 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow access to cameras</string>
+	<string>App needs your permission to access the camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App requires your consent to access the address book</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App requires your consent to always access the location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>App requires your consent to access the location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow access to the current location</string>
+	<string>App requires your consent to access the location during use</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs your permission to access the album</string>
 	<key>TrueAppId</key>
 	<string>653</string>
 	<key>TrueRedirectUrl</key>

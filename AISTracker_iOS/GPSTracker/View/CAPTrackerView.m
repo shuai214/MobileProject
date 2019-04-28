@@ -44,15 +44,6 @@
         [self initButton:self.userFootprint];
         [self initButton:self.userSetting];
         [self initButton:self.unbindung];
-//        [self.fenceButton setTitle:CAPLocalizedString(@"fence") forState:UIControlStateNormal];
-//        [self.footprintButton setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
-//        [self.photographButton setTitle:CAPLocalizedString(@"photograph") forState:UIControlStateNormal];
-//        [self.callButton setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
-//        [self.settingButton setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
-//        [self.userCall setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
-//        [self.userFootprint setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
-//        [self.userSetting setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
-//        [self.unbindung setTitle:CAPLocalizedString(@"untether") forState:UIControlStateNormal];
 
         [CAPNotifications addObserver:self selector:@selector(deviceOnline:) name:kNotificationDeviceOnlineChange object:nil];
     }
@@ -91,15 +82,7 @@
     [self initButton:self.userFootprint];
     [self initButton:self.userSetting];
     [self initButton:self.unbindung];
-//    [self.fenceButton setTitle:CAPLocalizedString(@"gps_fencing") forState:UIControlStateNormal];
-//    [self.footprintButton setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
-//    [self.photographButton setTitle:CAPLocalizedString(@"photograph") forState:UIControlStateNormal];
-//    [self.callButton setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
-//    [self.settingButton setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
-//    [self.userCall setTitle:CAPLocalizedString(@"tracker_call") forState:UIControlStateNormal];
-//    [self.userFootprint setTitle:CAPLocalizedString(@"footprint") forState:UIControlStateNormal];
-//    [self.userSetting setTitle:CAPLocalizedString(@"setting") forState:UIControlStateNormal];
-//    [self.unbindung setTitle:CAPLocalizedString(@"untether") forState:UIControlStateNormal];
+
     [self.fenceButton addTarget:self action:@selector(did) forControlEvents:UIControlEventTouchUpInside];
 }
 

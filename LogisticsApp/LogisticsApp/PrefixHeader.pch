@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  LogisticsApp
+//
+//  Created by capaipai@sina.com on 2019/4/28.
+//  Copyright © 2019年 capaipai. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "UIColor+NewColor.h"
+#import "UIViewExt.h"
+#import "Macros.h"
+#import <AFNetworking/AFNetworking.h>
+#import <SDWebImage/SDWebImage.h>
+#import "UIColor+Random.h"
+#import "KCSConstant.h"
+#import "MyRequest.h"
+#import "AESEnrypt.h"
+#import "CSSessionManager.h"
+#import "CSAccountTool.h"
+#import "SharedLogin.h"
+#import "CSActionSheet.h"
+#import "HMACMD5ToString.h"
+#import "NSString+AES.h"
+#import "ValidationSignature.h"
+#import <Masonry/Masonry.h>
+#import "UIView+BlockGesture.h"
+#import "UIImage+Color.h"
+#import <JKRouter/JKRouter.h>
+
+#endif /* PrefixHeader_pch */

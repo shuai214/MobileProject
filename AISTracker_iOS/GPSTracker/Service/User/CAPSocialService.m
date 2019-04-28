@@ -11,7 +11,6 @@
 
 #import "CAPSocialService.h"
 #import "CAPToast.h"
-#import "WXApi.h"
 #import "CAPNotifications.h"
 //#import "CAPSocialUser.h"
 #import "CAPHttpRequest.h"
@@ -24,7 +23,7 @@ _sharedObject = block(); \
 }); \
 return _sharedObject; \
 
-@interface CAPSocialService ()<WXApiDelegate>
+@interface CAPSocialService ()
 
 @end
 @implementation CAPSocialService
@@ -57,16 +56,16 @@ return _sharedObject; \
 //}
 
 - (void)wechatLogin {
-    [WXApi registerApp:WECHAT_APP_ID];
-
-    if ([WXApi isWXAppInstalled]) {
-        SendAuthReq* req = [SendAuthReq new];
-        req.scope = @"snsapi_userinfo" ;
-        req.state = @"AIS Tracker" ;
-        [WXApi sendReq:req];
-    } else {
-        [CAPToast toastError:NSLocalizedString(@"no_wechat_error", nil)];
-    }
+//    [WXApi registerApp:WECHAT_APP_ID];
+//
+//    if ([WXApi isWXAppInstalled]) {
+//        SendAuthReq* req = [SendAuthReq new];
+//        req.scope = @"snsapi_userinfo" ;
+//        req.state = @"AIS Tracker" ;
+//        [WXApi sendReq:req];
+//    } else {
+//        [CAPToast toastError:NSLocalizedString(@"no_wechat_error", nil)];
+//    }
 }
 
 - (void)facebookLogin {
@@ -159,7 +158,7 @@ return _sharedObject; \
 - (BOOL)handleOpenURL:(NSURL *)url{
     BOOL ok = NO;
     if ([url.scheme hasPrefix:@"wx"]) {
-        ok = [WXApi handleOpenURL:url delegate:self];
+//        ok = [WXApi handleOpenURL:url delegate:self];
     }
     else if ([url.scheme hasPrefix:@"tencent"]) {
 //        ok = [TencentOAuth HandleOpenURL:url];
@@ -182,27 +181,27 @@ return _sharedObject; \
  * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
  * @param req 具体请求内容，是自动释放的
  */
-- (void)onReq:(BaseReq*)req {
-//    DLog(@"%s", __FUNCTION__);
-}
-
-/*! @brief 发送一个sendReq后，收到微信的回应
- *
- * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
- * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
- * @param resp具体的回应内容，是自动释放的
- */
-- (void)onResp:(BaseResp*)resp {
-//    DLog(@"%s", __FUNCTION__);
-    if ([resp isKindOfClass:[SendAuthResp class]]) {
-        SendAuthResp* res = (SendAuthResp*)resp;
-        if (res.code) {
-//            NSLog(@"%@", kNotificationWechatLogin);
-//            [CAPNotifications notify:kNotificationWechatLogin object:res.code];
-//            DLog(@"[*]Wechat Login with code: %@", res.code);
-            [self didReceiveWechatLogin:res.code];
-        }
-    }
-}
+//- (void)onReq:(BaseReq*)req {
+////    DLog(@"%s", __FUNCTION__);
+//}
+//
+///*! @brief 发送一个sendReq后，收到微信的回应
+// *
+// * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+// * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+// * @param resp具体的回应内容，是自动释放的
+// */
+//- (void)onResp:(BaseResp*)resp {
+////    DLog(@"%s", __FUNCTION__);
+//    if ([resp isKindOfClass:[SendAuthResp class]]) {
+//        SendAuthResp* res = (SendAuthResp*)resp;
+//        if (res.code) {
+////            NSLog(@"%@", kNotificationWechatLogin);
+////            [CAPNotifications notify:kNotificationWechatLogin object:res.code];
+////            DLog(@"[*]Wechat Login with code: %@", res.code);
+//            [self didReceiveWechatLogin:res.code];
+//        }
+//    }
+//}
 
 @end

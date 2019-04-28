@@ -232,3 +232,9 @@
 "ERROR_STRING"="True Smart Tracking นี้ถูกจับคู่กับบัญชีอื่นก่อนหน้านี้แล้ว กรุณาติดต่อผู้ดูแลระบบ";
 "Thailand"="ไทย";
 "device_no_enter"="กรุณากรอกเลขอุปกรณ์";
+"NSPhotoLibraryUsageDescription"="app ต้องขออนุญาตเข้าอัลบั้ม";
+"NSCameraUsageDescription"="ความต้องการของคุณไม่ได้รับอนุญาตเข้าถึง app กล้อง";
+"NSLocationUsageDescription"="app ต้องยินยอมในการใช้สถานที่";
+"NSLocationWhenInUseUsageDescription"="app ต้องยินยอมในการใช้สถานที่ในระหว่างการใช้";
+"NSLocationAlwaysUsageDescription"="app ต้องยินยอมในการใช้สถานที่เสมอ";
+"NSContactsUsageDescription"="app ต้องยินยอมในการเข้าถึงสมุดที่อยู่";

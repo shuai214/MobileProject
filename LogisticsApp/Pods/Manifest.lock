@@ -1,0 +1,69 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (3.3.7)
+  - JKDataHelper (0.1.16.1)
+  - JKRouter (0.2.8.4):
+    - JKDataHelper
+  - Masonry (0.6.4)
+  - MJExtension (3.0.16)
+  - MJRefresh (3.1.16)
+  - SCAdView (0.62)
+  - SDCycleScrollView (1.80):
+    - SDWebImage (>= 5.0.0)
+  - SDWebImage (5.0.1):
+    - SDWebImage/Core (= 5.0.1)
+  - SDWebImage/Core (5.0.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - IQKeyboardManager (~> 3.3.7)
+  - JKRouter
+  - Masonry (~> 0.6.1)
+  - MJExtension
+  - MJRefresh
+  - SCAdView
+  - SDCycleScrollView (~> 1.75)
+  - SDWebImage (>= 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - IQKeyboardManager
+    - JKDataHelper
+    - JKRouter
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - SCAdView
+    - SDCycleScrollView
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  JKDataHelper: 9b3bb0caffe102f758f32cbafc0ef155f4b9c831
+  JKRouter: 05091a9a3feeebc8420ef33926eda63a267f8757
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MJExtension: 54dbbf6ee728f1a88e9aad904353d007831c7847
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  SCAdView: 91ee452bc014d98c678915f20c1eef91b9334031
+  SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
+  SDWebImage: 27dd2c9ea07a2252f94557c9fbb6105ee94b74c9
+
+PODFILE CHECKSUM: 884afe65b0f3ebebf89eccfa5c2e151666423fff
+
+COCOAPODS: 1.5.3

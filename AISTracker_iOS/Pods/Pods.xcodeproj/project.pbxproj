@@ -4886,30 +4886,6 @@
 			};
 			name = Release;
 		};
-		4227451A62EE3572BFDE792477B9AD00 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82E05F2AF6F06D0ECB0CE7C04F968908 /* SCLAlertView-Objective-C.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = SCLAlertView_Objective_C;
-				PRODUCT_NAME = "SCLAlertView-Objective-C";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		45C5E8B154D86A5BF84F8C409A9F3BB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B742495CE97D939FAE87CF6F88DC72CE /* Pods-GPSTrackerUITests.debug.xcconfig */;
@@ -5224,6 +5200,29 @@
 			};
 			name = Debug;
 		};
+		9D2A7FA91A898CF890F1240D06E91958 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E05F2AF6F06D0ECB0CE7C04F968908 /* SCLAlertView-Objective-C.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SCLAlertView_Objective_C;
+				PRODUCT_NAME = "SCLAlertView-Objective-C";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		9E28BC9EA23924BD71E9837896B86627 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 82BB632A3EF403C6BC7C8E12526CAF0B /* SDWebImage.xcconfig */;
@@ -5412,6 +5411,30 @@
 			};
 			name = Release;
 		};
+		C773537C5BF619EE24C2135B2C958A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E05F2AF6F06D0ECB0CE7C04F968908 /* SCLAlertView-Objective-C.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SCLAlertView_Objective_C;
+				PRODUCT_NAME = "SCLAlertView-Objective-C";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		D70E237B614D78BA2A94DAD558D7B43F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E3C09C8E72FF50BFEFF181AD9C16470 /* FirebaseMessaging.xcconfig */;
@@ -5452,29 +5475,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		ED6DB1E52249E41A20543ECBACE64174 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82E05F2AF6F06D0ECB0CE7C04F968908 /* SCLAlertView-Objective-C.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = SCLAlertView_Objective_C;
-				PRODUCT_NAME = "SCLAlertView-Objective-C";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -5634,8 +5634,8 @@
 		100D6E2D247E901E3B45A437591E8630 /* Build configuration list for PBXNativeTarget "SCLAlertView-Objective-C" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED6DB1E52249E41A20543ECBACE64174 /* Debug */,
-				4227451A62EE3572BFDE792477B9AD00 /* Release */,
+				9D2A7FA91A898CF890F1240D06E91958 /* Debug */,
+				C773537C5BF619EE24C2135B2C958A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
